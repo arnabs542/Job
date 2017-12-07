@@ -1,0 +1,11 @@
+
+* 简历
+
+* Java 基础
+
+* 刷题
+Array, BFS, DFS, Backtracking, Binary Search, DP, Graph, Hash Table, LinkedList, 各种tree (Segment, Tire, Binary Indexed), Topological Sort
+
+* 设计
+  - OOD
+  - System Design 

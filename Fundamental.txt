@@ -1,0 +1,61 @@
+@: Usage
+#: Time/Space complexity
+
+* String
+  - Immutable
+  - StringBuilder and StringBuffer is mutable object. StringBuffer is synchronized while StringBuilder is not, which makes StringBuilder faster and recommended whenever possible.
+
+* Hash Table
+
+* Array
+
+* List JAVA
+  - Allow null
+  - fail fast for both LinkedList and ArrayList, Vector
+
+* LinkedList JAVA
+  # Insert/Delete O(1), find nth O(n)
+  - Doubly-linked list implementation of the List and Deque interfaces.
+  - null allowed, not synchronized
+  - List list = Collections.synchronizedList(new LinkedList(...)); // synchronized
+
+* ArrayList JAVA
+  # Insert/Delete O(n), find nth O(1)
+  # The add operation runs in amortized constant time, that is, adding n elements requires O(n) time.
+  - Resizable-array implementation of the List interface. Default is 10.
+
+* Vector Java
+  - Synchronized. Recommend ArrayList than Vector in thread-safe env.
+
+* Stack
+  # push, pop, top take O(1) time
+  @ reverse e.g. parenthesis matching
+
+  JAVA
+  - Stack: empty, peek, pop, push, search
+  - Implemented by Vector
+  - Prefer to use Dequeue(LinkedList or ArrayDeque)
+
+* Queue
+  - A collection for holding elements prior to processing.
+  - it has head and tail,
+  - Null not allowed for all Queue related class and interface
+  @ waiting line, buffer for I/O, keyboard stroke.
+
+  JAVA
+  - Interface Queue: add, poll ...
+  - Interface BlockingQueue: a Queue that add wait for non-emptyp to retrieve and for space to add. Thread safe.
+  - LinkedBlockingQueue is unbounded and has higher throughput.
+  - ArrayBlockingQueue is bounded and has to give capacity. Less throughput but less variablility in performance.
+  - Interface Dequeue("double ended queue"). Can be used as queue or stack. Implementation includes ArrayDeque and LinkedList
+
+* Priority Queue
+  - Entries consist of key and value. Order is defined on keys. null not allowed.
+  - Implemented by Binary Heap.
+  # Min O(1), Insert O(lgn), RemoveMin O(lgn), Construct O(n)
+  @ Used as "event queue", key is the time event take place, value is description.
+
+  JAVA
+  - PriorityQueue (implements Queue: add, poll, peek...)
+  - not synchronized, use PriorityBlockingQueue for synchronization
+

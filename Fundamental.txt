@@ -1,11 +1,22 @@
 @: Usage
 #: Time/Space complexity
 
+*** Concerns for Data Structure
+    - null allowance, synchronization, sort
+
 * String
   - Immutable
   - StringBuilder and StringBuffer is mutable object. StringBuffer is synchronized while StringBuilder is not, which makes StringBuilder faster and recommended whenever possible.
 
 * Hash Table
+  - n keys -> Hashcode (to integers) -> Compression Function (to N buckets)
+  - load factor = n/N should stay low to avoid collision on duplicate keys. If not , time complexity could be O(n) instead of O(1).
+  - If load factor is too big, resize hashtable and change compression func
+
+  JAVA
+  - HashMap: null allowed, unsynchronized
+             Map m = Collections.synchronizedMap(new HashMap(...));
+  - HashTable: null not allowed, synchronized
 
 * Array
 
@@ -58,4 +69,70 @@
   JAVA
   - PriorityQueue (implements Queue: add, poll, peek...)
   - not synchronized, use PriorityBlockingQueue for synchronization
+
+------------------ Tree -------------------
+* Tree
+  - balance
+  - insert, delete, find, min, max, predecessor, succssor
+
+* Trie
+
+* Binary Search Tree
+  - unbalanced
+  # inorder, preorder, postorder traversal O(n) (http://www.geeksforgeeks.org/tree-traversals-inorder-preorder-and-postorder/)
+  # O(logn) for all ops in balanced tree. Proportional to depth of deepest node in unbalanced tree.
+  - sucessor, predessor (https://discuss.leetcode.com/topic/25076/share-my-java-recursive-solution)
+
+* Segment Tree
+
+* Binary Indexed Tree
+
+------------------ Searching --------------
+
+* Binary Search
+
+* DFS
+
+* BFS
+
+------------------ Sorting ----------------
+
+* Topological Sort
+
+
+------------------ Graph ------------------
+
+* Heap
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

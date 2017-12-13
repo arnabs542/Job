@@ -63,7 +63,7 @@
 * Priority Queue
   - Entries consist of key and value. Order is defined on keys. null not allowed.
   - Implemented by Binary Heap.
-  # Min O(1), Insert O(lgn), RemoveMin O(lgn), Construct O(n)
+  # Min O(1), Insert O(logn), RemoveMin O(logn), Construct O(n)
   @ Used as "event queue", key is the time event take place, value is description.
 
   JAVA
@@ -75,13 +75,27 @@
   - balance
   - insert, delete, find, min, max, predecessor, succssor
 
-* Trie
+* Heap
+  - complete binary tree
 
 * Binary Search Tree
   - unbalanced
   # inorder, preorder, postorder traversal O(n) (http://www.geeksforgeeks.org/tree-traversals-inorder-preorder-and-postorder/)
   # O(logn) for all ops in balanced tree. Proportional to depth of deepest node in unbalanced tree.
   - sucessor, predessor (https://discuss.leetcode.com/topic/25076/share-my-java-recursive-solution)
+
+* Treap (Balanced BST, easy to implement than RBT)
+  - Each node has n.key (BST key) and n.value(min Heap). key and value are both distinct. First construct by key then rotate by value
+  - insert(rotate) example http://www.geeksforgeeks.org/treap-set-2-implementation-of-search-insert-and-delete/
+  # all ops take O(logn), e.g. insert: add red based on BST find, then rotate
+  @ set operation, wireless networking, memory allocation
+
+* Red Black Tree (Balanced BST)
+  - balanced binary search tree
+  - root and leaf are black. child of red is black. every path has same # of black. height <= 2Log2(n+1)
+  # all ops take O(logn), e.g. insert: add red based on BST find, then recolor or rotate
+
+* Trie
 
 * Segment Tree
 
@@ -101,8 +115,6 @@
 
 
 ------------------ Graph ------------------
-
-* Heap
 
 
 

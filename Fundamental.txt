@@ -4,6 +4,9 @@
 *** Concerns for Data Structure
     - null allowance, synchronization, sort
 
+*** Recursion
+    - what are argus? Have return type? final terminal condition?
+
 * String
   - Immutable
   - StringBuilder and StringBuffer is mutable object. StringBuffer is synchronized while StringBuilder is not, which makes StringBuilder faster and recommended whenever possible.
@@ -95,9 +98,21 @@
   - root and leaf are black. child of red is black. every path has same # of black. height <= 2Log2(n+1)
   # all ops take O(logn), e.g. insert: add red based on BST find, then recolor or rotate
 
-* Trie
+* B Tree
+  - A b tree node is usually as large as a disk page, the number of disk access is at most the height of the b tree
+  # all ops take O(logn), space O(n)
+  @ used in external memory, database and file system
+
+* Trie (Radix Tree)
+  @ for prefix search purpose, replace hashtable. e.g. get all strings starts with 'pre'
+  @ predictive text, autocomplete, spell checking, prefix tree
 
 * Segment Tree
+  - Complete binary tree. In array, parent index i, left child 2i+1, right child 2i-1, root index 0
+  - Sum of given range, also can be used for string
+  - (http://www.geeksforgeeks.org/segment-tree-set-1-sum-of-given-range/)
+  # get sum O(logn), update O(logn)
+  @ sum of given range, like number or string
 
 * Binary Indexed Tree
 

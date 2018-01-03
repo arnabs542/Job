@@ -79,7 +79,7 @@
   - insert, delete, find, min, max, predecessor, succssor
 
 * Heap
-  - complete binary tree
+  - complete binary tree(bottom from left to right, diff from full binary tree)
 
 * Binary Search Tree
   - unbalanced
@@ -139,7 +139,7 @@
 * Heap Sort
   - (https://java2blog.com/heap-sort-in-java/)
   - heapify -> build heap from bottom i=(size-1)/2 -> swap and heapify
-  - not stable, in-place
+  - not stable, in-place, good for array not for linkedlist
   # O(nlogn)
 
 * Topological Sort

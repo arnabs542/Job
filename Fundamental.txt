@@ -58,7 +58,7 @@
 
   JAVA
   - Interface Queue: add, poll ...
-  - Interface BlockingQueue: a Queue that add wait for non-emptyp to retrieve and for space to add. Thread safe.
+  - Interface BlockingQueue: a Queue that add wait for non-empty to retrieve and for space to add. Thread safe.
   - LinkedBlockingQueue is unbounded and has higher throughput.
   - ArrayBlockingQueue is bounded and has to give capacity. Less throughput but less variablility in performance.
   - Interface Dequeue("double ended queue"). Can be used as queue or stack. Implementation includes ArrayDeque and LinkedList
@@ -123,8 +123,16 @@
 * Binary Search
 
 * DFS
+  - search on directed, weighted, cycled graph.
+  - https://www.geeksforgeeks.org/depth-first-traversal-for-a-graph/
+  # O(V+E)
+  @ detect cycle.
 
 * BFS
+  - search on directed, weighted, cycled graph.
+  - https://www.geeksforgeeks.org/breadth-first-traversal-for-a-graph/
+  # O(V+E)
+  @ minimum spanning tree, dijkstra single source shortest path
 
 ------------------ Sorting ----------------
 
@@ -138,11 +146,50 @@
 
 * Heap Sort
   - (https://java2blog.com/heap-sort-in-java/)
+  - (https://www.geeksforgeeks.org/heap-sort/)
   - heapify -> build heap from bottom i=(size-1)/2 -> swap and heapify
   - not stable, in-place, good for array not for linkedlist
   # O(nlogn)
+  @ excellent for arrays
 
-* Topological Sort
+* Merge Sort
+  - divide and conquer, postorder sort
+    sort(arr,l,m); sort(arr,m+1,r);merge(arr,l,m,r);
+  - stable, not in-place
+  - # O(nlogn)
+
+* Quick Sort
+  - divide and conquer, preorder sort
+    - pick pivot and partition
+  - stable or not in-place
+  - # O(nlogn)
+  @ find kth smallest key in list, if list is sorted, arr[k-1] should be the kth smallest. Partition and recursion based on index k-1. O(n) average time.
+
+* Counting Sort (small range, int)
+  - sort value within a small range, create array(largest_int), map each into array and then concatenate all together.
+  - http://www.javacodex.com/Sorting/Bucket-Sort
+  # O(n)
+  @ small range int, letters
+
+* Bucket Sort (small range, int/float)
+  - sort value within a small range, create fixed number array (if int, same as Counting Sort), map each into array and insertion sort for each bucket, then concatenate all together.
+  - sort float example(https://www.geeksforgeeks.org/bucket-sort-2/)
+  - consider Counting Sort first
+  # O(n)
+
+* Radix Sort (large range)
+  - insertion sort from last digit to first digit
+  - https://www.geeksforgeeks.org/radix-sort/
+  # O(n)
+
+** Topological Sort
+  - Only for Directed Acyclic Graph(DAG). Ordering of its vertices along a horizontal line so all directed edges go from left to right.
+  - post order traversal and put vertex to stack after visit all its children
+  - https://www.geeksforgeeks.org/topological-sorting/
+  # O(V+E)
+  @ Schedule jobs from the given dependency among jobs. Determine order of compilation tasks.
+
+
 
 
 ------------------ Graph ------------------

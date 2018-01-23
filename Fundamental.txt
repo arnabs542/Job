@@ -126,7 +126,7 @@
   - search on directed, weighted, cycled graph.
   - https://www.geeksforgeeks.org/depth-first-traversal-for-a-graph/
   # O(V+E)
-  @ detect cycle.
+  @ detect cycle. find maze. Topological sort.
 
 * BFS
   - search on directed, weighted, cycled graph.
@@ -178,7 +178,7 @@
   # O(n)
 
 * Radix Sort (large range)
-  - insertion sort from last digit to first digit
+  - counting sort from last digit to first digit
   - https://www.geeksforgeeks.org/radix-sort/
   # O(n)
 
@@ -189,23 +189,52 @@
   # O(V+E)
   @ Schedule jobs from the given dependency among jobs. Determine order of compilation tasks.
 
-
-
-
 ------------------ Graph ------------------
 
+* Union Find
+  - assume no self cycle
+  - interate edges, find root for each vertex in an edge and compare, if same it has cycle else union. Use rank(level) for each vertex to compress path.
+  - (https://www.geeksforgeeks.org/union-find-algorithm-set-2-union-by-rank/)
+  @ detect cycle in undirected graph
 
+* Detect cycle
+  - undirected: Union Find, assume no self-loops
+  - directed: DFS and keep recursion stack to check back edge
 
+* Connected Component
+  - undirected: interate vertices and call DFS/BFS
+  -
 
+* Strongly Connected Component
+  - maximal set of vertices and for each pair u and v, it has path u -> v and v -> u
+  - DFS on all vertices and put into stack, then change direcion of graph, then pop from stack and do DFS and print strongly connected component
+  - (https://www.geeksforgeeks.org/strongly-connected-components/)
+  @ social network
 
+* Kruskal’s Minimum Spanning Tree （undirected graph)
+  - sort edges and iterate, for each iteration if no circle, add edge until # of edges reach to V-1. Greedy algorithm.
+  - use Union find to detect cycle
+  - undirected graph only, for directed graph it may failed to detect cycle
+  - (https://www.geeksforgeeks.org/greedy-algorithms-set-2-kruskals-minimum-spanning-tree-mst/)
+  # O(ElogE) or O(ElogV)
 
+* Prim’s Minimum Spanning Tree (undirected graph)
+  - Two disjoint subsets of vertices must be connected to make a Spanning Tree. And must be connected with the minimum weight edge to make it MST.
+  - Matain 2 sets, for each time pick up the reachable minimum weight edge from not MST set until V-1
+  - undirected graph only, for directed graph not every node is reachable
+  # O(V^2) for adjacency matrix. O(E log V) for adjacency list
 
+* Dijsktra's Single Source Shortest Path (directed and undirected)
+  - Maintain path set and array of distance from each vertex to source. For each interation, add the smallest distance vertext to path set and update distance array until V-1. Similar to Prim's MST
+  - work for both directed graph and undirected graph
+  - for negative weight edges, need to use Bellman-Ford algo, or turn negative edge into base 0.
+  # O(V^2) for adjacency matrix, O(E log V) for adjacency list with binary heap
 
+* Least Common Ancestor
+  - post traversal, find the first node includes i, j
+  - find path from root to i, j. Then interate from lowest(i,j) level to root
 
-
-
-
-
+* Range Minimum Query
 
 
 

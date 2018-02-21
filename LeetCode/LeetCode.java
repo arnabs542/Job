@@ -1,4 +1,7 @@
-/* Array, HashTable */
+/*
+    Solutions: http://www.cnblogs.com/grandyang/p/4606334.html
+    Youtube: https://www.youtube.com/channel/UCTWuRL33U8xBPqk3LehXjFw/playlists
+*/
 
 1 Two Sum
   - Use HashMap to track each visited num

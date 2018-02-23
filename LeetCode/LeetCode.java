@@ -28,3 +28,16 @@
 11 Container With Most Water
   - Time O(n), Space O(1)
   # two pointer
+
+3 Longest Substring Without Repeating Characters
+  - String: charAt(), length(), isEmpty()
+  - Set: contains(), size(), add(), remove()
+  - Character -> char: Character.charValue()
+  - int[] arr = new int[256]; Arrays.fill(arr,-1);
+  - Time O(n), Space O(1)
+  - #two pointer
+
+20 Valid Parentheses
+  - attention to corner case, e.g. check size before pop, check queue before return
+  - only LinkedList has push & pop, List doesnt have
+  # Stack

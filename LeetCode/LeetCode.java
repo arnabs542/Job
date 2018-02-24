@@ -41,3 +41,39 @@
   - attention to corner case, e.g. check size before pop, check queue before return
   - only LinkedList has push & pop, List doesnt have
   # Stack
+
+21 Merge Two Sorted Lists
+  - deal with linkedlist
+  # LinkedList
+
+104 Maximum Depth of Binary Tree
+
+55 Longest Palindromic Substring
+  - String.substring(startIndex, num)
+  - char -> String: Character.toString(char)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

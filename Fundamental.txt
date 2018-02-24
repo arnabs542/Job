@@ -236,7 +236,10 @@
 
 * Range Minimum Query
 
-
+------------------ Other ------------------
+* Dynamic Programming
+  - recursion + memorization + guessing, remmeber and reuse solutions to subproblems (acyclic)
+  - time = #subproblems * (time/subproblem) -> O(1)
 
 
 

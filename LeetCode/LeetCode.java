@@ -49,8 +49,20 @@
 104 Maximum Depth of Binary Tree
 
 55 Longest Palindromic Substring
-  - String.substring(startIndex, num)
+  - String.substring(startIndex, endIndex) // "abc".substring(0,2) == "ab"
   - char -> String: Character.toString(char)
+  - expand around center Time O(n^2), Space O(1)
+  * dynamic programming (dp) Time O(n^2), Space O(n^2)
+    boolean[][] dp = new boolean[s.length()][s.length()];
+    dp[i][j] = s.charAt(i) == s.charAt(j) && (j-i<=2 || dp[i+1][j-1]);
+  # DP
+
+146 LRU(Least Recently Used) Cache
+  - HashMap, Double LinkedList
+  - head, tail capacity, hashmap corner cases
+  # Double LinkedList, HashMap
+
+
 
 
 

@@ -76,6 +76,8 @@
   # Stack LinkedList
 
 169 Majority Element
+  - Arrays.sort() // nlog(n)
+  # HashMap, Moore voting algorithm
 
 
 

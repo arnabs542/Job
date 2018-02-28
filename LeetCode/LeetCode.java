@@ -59,14 +59,23 @@
 
 146 LRU(Least Recently Used) Cache
   - HashMap, Double LinkedList
-  - head, tail capacity, hashmap corner cases
+  - head, tail, capacity, hashmap corner cases
   # Double LinkedList, HashMap
 
+206 Reverse Linked List
+  # LinkedList
 
+53 Maximum Subarray
+  - int[] arr; int length = arr.length // not length()
+  # DP
 
+155 Min Stack
+  - LinkedList: push(), pop(), peek()
+  - attention to size() of linkedlist when push() and pop()
+  - 在-128~127的Integer值以int进行比较，而超出-128~127的范围，进行==比较时是进行地址及数值比较。转换成int再进行大小比较
+  # Stack LinkedList
 
-
-
+169 Majority Element
 
 
 

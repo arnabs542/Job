@@ -13,8 +13,8 @@
   - When using pointer to deal with each node in the linked list. Use a dummy root node to connect the real root node. At the end, return root.next.
   # Linked List
 
-126 Single Number
-    - bit manipulation. XOR
+136 Single Number
+    - bit manipulation. XOR: x^y
 
 4 Median of Two Sorted Arrays
   - attention to corner cases
@@ -79,10 +79,18 @@
   - Arrays.sort() // nlog(n)
   # HashMap, Moore voting algorithm
 
+283 Move Zeroes
+  - attention to array length when running two pointers
+  # Two Pointers
 
+141 Linked List Cycle
+  - set fast runner and slow runner, if has cycle, fast == slow
+  # Two Pointers
 
-
-
+148 Sort List
+  - merge sort is preferrable for linked list
+  - middle = getMiddle(head);merge(sort(head), sort(middle))
+  # Merge Sort, Two Pointers, Merge two lists
 
 
 

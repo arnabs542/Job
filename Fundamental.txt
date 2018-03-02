@@ -242,6 +242,8 @@
   - recursion + memorization + guessing, remmeber and reuse solutions to subproblems (acyclic)
   - time = #subproblems * (time/subproblem) -> O(1)
 
+* Fibonacci: dp (http://blog.csdn.net/JIEJINQUANIL/article/details/52422141)
+  - time: O(2^n), O(n), O(logn) 矩阵求解, O(1) 公式
 
 
 

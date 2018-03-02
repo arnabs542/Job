@@ -92,6 +92,17 @@
   - middle = getMiddle(head);merge(sort(head), sort(middle))
   # Merge Sort, Two Pointers, Merge two lists
 
+121 Best Time to Buy and Sell Stock
+
+70 Climbing Stairs
+  - f(result) = f(one step away) + f(two step away)
+  - recursion: time O(2^n) iteration: time O(n)
+  # Fibonacci, DP
+
+57 Merge k Sorted Lists
+  - Merge sort for array, compare with 148(merge sort on list)
+  - ListNode[] lists; lists.length // not lists.size()
+  # Merge Sort, Divide and Conquer, Merge two lists
 
 
 

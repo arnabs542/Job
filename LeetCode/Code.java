@@ -93,6 +93,44 @@ public void partition(int[] arr, int l, int r) {
     return l;
 }
 
+/* Merge Sort LinkedList */
+public Node sortList(Node head) {
+    if(head == null || head.next == null){
+        return head;
+    }
+    Node middle = getMiddle(head);
+    Node next = middle.next;
+    middle.next = null;
+    return merge(sortList(head), sortList(next));
+}
+
+public Node getMiddle(Node node) {
+    Node slow = node;
+    Node fast  = node;
+    while(fast.next != null && fast.next.next !=null) {
+        slow = node.next;
+        fast = fast.next.next;
+    }
+    return slow;
+}
+
+public merge(Node n1, Node n2) {
+    Node dummy = new Node(0);
+    Node node = dummy;
+    while(n1 != null && n2 != null) {
+        if(n1.value < n2.value) {
+            node.next = n1;
+            n1 = n1.next;
+        } else {
+            node.next = n2;
+            n2 = n2.next;
+        }
+        node = node.next;
+    }
+    node.next = n1==null?n2:n1;
+    return dummy.next;
+}
+
 /* Union Find */
 public int find(int[] arr, int index) {
     while(arr[index] != index) {
@@ -154,7 +192,28 @@ public int sum(int[] tree, int tl, int tr, int l, int r, int index) {
     return sum(tree, tl, m , l , r, 2*index+1) + sum(tree, m+1, tr, l, r, 2*index+2);
 }
 
+// fibonacci time: O(2^n)
+public int fibonacci(int n) {
+    if(n<3) {
+        return 1;
+    }
+    return fibonacci(n-1) + fibonacci(n-2);
+}
 
+// fibonacci time: O(n)
+public int fibonacci(int n) {
+    if(n < 3) return 1;
+    int f1 = 1;
+    int f2 = 1;
+    int f3 = 0;
+
+    for(int i =2;i<n;i++) {
+        f3 = f1 + f2;
+        f1 = f2;
+        f2 = f3;
+    }
+    return f3;
+}
 
 
 

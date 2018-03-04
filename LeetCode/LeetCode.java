@@ -104,7 +104,15 @@
   - ListNode[] lists; lists.length // not lists.size()
   # Merge Sort, Divide and Conquer, Merge two lists
 
+42 Trapping Rain Water
+  - compare left and right, move towards and keep lMax, rMax
+  - main idea is level up
+  - Math.max, Math.min
+  @ Time: O(n), Space: O(1)
+  # Two Pointers
 
+226 Invert Binary Tree
+  # Post order traversal of Binary Tree
 
 
 

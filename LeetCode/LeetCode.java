@@ -114,10 +114,26 @@
 226 Invert Binary Tree
   # Post order traversal of Binary Tree
 
+15 3Sum
+  - be careful of IndexOutOfBoundsException for e.g. arr[i+1]
+  - Arrays.sort(). Arrays.asList(T... a)
+  - ArrayList rather than LinkedList
+  @ Time: O(n^2), O(n)
+  # Two Pointers, Sort, Edge Case
 
+* 198 House Robber
+  - Rob(n) = Max(Rob(n-2)+ Money(n), Rob(n-1))
+  @ Time: O(n), Space: O(1)
+  # DP
 
-
-
+* 10 Regular Expression Matching
+  - Run s ={x,a,a,b} p = {x,a,*,b}, dp[s.length()+1][p.length()+1], dp[0][0]=true, i in dp[][], i-1 in p|s
+    deal with corner case when dp[0][~] e.g. a * b *
+    if p.charAt(j) == s.charAt(i) || p.charAt(j) == ‘.’ : dp[i][j] = dp[i-1][j-1]
+    if p.charAt(j-1) != s.charAt(i) : dp[i][j] = dp[i][j-2] //in this case, a* only counts as empty
+    if p.charAt(j-1) == s.charAt(i) || p.charAt(j-1) == ‘.’ : dp[i][j] = dp[i][j-2] | dp[i-1][j]
+  - (https://www.youtube.com/watch?v=l3hda49XcDE&t=194s)
+  # DP，
 
 
 

@@ -133,7 +133,20 @@
     if p.charAt(j-1) != s.charAt(i) : dp[i][j] = dp[i][j-2] //in this case, a* only counts as empty
     if p.charAt(j-1) == s.charAt(i) || p.charAt(j-1) == ‘.’ : dp[i][j] = dp[i][j-2] | dp[i-1][j]
   - (https://www.youtube.com/watch?v=l3hda49XcDE&t=194s)
-  # DP，
+  # DP
+
+238 Product of Array Except Self
+  - Corner case: 0 # 0, 1 # 0, >1 # 0
+  @ Time: O(n), Space: O(n)
+
+17 Letter Combinations of a Phone Number
+  - Collections.emptyList(), Collections.singletonList()
+  - Arrays.asList(T...), String str.toCharArray()
+  @ Time: O(n^3), Space: O(n)
+  # Recursion, Backtracking
+
+617 Merge Two Binary Trees
+  # Tree
 
 
 

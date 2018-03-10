@@ -148,7 +148,16 @@
 617 Merge Two Binary Trees
   # Tree
 
+22 Generate Parentheses
+  - num of left Parentheses always >= right
+  # Backtracking
 
+56 Merge Intervals
+  - List list.subList()
+  - Collections.sort(List list, (a,b)->a-b), sort on list
+  - Arrays.sort(), sort on array
+  - Object operations are expensive e.g.sort, use primitive as much as possible
+  # Sort
 
 
 

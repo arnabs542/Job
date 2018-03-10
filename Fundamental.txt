@@ -245,6 +245,22 @@
 * Fibonacci: dp (http://blog.csdn.net/JIEJINQUANIL/article/details/52422141)
   - time: O(2^n), O(n), O(logn) 矩阵求解, O(1) 公式
 
+* Backtracking
+  - Similar to recursion but backtracking has *countdown* var in the repeating method. e.g
+    // Generate n pair parenthese
+    generate (new List(), n, n, "");
+    generate(list res, int left, int right, string s) {
+      if(left > right) {return;}
+      if(left == 0 && right == 0) {res.add(s); return;}
+      if(left > 0) {generate(res, left-1, right, s+'('));}
+      if(right > 0) {generate(res, left, right-1, s+')');}
+    }
+
+* Compare DP with Backtracking
+  - DP resolves int result issues while backtracking resolves divergence issues.
+
+
+
 
 
 

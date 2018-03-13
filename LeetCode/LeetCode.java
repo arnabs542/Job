@@ -159,6 +159,16 @@
   - Object operations are expensive e.g.sort, use primitive as much as possible
   # Sort
 
+338 Counting Bits
+  - i&(i - 1)， 这个本来是用来判断一个数是否是2的指数的快捷方法，比如8，二进制位1000, 那么8&(8-1)为0，只要为0就是2的指数
+  - 每个i值都是i&(i-1)对应的值加1
+  # Bit
+
+200 Number of Islands
+  - 2d array, matrix, connected component
+  - avoid using collection or object to waste time
+  # DFS/BFS, Graph, Connected Component
+
 
 
 

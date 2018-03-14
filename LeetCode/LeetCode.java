@@ -169,9 +169,22 @@
   - avoid using collection or object to waste time
   # DFS/BFS, Graph, Connected Component
 
+49 Group Anagrams
+  - String s.toCharArray()
+  - Arrays.sort(s.toCharArray())
+  - new String(s.toCharArray())
+  - Collections.singletonList(~) return the abstract list
+  - new LinkedList(Collection)
+  # Counting Sort, Sort, Array, List
 
+139 Word Break
+  - List list.contains()
+  - String str.substring()
+  - DP for boolean, not only int.
+  # DP
 
-
+152 Maximum Product Subarray
+  - keep track max, min, res
 
 
 

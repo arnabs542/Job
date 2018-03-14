@@ -257,7 +257,7 @@
     }
 
 * Compare DP with Backtracking
-  - DP resolves int result issues while backtracking resolves divergence issues.
+  - DP resolves int, boolean result issues while backtracking resolves divergence issues.
 
 
 

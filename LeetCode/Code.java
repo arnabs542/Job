@@ -131,6 +131,23 @@ public merge(Node n1, Node n2) {
     return dummy.next;
 }
 
+/* Couting Sort*/
+public void coutingSort(String s) {
+    int[] arr = new int[26];
+    for(char c : s.toCharArray) {
+        arr[c - 'a']++;
+    }
+    String s = "";
+    for(int i=0;i<26;i++) {
+        if(arr[i] !=0) {
+            while(arr[i] != 0) {
+                s+=(char)(i+'a');
+                arr[i]--;
+            }
+        }
+    }
+}
+
 /* Union Find */
 public int find(int[] arr, int index) {
     while(arr[index] != index) {

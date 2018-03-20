@@ -194,12 +194,40 @@
   - reverse linked list
   # Two Pointers, Reverse LinkedList
 
+33 Search in Rotated Sorted Array
+  - either [left, mid] or (mid,right] is sorted, check in sorted side
+  - draw pic like (https://www.youtube.com/watch?v=w6nusIojP9c)
+  - attention to using >= or >
+  # Binary Search
 
+160 Intersection of Two Linked Lists
+  - compare object by reference
+  # Compare List Node, LinkedList
 
+*72 Edit Distance (template for 2d DP)
+  - // insert: dp[i][j] = dp[i][j-1] +1
+    // delete: dp[i][j] = dp[i-1][j] +1
+    // replace: dp[i][j] = dp[i-1][j-1] +1
+    if(word1.charAt(i-1) == word2.charAt(j-1)) {
+        dp[i][j] = dp[i-1][j-1];
+    } else {
+        dp[i][j] = Math.min(Math.min(dp[i-1][j], dp[i][j-1]), dp[j-1][j-1])+1;
+    }
+  # 2D DP
 
-
-
-
+46 Permutations
+  -
+      transform(List<List<Integer>> list, List<Integer> sublist, int[] nums) {
+        if(sublist.size() == nums.length) {
+            list.add(new LinkedList<>(sublist)); // new linkedList
+            return;
+        }
+        for(Integer i : nums) {
+            if(sublist.contains(i)) {continue;}
+            sublist.add(i);
+            transform(list, sublist, nums);
+            sublist.remove(i); // have to remove }}
+  #Backtracking
 
 
 

@@ -227,12 +227,15 @@
             sublist.add(i);
             transform(list, sublist, nums);
             sublist.remove(i); // have to remove }}
-  #Backtracking
+  # Backtracking
 
+96 Unique Binary Search Trees
+  - f(n) = f(0)*f(n-1) + f(1)*f(n-2) + ... + f(n-1)*f(1)
+  # 1D DP
 
-
-
-
+128 Longest Consecutive Sequence
+  - keep go down, go up and get difference
+  # HashSet
 
 
 

@@ -243,11 +243,36 @@
   - List<Integer>[] bucket = new List[nums.length+1];
   # Sort, TreeMap, Butcket Sort
 
+142 Linked List Cycle II
+  - slow = a + b, fast = a + b + c + b, 2 * slow = fast
+  # Two Pointers
 
+287 Find the Duplicate Number
+  - binary search template
+      public int findDuplicate(int[] nums) {
+        int max = nums.length-1;
+        int min = 1;
+        while(min<=max) {
+            int mid = (min+max)/2, count = 0;
+            for(int i = 0; i<nums.length;i++) {
+                if(nums[i]<=mid) count++;
+            }
+            if (count>mid) max = mid - 1; else min = mid + 1;
+        }
+        return min; // attention
+       }
 
+  - HashSet: time O(n), space O(n)
+    Sort: time O(nlogn), space O(1)
+    Binary Search: time O(nlogn), space O(1)
+  # Binary Search, LinkedList Cycle II
 
-
-
+406 Queue Reconstruction by Height
+  - sort [a,b] first by decending a, then by increasing b. arr = int[][]
+    Arrays.sort(arr, (x,y) -> x[0] == y[0]? x[1]-y[1] ? y[0]-x[0])
+  - list to array: List.toArray(T[] a)
+  - Time: O(n^2), Space: O(n)
+  # 2D Array
 
 
 

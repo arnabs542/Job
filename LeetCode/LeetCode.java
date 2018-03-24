@@ -237,7 +237,11 @@
   - keep go down, go up and get difference
   # HashSet
 
-
+347 Top K Frequent Elements
+  - map.put(key, map.getOrDefault(key, 0) + 1);
+  - TreeMap, sorted by key, treeMap.pollLastEntry().getValue()
+  - List<Integer>[] bucket = new List[nums.length+1];
+  # Sort, TreeMap, Butcket Sort
 
 
 

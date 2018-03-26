@@ -216,8 +216,7 @@
   # 2D DP
 
 46 Permutations
-  -
-      transform(List<List<Integer>> list, List<Integer> sublist, int[] nums) {
+  -   transform(List<List<Integer>> list, List<Integer> sublist, int[] nums) {
         if(sublist.size() == nums.length) {
             list.add(new LinkedList<>(sublist)); // new linkedList
             return;
@@ -274,9 +273,22 @@
   - Time: O(n^2), Space: O(n)
   # 2D Array
 
+448 Find All Numbers Disappeared in an Array
+  - Use relation between array index ([0, n-1]) and the given value range [1,n]. Set value-1 to index and mark as negative. Then iterate through array and find positive values, which means that index is not visited.
+  - Time O(n), Space O(n)
+  # Value to Index
 
+279 Perfect Squares
+  - for(int i=0;i<=n;i++) {
+        for(int j =1;j*j<=i;j++) {
+            dp[i] = Math.min(dp[i], dp[i-j*j] + 1);
+        }
+    }
+  # 1D DP
 
-
+79 Word Search
+  - remember to set boolean[][] back if bfs failed
+  # BFS, Backtracking
 
 
 

@@ -290,6 +290,44 @@
   - remember to set boolean[][] back if bfs failed
   # BFS, Backtracking
 
+19 Remove Nth Node From End of List
+  - Fast pointer runs nth node first. Be careful of deleting head case.
+  # Two Pointers
+
+31 Next Permutation
+  - Iterate from right to left in an array to find the first index that arr[index] < arr[index+1], then from right to index find the first index2 that arr[index2]>arr[index], swap these two. Then inverse from index+1 to rightmost. e.g. 4202320 -> 4203220 -> 4203022
+
+62 Unique Paths
+  - dp[i][j] = dp[i-1][j] + dp[i][j-1]
+  # 2D DP
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

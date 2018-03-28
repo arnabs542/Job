@@ -301,8 +301,25 @@
   - dp[i][j] = dp[i-1][j] + dp[i][j-1]
   # 2D DP
 
+323 Number of Connected Components in an Undirected Graph
+  -     public int find(int[] arr, int i) {
+            while(arr[i] != i) {
+                arr[i] = arr[arr[i]]; // path compression
+                i = arr[i];
+            }
+            return i;
+        }
+        public void union(int[] arr, int i, int j) {
+            int RootI = find(arr, i);
+            int RootJ = find(arr, j);
+            if(RootI != RootJ) {
+                arr[RootI] = RootJ;
+            }
+        }
+  - union find used for cycle detection, and connected component in undirected graph
+  # Union Find
 
-
+*** segment tree
 
 
 

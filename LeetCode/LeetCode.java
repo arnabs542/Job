@@ -328,10 +328,12 @@
   - DFS/BFS Time O(n^2), Space O(n)
   - Union Find Time O(n^3), Space O(n)
   - Union find uses path compression and rank
+  & Refer Q200
   # DFS, BFS, Union Find
 
-
-
+* DFS/BFS vs Union Find
+  - if question gives 2D array/matrix, use DFS/BFS. e.g. P323(number of islands)
+  - if question gives 2D relation array (e.g. node edge, friends relation), use 1D arry Union Find, DFS/BFS. e.g. P323, P547
 
 
 

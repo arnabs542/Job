@@ -321,7 +321,14 @@
 
 *** segment tree
 
-
+547 Friend Circles
+  - LinkedList.removeFirst()
+  - For BFS/DFS, use boolean[] visit instead of boolean[][] visit
+  - Prefer DFS than BFS cause BFS needs to create and matain Queue.
+  - DFS/BFS Time O(n^2), Space O(n)
+  - Union Find Time O(n^3), Space O(n)
+  - Union find uses path compression and rank
+  # DFS, BFS, Union Find
 
 
 

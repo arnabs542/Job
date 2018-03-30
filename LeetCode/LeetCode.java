@@ -319,8 +319,6 @@
   - union find used for cycle detection, and connected component in undirected graph
   # Union Find
 
-*** segment tree
-
 547 Friend Circles
   - LinkedList.removeFirst()
   - For BFS/DFS, use boolean[] visit instead of boolean[][] visit
@@ -335,7 +333,11 @@
   - if question gives 2D array/matrix, use DFS/BFS. e.g. P323(number of islands)
   - if question gives 2D relation array (e.g. node edge, friends relation), use 1D arry Union Find, DFS/BFS. e.g. P323, P547
 
-
+218 The Skyline Problem
+  - PriorityQueue<Integer> pq, pq.offer(number)
+  - Collections.sort(list, (a,b)-> (a[0]==b[0]) ? a[1]-b[1] : a[0]-b[0]);
+  - distinguish building start and end by making start as negative, sort first by start and then height in increasing order. Matain priority queue in decending order of height. Conner case would be [[0,2,3],[2,5,3]]
+  # Priority Queue, TreeMap, Sweep Line
 
 
 

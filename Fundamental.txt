@@ -146,6 +146,29 @@
   # O(V+E)
   @ minimum spanning tree, dijkstra single source shortest path
 
+* Union Find
+  -     public int find(int[] arr, int i) {
+            while(arr[i] != i) {
+                arr[i] = arr[arr[i]]; // path compression
+                i = arr[i];
+            }
+            return i;
+        }
+        public void union(int[] arr, int[] rank, int i, int j) {
+            int RootI = find(arr, i);
+            int RootJ = find(arr, j);
+            if(RootI == RootJ) {
+                return;
+            } eles if(rank[RootI] < rank[RootJ]) {
+              arr[RootI] = RootJ;
+            } else if(rank[RootI] > rank[RootJ]) {
+              arr[RootJ] = RootI;
+            } else {
+              arr[RootI] = RootJ;
+              rank[RootJ]++;
+            }
+        }
+
 ------------------ Sorting ----------------
 
 * Insertion Sort

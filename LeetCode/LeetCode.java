@@ -339,17 +339,57 @@
   - distinguish building start and end by making start as negative, sort first by start and then height in increasing order. Matain priority queue in decending order of height. Conner case would be [[0,2,3],[2,5,3]]
   # Priority Queue, TreeMap, Sweep Line
 
+240 Search a 2D Matrix II
+  - think of O(n) for seach first. Then to think O(logn) using binary search
+  - For this question, think from 4 coners
+  # Array
 
+39 Combination Sum
+  - // Use startIndex to avoid duplicate list
+    public void find(int[] candidates, List<Integer> list, int target, int startIndex) {
+        if(target < 0) return;
+        if(target == 0) {
+            res.add(new LinkedList<>(list)); // Create new list
+            return;
+        }
+        for(int i=startIndex;i<candidates.length;i++) {
+                list.add(candidates[i]);
+                // target is not changed
+                find(candidates, list, target - candidates[i], i);
+                list.remove(list.size()-1);
+        }
+    }
+  - time : O(2^n), space : O(n)
+  # Backtracking
 
+64 Minimum Path Sum
+  # 2D DP
 
+101 Symmetric Tree
+  - In reursion, check treeNode1, treeNode2 null, compare treeNode.val
+  - predorder check
+  # Inorder Traversal, Binary Tree
 
+124 Binary Tree Maximum Path Sum
+  - think of preorder, or postorder
+  - Integer.MIN_VALUE
+  - postorder, calculate res = Math.max(res, left+right+node.val), return Math.max(left, right) + node.val
+  # PostOrder Traversal, Binary Tree
 
+236 Lowest Common Ancestor of a Binary Tree
+  - find first parent that includes both nodes.
+  - private boolean traverse(TreeNode node, TreeNode p, TreeNode q) {
+        if(node == null) return false;
+        boolean left = traverse(node.left, p, q);
+        boolean right = traverse(node.right, p, q);
+        boolean hasPOrQ = node==p || node==q;
 
+        if(left && right) res = node;
+        if((left||right) && hasPOrQ) res = node;
 
-
-
-
-
+        return left || right || hasPOrQ;
+    }
+  # Postorder Traversal, Binary Tree
 
 
 

@@ -391,10 +391,36 @@
     }
   # Postorder Traversal, Binary Tree
 
+76 Minimum Window Substring
+  - Use int array to record num of each char. faster pointer runs and decrease num of each char until total becomes 0. Then slow pointer runs and increase num of each char until total becomes 1. Then get i-j+1 compare with the min distance.
+
+    int[] table = new int[128]; // ascii has 128 values
+    for(char c:t.toCharArray()) {
+        table[c]++;
+    }
+    int from =0;
+    int min = Integer.MAX_VALUE;
+    int total = t.length();
+
+    for(int i=0, j=0;i<s.length();i++) {
+        if(table[s.charAt(i)]-- > 0) total--;
+        while(total ==0) {
+            if(i-j+1 < min) {
+                min = i-j+1; from = j;}
+            if(++table[s.charAt(j++)] > 0) total++;}}
 
 
+  # Sliding Window, Two Pointers, HashTable
 
-
+105 Construct Binary Tree from Preorder and Inorder Traversal
+  - preorder is easy to find root, then find index of root from inorder.
+    public TreeNode helper(int preStart, int inStart, int inEnd, int[] preorder, int[] inorder) {
+        if (preStart > preorder.length - 1 || inStart > inEnd) return null;
+        TreeNode root = new TreeNode(preorder[preStart]);
+        // find inIndex
+        root.left = helper(preStart + 1, inStart, inIndex - 1, preorder, inorder);
+        root.right = helper(preStart + inIndex - inStart + 1, inIndex + 1, inEnd, preorder, inorder);
+  # Tree
 
 
 

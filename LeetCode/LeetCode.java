@@ -422,8 +422,35 @@
         root.right = helper(preStart + inIndex - inStart + 1, inIndex + 1, inEnd, preorder, inorder);
   # Tree
 
+32 Longest Valid Parentheses
+  -   for(int i=0;i<s.length();i++) {
+        if(s.charAt(i) == '(') {
+            stack.push(i);
+        } else {
+          if(stack.empty()) {
+              start = i;
+          } else {
+              stack.pop();
+              res = stack.empty() ? Math.max(res, i-start) : Math.max(res, i-stack.peek());}}}
 
+  # Stack
 
+78 Subsets
+  - Use startIndex to avoid duplicate
+    for(int i = 1;i<=nums.length;i++)
+        find(new LinkedList<Integer>(), nums, 0, i);
+    }
+    private void find(List<Integer> list, int[] nums, int startIndex, int num) {
+        if(list.size() == num) {
+            res.add(new LinkedList<>(list));
+        }
+        for(int i=startIndex; i<nums.length;i++) {
+            list.add(nums[i]);
+            find(list, nums, i+1, num); // use i+1 to avoid dupilcate
+            list.remove(list.size()-1);
+        }
+    }
+  # Backtracking
 
 
 

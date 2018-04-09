@@ -232,10 +232,76 @@ public int fibonacci(int n) {
     return f3;
 }
 
+// BFS: Serialize and desearialize binary tree
+    public String serialize(TreeNode root) {
+        if(root == null) return "";
+        StringBuilder sb = new StringBuilder();
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        while(!queue.isEmpty()) {
+            TreeNode node = queue.poll();
+            if (node == null) {
+                sb.append("null,");
+            } else {
+                sb.append(node.val + ",");
+                queue.offer(node.left);
+                queue.offer(node.right);
+            }
+        }
+        return sb.toString();
+    }
 
+    // Decodes your encoded data to tree.
+    public TreeNode deserialize(String data) {
+        if(data == "") return null;
+        String[] arr = data.split(",");
+        TreeNode root = new TreeNode(Integer.parseInt(arr[0]));
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        for(int i=1;i<arr.length;i++) {
+            TreeNode node = queue.poll();
+            if(!arr[i].equals("null")) {
+                node.left = new TreeNode(Integer.parseInt(arr[i]));
+                queue.offer(node.left);
+            }
+            if(!arr[++i].equals("null")) {
+                node.right = new TreeNode(Integer.parseInt(arr[i]));
+                queue.offer(node.right);
+            }
+        }
+        return root;
+    }
 
+// PreOrder: Serialize and desearialize binary tree
+    public String serialize(TreeNode root) {
+        StringBuilder sb = new StringBuilder();
+        sBuild(root, sb);
+        return sb.toString();
+    }
 
+    private void sBuild(TreeNode node, StringBuilder sb) {
+        if(node == null) {
+            sb.append("null,");
+        } else {
+            sb.append(node.val + ",");
+            sBuild(node.left, sb);
+            sBuild(node.right, sb);
+        }
+    }
 
+    public TreeNode deserialize(String data) {
+        Deque<String> nodes = new LinkedList<>();                         nodes.addAll(Arrays.asList(data.split(",")));
+        return dBuild(nodes);
+    }
+
+    private TreeNode dBuild(Deque<String> nodes) {
+        String n = nodes.remove();
+        if(n.equals("null")) return null;
+        TreeNode node  = new TreeNode(Integer.parseInt(n));
+        node.left = dBuild(nodes);
+        node.right= dBuild(nodes);
+        return node;
+    }
 
 
 

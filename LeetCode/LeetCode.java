@@ -475,15 +475,59 @@
             res.add(rs);
         }
     }
-  # Backtracking/DFS
+  # Backtracking/DFS, Two Pointers
 
 *297 Serialize and Deserialize Binary Tree
-  - Arrays.toString(intArray) // int[] to String
   - Integer.parseInt(str) // parse string to integer
   - Queue<Integer> queue = new LinkedList<>()
-    queue.offer(Integer)
+    queue.offer(Integer), queue.poll()
   - Deque<> deque = new LinkedList<>(Arrays.asList(data.split(",")))
+  - (int)Math.pow(2,n), (int)Math.log(8)
+  - convert tree to array, children of arr[i] should be 2*i+1, 2*i+2. i is index rather than tree level.
   # BFS, Preorder Traversal
+
+55 Jump Game
+  - Keep track of max (nums[i] + i), compare with i, if i>max, then return false.
+  - BFS exceeds time limit, DFS exceeds memory limit
+  - time O(n), space o(1)
+  # Greedy
+
+215 Kth Largest Element in an Array
+  - PriorityQueue is minHeap, poll() removes the least value. Each op takes logk
+  - Priority Queue keeps track of k elements. time nlogk, space O(n)
+  - Quick Select, select pivot, compare and return left index, if left index = k, then return. (http://www.geekviewpoint.com/java/search/quickselect)
+  - Quick Select time average O(n), wrost O(n^2)
+  # Quick Select, Priority Queue
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

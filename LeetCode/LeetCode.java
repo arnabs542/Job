@@ -409,7 +409,6 @@
                 min = i-j+1; from = j;}
             if(++table[s.charAt(j++)] > 0) total++;}}
 
-
   # Sliding Window, Two Pointers, HashTable
 
 105 Construct Binary Tree from Preorder and Inorder Traversal
@@ -494,16 +493,31 @@
 
 215 Kth Largest Element in an Array
   - PriorityQueue is minHeap, poll() removes the least value. Each op takes logk
-  - Priority Queue keeps track of k elements. time nlogk, space O(n)
+  - Priority Queue keeps track of k elements. time O(nlogk), space O(n)
   - Quick Select, select pivot, compare and return left index, if left index = k, then return. (http://www.geekviewpoint.com/java/search/quickselect)
   - Quick Select time average O(n), wrost O(n^2)
   # Quick Select, Priority Queue
 
+102 Binary Tree Level Order Traversal
+  - time O(n), space O(n)
+  # Preorder Traversal
 
+647 Palindromic Substrings
+  - interate string, for each iteration, left-- and right++ to find palindrome until s.charAt(left) != s.charAt(right).
+  # String
 
-
-
-
+75 Sort Colors
+  - 1-pass: track r_index start from 0, track b_index from nums.length-1. Iterate until i<=b
+  -   public void sortColors(int[] nums) {
+        int r =0; int b = nums.length-1; int i=0;
+        while(i<=b) {
+            if(nums[i] == 0) {
+                swap(nums, i++, r++);
+            } else if(nums[i] == 2) {
+                swap(nums, i, b--);
+            } else {
+                i++;}}}
+  # Two Pointers, Sort
 
 
 

@@ -519,7 +519,22 @@
                 i++;}}}
   # Two Pointers, Sort
 
+208 Implement Trie (Prefix Tree)
+   -  class Trie {
+        Trie[] children  = new Trie[26];
+        boolean isWord = false;
 
+        public void insert(String word) {
+            Trie trie = this;
+            for(int i=0;i<word.length();i++) {
+                char c = word.charAt(i);
+                if(trie.children[c-'a'] == null) {
+                    trie.children[c-'a'] = new Trie();
+                }
+                trie = trie.children[c-'a'];
+            }
+            trie.isWord = true;}
+    # Trie
 
 
 

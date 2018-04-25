@@ -520,7 +520,7 @@
   # Two Pointers, Sort
 
 208 Implement Trie (Prefix Tree)
-   -  class Trie {
+  -  class Trie {
         Trie[] children  = new Trie[26];
         boolean isWord = false;
 
@@ -537,6 +537,102 @@
     # Trie
 
 621 Task Scheduler
+  -     public int leastInterval(char[] tasks, int n) {
+        int[] arr = new int[26]; int max = 0;
+        for(char c : tasks) {
+            arr[c-'A']++;
+            max = Math.max(max, arr[c-'A']);
+        }
+        int res = (max-1) * (n+1);
+        for(int i:arr) if(i == max) res++;
+        return Math.max(res, tasks.length);}
+
+*84 Largest Rectangle in Histogram
+  - maintain increasing order index in stack, for new height, pop up all height that heigher and calculate
+  - for(int i =0;i<=heights.length;i++) {
+        // deal with corner case: [1,3,4,5]
+        int h = (i == heights.length) ? 0 : heights[i];
+        while(!stack.isEmpty() && h<heights[stack.peek()]) {
+            // corner case: [0,2,1,2], [2,1,2]
+            int height = heights[stack.pop()];
+            int start = (stack.isEmpty()) ? -1 : stack.peek();
+            int area = height * (i-start-1);
+            res = Math.max(res, area);
+        }
+        stack.push(i);
+    }
+  - time O(n), space O(n)
+  # Stack
+
+315 Count of Smaller Numbers After Self
+  - TreeMap.lowerKey() // predecessor, TreeMap.higherKey // successor
+  - Arrays.asList(Object only)
+  -     private int insert(List<Integer> list, int num) {
+        int r = list.size()-1; int l = 0; int mid;
+        while(l <= r) {
+            mid = (r + l)/2;
+            if(list.get(mid)<num) {
+                l = mid+1;
+            } else {
+                r = mid-1;
+            }
+        }
+        // add makes O(n) rather than O(logn) in worst case
+        list.add(l, num);
+        return l;
+    }
+  - binary index tree: sort array to get rank array, then interate from right most, for each val, get rank, then calculate sum of low rank num and update tree.
+    Refer to (https://leetcode.com/problems/count-of-smaller-numbers-after-self/discuss/76611/Short-Java-Binary-Index-Tree-BEAT-97.33-With-Detailed-Explanation)
+  # Binary Search, Binary Index Tree/Fenwick Tree
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -115,6 +115,25 @@
   @ sum of given range, like number or string
 
 * Binary Indexed Tree
+  - (https://www.geeksforgeeks.org/binary-indexed-tree-or-fenwick-tree-2/)
+  -   int getSum(int index){
+        int sum = 0; // Iniialize result
+        index = index + 1; // index in BITree[] is 1 more than
+        while(index>0) // Traverse ancestors of BITree[index]
+        { sum += BITree[index];
+          index -= index & (-index);}
+        return sum; }
+
+    public static void updateBIT(int n, int index, int val) {
+        index = index + 1;
+        while(index <= n)
+        { BITree[index] += val;
+           index += index & (-index); // Update index to that of parent}}
+
+    void constructBITree(int arr[], int n) {
+        for(int i=1; i<=n; i++) BITree[i] = 0;
+        for(int i = 0; i < n; i++)
+            updateBIT(n, i, arr[i]); }
   @ Sum of prefix
   # get sum O(logn), update O(logn)
 

@@ -585,6 +585,30 @@
     Refer to (https://leetcode.com/problems/count-of-smaller-numbers-after-self/discuss/76611/Short-Java-Binary-Index-Tree-BEAT-97.33-With-Detailed-Explanation)
   # Binary Search, Binary Index Tree/Fenwick Tree
 
+34 Search for a Range
+   //find first
+   private int findFirst(int[] nums, int target) {
+        int l = 0; int r = nums.length-1;
+        while(l < r-1) {
+            int mid = (l+r)/2;
+            if(nums[mid] < target) {l = mid;} else {r = mid;}
+        }
+        if(nums[l] == target) return l;
+        if(nums[r] == target) return r;
+        return -1;
+    }
+    //find last
+    private int findLast(int[] nums, int target) {
+        int l = 0; int r = nums.length-1;
+        while(l < r-1) {
+            int mid = (l+r)/2;
+            if(nums[mid] > target) {r = mid;} else {l = mid;}
+        }
+        if(nums[r] == target) return r;
+        if(nums[l] == target) return l;
+        return -1;
+    }
+  # Binary Search
 
 
 

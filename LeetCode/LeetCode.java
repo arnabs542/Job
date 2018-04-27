@@ -602,7 +602,8 @@
         int l = 0; int r = nums.length-1;
         while(l < r-1) {
             int mid = (l+r)/2;
-            if(nums[mid] > target) {r = mid;} else {l = mid;}
+            if(nums[mid] > target) {r = mid;} else {l = mid;
+            }
         }
         if(nums[r] == target) return r;
         if(nums[l] == target) return l;
@@ -610,9 +611,24 @@
     }
   # Binary Search
 
-
-
-
+309. Best Time to Buy and Sell Stock with Cooldown
+  - 分析时用状态转移方程
+                      <-
+                      \ /
+                     rest
+                    /     \
+                   |       ^   1 day cooldown, so no sold -> hold
+                   V       |
+                  hold -> sold
+                   /\
+                   ->
+    hold[i] = max(hold[i-1], rest[i-1] - price[i])
+    sold[i] = hold[i-1] + price[i]
+    rest[i] = max(rest[i-1], sold[i-1])
+    init hold = Integer.MIN_VALUE, rest = sold = 0
+    res = max(rest[i], sold)
+    time O(n) space O(n) -> O(1) // use iteration
+  # DP
 
 
 

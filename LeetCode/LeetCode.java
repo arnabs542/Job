@@ -630,13 +630,58 @@
     time O(n) space O(n) -> O(1) // use iteration
   # DP
 
+122. Best Time to Buy and Sell Stock II
+  - for (int i = 1; i < prices.length; i++) {
+        if (prices[i] > prices[i - 1]) {
+            profit += prices[i] - prices[i - 1];
+        }
+    }
+  # Two Pointers, Greedy
 
+123. Best Time to Buy and Sell Stock III
+  -     int buy1 = Integer.MIN_VALUE;int sell1 = 0;
+        int buy2 = Integer.MIN_VALUE;int sell2 = 0;
+        for(int price: prices) {
+            sell2 = Math.max(sell2, buy2+price);
+            buy2 = Math.max(buy2, sell1-price);
+            sell1 = Math.max(sell1, buy1+price);
+            buy1 = Math.max(buy1, -price);
+        }
+  # DP
 
+114. Flatten Binary Tree to Linked List
+  - create dummy root for return purpose, cause root is changing
+  -     TreeNode temp = null;
+        public void flatten(TreeNode root) {
+            if(root == null) return;
+            flatten(root.right);
+            flatten(root.left);
+            root.right = temp;
+            root.left = null;
+            temp = root;
+        }
+  # Preorder, Tree
 
+239. Sliding Window Maximum
+  - maintain decending order queue, when push new element, remove elements that less than the new element. pop() pops the first element which is also the largest element. Amotized time O(1)
 
-
-
-
+  -     int[] res = new int[n-k+1];
+        // Store index into queue rather than value
+        Deque<Integer> queue = new LinkedList<>();
+        for(int i=0;i<n;i++) {
+            // add
+            while(!queue.isEmpty() && nums[queue.peekLast()] < nums[i]){
+                queue.removeLast();}
+            queue.offer(i);
+            // remove if i > k-1
+            if(i>k-1 && queue.peekFirst() == i-k) {
+                queue.pollFirst();}
+            // add res if i>= k-1
+            if(i >= k-1) {
+                res[i-k+1] = nums[queue.peekFirst()];}}
+  - Priority Queue time O(nlogk), space O(n)
+  - Deque time amotized O(n), space O(n)
+  # Monotonic Queue / Deque,
 
 
 

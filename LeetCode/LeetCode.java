@@ -683,13 +683,81 @@
   - Deque time amotized O(n), space O(n)
   # Monotonic Queue / Deque,
 
+322. Coin Change
+   -   int[] dp = new int[amount+1];
+        for(int i=1;i<=amount;i++) {
+            int min = Integer.MAX_VALUE;
+            for(int coin : coins) {
+                if(i >=coin && dp[i-coin] != -1){
+                    min = Math.min(min, dp[i-coin] + 1);
+                }
+            }
+            dp[i] = min == Integer.MAX_VALUE ? -1 : min;}
+  - Refer to Word Break and Perfect Squares
+  # 1D DP
 
+94. Binary Tree Inorder Traversal
+  - maintain current node and stack
+  -     // Iterative
+        TreeNode cur = root;
+        while(cur!=null || !stack.isEmpty()) {
+            while(cur != null) {
+                stack.push(cur);
+                cur = cur.left;
+            }
+            cur = stack.pop();
+            res.add(cur.val);
+            cur = cur.right;
+        }
+  # Inorder Traversal, Stack
 
+394. Decode String
+  - Stack<> stack = new Stack<>() // Stack<> s = new LinkedList<>() not right
+  - Character.isDigit() // check '0' - '9'
+  -     //create 2 stacks, one to save number, one to save res.
+        while(index < s.length()) {
+            // push count
+            if(Character.isDigit(s.charAt(index))) {
+                int count=0;
+                while(Character.isDigit(s.charAt(index))) {
+                    count = 10*count + s.charAt(index++) - '0';
+                }
+                istack.push(count);
+            // push res
+            } else if(s.charAt(index) == '[') {
+                sstack.push(res);
+                res = "";
+                index++;
+            // pop res and count, then append
+            } else if(s.charAt(index) == ']') {
+                StringBuilder sb = new StringBuilder(sstack.pop());
+                int count = istack.pop();
+                for(int i=0;i<count;i++) {
+                    sb.append(res);
+                }
+                res = sb.toString();
+                index++;
+            } else {
+                res += s.charAt(index++);
+            }
+        }
+  # Stack
 
+560. Subarray Sum Equals K
+  - Map does not have getOrDefault, use HashMap
+  - matain sum, hashmap of continuous array sum from index 0 and frequence. Iterate to arr.length, for each sum, find frequence by key = sum - k and add to result:
+        map.put(0,1);
+        for(int i : nums) {
+            sum +=i;
+            // sum-k rather than k-sum
+            if(map.containsKey(sum-k)) {
+                res += map.get(sum-k);
+            }
+            map.put(sum, map.getOrDefault(sum,0)+1);
+        }
 
-
-
-
+  - Time O(n), Space O(n)
+  # HashMap, 2Sum
 
 
 

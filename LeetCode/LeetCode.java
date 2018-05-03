@@ -123,6 +123,14 @@
 
 * 198 House Robber
   - Rob(n) = Max(Rob(n-2)+ Money(n), Rob(n-1))
+  -     int prevNo = 0;
+        int prevYes = 0;
+        for (int i=0;i<height;i++) {
+            int temp = prevNo;
+            prevNo = Math.max(prevNo, prevYes);
+            prevYes = levels[i] + temp;
+        }
+        return Math.max(prevNo, prevYes);
   @ Time: O(n), Space: O(1)
   # DP
 
@@ -664,7 +672,6 @@
 
 239. Sliding Window Maximum
   - maintain decending order queue, when push new element, remove elements that less than the new element. pop() pops the first element which is also the largest element. Amotized time O(1)
-
   -     int[] res = new int[n-k+1];
         // Store index into queue rather than value
         Deque<Integer> queue = new LinkedList<>();
@@ -759,10 +766,45 @@
   - Time O(n), Space O(n)
   # HashMap, 2Sum
 
+543. Diameter of Binary Tree
+  - Similar to 124 Binary Tree Maximum Path Sum
+  - private int traverse(TreeNode node) {
+        if(node == null) return 0;
+        int left = traverse(node.left);
+        int right = traverse(node.right);
+        res = Math.max(res, left + right);
+        return Math.max(left, right) + 1;
+    }
+  # Tree, Postorder Traversal
 
+*300. Longest Increasing Subsequence
+  - maintain increasing order subsequence. iterate, for new element, If its larger than the last elem of subsequence, append it to the end. Else, find the proper index by binary search and replace it.
+  -
+            int[] subsequence  = new int[nums.length];
+            int numOfSubsequence = 0;
+            for(int n : nums) {
+                int l = 0; int r = numOfSubsequence;
+                while(l != r) {
+                    int mid = (l+r)/2;
+                    if(subsequence[mid] < n) {l=mid+1;} else {r= mid;}
+                }
+                subsequence[l] = n;
+                if(l == numOfSubsequence) numOfSubsequence++;
+            }
 
+  - time O(nlogn), space O(n)
+  # Binary Search, patience sort
 
-
+337. House Robber III
+    public int rob(TreeNode root) {
+        if(root == null) return 0;
+        int val = 0;
+        if(root.left != null)
+            val+= rob(root.left.left) + rob(root.left.right);
+        if(root.right !=null)
+            val+= rob(root.right.left) + rob(root.right.right);
+        return Math.max(val + root.val, rob(root.left)+rob(root.right));}
+  # Tree,
 
 
 

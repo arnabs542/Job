@@ -806,7 +806,16 @@
         return Math.max(val + root.val, rob(root.left)+rob(root.right));}
   # Tree,
 
+221. Maximal Square
+  - Due to i-1, j-1, new dp[rows+1][cols+1] and i,j start from 1 and i<=rows, matrix[i-1][j-1]
 
+    for(int i=1;i<=rows;i++) {
+        for(int j =1;j<=cols;j++) {
+            if(matrix[i-1][j-1] == '1') {
+                // ensure 正方形而不是长方型，res是最长边长
+                dp[i][j] = Math.min(Math.min(dp[i-1][j], dp[i][j-1]), dp[i-1][j-1]) + 1;
+                res = Math.max(res, dp[i][j]);}}}
+  # 2D DP
 
 
 

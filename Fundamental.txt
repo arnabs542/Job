@@ -269,6 +269,14 @@
 * Kruskal’s Minimum Spanning Tree （undirected graph)
   - sort edges and iterate, for each iteration if no circle, add edge until # of edges reach to V-1. Greedy algorithm.
   - use Union find to detect cycle
+        for (int i = 0; i < graph.E; ++i)
+        {
+            int x = graph.find(parent, graph.edge[i].src);
+            int y = graph.find(parent, graph.edge[i].dest);
+            if (x == y)
+                return 1; // cycle
+            graph.Union(parent, x, y);}
+
   - undirected graph only, for directed graph it may failed to detect cycle
   - (https://www.geeksforgeeks.org/greedy-algorithms-set-2-kruskals-minimum-spanning-tree-mst/)
   # O(ElogE) or O(ElogV)

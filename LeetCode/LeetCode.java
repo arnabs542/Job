@@ -817,9 +817,43 @@
                 res = Math.max(res, dp[i][j]);}}}
   # 2D DP
 
+207. Course Schedule
+  - In directed graph, if there is back edge, then acyclic. Maintain recursion queue/array, if the next visit node is in the recursion queue, its a back edge.
+  - Create adjacent list first, then dfs.
+  - Topological sort: dfs and if node finish visiting all its adjacent nodes, then push it into stack. Finally pop all nodes from stack.
+  -     for(int i=0;i<numCourses;i++) {
+            if(isVisited[i]) continue;
+            if (!dfs(adj, i, isVisited, isAccessed)) return false;
+        }
+        private boolean dfs(LinkedList<Integer>[] adj, int i, boolean[] isVisited, boolean[] isAccessed) {
+            isVisited[i] = true;
+            isAccessed[i] = true;
+            for(int j=0;j<adj[i].size();j++) {
+                int k = adj[i].get(j);
+                if(isAccessed[k]) return false;
+                if(!isVisited[k] && !dfs(adj, k, isVisited, isAccessed)) {
+                    return false;
+                }
+            }
+            isAccessed[i] = false;
+            return true;}
 
+  # DFS, Topological Sort, Graph, Adjacent List, Cycle Detection, Back Edge
 
-
+437. Path Sum III
+  - path can start not from root.
+  -     public int pathSum(TreeNode root, int sum) {
+            if(root == null) return 0;
+            return dfs(root, sum) + pathSum(root.left, sum) + pathSum(root.right, sum); // 吊了，make each child node as root of subtree
+        }
+        public int dfs(TreeNode node, int sum) {
+            int res = 0;
+            if (node == null) return res;
+            if (sum == node.val) res++;
+            res += dfs(node.left, sum - node.val) + dfs(node.right, sum - node.val);
+            return res;
+        }
+  # Tree, DFS
 
 
 

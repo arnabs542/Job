@@ -849,21 +849,86 @@
         public int dfs(TreeNode node, int sum) {
             int res = 0;
             if (node == null) return res;
-            if (sum == node.val) res++;
+            if (sum == node.val) res++; // not return
             res += dfs(node.left, sum - node.val) + dfs(node.right, sum - node.val);
             return res;
         }
   # Tree, DFS
 
+98. Validate Binary Search Tree
+  - inorder traversal and the new visited node should larger than the previous ndoe. Maintain pre node val.
+  - first assign pre = Integer.MIN_VALUE, test case has node.val = Integer.MIN_VALUE. Be careful.
+  # Tree, Inorder Traversal
 
+538. Convert BST to Greater Tree
+  - Traverse from right to left
+  # Tree
 
+438. Find All Anagrams in a String
+  - matain num of characters in String, it num ==0, put into result. Fast pointer and slow pointer.
+  -     int[] arr = new int[26];
+        for(char c : p.toCharArray()) {arr[c-'a']++;}
+        int total = p.length();
+        for(int i=0;i<s.length();i++) {
+            if(arr[s.charAt(i) - 'a']-->0) total--;
+            if(i >= p.length() && ++arr[s.charAt(i - p.length()) - 'a']>0) total++;
+            if(total == 0) res.add(i-p.length()+1);
+        }
 
+  - refer to Minimum Window Substring
+  # Two Pointers
 
+572. Subtree of Another Tree
+  - Check subtree recursively
+    public boolean isSubtree(TreeNode s, TreeNode t) {
+        if(s == null && t == null) return true;
+        if(s == null || t == null) return false;
+        if(compare(s,t)) {
+            return true;
+        } else {
+            return isSubtree(s.left, t) || isSubtree(s.right,t);
+        }
+    }
+    private boolean compare(TreeNode s, TreeNode t) {
+        if(s == null && t == null) return true;
+        if(s == null || t == null) return false;
+        if(s.val != t.val) return false;
+        return compare(s.left, t.left) && compare(s.right, t.right);
+    }
+  # Tree, Subtree
 
+581. Shortest Unsorted Continuous Subarray
+  - Stack<Integer> stack; stack.clear();
+  - Matain increasing order in stack, for new elem, find the index and compare with minLeft.
+  -     for(int i=0;i<nums.length;i++) {
+            while(!stack.isEmpty() && nums[i] < nums[stack.peek()]) {
+                minLeft = Math.min(minLeft,stack.pop());
+            }
+            stack.push(i);
+        }
+  - Refer to Sliding Window Maximum monotonic queue which has 两头. Stack 只有1头
+  # Monotonic, Stack
 
-
-
-
+494. Target Sum
+  -  Given nums, +/- each elem to get target S
+      public int findTargetSumWays(int[] nums, int S) {
+        int sum = 0;
+        for(int num : nums) {
+            sum +=num;
+        }
+        if(sum < S) return 0;
+        //dp[array elem][sum range] = 次数
+        int[][] dp = new int[nums.length+1][2*sum+1];
+        dp[0][sum] = 1; // Initial 0 input, sum = 1
+        for(int i=0;i<nums.length;i++) {
+            // range is [0, 2sum+1], new elem is nums[i], then 0<=j-nums[i]<=2sum+1, then nums[i]<=j<=2sum+1-nums[i]
+            for(int j=nums[i];j<2*sum+1-nums[i];j++) {
+                dp[i+1][j+nums[i]] += dp[i][j];
+                dp[i+1][j-nums[i]] += dp[i][j];
+            }
+        }
+        return dp[nums.length][S+sum];
+  # 2D DP
 
 
 

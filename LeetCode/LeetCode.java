@@ -930,10 +930,44 @@
         return dp[nums.length][S+sum];
   # 2D DP
 
+273. Integer to English Words
+  -     while (num > 0) {
+            if (num % 1000 != 0) {
+                res = helper(num % 1000) + thousands[i] + " " + res;
+            }
+            num /= 1000;
+            i++;
+        }
+        return res.trim();
 
+        public String helper(int num) {
+            if (num == 0) return "";
+            if (num < 20) {
+                return less20[num % 20] + " ";
+            } else if (num < 100) {
+                return tens[num / 10] + " " + helper(num % 10);
+            } else {
+                return less20[num / 100] + " Hundred " + helper(num % 100);
+            }}
+  # Recursion
 
+67. Add Binary
+  # String
 
-
+253. Meeting Rooms II
+  - Refer to The Skyline Problem
+  - Sort by time in increasing order, start marks 1, end marks -1. end executes prior to start if time is the same.
+  -     for(Interval interval : intervals) {
+            list.add(new int[]{interval.start, 1});
+            list.add(new int[]{interval.end,-1});
+        }
+        Collections.sort(list, (a,b)->a[0] == b[0] ? a[1]-b[1] : a[0]-b[0]);
+        int curr = 0;int res = 0;
+        for(int[] t:list) {
+            curr += t[1];
+            res = Math.max(res, curr);
+        }
+  # Sweep Line
 
 
 

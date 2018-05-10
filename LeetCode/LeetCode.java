@@ -969,12 +969,48 @@
         }
   # Sweep Line
 
+325. Maximum Size Subarray Sum Equals k
+  - Matain hashmap of sum and length, for each iteration, check if sum-k exist in hashmap, if yes, compare res and find the larger one. Then put sum to hashMap.
+  - Refer to Subarray Sum Equals K
+  # HashMap
 
+*91. Decode Ways: decode digit string(e.g. "123") to A-Z
+  - each iteration, cur digit!=0, dp[i] = dp[i-1], 9<pre digit + cur digit<27, dp[i] != dp[i-2]
+  - 好好区分下dp中index和string中index关系， dpIndex = strIndex +1
+        int[] dp = new int[s.length()+1];
+        dp[0] = 1;
+        dp[1] = s.charAt(0) != '0' ? 1 : 0;
+        for(int i=2;i<=s.length();i++) {
+            int one = s.charAt(i-1) - '0';
+            int two = 10*(s.charAt(i-2) -'0') + one;
 
+            if(one>=1 && one<=9) {
+                dp[i] = dp[i-1];
+            }
+            if(two>=10 && two<=26) {
+                dp[i] += dp[i-2];
+            }
+        }
+  - // 空间复杂度优化
+        int c1 = 1;
+        int c2 = 1;
+        for(int i=1;i<s.length();i++) {
+            if (s.charAt(i) == '0') {
+                c1 = 0;
+            }
+            if (s.charAt(i - 1) == '1' || s.charAt(i - 1) == '2' && s.charAt(i) <= '6') {
+                c1 = c1 + c2;
+                c2 = c1 - c2;
+            } else {
+                c2 = c1;
+            }
+        }
+        return c1;
+  # 1D DP
 
-
-
-
+314. Binary Tree Vertical Order Traversal
+  - find min and max, left -1, right +1. Create queue to track index, BFS.
+  # Tree, BFS
 
 
 

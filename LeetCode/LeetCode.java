@@ -1009,13 +1009,49 @@
   # 1D DP
 
 314. Binary Tree Vertical Order Traversal
-  - find min and max, left -1, right +1. Create queue to track index, BFS.
+  - find min and max, left -1, right +1. BFS.
+  - create second queue to track index
   # Tree, BFS
 
+157. Read N Characters Given Read4
+    // read4 read at most 4 into temp, then copy from temp to buf up to n.
+    // cases: 1. abcdef n =5  2.abcdef n=10
+    public int read(char[] buf, int n) {
+        char[] temp = new char[4];
+        int index = 0 ;
+        while(true) {
+            int count = read4(temp);
+            count = Math.min(count, n-index);
+            for(int i=0;i<count;i++) {
+                buf[index++] = temp[i];
+            }
+            if(index == n || count<4) return index;
+        }
+    }
+    # String, buffer
 
+158. Read N Characters Given Read4 II - Call multiple times
+  -     int count = 0; // # of elements in temp arr
+        int pointer = 0; // pointer in temp
+        char[] temp = new char[4];
 
+        public int read(char[] buf, int n) {
+            int index = 0;
+            while(index < n) {
+                if(pointer == 0) count = read4(temp);
+                if(count == 0) break;
+                while(index <n && pointer < count) {
+                    buf[index++] = temp[pointer++];
+                }
+                if(pointer == count) pointer = 0;
+            }
+            return index;
+        }
+    # String, Buffer
 
-
+311. Sparse Matrix Multiplication
+  - Refer to (https://leetcode.com/problems/sparse-matrix-multiplication/discuss/76151/54ms-Detailed-Summary-of-Easiest-JAVA-solutions-Beating-99.9)
+  # Math
 
 
 

@@ -1053,13 +1053,58 @@
   - Refer to (https://leetcode.com/problems/sparse-matrix-multiplication/discuss/76151/54ms-Detailed-Summary-of-Easiest-JAVA-solutions-Beating-99.9)
   # Math
 
+278. First Bad Version
+  -     int l = 1;
+        int r = n;
+        while(l<r-1) {
+            int mid = (r-l)/2+l; // dont use (l+r)/2
+            if(isBadVersion(mid)) {
+                r = mid;
+            } else {
+                l = mid;
+            }
+        }
+        if(isBadVersion(l)) {return l;} else {return r;}
+  # Binary Search
 
+277. Find the Celebrity
+  - knows(a,b): true, a is not celebrity; false, b is not celebrity.
+  - keep track of celebrity by compare 2 people, finally check if celebrity knows anyone or anyone dont know celebrity
+  -     for(int i=1;i<n;i++) {
+            celebrity = knows(celebrity, i) ? i : celebrity;
+        }
+        for(int i=0;i<n;i++) {
+            if(celebrity == i) continue;
+            if(knows(celebrity, i) || !knows(i,celebrity)) return -1;}
+  - Array
 
+257. Binary Tree Paths
+  - Integer.toString(int) // int to String
 
+173. Binary Search Tree Iterator
+  - Keep track of current node and stack
+  - Refer to 94. Binary Tree Inorder Traversal
+  -     public BSTIterator(TreeNode root) {
+            cur = root;
+            while(cur != null) {
+                stack.push(cur);
+                cur = cur.left;}}
 
+        public boolean hasNext() {
+            return !stack.empty();}
 
+        public int next() {
+            if(!hasNext()) return -1;
+            cur = stack.pop();
+            int res = cur.val;
+            cur = cur.right;
+            while(cur != null) {
+                stack.push(cur);
+                cur = cur.left;
+            }
+            return res;}
 
-
+  # Stack Implementation of Inorder Traversal
 
 
 

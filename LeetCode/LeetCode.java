@@ -1106,6 +1106,48 @@
 
   # Stack Implementation of Inorder Traversal
 
+125. Valid Palindrome
+  - Ascii: A~Z[\]^_'a~z
+  - Character.isLetterOrDigit()
+  - Character.toLowerCase()
+  # Two Pointers
+
+680. Valid Palindrome II
+  - delete at most one character. Judge if non-empty str can make palindrome.
+  - conner case:
+  if(s.charAt(l+1) == s.charAt(r) && s.charAt(r-1) == s.charAt(l)) return validate(s,l+2,r-1,true) || validate(s,l+1,r-2,true);
+  # Two Pointers
+
+636. Exclusive Time of Functions
+  - stack tracks the id ; pre maintains last time. Calculate time based on 4 cases, (start, start), (start, end), (end, start), (end, end)
+  # Stack
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

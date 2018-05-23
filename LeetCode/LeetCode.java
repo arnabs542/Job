@@ -1122,6 +1122,23 @@
   - stack tracks the id ; pre maintains last time. Calculate time based on 4 cases, (start, start), (start, end), (end, start), (end, end)
   # Stack
 
+* 689. Maximum Sum of 3 Non-Overlapping Subarrays
+  - calculate total sum for each index.
+    for (int i = 0; i < n; i++) sum[i+1] = sum[i]+nums[i];
+  - 从左到右，posLeft每个记录当前最大的k sum的起始index。从右到左，posRight每个记录当前最大的k sum的起始index。从k到n-2k，循环计算total取最大
+    posLeft = new int[n], tracks start index of largest sum of k elements from left to right
+    posRight = new int[n], tracks start index of largest sum of k elements from right to left.
+  - mid interval is [i, i+k-1], where k<=i<=n-2k, left interval [0,i-1], right interval [i+k, n-1]
+  -
+          for (int i = k; i <= n-2*k; i++) {
+            int l = posLeft[i-1], r = posRight[i+k];
+            int tot = (sum[i+k]-sum[i]) + (sum[l+k]-sum[l]) + (sum[r+k]-sum[r])
+            if (tot > maxsum) {
+                maxsum = tot;
+                ans = {l, i, r};
+            }
+        }
+  # DP
 
 
 

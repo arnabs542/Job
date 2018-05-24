@@ -1140,8 +1140,29 @@
         }
   # DP
 
+252. Meeting Rooms
+  - start time arr, end time arr. sort. For each iteration, start time should less than or equals to end time. start time should larger than previous end time.
+  # Array, Sort
 
+211. Add and Search Word - Data structure design
+  - Create trie of words. Use recursion + dfs for '.' case.
 
+  - public boolean find(WordDictionary node, String word) {
+        if(word.length() == 0) {
+            if(node.isWord) return true;
+            return false;
+        }
+        if(word.charAt(0) == '.') {
+            for(int i=0;i<26;i++) {
+                if(node.children[i] !=null && find(node.children[i], word.substring(1))) {
+                    return true;}}
+        } else {
+            if(node.children[word.charAt(0) - 'a'] != null) {
+                return find(node.children[word.charAt(0) - 'a'], word.substring(1));}}
+
+        return false;
+    }
+  # Trie, Recursion, DFS
 
 
 

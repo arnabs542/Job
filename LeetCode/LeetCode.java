@@ -1164,7 +1164,31 @@
     }
   # Trie, Recursion, DFS
 
+282. Expression Add Operators
+  - Refer to (https://www.youtube.com/watch?v=v05R1OIIg08)
+    public void dfs(String num, int target, int pos, String exp, long pre, long cur) {
+        if(pos == num.length()) {
+            if(cur == target) {
+                res.add(exp);
+            }
+            return;
+        }
 
+        for(int i = pos+1;i<=num.length();i++) {
+            String temp = num.substring(pos, i);
+            // 0x not allowed
+            if(temp.charAt(0) == '0' && temp.length()>1) break;
+            long n = Long.parseLong(temp);
+            if(pos == 0) {
+                dfs(num, target, i, temp, n, n);
+                continue;
+            }
+            dfs(num, target, i, exp+'+'+temp, n, cur+n);
+            dfs(num, target, i, exp+'-'+temp, -n, cur-n);
+            dfs(num, target, i, exp+'*'+temp, pre*n, cur-pre+pre*n);
+        }
+    }
+  # DP
 
 
 

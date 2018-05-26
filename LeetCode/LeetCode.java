@@ -1195,7 +1195,6 @@
   - private void traverse(Node node, Map<Integer, Node> map) {
         Node root = new Node(node.label);
         map.put(root.label, root);
-
         for(Node n : node.neighbors) {
             if(!map.containsKey(n.label)) {
                 traverse(n, map);
@@ -1203,6 +1202,117 @@
             root.neighbors.add(map.get(n.label));
         }}
   # DFS, Undirected Graph
+
+161. One Edit Distance
+  - conner case "a", "ab"
+  - String
+
+341. Flatten Nested List Iterator
+  - For the given nestedList, use dfs to find leaf and add to queue.
+  # DFS
+
+597. Friend Requests I: Overall Acceptance Rate
+  - count distinct rows from request_accepted divided by count distinct rows from friend_request. Attension friend_request can be 0.
+  round(
+    ifnull(
+    (select count(*) from (select distinct requester_id, accepter_id from request_accepted) as A)
+    /
+    (select count(*) from (select distinct sender_id, send_to_id from friend_request) as B),
+    0)
+, 2) as accept_rate;
+  # SQL
+
+43. Multiply Strings
+    -   index:   0 1 2
+        --------------
+           m:    1 2 3
+           n:      5 6
+                ------
+                   1 8
+                 1 2
+               0 6
+                 1 5
+               1 0
+             0 5
+             ----------
+             0 6 8 8 8
+  - The final result has at most m+n digits. Product digit by digit and set result to pHigh and pLow. Attention to carry. Calculate from right to left.
+  -     int[] res = new int[num1.length() + num2.length()];
+        for(int i = num1.length() - 1; i >= 0; i--) {
+            for(int j = num2.length() - 1; j >= 0; j--) {
+                int product = (num1.charAt(i)-'0') * (num2.charAt(j)-'0');
+                int pHigh = i+j;
+                int pLow = i+j+1;
+                int sum = product + res[pLow];
+                res[pHigh] += sum/10;
+                res[pLow] = sum%10;
+            }
+        }
+        StringBuilder builder = new StringBuilder();
+        for(int i=0;i<res.length;i++) {
+            if(res[i]==0 && builder.length() == 0) continue;
+            builder.append(res[i]);
+        }
+  # String, Math
+
+285. Inorder Successor in BST
+  - O(n) inorder traversal, O(logn) see follwoing code
+  - public TreeNode inorderSuccessor(TreeNode root, TreeNode p) {
+        TreeNode res = null;
+        while(root != null) {
+            if(root.val > p.val) {
+                res = root;
+                root = root.left;
+            } else {
+                root = root.right;
+            }
+        }
+        return res;
+    }
+  - Normally, to find successor in a BST has 3 cases.
+    - it has right subtree. Then successor is the left most node in subtree.
+    - it doesn't have right subtree and is the left node of its parent. Then successor is its parent.
+    - it doesn't have right subtree and is the right node of its parent. Then successor is the first ancesstor that has it in its left branch.
+  # Tree, Successor
+
+57. Insert Interval
+  - find the left and right interval that has overlap with newInterval. Use left.start and right.end to create new interval.
+  -       for(Interval i : intervals) {
+            if(newInterval.start >= i.start && newInterval.start <= i.end) left = i;
+            if(newInterval.end >= i.start && newInterval.end <= i.end) right = i;
+            if(newInterval.start < i.start && newInterval.end > i.end) mids.add(i);
+        }
+
+        for(Interval i: mids) {intervals.remove(i);}
+
+        if(left == null & right == null) {
+            intervals.add(newInterval);
+        } else if(left == null) {
+            intervals.add(new Interval(newInterval.start, right.end));
+            intervals.remove(right);
+        } else if(right == null) {
+            intervals.add(new Interval(left.start, newInterval.end));
+            intervals.remove(left);
+        } else {
+            if(left != right) {
+                intervals.remove(left);
+                intervals.remove(right);
+                intervals.add(new Interval(left.start, right.end));
+            }
+        }
+  # Range, Sort
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

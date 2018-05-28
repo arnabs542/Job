@@ -1302,6 +1302,456 @@
         }
   # Range, Sort
 
+*721. Accounts Merge
+  - Create edges for each account from all emails from the second place to the first email. Also create edges from first email to all other emails. Then got the adjacent emails for each email. Then use bfs to find connected component.
+
+        // Create adjacent emails for each email.
+  -      for(List<String> account : accounts) {
+            String firstEmail = account.get(1);
+            if(!emailAdjMap.containsKey(firstEmail)) {
+                emailNameMap.put(firstEmail, account.get(0));
+                emailAdjMap.put(firstEmail, new LinkedList<>());
+            }
+            for(int i=2;i<account.size();i++) {
+                String email = account.get(i);
+                // create edge from firstEmail to email for firstEmail
+                emailAdjMap.get(firstEmail).add(email);
+
+                if(!emailAdjMap.containsKey(email)) {
+                    emailNameMap.put(email, account.get(0));
+                    emailAdjMap.put(email, new LinkedList<>());
+                }
+                // Create edge from email to firstEmail for email
+                emailAdjMap.get(email).add(firstEmail);
+            }
+        }
+        // BFS to find connected component
+        Set<String> visitedEmails = new HashSet<>();
+        for(String email : emailAdjMap.keySet()) {
+            if(!visitedEmails.contains(email)) {
+                visitedEmails.add(email);
+                LinkedList<String> component = new LinkedList<>();
+                Queue<String> queue = new LinkedList<>();
+                queue.add(email);
+                while(!queue.isEmpty()) {
+                    String e = queue.poll();
+                    component.push(e);
+                    for(String adjEmail : emailAdjMap.get(e)) {
+                        if(!visitedEmails.contains(adjEmail)) {
+                            queue.add(adjEmail);
+                            visitedEmails.add(adjEmail);
+
+                        }
+                    }
+                }
+                Collections.sort(component);
+                component.addFirst(emailNameMap.get(email));
+                res.add(component);
+            }
+        }
+  - Union Find: for each acount, union first email with other emails
+    dsu.union(emailToID.get(account.get(1)), emailToID.get(email));
+  # BFS/DFS, Union Find, Graph
+
+88. Merge Sorted Array
+  - Two Pointers
+
+602. Friend Requests II: Who Has the Most Friends
+  # SQL
+
+670. Maximum Swap
+  - if int e.g. 7432 is decreasing, then no swap. Else, find the turning point. e.g 974678 which is 6. Then find max from 6 to the end. Compare max in decreasing order from 4 to 9 and find the largest num that less than max which is 7 and swap. Finnally 984677.
+  - new String(charArr) // char arr to String
+  # Array
+
+13. Roman to Integer
+  - 如果左边的数字小于右边的数字：右-左
+        int res = toNum(s.charAt(0));
+        for(int i=1;i<s.length();i++) {
+            res += toNum(s.charAt(i)) > toNum(s.charAt(i-1)) ? toNum(s.charAt(i)) - 2 * toNum(s.charAt(i-1)) : toNum(s.charAt(i));
+        }
+        return res;
+    }
+    private int toNum(char c) {
+        switch(c) {
+            case 'I' : return 1;case 'V' : return 5;case 'X' : return 10;
+            case 'L' : return 50;case 'C' : return 100;case 'D' : return 500;
+            case 'M' : return 1000;
+        }
+        return 0;
+    }
+  # Roman, String
+
+785. Is Graph Bipartite?
+  - the adjacent node should have different color.
+  - ^ 异或， 1^0 = 1, 1^1 = 0
+  // color: -1 (not initialzed), 1, 0
+  - private boolean dfs(int i, int[] color, int parentColor, int[][] graph) {
+        if(color[i] == -1) {
+            color[i] = parentColor ^ 1;
+        } else if((color[i] ^ parentColor) != 1){
+             return false;
+        } else {
+            return true;
+        }
+        for(int n : graph[i]) {
+            if(!dfs(n, color, color[i], graph)) return false;
+        }
+        return true;
+    }
+  # Graph, DFS
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

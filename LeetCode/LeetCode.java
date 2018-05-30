@@ -22,7 +22,12 @@
   # binary search
 
 461 Hamming Distance
-  - int_num % 2 == int_num >> 1
+  - int_num / 2 == int_num >> 1
+  -     int res = x^y;
+        while(res>0) {
+            num += res & 1;
+            res >>= 1;
+        }
   # bit manipulation
 
 11 Container With Most Water
@@ -1401,14 +1406,63 @@
     }
   # Graph, DFS
 
+523. Continuous Subarray Sum
+  - attention to mod 0 case
+  - if k==0, for continous arr of 0 return true. if k!=0, maintain remainder and map of remainder and index. if remainder sum is exist and its array of at least 2. Then return true;
+  -     Map<Integer, Integer> map = new HashMap<>(); // map of remainder and index
+        int sum = nums[0] %k;
+        map.put(sum, 0);
+        for(int i =1;i<nums.length;i++) {
+            sum = (sum + nums[i]) %k;
+            if(sum == 0) return true;
+            if(map.containsKey(sum)) {
+                if(i - map.get(sum) > 1) return true;
+            } else {
+                map.put(sum, i);
+            }
+        }
+  # HashMap
 
+286. Walls and Gates
+  - dfs for each 0.
+  # DFS
 
+477. Total Hamming Distance
+  - refer to 461 Hamming Distance
+  - Iterate 0-31 bit, collect num of bit 1 and bit 0, then multiply them.
+  -     for(int i = 0;i<32;i++) {
+            int numOf1 = 0;
+            for(int j=0;j<nums.length;j++) {
+                if(nums[j] == 0) continue;
+                numOf1 += nums[j] & 1;
+                nums[j] >>=1;
+            }
+            res += numOf1 * (nums.length -numOf1);
+        }
+  - Bit Manipulation
 
-
-
-
-
-
+38. Count and Say
+  -  数数， 1 -> 11 -> 21 (2个1) -> 1211 ->(1个2，1个1) -> 111121
+        while(i < n) {
+            int count = 0;
+            StringBuilder sb = new StringBuilder();
+            char c = res.charAt(0);
+            for(int j=0;j<=res.length();j++) {
+                if(j!=res.length() && res.charAt(j) == c) {
+                    count++;
+                } else {
+                    sb.append(count);
+                    sb.append(c);
+                    if(j != res.length()) {
+                        count =1;
+                        c = res.charAt(j);
+                    }
+                }
+            }
+            res = sb.toString();
+            i++;
+        }
+  # String
 
 
 

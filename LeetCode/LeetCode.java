@@ -1081,7 +1081,7 @@
         for(int i=0;i<n;i++) {
             if(celebrity == i) continue;
             if(knows(celebrity, i) || !knows(i,celebrity)) return -1;}
-  - Array
+  # Array
 
 257. Binary Tree Paths
   - Integer.toString(int) // int to String
@@ -1309,7 +1309,6 @@
 
 *721. Accounts Merge
   - Create edges for each account from all emails from the second place to the first email. Also create edges from first email to all other emails. Then got the adjacent emails for each email. Then use bfs to find connected component.
-
         // Create adjacent emails for each email.
   -      for(List<String> account : accounts) {
             String firstEmail = account.get(1);
@@ -1442,7 +1441,7 @@
   - Bit Manipulation
 
 38. Count and Say
-  -  数数， 1 -> 11 -> 21 (2个1) -> 1211 ->(1个2，1个1) -> 111121
+  - 数数， 1 -> 11 -> 21 (2个1) -> 1211 ->(1个2，1个1) -> 111121
         while(i < n) {
             int count = 0;
             StringBuilder sb = new StringBuilder();
@@ -1464,345 +1463,21 @@
         }
   # String
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+398. Random Pick Index
+  - int array may have duplicates for a given target. The possibility of output each index of target is equal.
+  - Random r = new Random(); r.nextInt(total); // random between [0, total)
+  - e.g. {1,5,5,6,5} output index = 1 : 1 * 1/2 * 2/3 = 1/3
+  - public int pick(int target) {
+        int total = 0, res = -1;
+        for(int i=0;i<nums.length;i++) {
+            if(nums[i] == target) {
+                int randomNum = rand.nextInt(++total);
+                res = randomNum == 0 ? i : res;
+    }}}
+  # Reservior Sampling
+
+824. Goat Latin
+  # String
 
 
 

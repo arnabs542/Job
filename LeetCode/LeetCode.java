@@ -1479,11 +1479,53 @@
 824. Goat Latin
   # String
 
+825. Friends Of Appropriate Ages
+  - B request friend A if B in range (0.5*A+7, A], More than 20000 people. Create sum array of ages. For each age of A, find sum of valid B within that range and multiply.
+  -     int[] numOfAges = new int[121];
+        int[] sumOfAges = new int[121];
+        for(int i:ages) numOfAges[i]++;
+        for(int i=1;i<121;i++) sumOfAges[i] = sumOfAges[i-1]+numOfAges[i];
+        // B in range (0.5*A+7, A]
+        for(int i=15;i<121;i++) {
+            if(numOfAges[i] == 0) continue;
+            int temp = sumOfAges[i] - sumOfAges[i/2+7];
+            res += temp * numOfAges[i] - numOfAges[i];
+        }
+  # Array, Continuous array
 
+209. Minimum Size Subarray Sum
+  - Maintain sum array, fast and slow pointer, if sum[fast] - sum[slow] > s, then increase slow and compare.
+  -     sum[0] = nums[0];
+        for(int i=1;i<nums.length;i++) sum[i] = sum[i-1]+nums[i];
+        int slow=0, fast = 0;
+        while(fast<nums.length && sum[fast]<s) fast++;
+        if(fast == nums.length && sum[fast-1]<s) return 0;
+        res = fast - slow +1;
+        for(int i = fast;i<nums.length;i++) {
+            while(sum[i] - sum[slow] >=s) {
+                res = Math.min(res, i-slow);
+                slow++;
+            }
+        }
+  - Time O(n), Space O(n) -> can be reduced to O(1)
+  # Two Pointers
 
-
-
-
+380. Insert Delete GetRandom O(1)
+  - Maintain HashMap of val and index, ArrayList of val. For insertion, insert to both. For deletion, swap the val to delete in ArrayList with the last elem, and change the last elem index in HashMap.
+  - public boolean remove(int val) {
+        if(!map.containsKey(val)) return false;
+        int index = map.get(val);
+        int v = list.get(list.size()-1);
+        list.set(index, v);
+        map.put(v, index);
+        list.remove(list.size()-1);
+        map.remove(val);
+        return true;
+    }
+    public int getRandom() {
+        return list.get(random.nextInt(list.size()));
+    }
+  # Design, HashMap, ArrayList
 
 
 

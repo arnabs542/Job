@@ -1527,7 +1527,52 @@
     }
   # Design, HashMap, ArrayList
 
+269. Alien Dictionary
+  - Based on the word list order, figure out character order. Compare each pair to find the charater order and create edge from high order to low order. Then do topological sort.
 
+  -     // create edge by compare each pair of word
+        for(int i=1;i<words.length;i++) {
+            int minLength = Math.min(words[i-1].length(), words[i].length());
+            for(int j=0;j<minLength;j++) {
+                if(words[i-1].charAt(j) != words[i].charAt(j)) {
+                    if(!map.containsKey(words[i-1].charAt(j))) {
+                        map.put(words[i-1].charAt(j), new LinkedList<>());
+                    }
+                    map.get(words[i-1].charAt(j)).add(words[i].charAt(j));
+                    break;
+                }
+            }
+        }
+
+        Stack<Character> stack = new Stack<>();
+        Set<Character> visited = new HashSet<>();
+        Set<Character> accessed = new HashSet<>();
+        for(Character c : set) {
+            if(!visited.contains(c)) {
+                dfs(visited, map, c, stack, accessed);
+            }
+        }
+        if(hasCycle) return "";
+
+    private void dfs(Set<Character> visited, Map<Character, List<Character>> map, Character c, Stack<Character> stack, Set<Character> accessed) {
+        visited.add(c); accessed.add(c);
+        if(map.containsKey(c)) {
+            for(Character ch : map.get(c)) {
+                if(accessed.contains(ch)) {
+                    hasCycle = true;
+                    return;
+                }
+                if(!visited.contains(ch)) {
+                    dfs(visited, map, ch, stack, accessed);
+                }
+            }
+        }
+        accessed.remove(c);
+        stack.push(c);
+    }
+
+  - Refer to 207 Course Schedule
+  # Topological Sort, DFS, Graph, Character order, directed graph
 
 
 

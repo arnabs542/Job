@@ -1570,17 +1570,64 @@
         accessed.remove(c);
         stack.push(c);
     }
-
   - Refer to 207 Course Schedule
   # Topological Sort, DFS, Graph, Character order, directed graph
 
+71. Simplify Path
+  - "." means stay current dir, ".." means back to last dir. e.g.path = "/a/./b/../../c/", => "/c"
+  -     String[] arr = path.split("/+");
+        Stack<String> stack = new Stack<>();
+        for(String s : arr) {
+            if(s.equals("..")) {
+                if(!stack.isEmpty()) stack.pop();
+            } else if(!s.equals(".") && !s.isEmpty()) {
+                stack.push(s);
+            }
+        }
+        if(stack.isEmpty()) return "/";
+        String res = "";
+        while(!stack.isEmpty()) res = "/" + stack.pop() + res;
+  # Stack, Regular Expression
 
+554. Brick Wall
+  - Calculate array sum for each row. Use hashmap to track the times of sum. Use height - max times of sum will be the result.
+  # HashMap
 
+*90. Subsets II
+  - arr has duplicates, Input: [1,2,2] Output:[[2],[1],[1,2,2],[2,2],[1,2],[]]
+  - public List<List<Integer>> subsetsWithDup(int[] nums) {
+        List<List<Integer>> res = new LinkedList<>();
+        Arrays.sort(nums);
+        dfs(nums, new LinkedList<>(), res, 0);
+        return res;
+    }
+    private void dfs(int[] nums, List<Integer> list, List<List<Integer>> res, int startIndex) {
+        res.add(new LinkedList<>(list)); // new list instead of list reference
+        for(int i=startIndex;i<nums.length;i++) {
+            // e.g. 1,2,2', if startIndex is 1, i=2, val 2 is not called, then 2' should not be called to remove duplicates
+            if(i != startIndex && nums[i] == nums[i-1]) continue;
+            list.add(nums[i]);
+            dfs(nums, list, res, i+1); // use i instead of startIndex
+            list.remove(list.size()-1);
+        }
+    }
+  - Refer to 78 Subsets
+  # Backtracking
 
-
-
-
-
+28. Implement strStr()
+  - Return the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.
+  -     for(int i=0;i<haystack.length();i++) {
+             if(match(haystack, i, needle)) return i;
+        }
+        private boolean match(String haystack, int i, String needle) {
+            // attention to this, needle may more than rest of haystack
+            if(needle.length()>haystack.length()-i) return false;
+            for(int j=0;j<needle.length();j++) {
+                if(haystack.charAt(i+j) != needle.charAt(j)) return false;
+            }
+            return true;
+        }
+  # String
 
 
 

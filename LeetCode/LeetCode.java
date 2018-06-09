@@ -615,8 +615,7 @@
         int l = 0; int r = nums.length-1;
         while(l < r-1) {
             int mid = (l+r)/2;
-            if(nums[mid] > target) {r = mid;} else {l = mid;
-            }
+            if(nums[mid] > target) {r = mid;} else {l = mid;}
         }
         if(nums[r] == target) return r;
         if(nums[l] == target) return l;
@@ -1629,12 +1628,89 @@
         }
   # String
 
+674. Longest Continuous Increasing Subsequence
+  -     for(int i=1;i<nums.length;i++) {
+            cur = nums[i] <= nums[i-1] ? 1 : cur+1;
+            res = Math.max(res, cur);
+        }
+  # Array
 
+*377. Combination Sum IV
+  - Integer array with positive numbers and no duplicates, find the number of possible combinations that add up to a positive integer target.
+  - // Recursion
+    public int combinationSum4(int[] nums, int target) {
+        if (target == 0) return 1;
+        for (int i = 0, res=0; i < nums.length; i++) {
+            if (target >= nums[i])
+                res += combinationSum4(nums, target - nums[i]);
+        }
+        return res;
+    }
+    // Top Down DP
+    private int[] dp;
+    public int combinationSum4(int[] nums, int target) {
+        dp = new int[target + 1];
+        Arrays.fill(dp, -1);
+        dp[0] = 1;
+        return helper(nums, target);
+    }
+    private int helper(int[] nums, int target) {
+        if (dp[target] != -1) {
+            return dp[target];
+        }
+        int res = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (target >= nums[i]) {
+                res += helper(nums, target - nums[i]);
+            }
+        }
+        dp[target] = res;
+        return res;
+    }
+    // Bottom Up DP
+    comb[0] = 1;
+    for (int i = 1; i < comb.length; i++) {
+        for (int j = 0; j < nums.length; j++) {
+            if (i - nums[j] >= 0) {
+                comb[i] += comb[i - nums[j]];
+            }
+        }
+    }
+  - (https://leetcode.com/problems/combination-sum-iv/discuss/85036/1ms-Java-DP-Solution-with-Detailed-Explanation)
+  # 1D DP, Backtracking
 
+69. Sqrt(x)
+  - Refer to 34 Search for a Range
+    // find the left most result, assign mid to r if nums[mid] = target
+    while(l < r-1) {
+        int mid = (l+r)/2;
+        if(nums[mid] < target) {l = mid;} else {r = mid;}
+    }
+    if(nums[l] == target) return l;
+    if(nums[r] == target) return r;
+    // find the right most result, assign mid to l if nums[mid] = target
+    while(l < r-1) {
+        int mid = (l+r)/2;
+        if(nums[mid] > target) {r = mid;} else {l = mid;}
+    }
+    if(nums[r] == target) return r;
+    if(nums[l] == target) return l;
 
-
-
-
+  - this question needs to find the left most result
+        if(x==0) return 0;
+        int left =1, right =x;
+        while(left < right-1) {
+            int mid = left + (right -left)/2;
+            if(x/mid == mid) {
+                return mid;
+            } else if (x/mid <= mid) {
+                right = mid;
+            } else {
+                left = mid;
+            }
+        }
+        return left;
+  # Binary Search
 
 
 

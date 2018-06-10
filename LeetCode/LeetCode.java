@@ -1712,12 +1712,58 @@
         return left;
   # Binary Search
 
+127. Word Ladder
+  - Put startWord into queue, for each char, iterate from 'a' to 'z' to check if new created string is exist in wordlist, if yes, add to queue and level map.
+  -     HashSet<String> set = new HashSet<>(wordList);
+        Map<String, Integer> map = new HashMap<>(); // map(str, level)
+        Queue<String> queue = new LinkedList<>(); // bfs queue
+        queue.offer(beginWord);
+        map.put(beginWord, 1);
+        while(!queue.isEmpty()) {
+            String word = queue.poll();
+            int level = map.get(word);
+            for(int i=0;i<word.length();i++) {
+                char[] arr = word.toCharArray();
+                for(char c = 'a';c<'z';c++) {
+                    arr[i] = c;
+                    String newWord = new String(arr);
+                    if(set.contains(newWord)) {
+                        if(newWord.equals(endWord)) return level+1;
+                        map.put(newWord, level+1);
+                        queue.offer(newWord);
+                        set.remove(newWord);
+                    }}}}
+  - BFS. Create adjacent list for each word, undirected graph. Then bfs to find the shortest path to endWord.
+  - Attention, not use DFS to find shortest path. If use DFS, use map(str, distance to startWord) instead of visited set.
+  # BFS, Shortest Path, Dijkstra
 
+235. Lowest Common Ancestor of a Binary Search Tree
+  - find the first node that have p, and q on left and right
+  # BST
 
+639. Decode Ways II
+  - Refer to 91. Decode Ways. add '*', means 1-9. 细分情况
+  # 1 DP
 
-
-
-
+*334. Increasing Triplet Subsequence
+  - Refer to 300. Longest Increasing Subsequence, 84 Largest Rectangle in Histogram. 300 and 84 are different, e.g. [8,2,5,3,0] for 300, result is [0,3], for 84, result is [0]. 300 keeps the OLD longest increasing order, 84 tracks the CURRTENT longest increasing order
+  -     int[] arr = new int[3];
+        int numInArr = 0;
+        for(int num : nums) {
+            int l=0, r = numInArr;
+            while(l < r) {
+                int mid = l + (r-l)/2;
+                if(arr[mid]<num) {
+                    l = mid+1;
+                } else {
+                    r = mid;
+                }
+            }
+            arr[l]=num;
+            if(l == numInArr) numInArr++;
+            if(numInArr == 3) return true;
+        }
+  # Binary Search, patience sort, Longest Increasing subsequence
 
 
 

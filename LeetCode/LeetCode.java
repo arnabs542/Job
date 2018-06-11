@@ -1765,9 +1765,59 @@
         }
   # Binary Search, patience sort, Longest Increasing subsequence
 
+117. Populating Next Right Pointers in Each Node II
+            1 -> NULL row 1
+           /  \
+          2 -> 3 -> NULL row 2
+         / \    \
+        4-> 5 -> 7 -> NULL row 3
+  - Popluate next for each node. Iterate through each row. e.g. Iterate row 2 starting by node(2), matain childHead which is 4, and child which for iteration. After row 2 done. Assign childHead 4 to parent and start over.
 
+  -     TreeLinkNode parent = root;
+        while(parent != null) {
+            TreeLinkNode childHead = null;
+            TreeLinkNode child = null;
+            while(parent != null) {
+                if(parent.left != null) {
+                    if(childHead == null) {
+                        childHead = parent.left;
+                        child = parent.left;
+                    } else {
+                        child.next = parent.left;
+                        child = parent.left;
+                    }
+                }
+                if(parent.right != null) {
+                    if(childHead == null) {
+                        childHead = parent.right;
+                        child = parent.right;
+                    } else {
+                        child.next = parent.right;
+                        child = parent.right;
+                    }
+                }
+                parent = parent.next;
+            }
+            parent = childHead;
+        }
+  # Tree, Level Traversal
 
-
+714. Best Time to Buy and Sell Stock with Transaction Fee
+  - 状态转移， Refer to 309. Best Time to Buy and Sell Stock with Cooldown
+  - buy[i] = Math.max(buy[i - 1], sell[i - 1] - prices[i]-fee);
+    sell[i] = Math.max(sell[i - 1], buy[i - 1] + prices[i]);
+    (https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/discuss/108871/2-solutions-2-states-DP-solutions-clear-explanation!)
+  -     int days = prices.length;
+        int[] buy = new int[days]; // current and last status on i is buy
+        int[] sell = new int[days];
+        buy[0] = -prices[0]-fee;
+        sell[0] = 0;
+        for(int i=1;i<days;i++) {
+            buy[i] = Math.max(buy[i-1], sell[i-1]-prices[i]-fee);
+            sell[i] = Math.max(sell[i-1], buy[i-1]+prices[i]);
+        }
+        return sell[days-1];
+  # DP
 
 
 

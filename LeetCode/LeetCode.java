@@ -1819,6 +1819,91 @@
         return sell[days-1];
   # DP
 
+50. Pow(x, n)
+  - e.g. 2^7 = 2* 2^6 = 2* 4^3 = 2* 4* 4^2 = 2* 4* 16
+  - Attention to Integer.MIN_VALUE, e.g. -128 to 127.
+      public double myPow(double x, int n)  {
+        if(n==0 || x==1) return 1;
+        if(n==1) return x;
+        // n=0, x=1
+        double res = 1;
+        if(n<0) return 1/(x*myPow(x, -(n+1))); // deal with Integer.MIN_VALUE
+        while(n>1) {
+            if(n%2==1) {
+                res = x*res;
+                n--;
+            } else {
+                x *= x;
+                n /=2;
+            }
+        }
+        return res*x;
+    }
+  # Binary Search
+
+68. Text Justification
+  - 纯String操作，逻辑有点复杂。但无复杂算法数据结构
+  # String
+
+*85. Maximal Rectangle
+  - matain height arr for each row. For each row iteration, matain index of increasing height in the stack, if height is less than stack.peek(), pop and calculate size.
+  -     // Refer example https://github.com/EdwardShi92/Leetcode-Solution-Code/blob/master/MaximalRectangle.java
+        int[] heights = new int[matrix[0].length+1];
+        for(int i=0;i<matrix.length;i++) {
+            Stack<Integer> stack = new Stack<>();
+            for(int j=0;j<=matrix[0].length;j++) {
+                // calculate heights
+                if(j<matrix[0].length) {
+                    if(matrix[i][j] == '1') {
+                        heights[j] ++;
+                    } else {
+                        heights[j] = 0;
+                    }
+                }
+                // matain indexes of increasing heights
+                while(!stack.isEmpty() && heights[j] < heights[stack.peek()]) {
+                    int index = stack.pop();
+                    int startIndex = stack.isEmpty()? -1 : stack.peek();
+                    // Attention, startIndex using stack.peek() rather than index, endIndex using j rather than index.
+                    res = Math.max(res, heights[index] * (j-1-startIndex));
+                }
+                stack.push(j);
+            }
+        }
+  - Stack: refer to 84 Largest Rectangle in Histogram
+  - DP: refer to 221. Maximal Square
+  # Stack, DP
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

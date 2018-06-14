@@ -253,7 +253,7 @@
   - map.put(key, map.getOrDefault(key, 0) + 1);
   - TreeMap, sorted by key, treeMap.pollLastEntry().getValue()
   - List<Integer>[] bucket = new List[nums.length+1];
-  # Sort, TreeMap, Butcket Sort
+  # Sort, TreeMap, Bucket Sort
 
 142 Linked List Cycle II
   - slow = a + b, fast = a + b + c + b, 2 * slow = fast
@@ -1874,13 +1874,73 @@
   - DP: refer to 221. Maximal Square
   # Stack, DP
 
+261. Graph Valid Tree
+  - To find cycle in undirected graph, use union find
+  - Use union find to check if two index has same source, if yes, cycle find. Then check the num of connected component, if more than 2, not tree.
+  -     int[] arr = new int[n];
+        for(int i = 0;i<n;i++) {
+            arr[i]=i;
+        }
+        for(int[] edge : edges) {
+            int i = find(arr, edge[0]);
+            int j = find(arr, edge[1]);
+            if(i == j) return false;
+            union(arr, edge[0], edge[1]);
+        }
+        Set<Integer> set = new HashSet<>();
+        for(int i=0;i<n;i++) {
+            set.add(find(arr, i));
+            if(set.size()>1) return false;
+        }
+        return true;
+    }
+    private int find(int[] arr, int index) {
+        while(arr[index] != index) {
+            arr[index] = arr[arr[index]];
+            index = arr[index];
+        }
+        return index;
+    }
+    private void union(int[] arr, int i, int j) {
+        int a = find(arr, i);
+        int b = find(arr, j);
+        if(a != b) {
+            arr[a] = b;
+        }
+    }
+  # Undirected Graph, Union Find, Connected Component
 
+210. Course Schedule II
+  - DFS + accessed[] to find back edge
+  # Directed Graph, Topological Sort, Stack
 
+26. Remove Duplicates from Sorted Array
+  - slow pointer point to current value, fast pointer iterate
+  -     while(fp<nums.length) {
+            if(nums[sp] == nums[fp]) {
+                fp++;
+            } else {
+                nums[++sp] = nums[fp++];
+            }}
+  # Two Pointers
 
-
-
-
-
+*274. H-Index
+  - Bucket each citation value into citations.length+1 buckets. Then iterate from right to left and matain total citations. If total citations >= index, then return index. Clever!
+  -     int size = citations.length;
+        int[] arr = new int[size + 1];
+        for(int i : citations) {
+            if(i>size) {
+                arr[size]++;
+            } else {
+                arr[i]++;
+            }
+        }
+        int sum = 0;
+        for(int i=size;i>=0;i--) {
+            sum +=arr[i];
+            if(sum >= i) return i;
+        }
+  # Bucket Sort
 
 
 

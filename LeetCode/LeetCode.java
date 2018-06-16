@@ -1945,7 +1945,23 @@
 404. Sum of Left Leaves
   # Tree
 
-
+268. Missing Number
+  - Use value range [0, n] and index range [0, n-1]. Map each value to each index and change value to -1 to prove its visited. At last, iterate arr to find the val that is not -1 which is not visited.
+  -    for(int num : nums) {
+           while(num != -1) {
+               if(num == nums.length) {
+                   break;
+               }
+               int temp = nums[num];
+               nums[num] = -1;
+               num = temp;
+           }}
+       for(int i=0;i<nums.length;i++) {
+           if(nums[i] != -1) return i;
+       }
+       return nums.length;
+  - 高斯公式，算[0,n] sum， iterate and minus from sum. The remainder is the missing number.
+  # Array
 
 
 

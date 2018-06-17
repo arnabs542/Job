@@ -1677,7 +1677,8 @@
         }
     }
   - (https://leetcode.com/problems/combination-sum-iv/discuss/85036/1ms-Java-DP-Solution-with-Detailed-Explanation)
-  # 1D DP, Backtracking
+  - for target issue, create 1d dp array of range [0,target]. Iterate amount and matain dp arr. Refer to 494. Target Sum, 322. Coin Change
+  # 1D DP, Backtracking, Target DP
 
 69. Sqrt(x)
   - Refer to 34 Search for a Range
@@ -1963,13 +1964,60 @@
   - 高斯公式，算[0,n] sum， iterate and minus from sum. The remainder is the missing number.
   # Array
 
+80. Remove Duplicates from Sorted Array II
+  - Refer to 26. Remove Duplicates from Sorted Array
+  # Two Pointers
 
+168. Excel Sheet Column Title
+  - 10进制变成26进制
+  -     while(n>0){
+            n--;
+            sb.append((char)('A'+n%26));
+            n/=26;
+        }
+        return sb.reverse().toString();
+  # Math
 
+535. Encode and Decode TinyURL
+  - In industry, shorten url service is by database, one auto increasing long number as primary key.  whenever a long url need to be shorten, append to the database, and return the primary key number. (https://leetcode.com/problems/encode-and-decode-tinyurl/discuss/100276/Easy-solution-in-java-5-line-code.)
+  - List<String> list = new LinkedList<>();
+    String host = "http://tinyurl.com/";
+    // Encodes a URL to a shortened URL.
+    public String encode(String longUrl) {
+        list.add(longUrl);
+        return host + String.valueOf(list.size()-1);
+    }
 
+    // Decodes a shortened URL to its original URL.
+    public String decode(String shortUrl) {
+        int index = Integer.parseInt(shortUrl.replace(host,""));
+        return index < list.size() ? list.get(index) : "";
+    }
+  - Use String.hashCode() and put it into map is not correct. Since 2 different string may have the same hashcode.
+  # System Design
 
-
-
-
+801. Minimum Swaps To Make Sequences Increasing
+  - Matain 2 dp arrays, keep[] and swap[]
+    Refer to 714. Best Time to Buy and Sell Stock with Transaction Fee
+             309. Best Time to Buy and Sell Stock with Cooldown
+  - Consider DFS solution for DP question e.g. (http://zxi.mytechroad.com/blog/dynamic-programming/leetcode-801-minimum-swaps-to-make-sequences-increasing/)
+  -     int N = A.length;
+        int[] swap = new int[N];
+        int[] not_swap = new int[N];
+        swap[0] = 1;
+        for (int i = 1; i < N; ++i) {
+            not_swap[i] = swap[i] = N;
+            if (A[i - 1] < A[i] && B[i - 1] < B[i]) {
+                not_swap[i] = not_swap[i - 1];
+                swap[i] = swap[i - 1] + 1;
+            }
+            if (A[i - 1] < B[i] && B[i - 1] < A[i]) {
+                not_swap[i] = Math.min(not_swap[i], swap[i - 1]);
+                swap[i] = Math.min(swap[i], not_swap[i - 1] + 1);
+            }
+        }
+        return Math.min(swap[N - 1], not_swap[N - 1]);
+  # DP
 
 
 

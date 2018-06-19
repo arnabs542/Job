@@ -2019,7 +2019,25 @@
         return Math.min(swap[N - 1], not_swap[N - 1]);
   # DP
 
-
+525. Contiguous Array
+  - For continous array issue, think about iterate and sum up each val and store into hashmap. Map stores <#1-#0 diff, index>, if diff ==0, compare with res, if diff is exist in map, calculate and compare with res.
+  -     int[] diffArr = new int[nums.length];
+        Map<Integer, Integer> map = new HashMap<>();
+        for(int i = 0;i<nums.length;i++) {
+            if (nums[i]==1) count1++; else count0++;
+            if(count1-count0 == 0) {
+               res = Math.max(res, i+1);
+                continue;
+            }
+            diffArr[i] = count1 - count0;
+            if(!map.containsKey(diffArr[i])) {
+                map.put(diffArr[i], i);
+            } else {
+                res = Math.max(res, i-map.get(diffArr[i]));
+            }
+        }
+   - Refer to 523. Continuous Subarray Sum
+  # HashMap, Consider Two Pointers and HashMap for continous issue
 
 
 

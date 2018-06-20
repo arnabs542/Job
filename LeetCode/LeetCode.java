@@ -2039,14 +2039,54 @@
    - Refer to 523. Continuous Subarray Sum
   # HashMap, Consider Two Pointers and HashMap for continous issue
 
+750. Number Of Corner Rectangles
+  - Fix two rows i, j. iterate col k to find total pairs grid[i][k] == grid[j][k]==1, then calculate combinations. Then continue;
+  -     for(int i=0;i<grid.length-1;i++) {
+            for(int j=i+1;j<grid.length;j++) {
+                int count = 0;
+                for(int k=0;k<grid[0].length;k++) {
+                    if(grid[i][k] == 1 && grid[j][k] == 1) count++;
+                }
+                if(count >1) res += count*(count-1)/2;
+            }
+        }
+  - Improvement is compare #row and #cols, start from min.
+  # 2D Array
 
+637. Average of Levels in Binary Tree
+  # Tree
 
+*764. Largest Plus Sign
+  -  Each val in arr is calculated 4 times that from left to right, from right to left, from up to down and from down to up.
+  -     int[][] arr = new int[N][N];
+        for(int i=0;i<N;i++) {
+            Arrays.fill(arr[i],N);
+        }
+        for(int[] mine:mines) {
+            arr[mine[0]][mine[1]]=0;
+        }
+        // 神循环，each val is initilzed as N. Each val is calculated to find the minimum from left to right, right to left, up to down and down to up.
+        for(int i=0;i<N;i++) {
+            for(int j=0, k=N-1,l=0,r=0,u=0,d=0;j<N;j++,k--) {
+                arr[i][j] = Math.min(arr[i][j], l=arr[i][j]==0?0:l+1);
+                arr[i][k] = Math.min(arr[i][k], r=arr[i][k]==0?0:r+1);
+                arr[j][i] = Math.min(arr[j][i], u=arr[j][i]==0?0:u+1);
+                arr[k][i] = Math.min(arr[k][i], d=arr[k][i]==0?0:d+1);
+            }
+        }
+        int res = 0;
+        for(int i=0;i<N;i++) {
+            for(int j=0;j<N;j++) {
+                res = Math.max(res, arr[i][j]);
+            }
+        }
+  # 2D Array
 
+784. Letter Case Permutation
+  - Character: toUpperCase(), toLowerCase(), isDigit(), isLetter(), isLowerCase()
+  # Backtracking
 
-
-
-
-
-
+578. Get Highest Answer Rate Question
+  # SQL
 
 

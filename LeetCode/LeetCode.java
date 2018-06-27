@@ -2091,3 +2091,79 @@
 
 275. H-Index II
   # Binary Search
+
+745. Prefix and Suffix Search
+  - e.g. "apple", instead of create a->p->p->l->e and e->l->p->p->a 2 tries. Create follwing trie structure. Use HashMap to record children rather than fix array size children[27][27], 26 letters + null.
+                                           ""
+                   (a,e)                      (a,null)            (null,e)
+              (p,l) (p,null), (null,l)
+          (p,p)
+        (l,p)
+    (e,a)
+
+  - private void buildTree(TrieNode node, String word, int weight, int l, int r) {
+        if(l>=word.length() && r <= -1) return;
+        node.maxWeight  = weight;
+        int bg = l < word.length() ? word.charAt(l)-'a'+1 : 0;
+        int sm = r > -1 ? word.charAt(r)-'a'+1 : 0;
+        int num = bg * 27 + sm;  // hashcode
+        if(!node.map.containsKey(num)) {
+            node.map.put(num, new TrieNode(weight));
+        } else {
+            node.map.get(num).maxWeight = weight;
+        }
+        buildTree(node.map.get(num), word, weight, l+1, r-1);
+        buildTree(node.map.get(num), word, weight, l+1, -1);
+        buildTree(node.map.get(num), word, weight, word.length(), r-1);
+    }
+
+    private int find(TrieNode node, String prefix, String suffix, int i, int j){
+        if(i>=prefix.length() && j<0) return node.maxWeight;
+        int big = i<prefix.length() ? prefix.charAt(i)-'a'+1 : 0;
+        int sm = j>= 0 ? suffix.charAt(j)-'a'+1 : 0;
+        int num = big*27 + sm;
+        if(node.map.containsKey(num)) {
+            i = i<prefix.length() ? i+1:i;
+            j = j>=0 ? j-1:j;
+            return find(node.map.get(num), prefix, suffix, i, j);
+        } else {
+            return -1;
+        }
+    }
+  # Trie
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,42 @@
+--------------------
+Dynamic Programming
+--------------------
+* String Matching
+  - 10. Regular Expression Matching
+        # 2D DP
+  - 44. Wildcard Matching
+        # 2D DP
+
+--------------------
+Array
+--------------------
+* Map array value to array index
+  - 41. First Missing Positive
+        # Array, Index
+
+* Intervals. Split to start and end array and sort them.
+  - 56. Merge Intervals
+
+
+--------------------
+String
+--------------------
+43. Multiply Strings
+    # String
+
+
+--------------------
+Two Pointers
+--------------------
+- 42. Trapping Rain Water
+        # Two Pointers
+
+--------------------
+Others
+--------------------
+- 36. Valid Sudoku
+    # HashSet
+- 37. Sudoku Solver
+    # DFS
+
+

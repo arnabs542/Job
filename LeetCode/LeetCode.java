@@ -9,7 +9,7 @@
 
 2 Add Two Numbers
   ? iteration or recursion
-  - Use iteration rather than recursion because of the corner case [9], [9,9]. It's hard to deal with this situation with recursion.
+  - Use iteration rather than recursion because of the corner case [9], [9,9]. Its hard to deal with this situation with recursion.
   - When using pointer to deal with each node in the linked list. Use a dummy root node to connect the real root node. At the end, return root.next.
   # Linked List
 
@@ -140,13 +140,33 @@
   # DP
 
 * 10 Regular Expression Matching
-  - Run s ={x,a,a,b} p = {x,a,*,b}, dp[s.length()+1][p.length()+1], dp[0][0]=true, i in dp[][], i-1 in p|s
-    deal with corner case when dp[0][~] e.g. a * b *
-    if p.charAt(j) == s.charAt(i) || p.charAt(j) == ‘.’ : dp[i][j] = dp[i-1][j-1]
-    if p.charAt(j-1) != s.charAt(i) : dp[i][j] = dp[i][j-2] //in this case, a* only counts as empty
-    if p.charAt(j-1) == s.charAt(i) || p.charAt(j-1) == ‘.’ : dp[i][j] = dp[i][j-2] | dp[i-1][j]
+  - Run s ={x,a,a,b} p = {x,a,*,b}, dp[s.length()+1][p.length()+1]
+    when s=p=null, dp[0][0]=true
+      initialze dp[0][j] // when p is null
+      for dp[s][p] = dp[i][j]
+        if s.charAt[i-1] == p.charAt[j-1] || p.charAt[j-1] == '.'
+          then dp[i][j] = dp[i-1][j-1]
+        else if p.charAt(j-1) == '*'
+          dp[i][j] = dp[i][j-2] // p[j-2] has no occurrence
+          if p.charAt(j-2) == '.' || p.charAt(j-2) == s.charAt(i-1)
+            dp[i][j] = dp[i][j] || dp[i-1][j] // p[j-2] has multiple occurrence
+        else
+          dp[i][j] = false
   - (https://www.youtube.com/watch?v=l3hda49XcDE&t=194s)
-  # DP
+  # 2D DP
+
+44. Wildcard Matching
+  - Similar to 10.
+  -     for(int i=1;i<=s.length();i++) {
+            for(int j=1;j<=p.length();j++) {
+                if(s.charAt(i-1) == p.charAt(j-1) || p.charAt(j-1) == '?') {
+                    dp[i][j] = dp[i-1][j-1];
+                } else if(p.charAt(j-1) == '*') {
+                    dp[i][j] = dp[i-1][j] || dp[i][j-1];
+                }
+            }
+        }
+    # 2D DP
 
 238 Product of Array Except Self
   - Corner case: 0 # 0, 1 # 0, >1 # 0
@@ -170,7 +190,21 @@
   - Collections.sort(List list, (a,b)->a-b), sort on list
   - Arrays.sort(), sort on array
   - Object operations are expensive e.g.sort, use primitive as much as possible
-  # Sort
+  -   for (int i = 0; i < n; i++) {
+        starts[i] = intervals.get(i).start;
+        ends[i] = intervals.get(i).end;
+      }
+      Arrays.sort(starts);
+      Arrays.sort(ends);
+      // loop through
+      List<Interval> res = new ArrayList<Interval>();
+      for (int i = 0, j = 0; i < n; i++) { // j is start of interval.
+        if (i == n - 1 || starts[i + 1] > ends[i]) {
+          res.add(new Interval(starts[j], ends[i]));
+          j = i + 1;
+        }
+      }
+  # Array, Sort
 
 338 Counting Bits
   - i&(i - 1)， 这个本来是用来判断一个数是否是2的指数的快捷方法，比如8，二进制位1000, 那么8&(8-1)为0，只要为0就是2的指数
@@ -2132,12 +2166,77 @@
     }
   # Trie
 
+36. Valid Sudoku
+  - Validate row, column and 3x3 sub-boxes. Matain a set, encode each element and add to set, if it has been added before. Then return false.
+      // e.g. board[i][j] = k, encode to "kri", "kcj", "kij" and add to set
+  -   Set<String> set = new HashSet<>();
+      for(int i=0;i<board.length;i++) {
+          for(int j=0;j<board[0].length;j++) {
+              char k = board[i][j];
+              if(k == '.') continue;
+              if(!set.add(k+"r"+i) ||
+                 !set.add(k+"c"+j) ||
+                 !set.add(Character.toString(k)+i/3+j/3)) {
+                  return false;
+              }
+          }
+  - 很聪明的encode节省了时间
+  # HashSet, Encode
+  $ Google
 
+37. Sudoku Solver
+  - Related to 36. Valid Sudoku. For each empty space, Iterate from 1-9, validate each and call DFS if valid.
+  - private boolean dfs(char[][] board) {
+        for(int i=0;i<board.length;i++) {
+            for(int j=0;j<board[0].length;j++) {
+                if(board[i][j] == '.') {
+                    for(char k='1';k<='9';k++) {
+                        board[i][j]=k;
+                        if(validateSudoku(board, i, j) && dfs(board)) {
+                            return true;
+                        } else {
+                            board[i][j]='.';
+                        }
+                    }
+                    return false;
+                }}}
+        return true;
+    }
+     private boolean validateSudoku(char[][] board, int row, int col) {
+         // Validate row and col
+         for(int i=0;i<9;i++) {
+             if(i!=row && board[i][col] == board[row][col]) return false;
+             if(i!=col && board[row][i] == board[row][col]) return false;
+         }
+         // Validate 3*3 subbox
+         for(int i=row/3*3;i<(row/3+1)*3;i++) {
+             for(int j=col/3*3;j<(col/3+1)*3;j++) {
+                 if(i == row && j == col) continue;
+                 if(board[i][j] == board[row][col]) return false;
+             }
+         }
+         return true;
+     }
+  # DFS
+  $ Google
 
-
-
-
-
+41. First Missing Positive
+  - Given an unsorted integer array, find the smallest missing positive integer.
+  - Map each array element to array index.
+        for(int i=0;i<nums.length;i++) {
+            if(nums[i] == i+1) continue;
+            int index = nums[i];
+            while(index>0 && index<=nums.length && nums[index-1] != index) {
+                int temp = nums[index-1];
+                nums[index-1] = index;
+                index = temp;
+            }
+        }
+        for(int i=0;i<nums.length;i++) {
+            if(nums[i] != i+1) return i+1;
+        }
+        return nums.length+1;
+  # Array, Index
 
 
 

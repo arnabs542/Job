@@ -276,7 +276,13 @@
   # Backtracking
 
 96 Unique Binary Search Trees
-  - f(n) = f(0)*f(n-1) + f(1)*f(n-2) + ... + f(n-1)*f(1)
+  - f(n) = f(0)*f(n-1) + f(1)*f(n-2) + ... + f(n-1)*f(0)
+  -     dp[0] =1;
+        for(int i=1;i<=n;i++) {
+            for(int j=0;j<i;j++) {
+                dp[i] += dp[j]*dp[i-j-1];
+            }
+        }
   # 1D DP
 
 128 Longest Consecutive Sequence
@@ -1049,6 +1055,34 @@
 314. Binary Tree Vertical Order Traversal
   - find min and max, left -1, right +1. BFS.
   - create second queue to track index
+  - TreeMap map.values()
+  -     Queue<TreeNode> queue = new LinkedList<>();
+        Queue<Integer> iQueue = new LinkedList<>();
+        queue.add(root);
+        iQueue.add(0);
+        while(!queue.isEmpty()) {
+            TreeNode node = queue.poll();
+            Integer index = iQueue.poll();
+
+            if(map.containsKey(index)) {
+                map.get(index).add(node.val);
+            } else {
+                List<Integer> list = new LinkedList<>();
+                list.add(node.val);
+                map.put(index, list);
+            }
+            if(node.left != null) {
+                queue.add(node.left);
+                iQueue.add(index-1);
+            }
+            if(node.right !=null) {
+                queue.add(node.right);
+                iQueue.add(index+1);
+            }
+        }
+        List<List<Integer>> res = new LinkedList<>();
+        map.values().forEach(res::add);
+        return res;
   # Tree, BFS
 
 157. Read N Characters Given Read4
@@ -2271,12 +2305,31 @@
   - Similar to 54. Spiral Matrix
   # Array
 
-
-
-
-
-
-
+95. Unique Binary Search Trees II
+  - (https://leetcode.com/problems/unique-binary-search-trees-ii/description/)
+  - Refer to 96 Unique Binary Search Trees
+  -
+  - return genTreeList(1, n);
+    public List<TreeNode> genTreeList(int start, int end) {
+        List<TreeNode> list = new ArrayList<>();
+        if (start > end) {
+            list.add(null);
+        }
+        for (int idx = start; idx <= end; idx++) {
+            List<TreeNode> leftList = genTreeList(start, idx - 1);
+            List<TreeNode> rightList = genTreeList(idx + 1, end);
+            for (TreeNode left : leftList) {
+                for (TreeNode right : rightList) {
+                    TreeNode root = new TreeNode(idx);
+                    root.left = left;
+                    root.right = right;
+                    list.add(root);
+                }
+            }
+        }
+        return list;
+    }
+  # DFS, Tree, PostOrder Traversal
 
 
 

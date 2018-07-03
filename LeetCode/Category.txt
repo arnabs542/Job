@@ -6,6 +6,16 @@ Dynamic Programming
         # 2D DP
   - 44. Wildcard Matching
         # 2D DP
+  - 72. Edit Distance (template for 2d DP)
+        # 2D DP
+
+* Decode
+  - 91. Decode Ways
+        # 1D
+
+* 纯DP
+  - 96. Unique Binary Search Trees
+
 
 --------------------
 Array
@@ -30,6 +40,18 @@ Two Pointers
 --------------------
 - 42. Trapping Rain Water
         # Two Pointers
+
+--------------------
+BFS
+--------------------
+* Shortest Path
+  - 127. Word Ladder
+
+--------------------
+DFS
+--------------------
+- 95. Unique Binary Search Trees II
+    # DFS, Tree, Postorder
 
 --------------------
 Others

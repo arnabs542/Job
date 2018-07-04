@@ -1,8 +1,0 @@
---------------------
-Dynamic Programming
---------------------
-
-10. Regular Expression Matching
-
-  # 2D DP,
-  $ Google

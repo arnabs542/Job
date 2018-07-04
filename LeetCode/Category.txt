@@ -50,8 +50,9 @@ BFS
 --------------------
 DFS
 --------------------
-- 95. Unique Binary Search Trees II
-    # DFS, Tree, Postorder
+* Combine DFS and Tree Generation
+    - 95. Unique Binary Search Trees II
+        # DFS, Tree, Postorder
 
 --------------------
 Others

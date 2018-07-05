@@ -8,6 +8,8 @@ Dynamic Programming
         # 2D DP
   - 72. Edit Distance (template for 2d DP)
         # 2D DP
+  - 115. Distinct Subsequences
+        # 2D DP, DFS
 
 * Decode
   - 91. Decode Ways
@@ -54,12 +56,26 @@ DFS
     - 95. Unique Binary Search Trees II
         # DFS, Tree, Postorder
 
---------------------
-Others
---------------------
-- 36. Valid Sudoku
-    # HashSet
-- 37. Sudoku Solver
+- 纯DFS
+  37. Sudoku Solver
     # DFS
+
+--------------------
+HashSet
+--------------------
+* find consecutive number by going up and down
+  - 128. Longest Consecutive Sequence
+      # HashSet
+
+* encode to category
+  - 36. Valid Sudoku
+    # HashSet
+
+--------------------
+Design
+--------------------
+- 146. LRU Cache
+    # Double LinkedList, HashMap
+
 
 

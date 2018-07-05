@@ -64,7 +64,38 @@
 
 146 LRU(Least Recently Used) Cache
   - HashMap, Double LinkedList
-  - head, tail, capacity, hashmap corner cases
+  - Create Dummy head and tail node
+  - private void addNode(LinkedNode node){
+        node.next = head.next;node.pre = head;
+        head.next.pre = node;head.next = node;
+    }
+    private void removeNode(LinkedNode node){node.next.pre = node.pre;node.pre.next = node.next;}
+    private void moveToHead(LinkedNode node){removeNode(node); addNode(node);}
+    public int get(int key) {
+        if (cache.containsKey(key)){
+            LinkedNode node = cache.get(key);
+            moveToHead(node);
+            return node.value;
+        }
+        return -1;
+    }
+    public void put(int key, int value) {
+        LinkedNode node  = cache.get(key);
+        if (node == null){
+            node = new LinkedNode(key, value);
+            addNode(node);
+            cache.put(key,node); 
+            ++count;
+            if (count > _capacity){
+                cache.remove(tail.pre.key);
+                removeNode(tail.pre);
+                count--;
+            }           
+        } else {
+            node.value = value;
+            moveToHead(node);
+        }
+    }
   # Double LinkedList, HashMap
 
 206 Reverse Linked List
@@ -287,6 +318,27 @@
 
 128 Longest Consecutive Sequence
   - keep go down, go up and get difference
+  -     Set<Integer> set = new HashSet<>();
+        for(int num:nums) set.add(num);
+        int res = 0;
+        for(int num : nums) {
+            if(set.contains(num)) {
+                int times = 1;
+                int up = num+1;
+                while(set.contains(up)) {
+                    set.remove(up);
+                    times++;
+                    up++;
+                }
+                int down = num-1;
+                while(set.contains(down)) {
+                    set.remove(down);
+                    times++;
+                    down--;
+                }
+                res = Math.max(res, times);
+            }
+        }
   # HashSet
 
 347 Top K Frequent Elements
@@ -2331,12 +2383,35 @@
     }
   # DFS, Tree, PostOrder Traversal
 
+115. Distinct Subsequences
+  - Given a string S and a string T, count the number of distinct subsequences of S which equals T.
+  -     for(int i=1;i<=s.length();i++) {
+            for(int j=1;j<=t.length();j++) {
+                if(s.charAt(i-1) == t.charAt(j-1)) {
+                    dp[i][j] = dp[i-1][j] + dp[i-1][j-1];
+                } else {
+                    dp[i][j] = dp[i-1][j];
+                }
+            }
+        }
+  # 2D DP, DFS
 
-
-
-
-
-
+134. Gas Station
+  -     int gasSum = 0, costSum = 0, tank = 0, start = 0;
+        for(int i=0; i<gas.length; i++) {
+            gasSum += gas[i];
+            costSum += cost[i];
+            tank += (gas[i] - cost[i]);
+            if(tank < 0){
+                tank = 0;
+                start=i+1;  
+            }
+        }
+        if(gasSum < costSum) {
+            return -1;
+        }
+        return start; 
+  # Greedy
 
 
 

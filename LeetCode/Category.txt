@@ -18,6 +18,21 @@ Dynamic Programming
 * 纯DP
   - 96. Unique Binary Search Trees
 
+--------------------
+Binary Search
+--------------------
+* 终极老怪
+  - 33. Search in Rotated Sorted Array
+        # Binary Search
+
+* search in rotated sorted array
+  - 33. Search in Rotated Sorted Array
+        # Binary Search, Array
+  - 153. Find Minimum in Rotated Sorted Array
+        # Binary Search, Array
+
+
+
 
 --------------------
 Array
@@ -28,6 +43,16 @@ Array
 
 * Intervals. Split to start and end array and sort them.
   - 56. Merge Intervals
+
+* Matain max, min, res
+  - 152. Maximum Product Subarray
+
+
+--------------------
+Stack
+--------------------
+* calculate expression
+  - 150. Evaluate Reverse Polish Notation
 
 
 --------------------

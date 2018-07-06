@@ -84,13 +84,13 @@
         if (node == null){
             node = new LinkedNode(key, value);
             addNode(node);
-            cache.put(key,node); 
+            cache.put(key,node);
             ++count;
             if (count > _capacity){
                 cache.remove(tail.pre.key);
                 removeNode(tail.pre);
                 count--;
-            }           
+            }
         } else {
             node.value = value;
             moveToHead(node);
@@ -276,6 +276,21 @@
   - either [left, mid] or (mid,right] is sorted, check in sorted side
   - draw pic like (https://www.youtube.com/watch?v=w6nusIojP9c)
   - attention to using >= or >
+  -       while(l<=r) {
+            int mid = l + (r-l)/2;
+            if(nums[mid] == target) return mid;
+            if(nums[mid] >= nums[l]) {
+                if(target>=nums[l] && target<=nums[mid]) {
+                    r = mid-1;
+                } else {
+                    l = mid+1;
+                }
+            } else {
+                if(target>=nums[mid] && target<=nums[r]) {
+                    l = mid+1;
+                } else {
+                    r = mid-1;
+                }}}
   # Binary Search
 
 160 Intersection of Two Linked Lists
@@ -2404,18 +2419,32 @@
             tank += (gas[i] - cost[i]);
             if(tank < 0){
                 tank = 0;
-                start=i+1;  
+                start=i+1;
             }
         }
         if(gasSum < costSum) {
             return -1;
         }
-        return start; 
+        return start;
   # Greedy
 
+150. Evaluate Reverse Polish Notation
+  # Stack
 
-
-
+153. Find Minimum in Rotated Sorted Array
+  - [0,1,2,4,5,6,7] might become  [4,5,6,7,0,1,2].Find the minimum element.
+  -     int l = 0, r = nums.length-1;
+        while(l < r) {
+            int mid = l + (r-l)/2;
+            if(mid>0 && nums[mid]<nums[mid-1]) return nums[mid];
+            if(nums[mid]>nums[r]) {
+                l = mid+1;
+            } else {
+                r = mid-1;
+            }
+        }
+        return nums[l];
+  # Binary Search
 
 
 

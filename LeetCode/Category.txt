@@ -21,6 +21,8 @@ Dynamic Programming
 --------------------
 Binary Search
 --------------------
+* compare mid with left||right||mid-1||mid+1
+
 * 终极老怪
   - 33. Search in Rotated Sorted Array
         # Binary Search
@@ -31,6 +33,10 @@ Binary Search
   - 153. Find Minimum in Rotated Sorted Array
         # Binary Search, Array
 
+* 理解l<r 还是l<=r, l=mid+1 r=mid 边界条件
+  - 162. Find Peak Element
+        - compare mid with mid + 1
+        # Binary Search
 
 
 
@@ -47,7 +53,6 @@ Array
 * Matain max, min, res
   - 152. Maximum Product Subarray
 
-
 --------------------
 Stack
 --------------------
@@ -61,6 +66,8 @@ String
 43. Multiply Strings
     # String
 
+* Split by Regx and compare
+    - 165. Compare Version Numbers
 
 --------------------
 Two Pointers

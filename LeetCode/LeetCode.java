@@ -272,27 +272,6 @@
   - reverse linked list
   # Two Pointers, Reverse LinkedList
 
-33 Search in Rotated Sorted Array
-  - either [left, mid] or (mid,right] is sorted, check in sorted side
-  - draw pic like (https://www.youtube.com/watch?v=w6nusIojP9c)
-  - attention to using >= or >
-  -       while(l<=r) {
-            int mid = l + (r-l)/2;
-            if(nums[mid] == target) return mid;
-            if(nums[mid] >= nums[l]) {
-                if(target>=nums[l] && target<=nums[mid]) {
-                    r = mid-1;
-                } else {
-                    l = mid+1;
-                }
-            } else {
-                if(target>=nums[mid] && target<=nums[r]) {
-                    l = mid+1;
-                } else {
-                    r = mid-1;
-                }}}
-  # Binary Search
-
 160 Intersection of Two Linked Lists
   - compare object by reference
   # Compare List Node, LinkedList
@@ -2431,6 +2410,27 @@
 150. Evaluate Reverse Polish Notation
   # Stack
 
+33 Search in Rotated Sorted Array
+  - either [left, mid] or (mid,right] is sorted, check in sorted side
+  - draw pic like (https://www.youtube.com/watch?v=w6nusIojP9c)
+  - attention to using >= or >
+  -       while(l<=r) {
+            int mid = l + (r-l)/2;
+            if(nums[mid] == target) return mid;
+            if(nums[mid] >= nums[l]) {
+                if(target>=nums[l] && target<=nums[mid]) {
+                    r = mid-1;
+                } else {
+                    l = mid+1;
+                }
+            } else {
+                if(target>=nums[mid] && target<=nums[r]) {
+                    l = mid+1;
+                } else {
+                    r = mid-1;
+                }}}
+  # Binary Search
+
 153. Find Minimum in Rotated Sorted Array
   - [0,1,2,4,5,6,7] might become  [4,5,6,7,0,1,2].Find the minimum element.
   -     int l = 0, r = nums.length-1;
@@ -2446,9 +2446,44 @@
         return nums[l];
   # Binary Search
 
+162. Find Peak Element
+  - 想象一下爬山，nums[mid] < nums[mid+1] 在上山山峰在右，反之则在下山
+  -     // l<r, 保证了存在 mid+1
+        // l = mid+1, r = mid 保证了最后的解是l
+        int l = 0, r = nums.length-1;
+        while(l<r) {
+            int mid = l + (r-l)/2;
+            if(nums[mid] < nums[mid+1]) {
+                l = mid+1;
+            } else {
+                r = mid;
+            }
+        }
+        return l;
+  # Binary Search
 
+165. Compare Version Numbers
+  - Use split(regx) to split . e.g. version = "1.0.1", iterate through the larger size.
+  -     String[] arr1 = version1.split("\\.");
+        String[] arr2 = version2.split("\\.");
+        int len = Math.max(arr1.length, arr2.length);
+        for(int i=0;i<len;i++) {
+            int v1 = 0, v2 =0;
+            if(i<arr1.length) {
+                v1 = Integer.parseInt(arr1[i]);
+            }
+            if(i<arr2.length) {
+                v2 = Integer.parseInt(arr2[i]);
+            }
+            if(v1 > v2) {
+                return 1;
+            } else if(v1<v2){
+                return -1;
+            }
+        }
+        return 0;
 
-
+  # String, Regualr Expression
 
 
 

@@ -2482,8 +2482,113 @@
             }
         }
         return 0;
-
   # String, Regualr Expression
+
+205. Isomorphic Strings
+  -     Map<Character, Character> map = new HashMap<>();
+        for(int i=0;i<s.length();i++) {
+            char sc = s.charAt(i);
+            char tc = t.charAt(i);
+            if(map.containsKey(sc)) {
+                if(map.get(sc) != tc) return false;
+            } else if(map.containsValue(tc)) {
+                return false;
+            } else {
+                map.put(sc, tc);
+            }
+        }
+  # HashMap
+
+222. Count Complete Tree Nodes
+  - bit manipulation (https://www.vojtechruzicka.com/bit-manipulation-java-bitwise-bit-shift-operations/)
+  - <<, >> 等bit操作优先级小于+ - ，所以要加括号 e.g.(1<<2) == 100 = 2^2 = 4
+  - Comapre height of left node and right node. If same height, left node is full subtree, else, right node is full subtree. The precondition is complete tree.
+
+  -   public int countNodes(TreeNode root) {
+          if(root == null) return 0;
+
+          int lh = getHeight(root.left);
+          int rh = getHeight(root.right);
+          if(lh == rh) {
+              return (1<<lh) + countNodes(root.right);
+          } else {
+              return (1<<rh) + countNodes(root.left);
+          }
+      }
+      private int getHeight(TreeNode node) {
+          if(node == null) return 0;
+          return 1 + getHeight(node.left);
+      }
+  # Binary Search, Tree, Complete Tree
+
+248. Strobogrammatic Number III
+  - String a.compareTo(b) // - : a<b, 0: a=b, +: a>b
+  - Iterate length between [low.length(), high.length()] to build Strobogrammatic number. Then filter by v.compareTo(low)>=0 && v.compareTo(high)<=0
+  # String,
+
+249. Group Shifted Strings
+  - Encode each string by setting the first char to z and shift other chars. e.g. yab -> zbc. Use encoded string as key in map. Put all strings into map.
+  - private String encode(String s) {
+        int diff = 'z' - s.charAt(0);
+        String str = "z";
+        if(diff == 0) {
+            return s;
+        } else {
+            for(int i=1;i<s.length();i++) {
+                char c = s.charAt(i);
+                if(c + diff >'z') {
+                    str +=(char)(c+diff-'z'+'a'-1);
+                } else {
+                    str += (char)(c+diff);
+                }
+            }
+        }
+        return str;
+    }
+  # String, HashMap
+
+264. Ugly Number II
+  - Ugly numbers are positive numbers whose prime factors only include 2, 3, 5。
+  - (https://leetcode.com/problems/ugly-number-ii/discuss/69362/O(n)-Java-solution)
+  -     int[] ugly = new int[n];
+        ugly[0] = 1;
+        int index2 = 0, index3 = 0, index5 = 0;
+        int factor2 = 2, factor3 = 3, factor5 = 5;
+        for(int i=1;i<n;i++){
+            int min = Math.min(Math.min(factor2,factor3),factor5);
+            ugly[i] = min;
+            if(factor2 == min)
+                factor2 = 2*ugly[++index2];
+            if(factor3 == min)
+                factor3 = 3*ugly[++index3];
+            if(factor5 == min)
+                factor5 = 5*ugly[++index5];
+        }
+        return ugly[n-1];
+  # Array, 类似DP
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

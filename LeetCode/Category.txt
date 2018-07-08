@@ -18,6 +18,10 @@ Dynamic Programming
 * 纯DP
   - 96. Unique Binary Search Trees
 
+* array中新的value跟过去的value有关
+  - 264. Ugly Number II
+    # Array, 类似DP
+
 --------------------
 Binary Search
 --------------------
@@ -38,7 +42,9 @@ Binary Search
         - compare mid with mid + 1
         # Binary Search
 
-
+* compare left tree height and right tree height
+  - 222. Count Complete Tree Nodes
+        # Binary Search, Tree, Complete Tree
 
 --------------------
 Array
@@ -53,6 +59,10 @@ Array
 * Matain max, min, res
   - 152. Maximum Product Subarray
 
+- 253. Meeting Rooms II
+    # Array, Sort
+
+
 --------------------
 Stack
 --------------------
@@ -63,12 +73,14 @@ Stack
 --------------------
 String
 --------------------
-43. Multiply Strings
-    # String
-
 * Split by Regx and compare
     - 165. Compare Version Numbers
 
+- 43. Multiply Strings
+    # String
+
+- 249. Group Shifted Strings
+    # String, HashMap
 --------------------
 Two Pointers
 --------------------
@@ -102,6 +114,17 @@ HashSet
 * encode to category
   - 36. Valid Sudoku
     # HashSet
+
+--------------------
+HashMap
+--------------------
+- 205. Isomorphic Strings
+
+--------------------
+Priority Queue
+--------------------
+- 218. The Skyline Problem
+
 
 --------------------
 Design

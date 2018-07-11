@@ -62,6 +62,8 @@ Array
 - 253. Meeting Rooms II
     # Array, Sort
 
+- 289. Game of Life
+
 
 --------------------
 Stack
@@ -101,8 +103,10 @@ DFS
         # DFS, Tree, Postorder
 
 - 纯DFS
-  37. Sudoku Solver
-    # DFS
+    - 37. Sudoku Solver
+        # DFS
+    - 286. Walls and Gates
+
 
 --------------------
 HashSet

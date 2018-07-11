@@ -2567,6 +2567,9 @@
         return ugly[n-1];
   # Array, 类似DP
 
+289. Game of Life
+    - use 01, 10 to represent 0 -> 1, 1 -> 0 status
+    # Array
 
 
 

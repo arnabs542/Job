@@ -2595,7 +2595,48 @@
   - post order traverse, each time return the current longest consecutive number
   # PostOrder, Tree
 
+305. Number of Islands II
+  - Matain 2D arr of islands and 1D union find arr. For each island placement, check left, right, up, down, if they are islands, check find and then union.
+        int[][] arr = new int[m][n];
+        int[] ufArr = new int[m*n];
+        for(int i=0;i<m*n;i++) ufArr[i] = i;
+        for(int[] pos : positions) {
+            int islands = res.size() == 0 ? 0 : res.get(res.size()-1);
+            int row = pos[0], col = pos[1];
+            res.add(islands + check(arr, ufArr, row, col, m, n));
+            arr[row][col] = 1;
+        }
+    private int check(int[][] arr, int[] ufArr, int row, int col, int m, int n){
+        int res = 1;
+        if(row-1>=0 && arr[row-1][col] == 1) {
+            // if not in the same connected componet, union them
+            if(find(ufArr,row*n+col) != find(ufArr, (row-1)*n+col)) {
+                res--;
+                union(ufArr, row*n+col, (row-1)*n+col);
+            }
+        }
+        if(col-1>=0 && arr[row][col-1] == 1) {
+            if(find(ufArr,row*n+col) != find(ufArr,row*n+col-1)) {
+                res--;
+                union(ufArr, row*n+col, row*n+col-1);
+            }
+        }
+        if(row+1<m && arr[row+1][col] == 1) {
+            if(find(ufArr,row*n+col) != find(ufArr,(row+1)*n+col)) {
+                res--;
+                union(ufArr, row*n+col, (row+1)*n+col);
+            }
+        }
+        if(col+1<n && arr[row][col+1] == 1) {
+            if(find(ufArr,row*n+col) != find(ufArr,row*n+col+1)) {
+                res--;
+                union(ufArr, row*n+col, row*n+col+1);
+            }
+        }
+        return res;
+    }
 
+  # Union Find
 
 
 

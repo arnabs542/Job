@@ -92,6 +92,7 @@ String
 
 - 249. Group Shifted Strings
     # String, HashMap
+
 --------------------
 Two Pointers
 --------------------
@@ -114,6 +115,13 @@ DFS
 - 37. Sudoku Solver
 
 - 286. Walls and Gates
+
+--------------------
+Union Find
+--------------------
+* track connected component
+    - 305. Number of Islands II
+
 
 --------------------
 HashSet

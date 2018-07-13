@@ -2571,9 +2571,29 @@
     - use 01, 10 to represent 0 -> 1, 1 -> 0 status
     # Array
 
+295. Find Median from Data Stream
+  - use minHeap to maintain larger half values, use maxHeap to maintain smller half values.
+  - PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+    PriorityQueue<Integer> maxHeap = new PriorityQueue<>(1000, Collections.reverseOrder());
+    public void addNum(int num) {
+        maxHeap.add(num);
+        minHeap.add(maxHeap.poll());
+        if(maxHeap.size()<minHeap.size()) {
+            maxHeap.add(minHeap.poll());
+        }
+    }
+    public double findMedian() {
+        if(maxHeap.size() == minHeap.size()) {
+            return (maxHeap.peek() + minHeap.peek())/2.0;
+        } else {
+            return maxHeap.peek();
+        }
+    }
+  # Two PriorityQueue, Heap
 
-
-
+298. Binary Tree Longest Consecutive Sequence
+  - post order traverse, each time return the current longest consecutive number
+  # PostOrder, Tree
 
 
 

@@ -47,6 +47,15 @@ Binary Search
         # Binary Search, Tree, Complete Tree
 
 --------------------
+Tree
+--------------------
+- 297. Serialize and Deserialize Binary Tree
+    # BFS, Preorder Traversal, Tree
+
+- 298. Binary Tree Longest Consecutive Sequence
+    # PostOrder, Tree
+
+--------------------
 Array
 --------------------
 * Map array value to array index
@@ -102,11 +111,9 @@ DFS
     - 95. Unique Binary Search Trees II
         # DFS, Tree, Postorder
 
-- 纯DFS
-    - 37. Sudoku Solver
-        # DFS
-    - 286. Walls and Gates
+- 37. Sudoku Solver
 
+- 286. Walls and Gates
 
 --------------------
 HashSet
@@ -127,8 +134,10 @@ HashMap
 --------------------
 Priority Queue
 --------------------
-- 218. The Skyline Problem
+* Use minHeap and maxHeap to maintain median
+  - 295. Find Median from Data Stream
 
+- 218. The Skyline Problem
 
 --------------------
 Design

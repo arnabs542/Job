@@ -147,6 +147,13 @@ Priority Queue
 
 - 218. The Skyline Problem
 
+----------------------------------
+Fenwick Tree / Binary Indexed Tree
+----------------------------------
+* get sum of prefix VS segment tree get sum of given range
+  - 315. Count of Smaller Numbers After Self
+
+
 --------------------
 Design
 --------------------

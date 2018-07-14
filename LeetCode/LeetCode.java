@@ -680,8 +680,48 @@
         list.add(l, num);
         return l;
     }
-  - binary index tree: sort array to get rank array, then interate from right most, for each val, get rank, then calculate sum of low rank num and update tree.
+  - binary index tree:
     Refer to (https://leetcode.com/problems/count-of-smaller-numbers-after-self/discuss/76611/Short-Java-Binary-Index-Tree-BEAT-97.33-With-Detailed-Explanation)
+  - Two ways in Fenwick Tree
+    1. Sort array to get rank array, then interate from right most, for each val, get rank, then calculate sum of low rank num and update tree.
+
+    2. find min and max in arr, create size of (max - min) fenwick tree array and size of arr.length diff (arr[i]-min+1) arr. Then iterate from right to left to get sum and update.
+
+        int min = Integer.MAX_VALUE;
+        int max = Integer.MIN_VALUE;
+        for(int num : nums) min = Math.min(min, num);
+
+        int[] diffArr = new int[nums.length];
+        for(int i=0;i<nums.length;i++) {
+            // avoid diffArr[i]-1 of -1
+            diffArr[i] = nums[i]-min+1;
+            max = Math.max(max, diffArr[i]);
+        }
+
+        // fenwickTree has a dummy root at fenwickTree[0]
+        int[] fenwickTree = new int[max+1];
+        for(int i= nums.length-1;i>=0;i--) {
+            // diffArr[i]-1 means all previous prefix sum
+            list.add(0, getSum(fenwickTree, diffArr[i]-1));
+            update(fenwickTree, diffArr[i], 1);
+        }
+
+    private int getSum(int[] fenwickTree, int index) {
+       int sum = 0;
+        while(index>0) {
+            sum += fenwickTree[index];
+            index -= index & (-index);
+        }
+        return sum;
+    }
+
+    private void update(int[] fenwickTree, int index, int diff) {
+        while(index < fenwickTree.length) {
+            fenwickTree[index] += diff;
+            index += index & (-index);
+        }
+    }
+
   # Binary Search, Binary Index Tree/Fenwick Tree
 
 34 Search for a Range

@@ -55,6 +55,8 @@ Tree
 - 298. Binary Tree Longest Consecutive Sequence
     # PostOrder, Tree
 
+- 270. Closest Binary Search Tree Value
+
 --------------------
 Array
 --------------------
@@ -98,6 +100,14 @@ Two Pointers
 --------------------
 - 42. Trapping Rain Water
         # Two Pointers
+
+--------------------
+Graph
+--------------------
+* convert letter sequence to directed graph and use topological sort
+  - Alien Dictionary
+    # Topological Sort, DFS, Graph, Character order, directed graph
+
 
 --------------------
 BFS
@@ -147,6 +157,7 @@ Priority Queue
 
 - 218. The Skyline Problem
 
+<<<<<<< Updated upstream
 ----------------------------------
 Fenwick Tree / Binary Indexed Tree
 ----------------------------------
@@ -154,6 +165,8 @@ Fenwick Tree / Binary Indexed Tree
   - 315. Count of Smaller Numbers After Self
 
 
+=======
+>>>>>>> Stashed changes
 --------------------
 Design
 --------------------

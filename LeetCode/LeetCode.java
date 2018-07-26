@@ -2678,18 +2678,150 @@
 
   # Union Find
 
+308. Range Sum Query 2D - Mutable
+  - pure 2D binary indexed tree.
+  Refer to (https://www.geeksforgeeks.org/two-dimensional-binary-indexed-tree-or-fenwick-tree/)
 
+    public NumMatrix(int[][] matrix) {
+        if (matrix.length == 0 || matrix[0].length == 0) return;
+        rows = matrix.length;
+        cols = matrix[0].length;
+        arr = new int[rows][cols];
+        tree = new int[rows+1][cols+1];
+        for(int i=0;i<rows;i++) {
+            for(int j=0;j<cols;j++) {
+                update(i, j, matrix[i][j]);
+            }
+        }
+    }
+    // row and col in matrix, corresponding to row+1, col+1 in tree
+    public void update(int row, int col, int val) {
+        if(rows == 0 || cols == 0) return;
+        int diff = val - arr[row][col];
+        arr[row][col] = val;
+        // row+1, col+1 because tree[row+1][col+1]
+        for(int r = row+1;r<=rows;r += r&(-r)) {
+            for(int c = col+1;c<=cols;c +=c&(-c)) {
+                tree[r][c] += diff;
+            }
+        }
+    }
+    public int sumRegion(int row1, int col1, int row2, int col2) {
+        if(rows == 0 || cols == 0) return 0;
+        return sum(row2, col2) + sum(row1-1, col1-1) - sum(row1-1, col2) - sum(row2, col1-1);
+    }
+    // row and col in matrix, corresponding to row+1, col+1 in tree
+    private int sum(int row, int col) {
+        int sum = 0;
+        for(int r = row+1;r>0;r -=r&(-r)) {
+            for(int c = col+1;c>0;c -=c&(-c)) {
+                sum += tree[r][c];
+            }
+        }
+        return sum;
+    }
+  # 2D Fenwik Tree / Binary Indexed Tree
 
+312. Burst Balloons
+  - 从1个balloon arr开始 to nums.length个ballon, 每次index从start=1 to end=nums.length, 从中iterate k, which is the last ballon to burst in [start, end]
+  - Refer to (https://www.youtube.com/watch?v=z3hu2Be92UA)
+  -     int size = nums.length;
+        int[] arr = new int[size+2];
+        arr[0] = 1;arr[size+1] = 1;
+        for(int i=1;i<=size;i++) arr[i] = nums[i-1];
 
+        int[][] dp = new int[size+2][size+2];
 
+        // burst len start from 1 to size
+        for(int len = 1;len<=size;len++) {
+            for(int start = 1;start<=size-len+1;start++) {
+                int end = start+len-1;
+                // k is the last burst ballon in [start,end]
+                for(int k = start;k<=end;k++) {
+                    dp[start][end] = Math.max(dp[start][end], dp[start][k-1]+arr[start-1]*arr[k]*arr[end+1]+dp[k+1][end]);
+                }
+            }
+        }
+        return dp[1][size];
+  # 2D DP
 
+340. Longest Substring with At Most K Distinct Characters
+  # Two Pointers, HashMap
 
+346. Moving Average from Data Stream
+  - private int [] window;
+    private int n, insert=0;
+    private long sum=0;
 
+    public MovingAverage(int size) {window = new int[size]；}
 
+    public double next(int val) {
+        if (n < window.length)  n++;
+        sum -= window[insert];
+        sum += val;
+        window[insert] = val;
+        insert = (insert + 1) % window.length; // 聪明
+        return (double)sum / n;
+    }
+  # Design, Queue, Buffer
 
+*359. Logger Rate Limiter
+- Message not print if it has print in the last 10 seconds. Design to scale if there are tremendous messages, so only maintain last 10 second. For a new message, check timestamp%10 slot, if time[timestamp%10] == timestamp, then not clear, else reset time slot and messages. Then check each message bucket. Finally add message.
 
+-   private int[] time;
+    private Set[] messageBuckets;
 
+    public Logger() {
+        time = new int[10];
+        messageBuckets = new Set[10];
+        for(int i=0;i<10;i++) {
+            messageBuckets[i] = new HashSet<String>();
+        }
+    }
 
+    public boolean shouldPrintMessage(int timestamp, String message) {
+        // Reset time slot and messageBuckets
+        int t = timestamp%10;
+        if(timestamp != time[t]) {
+            time[t] = timestamp;
+            messageBuckets[t].clear();
+        }
+        // Check should print
+        for(int i=0;i<10;i++) {
+            if(timestamp - time[i]<10 && messageBuckets[i].contains(message)) return false;
+        }
+
+        messageBuckets[t].add(message);
+        return true;
+    }
+  # Design, Scale, Buffer, HashSet
+
+362. Design Hit Counter
+  - Design a hit counter which counts the number of hits received in the past 5 minutes.
+
+  - private int[] time = new int[300];
+    private int[] hits = new int[300];
+
+    public void hit(int timestamp) {
+        int t = timestamp%300;
+        if(time[t] != timestamp) {
+            time[t] = timestamp;
+            hits[t] = 1;
+        } else {
+            hits[t]++;
+        }
+    }
+
+    public int getHits(int timestamp) {
+        int res = 0;
+        for(int i=0;i<300;i++) {
+            if(timestamp - time[i]<300) {
+                res +=hits[i];
+            }
+        }
+        return res;
+    }
+  # Design, Scale, Buffer
 
 
 

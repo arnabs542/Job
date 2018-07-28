@@ -53,6 +53,9 @@ Binary Search
   - 300. Longest Increasing Subsequence
   - 334. Increasing Triplet Subsequence
 
+* Matain list of char sequence index list for each char in String t
+  - 392. Is Subsequence
+
 --------------------
 Tree
 --------------------
@@ -73,12 +76,14 @@ Array
 
 * Intervals. Split to start and end array and sort them.
   - 56. Merge Intervals
+  - 253. Meeting Rooms II
+    # Array, Sort
 
 * Matain max, min, res
   - 152. Maximum Product Subarray
 
-- 253. Meeting Rooms II
-    # Array, Sort
+* 记住行的kill和列的kill直到碰到墙 then reset
+  - 361. Bomb Enemy
 
 - 289. Game of Life
 
@@ -88,6 +93,9 @@ Stack
 --------------------
 * calculate expression
   - 150. Evaluate Reverse Polish Notation
+
+* maintain number stack and res stack and current res
+  - 394. Decode String
 
 
 --------------------

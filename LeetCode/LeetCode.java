@@ -2823,7 +2823,64 @@
     }
   # Design, Scale, Buffer
 
+361. Bomb Enemy
+  - 每一行我们可以在第0列或者当前位置前一列为墙的时候从第当前列开始往右搜索直到撞到墙. 每一列可以在第0行的时候或者在当前行前一行为墙的时候从当前行往下搜索, 直到碰到墙为止. 这样就可以一次计算出一行直到碰到墙之前有几个敌人, 一列在没有碰到墙之前有几个敌人. 直到当某个某位之前位置墙的时候才会重新计算. O(mn + mn + mn)
 
+  -     int rowHit = 0;
+        int[] colHit = new int[cols];
+        for(int i=0;i<rows;i++) {
+            for(int j = 0;j<cols;j++) {
+                if(j==0 || grid[i][j-1] == 'W') {
+                    rowHit = 0;
+                    for(int k = j;k<cols && grid[i][k] != 'W';k++) {
+                        if(grid[i][k] == 'E') rowHit++;
+                    }
+                }
 
+                if(i==0 || grid[i-1][j] == 'W') {
+                    colHit[j] = 0;
+                    for(int k = i;k<rows && grid[k][j] != 'W';k++) {
+                        if(grid[k][j] == 'E') colHit[j]++;
+                    }
+                }
 
+                if(grid[i][j] == '0') {
+                    res = Math.max(res, rowHit + colHit[j]);
+                }
+            }
+        }
+  # Array
+
+392. Is Subsequence
+  - Given a string s and a string t, check if s is subsequence of t by deleting some chars in t. If there are lots of incoming S, say S1, S2, ... , Sk where k >= 1B, and you want to check one by one to see if T has its subsequence. Thus use Binary Search
+  - maintain index list for each char in t. Then for each char in s, find if exist in list and index in increasing order.
+  -     List<Integer>[] list = new List[256];
+        for(int i=0;i<t.length();i++) {
+            if(list[t.charAt(i)] == null) {
+                list[t.charAt(i)] = new LinkedList<>();
+            }
+            list[t.charAt(i)].add(i);
+        }
+
+        int pre = -1;
+        for(int i=0;i<s.length();i++) {
+            if(list[s.charAt(i)] == null) return false;
+            pre = binarySearch(list[s.charAt(i)], pre);
+            if(pre == -1) return false;
+        }
+
+    private int binarySearch(List<Integer> list, int index) {
+        int start = 0, end = list.size()-1;
+        while(start<=end) {
+            int mid = start + (end - start)/2;
+            if(list.get(mid) <= index)
+              start = mid +1;
+            else
+              end = mid -1;
+        }
+        return start == list.size() ? -1 : list.get(start);
+    }
+
+  - Collections.binarySearch()
+  # Binary Search
 

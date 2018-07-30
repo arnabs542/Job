@@ -102,7 +102,10 @@ Stack
 String
 --------------------
 * Split by Regx and compare
-    - 165. Compare Version Numbers
+  - 165. Compare Version Numbers
+
+* add cols and check if cut string instead of add string and compare cols
+  - 418. Sentence Screen Fitting
 
 - 43. Multiply Strings
     # String
@@ -110,14 +113,20 @@ String
 - 249. Group Shifted Strings
     # String, HashMap
 
+
 --------------------
 Two Pointers
 --------------------
+* Sliding window
+  - 438. Find All Anagrams in a String
+  - 76 Minimum Window Substring
+
 - 42. Trapping Rain Water
         # Two Pointers
 
 - 340. Longest Substring with At Most K Distinct Characters
         # Two Pointers, HashMap
+
 
 --------------------
 Graph
@@ -148,7 +157,10 @@ DFS
 Union Find
 --------------------
 * track connected component
-    - 305. Number of Islands II
+  - 305. Number of Islands II
+
+* Convert equation to graph, use Map to matain parent relation
+  - 399. Evaluate Division
 
 
 --------------------

@@ -1005,7 +1005,7 @@
             if(total == 0) res.add(i-p.length()+1);
         }
 
-  - refer to Minimum Window Substring
+  - refer to 76 Minimum Window Substring
   # Two Pointers
 
 572. Subtree of Another Tree
@@ -2883,4 +2883,112 @@
 
   - Collections.binarySearch()
   # Binary Search
+
+399. Evaluate Division
+  - Give equations, run queries. Instead of using union find int array, use Map<key, Node>, Node{parent, ratio} to track node parent relationship.
+  - convert equation to graph (https://leetcode.com/problems/evaluate-division/description/)
+  - Map<String, Node> map = new HashMap<>();
+    public double[] calcEquation(String[][] equations, double[] values, String[][] queries) {
+        for(int i=0;i<equations.length;i++) {
+            union(equations[i][0], equations[i][1], values[i]);
+        }
+
+        double[] ans = new double[queries.length];
+        for(int i=0;i<queries.length;i++) {
+            Node n1 = find(queries[i][0]);
+            Node n2 = find(queries[i][1]);
+            if(n1 == null || n2 == null || !n1.parent.equals(n2.parent)) {
+                ans[i] = -1;
+            } else {
+                ans[i] = n1.ratio/n2.ratio;
+            }
+        }
+
+    public void union(String s1, String s2, double ratio) {
+        Node n1 = find(s1);
+        Node n2 = find(s2);
+        if(n1==null && n2==null) {
+            map.put(s1, new Node(s2, ratio));
+            map.put(s2, new Node(s2, 1));
+        } else if(n1 == null) {
+            map.put(s1, new Node(s2, ratio));
+        } else if(n2 == null) {
+            map.put(s2, new Node(s1, 1/ratio));
+        } else {
+            n1.parent = n2.parent;
+            n1.ratio = ratio * n2.ratio  / n1.ratio;
+        }
+    }
+
+    public Node find(String name) {
+        if(!map.containsKey(name)) return null;
+        Node node = map.get(name);
+        if(!name.equals(node.parent)) {
+            Node p = find(node.parent); // path compression
+            node.parent = p.parent;
+            node.ratio *= p.ratio;
+        }
+        return node;
+    }
+  # Union Find, HashMap
+
+418. Sentence Screen Fitting
+  - cols may far bigger than sentence. So for each row, add cols first and then backtrack if cut string until find whitespace. Finally, index/len
+  -     for(String str : sentence) {
+            if(str.length() > cols) return 0;
+        }
+
+        String s = String.join(" ", sentence) + " ";
+        int len = s.length();
+        int index = 0;
+        for(int i=0;i<rows;i++) {
+            index +=cols;
+            if(s.charAt(index%len) == ' ') {
+                index++;
+            } else {
+                while(s.charAt((index-1)%len) != ' ') {
+                    index--;
+                }
+            }
+        }
+
+        return index/len;
+  # String
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

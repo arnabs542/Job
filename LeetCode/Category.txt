@@ -149,6 +149,16 @@ DFS
     - 95. Unique Binary Search Trees II
         # DFS, Tree, Postorder
 
+* Calculate minnum # to sum each num in list to 0
+  - 465. Optimal Account Balancing
+
+* Maze, ball moving with direction
+  - 490. The Maze
+  - 505. The Maze II
+    # BFS, Shortest Path
+
+
+
 - 37. Sudoku Solver
 
 - 286. Walls and Gates

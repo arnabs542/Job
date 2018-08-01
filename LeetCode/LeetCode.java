@@ -2955,10 +2955,101 @@
         return index/len;
   # String
 
+*465. Optimal Account Balancing
+  - Calculate balance for each person. The get list of balances and find the minimum num to sum them to 0 which should use DFS.
+  - public int minTransfers(int[][] transactions) {
+        Map<Integer, Integer> map = new HashMap<>();
+        for(int[] t : transactions) {
+            map.put(t[0], map.getOrDefault(t[0], 0) - t[2]); // 学习下
+            map.put(t[1], map.getOrDefault(t[1], 0) + t[2]);
+        }
 
+        return dfs(0, new ArrayList<>(map.values()));
+    }
 
+    private int dfs(int index, List<Integer> balances) {
+        while(index<balances.size() && balances.get(index) == 0) {
+            index++;
+        }
+        if(index == balances.size()) return 0;
 
+        int transactions = Integer.MAX_VALUE;
+        for(int i=index+1;i<balances.size();i++) {
+            if(balances.get(index) * balances.get(i) <0) {
+                balances.set(i, balances.get(index) + balances.get(i));
+                transactions = Math.min(transactions, 1 + dfs(index+1, balances));
+                balances.set(i, balances.get(i) - balances.get(index));
+            }
+        }
 
+        return transactions;
+    }
+  # DFS
+
+490. The Maze
+  - Ball movement has direction. Use while loop when ball moving until reach wall. Check stop position if its destination.
+  - Add before check
+  - Use direction arr instead of up, down, left, right
+  - private boolean dfs(int[][] maze, int[] pos, int[] dest, boolean[][] visited) {
+        if(pos[0]<0 || pos[0] == maze.length || pos[1]<0 || pos[1] == maze[0].length || visited[pos[0]][pos[1]]) return false;
+        if(pos[0] == dest[0] && pos[1] == dest[1]) return true;
+        visited[pos[0]][pos[1]] = true; // only mark stop pos as visited
+        // down, up, right, left
+        int[][] dir = new int[][]{{1, -1, 0, 0},{0, 0, 1, -1}};
+        for(int i=0;i<4;i++) {
+            int row = pos[0], col = pos[1];
+            while(row>=0 && row<maze.length && col>=0 && col<maze[0].length && maze[row][col] !=1) {
+                // visited arr ignore non-stop pos
+                row += dir[0][i];
+                col += dir[1][i];
+            }
+            row -= dir[0][i];
+            col -= dir[1][i];
+            if(dfs(maze, new int[]{row, col}, dest, visited)) return true;
+        }
+        return false;
+    }
+  # DFS
+
+505. The Maze II
+  - Use bfs. Instead of use boolean[] visited, use int[] visited to track smallest distance at ball stop position.
+  -     int[][] visited = new int[rows][cols];
+        for(int[] arr : visited) Arrays.fill(arr, Integer.MAX_VALUE);
+        int[][] dir = new int[][]{{1,-1,0,0},{0,0,1,-1}};
+        Queue<int[]> queue = new LinkedList<>();
+        Queue<Integer> distances = new LinkedList<>();
+        queue.offer(start);
+        distances.offer(0);
+        int res = Integer.MAX_VALUE;
+        while(queue.size()>0) {
+            int[] pos = queue.poll();
+            int row = pos[0], col = pos[1];
+            int distance = distances.poll();
+            if(row == destination[0] && col == destination[1]) {
+                res = Math.min(res, distance);
+                continue;
+            }
+            if(distance>=visited[row][col]) {
+                continue;
+            } else {
+                visited[row][col] = distance;
+            }
+
+            for(int i=0;i<4;i++) {
+                int r = row, c = col, d = distance;
+                while(r>=0 && r<rows && c>=0 && c<cols && maze[r][c] != 1) {
+                    r += dir[0][i];
+                    c += dir[1][i];
+                    d++;
+                }
+                r -= dir[0][i];
+                c -= dir[1][i];
+                d--;
+                queue.offer(new int[]{r, c});
+                distances.offer(d);
+            }
+        }
+  # BFS, Shortest Path
 
 
 

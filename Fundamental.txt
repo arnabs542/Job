@@ -147,17 +147,19 @@
 ------------------ Searching --------------
 
 * Binary Search
-  - template
-  int l=0; int r=arr.length;
-  while(l<=r) {
-    int mid = (r-l)/2 + l;
-    if (arr[mid] == target) return mid;
-    if(arr[mid]>target) {
-      r = mid - 1;
-    } else {
-      l = mid + 1;
+  - 边界 l<=r 验证l == r的case， l可能大于最右边，r可能小于最左边。 常用 has arr[mid] == ... return ..., 最后return arr[mid]
+    边界 l < r 保证l不会大于最右边，r不会小于最左边, 常用于没有 arr[mid] == ... return ...。 最后return arr[l]
+
+  - int l=0; int r=arr.length;
+    while(l<=r) {
+      int mid = (r-l)/2 + l;
+      if (arr[mid] == target) return mid;
+      if(arr[mid]>target) {
+        r = mid - 1;
+      } else {
+        l = mid + 1;
+      }
     }
-  }
   return -1;
 
 * DFS

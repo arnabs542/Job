@@ -2341,7 +2341,7 @@
   $ Google
 
 41. First Missing Positive
-  - Given an unsorted integer array, find the smallest missing positive integer.
+  - Given an unsorted integer array, find the smallest missing positive integer
   - Map each array element to array index.
         for(int i=0;i<nums.length;i++) {
             if(nums[i] == i+1) continue;
@@ -3051,6 +3051,24 @@
         }
   # BFS, Shortest Path
 
+499. The Maze III
+  - (https://leetcode.com/problems/the-maze-iii/description/)
+  # BFS, Shortest Path
+
+486. Predict the Winner
+  - without memorization, time is O(2^n). With memorization, O(n^2)
+  - 每次选左或选右，最大化差值
+  -   int[][] memory = new int[nums.length][nums.length];
+      for(int[] arr: memory) Arrays.fill(arr, Integer.MIN_VALUE);
+      return choose(nums, 0, nums.length-1, memory) >= 0;
+
+      private int choose(int[] nums, int l, int r, int[][] memory) {
+          if(l == r) return nums[l];
+          if(memory[l][r] != Integer.MIN_VALUE) return memory[l][r];
+          memory[l][r] = Math.max(nums[l] - choose(nums, l+1, r, memory), nums[r] - choose(nums, l, r-1, memory)); //状态转移方程
+          return memory[l][r];
+      }
+  # Recursion, Memorization
 
 
 
@@ -3067,10 +3085,7 @@
 
 
 
-
-
-
-
+*** Go over to 2360 Aug 5
 
 
 

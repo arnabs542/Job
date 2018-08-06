@@ -215,6 +215,8 @@ Design
         # Design, Scale, Buffer, HashSet
   - 362. Design Hit Counter
         # Design, Scale, Buffer
+  - 346. Moving Average from Data Stream
+        # Design, Queue, Buffer
 
 - 146. LRU Cache
     # Double LinkedList, HashMap

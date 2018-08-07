@@ -11,8 +11,15 @@ Dynamic Programming
   - 115. Distinct Subsequences
         # 2D DP, DFS
 
+* use sum range as cols, elements as rows
+  - 494. Target Sum
+        # 2D
+
 * n个ballon从1个开始循环，2个，最后n个
   - 312. Burst Balloons
+
+* Recursion, memorization, 2D
+  - 486. Predict the Winner
 
 * Decode
   - 91. Decode Ways
@@ -97,6 +104,9 @@ Stack
 * maintain number stack and res stack and current res
   - 394. Decode String
 
+* find next greater element in arr
+  - 496. Next Greater Element I
+  - 503. Next Greater Element II
 
 --------------------
 String
@@ -113,6 +123,8 @@ String
 - 249. Group Shifted Strings
     # String, HashMap
 
+- 527. Word Abbreviation
+    # String
 
 --------------------
 Two Pointers

@@ -3068,12 +3068,29 @@
           memory[l][r] = Math.max(nums[l] - choose(nums, l+1, r, memory), nums[r] - choose(nums, l, r-1, memory)); //状态转移方程
           return memory[l][r];
       }
-  # Recursion, Memorization
+  # Recursion, Memorization, 2D
 
+496. Next Greater Element I
+  - Use stack to keep a decreasing sub-sequence, whenever we see a number x greater than stack.peek() we pop all elements less than x and for all the popped ones, their next greater element is x
+  -     Stack<Integer> stack = new Stack<>();
+        Map<Integer, Integer> map = new HashMap<>();
+        for(int num : nums2) {
+            while(!stack.isEmpty() && num>stack.peek()) {
+                map.put(stack.pop(), num);
+            }
+            stack.push(num);
+        }
+  # Stack
 
+503. Next Greater Element II
+  - it has duplicates. Run second time. Use one more index stack instead of map.
 
+  # Stack
 
-
+527. Word Abbreviation
+  - (https://leetcode.com/problems/word-abbreviation/discuss/99782/Really-simple-and-straightforward-Java-solution)
+  - Matain prefix int[]
+  # String
 
 
 

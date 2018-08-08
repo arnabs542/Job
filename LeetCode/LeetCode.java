@@ -3099,7 +3099,7 @@
   - Find the single element in a sorted array that include pair elements and one single element. 
   -  public static int singleNonDuplicate(int[] nums) {
           int start = 0, end = nums.length - 1;
-          while (start < end) {
+          while (start < end) { // not start<=end to avoid out of bound e.g. (0,1,1)
               int mid = (start + end) / 2;
               if (mid % 2 == 1) mid--;
               if (nums[mid] != nums[mid + 1]) end = mid; else start = mid + 2;

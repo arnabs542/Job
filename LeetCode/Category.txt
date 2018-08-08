@@ -63,6 +63,10 @@ Binary Search
 * Matain list of char sequence index list for each char in String t
   - 392. Is Subsequence
 
+* find single element 
+  - 540. Single Element in a Sorted Array
+
+
 --------------------
 Tree
 --------------------
@@ -169,11 +173,9 @@ DFS
   - 505. The Maze II
     # BFS, Shortest Path
 
-
-
 - 37. Sudoku Solver
-
 - 286. Walls and Gates
+- 529. Minesweeper
 
 --------------------
 Union Find

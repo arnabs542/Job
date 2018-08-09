@@ -3096,7 +3096,7 @@
   - DFS
 
 540. Single Element in a Sorted Array
-  - Find the single element in a sorted array that include pair elements and one single element. 
+  - Find the single element in a sorted array that include pair elements and one single element.
   -  public static int singleNonDuplicate(int[] nums) {
           int start = 0, end = nums.length - 1;
           while (start < end) { // not start<=end to avoid out of bound e.g. (0,1,1)
@@ -3108,9 +3108,40 @@
       }
   - Binary Search
 
+552. Student Attendance Record II
+  - /*
+    dp[i] = total num of rewardable student records at index i
+    1. without A
+        1. end with P
+        dp[i] = dp[i-1]
+        2. end with L
+        ...PLLL
+        dp[i] = dp[i-1] - dp[i-4]
 
+    2. with A
+    assume A is at index i
+    [... i-1] A [i+1, ...n]
+    dp[i] = dp[i-1] * dp[n-i]
+    */
+    public int checkRecord(int n) {
+        long M = 1000000007;
+        long[] dp = new long[n<=3 ? 4 : n+1];
+        dp[0]=1; dp[1]=2; dp[2]=4; dp[3]=7;
+        for(int i=4;i<=n;i++) {
+            dp[i] = ((2* dp[i-1])%M + (M-dp[i-4]))%M;
+        }
+        long sum = dp[n];
+        for(int i=1;i<=n;i++) {
+            sum += (dp[i-1] * dp[n-i])%M;
+        }
 
+        return (int) (sum%M);
+    }
+  # 1D DP
 
+652. Find Duplicate Subtrees
+  - postorder traverval and serialize each subtree to string and put into a map<String, Integer>, if Integer == 2, add to res.
+  # Tree, Postorder Traversal, Serialize
 
 
 

@@ -25,6 +25,10 @@ Dynamic Programming
   - 91. Decode Ways
         # 1D
 
+* create student attendance with A, L, P
+  - 552. Student Attendance Record II
+        # 1D
+
 * 纯DP
   - 96. Unique Binary Search Trees
 
@@ -63,7 +67,7 @@ Binary Search
 * Matain list of char sequence index list for each char in String t
   - 392. Is Subsequence
 
-* find single element 
+* find single element
   - 540. Single Element in a Sorted Array
 
 
@@ -77,6 +81,9 @@ Tree
     # PostOrder, Tree
 
 - 270. Closest Binary Search Tree Value
+
+* Postorder traversal and serialize subtree to string
+  - 652. Find Duplicate Subtrees
 
 --------------------
 Array
@@ -95,6 +102,9 @@ Array
 
 * 记住行的kill和列的kill直到碰到墙 then reset
   - 361. Bomb Enemy
+
+* sum up to current index, and matain sum map
+  - 560. Subarray Sum Equals K
 
 - 289. Game of Life
 
@@ -220,6 +230,12 @@ Fenwick Tree / Binary Indexed Tree
 
 * 2D Binary Indexed Tree
   - 308. Range Sum Query 2D - Mutable
+
+--------------------
+Greedy
+--------------------
+- 621. Task Scheduler
+    # Greedy, Math
 
 --------------------
 Design

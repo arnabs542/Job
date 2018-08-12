@@ -196,6 +196,9 @@ Union Find
 * Convert equation to graph, use Map to matain parent relation
   - 399. Evaluate Division
 
+* detect cycle and multiple parents in directed graph
+  - 684. Redundant Connection
+  - 685. Redundant Connection II
 
 --------------------
 HashSet
@@ -236,6 +239,9 @@ Greedy
 --------------------
 - 621. Task Scheduler
     # Greedy, Math
+
+* Matain pre and # of consecutive sequence at pre with length 1, 2, 3
+    - 659. Split Array into Consecutive Subsequences
 
 --------------------
 Design

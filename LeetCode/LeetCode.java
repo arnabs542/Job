@@ -3143,6 +3143,71 @@
   - postorder traverval and serialize each subtree to string and put into a map<String, Integer>, if Integer == 2, add to res.
   # Tree, Postorder Traversal, Serialize
 
+659. Split Array into Consecutive Subsequences
+  - matain pre, p1, p2, p3 which are he number of consecutive subsequences ending at pre with length of 1, length of 2 and length >= 3. If count<p1+p2 during iteration, false. At end, if p1 !=0 || p2 !=0, false;
+
+  - int pre = Integer.MIN_VALUE, p1 = 0, p2 = 0, p3 = 0;
+    int cur = 0, cnt = 0, c1 = 0, c2 = 0, c3 = 0;
+
+    for (int i = 0; i < nums.length; pre = cur, p1 = c1, p2 = c2, p3 = c3) {
+        for (cur = nums[i], cnt = 0; i < nums.length && cur == nums[i]; cnt++, i++);
+
+        if (cur != pre + 1) {
+            if (p1 != 0 || p2 != 0) return false;
+            c1 = cnt; c2 = 0; c3 = 0;
+
+        } else {
+            if (cnt < p1 + p2) return false;
+            c1 = Math.max(0, cnt - (p1 + p2 + p3));
+            c2 = p1;
+            c3 = p2 + Math.min(p3, cnt - (p1 + p2));
+        }
+    }
+
+    return (p1 == 0 && p2 == 0);
+  - (https://leetcode.com/problems/split-array-into-consecutive-subsequences/discuss/106495/Java-O(n)-time-and-O(1)-space-solution-greedily-extending-shorter-subsequence)
+  # Greedy
+
+684. Redundant Connection
+  # Union Find, undirected graph
+
+685. Redundant Connection II
+  - directed graph, 3 cases
+    (1) circle, same as 684
+    (2) node has 2 parents
+    (3) node has 2 parents and circle
+  - Find node that has 2 parents and put into candidates. Assume remove one edge. Run union find, if there is circle and candidates are not initialized , case 1 and return the edge. If no circle, return the removed edge. If circle and candidates are initilazed, return another edge.
+
+  -     int[] candidate1 = new int[]{-1, -1}, candidate2 = new int[]{-1,-1};
+        int[] arr = new int[edges.length+1];
+        // If node has two parents, pop to candidates and remove one edge
+        for(int[] edge : edges) {
+            if(arr[edge[1]] != 0 ) {
+                candidate1 = new int[]{edge[0], edge[1]};
+                candidate2 = new int[]{arr[edge[1]], edge[1]};
+                edge[1] = 0;
+                break;
+            } else {
+                arr[edge[1]] = edge[0];
+            }
+        }
+        for(int i=1;i<=edges.length;i++) arr[i] = i;
+        for(int[] edge : edges) {
+            if(edge[1] == 0) continue;
+            int parent = find(arr, edge[0]);
+            int child = find(arr, edge[1]);
+            if(parent == child) {
+                if(candidate2[0] != -1) {
+                    return candidate2;
+                }
+                return edge;
+            } else {
+                arr[parent] = child;
+            }
+        }
+        return candidate1;
+  # Union Find, directed graph
+
 
 
 *** Go over to 2360 Aug 5

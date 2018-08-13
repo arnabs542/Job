@@ -11,6 +11,10 @@ Dynamic Programming
   - 115. Distinct Subsequences
         # 2D DP, DFS
 
+* Matain startIndex instead of boolean dp[][]
+  - 727. Minimum Window Subsequence
+        # 2D DP
+
 * use sum range as cols, elements as rows
   - 494. Target Sum
         # 2D
@@ -84,6 +88,12 @@ Tree
 
 * Postorder traversal and serialize subtree to string
   - 652. Find Duplicate Subtrees
+
+--------------------
+Binary Search Tree
+--------------------
+* Matain (start, end, overlap) time using binary search tree.
+  - 731. My Calendar II
 
 --------------------
 Array
@@ -199,6 +209,14 @@ Union Find
 * detect cycle and multiple parents in directed graph
   - 684. Redundant Connection
   - 685. Redundant Connection II
+
+--------------------
+Connected Component
+--------------------
+- 721. Accounts Merge
+    # BFS/DFS, Union Find, Graph, Connected component
+
+
 
 --------------------
 HashSet

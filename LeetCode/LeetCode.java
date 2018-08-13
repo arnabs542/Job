@@ -1508,7 +1508,7 @@
         }
   - Union Find: for each acount, union first email with other emails
     dsu.union(emailToID.get(account.get(1)), emailToID.get(email));
-  # BFS/DFS, Union Find, Graph
+  # BFS/DFS, Union Find, Graph, Connected component
 
 88. Merge Sorted Array
   - Two Pointers
@@ -3208,7 +3208,90 @@
         return candidate1;
   # Union Find, directed graph
 
+*727. Minimum Window Subsequence
+  - Given strings S and T, find the minimum (contiguous) substring W of S, so that T is a subsequence of W.
+  - Track the start index. e.g. S = abcde, T = be
+              a b c d e b
+            0 1 2 3 4 5 6
+          b 0 0 2 2 2 2 6
+          e 0 0 0 0 0 2 2
+  -     int lenT = T.length(), lenS = S.length();
+        int[][] dp = new int[lenT + 1][lenS + 1];
+        for (int j = 0; j <= lenS; j++) {
+            dp[0][j] = j + 1; // Store start index
+        }
+        for (int i = 1; i <= lenT; i++) {
+            for (int j = 1; j <= lenS; j++) {
+                if (T.charAt(i - 1) == S.charAt(j - 1)) {
+                    dp[i][j] = dp[i - 1][j - 1];
+                } else {
+                    dp[i][j] = dp[i][j - 1];
+                }
+            }
+        }
 
+        int start = 0, len = lenS + 1;
+        for (int j = 1; j <= lenS; j++) {
+            if (dp[lenT][j] != 0) {
+                if (j - dp[lenT][j] + 1 < len) {
+                    start = dp[lenT][j] - 1;
+                    len = j - dp[lenT][j] + 1;
+                }
+            }
+        }
+        return len == lenS + 1 ? "" : S.substring(start, start + len);
+  # 2D DP
+
+731. My Calendar II
+  - Insert (start, end), if there is triple event intersection, return false, else return true. Construct binary search tree.
+  - private Node insert(Node node, int start, int end) {
+        if(start>=end) return node;
+        if(node == null) return new Node(start, end);
+        if(start >= node.end) {
+            node.r = insert(node.r, start, end);
+        } else if(end<=node.start){
+            node.l = insert(node.l, start, end);
+        } else {
+            node.overlap = true;
+            int a = Math.min(node.start, start);
+            int b = Math.max(node.start, start);
+            int c = Math.min(node.end, end);
+            int d = Math.max(node.end, end);
+            node.l = insert(node.l,a,b);
+            node.r = insert(node.r,c,d);
+            node.start = b;
+            node.end = c;
+        }
+        return node;
+    }
+
+    private boolean insertable(Node node, int start, int end) {
+        if(start>=end) return true;
+        if(node == null) return true;
+        if(start>=node.end) {
+            return insertable(node.r, start, end);
+        } else if(end <= node.start) {
+            return insertable(node.l, start, end);
+        } else {
+            if(node.overlap) {
+                return false;
+            } else {
+                return insertable(node.l, start, node.start) && insertable(node.r, node.end, end);
+            }
+        }
+    }
+
+    private class Node {
+        int start, end;
+        boolean overlap;
+        Node l, r;
+        public Node(int start, int end) {
+            this.start = start;
+            this.end = end;
+        }
+    }
+
+  # Binary Search Tree
 
 *** Go over to 2360 Aug 5
 

@@ -3084,7 +3084,6 @@
 
 503. Next Greater Element II
   - it has duplicates. Run second time. Use one more index stack instead of map.
-
   # Stack
 
 527. Word Abbreviation
@@ -3292,6 +3291,34 @@
     }
 
   # Binary Search Tree
+
+753. Cracking the Safe
+  - Total number of differences should be Math.pow(k,n). Matain set for string. Run dfs until num matches total.
+  -     int total = (int)Math.pow(k,n);
+        for(int i=0;i<n;i++) res +="0";
+        Set<String> set = new HashSet<>();
+        set.add(res);
+        dfs(total, 1, set, n, k);
+        
+        private boolean dfs(int total, int cur, Set<String> set, int n, int k) {
+            if(cur == total) return true;
+            
+            String substring = res.substring(res.length()-n+1,res.length());
+            for(int i=0;i<k;i++) {
+                String s = substring + i;
+                if(!set.contains(s)) {
+                    cur++;
+                    set.add(s);
+                    res +=i;
+                    if (dfs(total, cur, set, n, k)) return true;
+                    cur--;
+                    set.remove(s);
+                    res = res.substring(0, res.length()-1);
+                }
+            }
+            return false;
+        }
+  # DFS
 
 *** Go over to 2360 Aug 5
 

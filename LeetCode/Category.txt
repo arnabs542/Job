@@ -193,6 +193,9 @@ DFS
   - 505. The Maze II
     # BFS, Shortest Path
 
+* Construct all strings
+  - 753. Cracking the Safe
+
 - 37. Sudoku Solver
 - 286. Walls and Gates
 - 529. Minesweeper

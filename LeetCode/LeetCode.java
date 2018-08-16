@@ -3361,7 +3361,37 @@
         }
   # Array
 
-
+773. Sliding Puzzle
+  - encode to string instead of keep using int[][]
+  - Queue<String> queue = new LinkedList<>();
+    queue.offer(sb.toString());
+    visited.add(sb.toString());
+    String end = "123450";
+    int count = 0;
+    while (!queue.isEmpty()) {
+        int size = queue.size();
+        for (int index = 0; index < size; index++) {
+            String cur = queue.poll();
+            if (cur.equals(end))
+                return count;
+            int i = cur.indexOf('0');
+            int[] dir = {1, -1, 3, -3};
+            for (int d : dir) {
+                char[] ch = cur.toCharArray();
+                int j = i + d;
+                if (j >= ch.length || j < 0 || (i == 2 && j == 3) || (i == 3 && j == 2))
+                    continue;
+                char temp = ch[i];
+                ch[i] = ch[j];
+                ch[j] = temp;
+                String newBoard = new String(ch);
+                if (visited.add(newBoard))
+                    queue.offer(newBoard);
+            }
+        }
+        count++; // 聪明，每次每种情况走一步，算最短路径
+    }
+  # BFS 
 
 
 

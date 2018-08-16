@@ -118,7 +118,7 @@ Array
 
 * matain max array and compare with index
   - 769. Max Chunks To Make Sorted
-  
+
 - 289. Game of Life
 
 
@@ -180,6 +180,9 @@ BFS
 --------------------
 * Shortest Path
   - 127. Word Ladder
+
+* Shortest Path, encode int[][] to string and keep Set<String> visited 
+  - 773. Sliding Puzzle
 
 --------------------
 DFS

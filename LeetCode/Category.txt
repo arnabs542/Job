@@ -116,6 +116,9 @@ Array
 * sum up to current index, and matain sum map
   - 560. Subarray Sum Equals K
 
+* matain max array and compare with index
+  - 769. Max Chunks To Make Sorted
+  
 - 289. Game of Life
 
 
@@ -212,6 +215,9 @@ Union Find
 * detect cycle and multiple parents in directed graph
   - 684. Redundant Connection
   - 685. Redundant Connection II
+
+* interesting couple swap
+  - 765. Couples Holding Hands
 
 --------------------
 Connected Component

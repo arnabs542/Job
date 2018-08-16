@@ -3320,6 +3320,67 @@
         }
   # DFS
 
+765. Couples Holding Hands
+  - For given n people, divide into n/2 groups. e.g. people 0/2 is group 0, people 1/2 is group 0. Iterate pair by pair, if same group e.g. 0 == 0, means couple, else use find to check if these two people have been union before, if have been union before, it means no more swap, e.g. 0312 -> only 1 swap to become 0132. Else res++ and union group. 
+  -     int couples = row.length/2;
+        int[] group = new int[couples];
+        for(int i=0;i<group.length;i++) group[i] = i;
+        
+        for(int i=0;i<group.length;i++) {
+            int g1 = row[2*i]/2;
+            int g2 = row[2*i+1]/2;
+            if(g1 == g2) {
+                continue;
+            } else if(find(group, g1) != find(group, g2)) {
+                res++;
+                union(group, g1, g2);
+            }
+        }
+
+  # Union Find 
+
+769. Max Chunks To Make Sorted
+  - Arr is a permutation of [0, 1, ..., arr.length - 1], we split the array into some number of "chunks" (partitions), and individually sort each chunk.  After concatenating them, the result equals the sorted array.
+  - Matain the max array. Iterate, if max[i] = i, then gaurantee 左边的数字都小于这条线右边的数字
+  - /*
+    original: 0, 2, 1, 4, 3, 5, 7, 6
+    max:      0, 2, 2, 4, 4, 5, 7, 7
+    sorted:   0, 1, 2, 3, 4, 5, 6, 7
+    index:    0, 1, 2, 3, 4, 5, 6, 7
+    */
+        int[] max = new int[arr.length];
+        max[0] = arr[0];
+        for (int i = 1; i < arr.length; i++) {
+            max[i] = Math.max(max[i - 1], arr[i]);
+        }
+        int count = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (max[i] == i) {
+                count++;
+            }
+        }
+  # Array
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 *** Go over to 2360 Aug 5
 
 

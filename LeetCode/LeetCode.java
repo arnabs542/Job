@@ -3292,6 +3292,7 @@
 
   # Binary Search Tree
 
+<<<<<<< Updated upstream
 753. Cracking the Safe
   - Total number of differences should be Math.pow(k,n). Matain set for string. Run dfs until num matches total.
   -     int total = (int)Math.pow(k,n);
@@ -3299,10 +3300,10 @@
         Set<String> set = new HashSet<>();
         set.add(res);
         dfs(total, 1, set, n, k);
-        
+
         private boolean dfs(int total, int cur, Set<String> set, int n, int k) {
             if(cur == total) return true;
-            
+
             String substring = res.substring(res.length()-n+1,res.length());
             for(int i=0;i<k;i++) {
                 String s = substring + i;
@@ -3321,11 +3322,11 @@
   # DFS
 
 765. Couples Holding Hands
-  - For given n people, divide into n/2 groups. e.g. people 0/2 is group 0, people 1/2 is group 0. Iterate pair by pair, if same group e.g. 0 == 0, means couple, else use find to check if these two people have been union before, if have been union before, it means no more swap, e.g. 0312 -> only 1 swap to become 0132. Else res++ and union group. 
+  - For given n people, divide into n/2 groups. e.g. people 0/2 is group 0, people 1/2 is group 0. Iterate pair by pair, if same group e.g. 0 == 0, means couple, else use find to check if these two people have been union before, if have been union before, it means no more swap, e.g. 0312 -> only 1 swap to become 0132. Else res++ and union group.
   -     int couples = row.length/2;
         int[] group = new int[couples];
         for(int i=0;i<group.length;i++) group[i] = i;
-        
+
         for(int i=0;i<group.length;i++) {
             int g1 = row[2*i]/2;
             int g2 = row[2*i+1]/2;
@@ -3337,7 +3338,7 @@
             }
         }
 
-  # Union Find 
+  # Union Find
 
 769. Max Chunks To Make Sorted
   - Arr is a permutation of [0, 1, ..., arr.length - 1], we split the array into some number of "chunks" (partitions), and individually sort each chunk.  After concatenating them, the result equals the sorted array.
@@ -3391,21 +3392,47 @@
         }
         count++; // 聪明，每次每种情况走一步，算最短路径
     }
-  # BFS 
+  # BFS
 
+734. Sentence Similarity
+  # HashMap
 
+737. Sentence Similarity II
+  -     private void union(Map<String, String> map, String s1, String s2) {
+            String f1 = find(map, s1);
+            String f2 = find(map, s2);
+            if(f1 == null && f2 == null) {
+                map.put(s1, s2);
+                map.put(s2, s2);
+            } else if(f1 == null) {
+                map.put(s1, f2);
+            } else if(f2 == null) {
+                map.put(s2, f1);
+            } else {
+                map.put(f1, f2);
+            }
+        }
+        private String find(Map<String, String> map, String s1) {
+            if(!map.containsKey(s1)) return null;
+            String s = s1;
+            while(!s.equals(map.get(s))) {
+                s = map.get(s);
+            }
+            map.put(s1, s);
+            return s;
+        }
+  # String Union Find
 
-
-
-
-
-
-
-
-
-
-
-
+739. Daily Temperatures
+  - Put index into stack instead of value because its more easy to calculte index diff.
+  -     for(int i=len-1;i>=0;i--) {
+            while(stack.size() != 0 && temperatures[stack.peek()]<=temperatures[i]) {
+                stack.pop();
+            }
+            res[i] = stack.size() == 0 ? 0 : stack.peek()-i;
+            stack.push(i);
+        }
+  # Stack
 
 
 

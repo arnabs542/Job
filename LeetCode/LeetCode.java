@@ -3394,6 +3394,29 @@
     }
   # BFS
 
+787. Cheapest Flights Within K Stops
+  - 保证queue里头的每一批都走一步，直到k stops. int[] visisted matains minimum total price for each position.
+  -     while(stops++<=K+1) {
+            int size = queue.size();
+            for(int i=0;i<size;i++) { // 每一批都走一步
+                int[] pos = queue.poll(); // pos[0] position, pos[1] totalPrice
+                if(pos[0] == dst) {
+                    res = Math.min(res, pos[1]);
+                    continue;
+                }
+                if(pos[1] >= visited[pos[0]]) continue;
+                visited[pos[0]] = pos[1];
+                if(map.containsKey(pos[0])) {
+                    List<int[]> adjNodes = map.get(pos[0]);
+                    for(int[] node : adjNodes) {
+                        queue.offer(new int[]{node[0], node[1] + pos[1]});
+                    }
+                }
+            }
+        }
+  - Similar to 773 Sliding Puzzle
+  # BFS
+
 734. Sentence Similarity
   # HashMap
 
@@ -3434,7 +3457,9 @@
         }
   # Stack
 
-
+802. Find Eventual Safe States
+  - If has cycle, mark all nodes in accessed as has cycle, if not, mark all nodes in visited as no cycle.
+  # DFS, Directed Graph
 
 
 

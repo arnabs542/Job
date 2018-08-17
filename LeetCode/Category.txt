@@ -187,6 +187,7 @@ BFS
 
 * Shortest Path, encode int[][] to string and keep Set<String> visited
   - 773. Sliding Puzzle
+  - 787. Cheapest Flights Within K Stops
 
 --------------------
 DFS
@@ -209,6 +210,7 @@ DFS
 - 37. Sudoku Solver
 - 286. Walls and Gates
 - 529. Minesweeper
+- 802. Find Eventual Safe States
 
 --------------------
 Union Find

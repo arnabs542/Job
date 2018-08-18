@@ -188,6 +188,7 @@ BFS
 * Shortest Path, encode int[][] to string and keep Set<String> visited
   - 773. Sliding Puzzle
   - 787. Cheapest Flights Within K Stops
+  - 815. Bus Routes
 
 --------------------
 DFS

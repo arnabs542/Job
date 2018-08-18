@@ -3461,6 +3461,34 @@
   - If has cycle, mark all nodes in accessed as has cycle, if not, mark all nodes in visited as no cycle.
   # DFS, Directed Graph
 
+805. Split Array With Same Average
+  - 取1，2...A.length/2 个，每次用dfs/backtracking遍历所有情况。超时了。很多的duplicates， 可以用memorization进行优化
+      for(int i = A.length/2;i>=1;i--) {
+          if(dfs(A, 0, i, 0, 0, sum)) {
+              return true;
+          }
+      }
+    private boolean dfs(int[] arr, int start, int num, int count, double sum, double total) {
+        if(count == num) {
+            return sum/num == average && (total-sum)/(arr.length-num)==average;
+        }
+        if(num-count > arr.length-start) return false;
+
+        for(int i=start;i<arr.length;i++) {
+            if(dfs(arr, i+1, num, count+1, sum+arr[i], total)){
+                return true;
+            }
+        }
+        return false;
+    }
+  # DFS(TLE), Backtracking
+
+815. Bus Routes
+  - map each stop to routes. Then use start and end stop to find start routes set and end routes set. Create route to route adjacent list. Iterate start routes, use bfs to find the first end route and compare with the res.
+  - Lots of code at (https://leetcode.com/problems/bus-routes/description/)
+  # BFS
+
+
 
 
 *** Go over to 2360 Aug 5

@@ -1,0 +1,85 @@
+Summary:
+
+Tingyu is currently a member of the Core System Infrastructure (CSI) group with Aladdin Product Group (APG) in BlackRock. This team is responsible for developing core software infrastructure including BlackRock Messaging System (BMS), Continuous Integration and Delivery Framework (CI/CD), Aladdin Data and Search Layer (ADL/ASL), and focuses on ensurning a fully stable, scalable and cost efficient infrastructure across all the systems supported by the Aladdin Product Group in BlackRock.
+
+
+Skills:
+
+Programming Languages: Java, Groovy, TypeScript, Python, SQL, Scala, Perl, HTML, CSS, JavaScript, C
+Tools and Frameworks: Angular, Git, Jenkins, Spring, Sybase, Cassandra, InfluxDB, Docker, Kubernetes, Ignite
+
+Experience:
+    BlackRock
+
+    Software Engineer (Associate / Senior Level)
+
+    * CICD
+
+      - Developing and supporting internal Continuous Integration and Delivery Framework (4D) that standardizes build and delivery processes for Maven, Npm, and Python projects in BlackRock.
+
+      - Implementing back-end pipeline services and build tools integration, which consists of Jenkins, BitBucket and SonarQube, to streamline continuous integration and delivery with Java, Spring and Groovy.
+
+      - Enhancing 4D dashboard UI (Angular) for better project repositories, build information and quality metrics monitoring to ensure satisfactory user experience.
+
+
+    * Application Packaging in Software Release Permissions Tool (SRPT)
+
+      - Developing functionalities in application packaging, which simplifies the way we release application by bundling application components into single versioned and deployable unit.
+
+      - Built application packaging onboarding script and back-end service to deliver and activate all current activated packages from templated client to new clients.
+
+
+    * Http2Bms
+
+      - Designed and architect
+
+
+
+    Software Engineer (Analyst / Junior Level)
+
+    * Explore
+
+    * Accouting System
+
+    * Order Management System
+
+    Rutgers
+
+    * Software Engineer
+
+Education:
+
+
+---------------------------------------------------
+Words
+---------------------------------------------------
+created  design  worked  built develop perform
+manage   implement focus facilitate
+seemlessly provide support apply
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

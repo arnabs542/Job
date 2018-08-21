@@ -1,6 +1,6 @@
 Summary:
 
-Tingyu is currently a member of the Core System Infrastructure (CSI) group with Aladdin Product Group (APG) in BlackRock. This team is responsible for developing core software infrastructure including BlackRock Messaging System (BMS), Continuous Integration and Delivery Framework (CI/CD), Aladdin Data and Search Layer (ADL/ASL), and focuses on ensurning a fully stable, scalable and cost efficient infrastructure across all the systems supported by the Aladdin Product Group in BlackRock.
+Tingyu is currently a member of the Core System Infrastructure (CSI) group within Aladdin Product Group (APG) in BlackRock. This team is responsible for developing core software infrastructure including BlackRock Messaging System (BMS), Continuous Integration and Delivery Framework (CI/CD), Aladdin Data and Search Layer (ADL/ASL), and focuses on ensurning a fully stable, scalable and cost efficient infrastructure across all the systems supported by the Aladdin Product Group in BlackRock.
 
 
 Skills:
@@ -19,20 +19,20 @@ Experience:
 
       - Implementing back-end pipeline services and build tools integration, which consists of Jenkins, BitBucket and SonarQube, to streamline continuous integration and delivery with Java, Spring and Groovy.
 
-      - Enhancing 4D dashboard UI (Angular) for better project repositories, build information and quality metrics monitoring to ensure satisfactory user experience.
+      - Enhancing 4D dashboard UI (Angular) to better monitoring project repositories, build information and quality metrics, and ensure satisfactory user experience.
 
 
     * Application Packaging in Software Release Permissions Tool (SRPT)
 
-      - Developing functionalities in application packaging, which simplifies the way we release application by bundling application components into single versioned and deployable unit.
+      - Developing functionalities in application packaging, which simplifies the way of releasing application by bundling application components into single versioned and deployable unit. Focused on activation part in the application package pipeline which including build, delivery, activation and restart.
 
-      - Built application packaging onboarding script and back-end service to deliver and activate all current activated packages from templated client to new clients.
+      - Built application packaging onboarding Python script and back-end Java service to deliver and activate current activated application packages from templated client to new clients.
 
 
-    * Http2Bms
+    * Http2Bms in BlackRock Messaging System (BMS)
 
-      - Designed and architect
-
+      - Implemented features in Http2Bms to provide native HTTP client access to BMS.
+      - Designed and built Http2Bms Configuration Tool to manage route configuration for Http2Bms. Users are allowed to set up Http2Bms routes and provision them in selected environments through UI. Htt2Bms config tool is made up of Angular web application, Java beam2 server and Aladdin Data Layer (Cassandra).
 
 
     Software Engineer (Analyst / Junior Level)

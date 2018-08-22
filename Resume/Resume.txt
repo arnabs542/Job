@@ -32,14 +32,18 @@ Experience:
     * Http2Bms in BlackRock Messaging System (BMS)
 
       - Implemented features in Http2Bms to provide native HTTP client access to BMS.
-      - Designed and built Http2Bms Configuration Tool to manage route configuration for Http2Bms. Users are allowed to set up Http2Bms routes and provision them in selected environments through UI. Htt2Bms config tool is made up of Angular web application, Java beam2 server and Aladdin Data Layer (Cassandra).
+      - Designed and built Http2Bms configuration tool to manage route configuration for Http2Bms. Users are allowed to set up Http2Bms routes and provision them in selected environments through UI. Htt2Bms config tool is made up of Angular web application, Java beam2 server and Aladdin Data Layer (Cassandra).
 
 
     Software Engineer (Analyst / Junior Level)
 
-    * Explore
+    * Interactive Portfolio Reporting and Analysis Tool (Prism)
+      - Worked on Prism, which is an interactive portfolio reporting and analysis tool that provides flexibility for viewing portfolio holdings, portfolio risk and returns.
+      - Refactored data structure and algorithm in Prism server to optimize memory usage using Java. Maintained and improved Angular front-end dashboard.
 
     * Accouting System
+      - Developed alpha valuation service in accounting system to produce fund performance data for BlackRock clients.
+      - Onboarded position calculation service to alpha Ignite cluster for high computing power to speed up calculation.
 
     * Order Management System
 

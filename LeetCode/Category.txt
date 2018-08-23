@@ -11,6 +11,10 @@ Dynamic Programming
   - 115. Distinct Subsequences
         # 2D DP, DFS
 
+* palindromic, 2 for loops, s.charAt(i) == s.charAt(j) && dp[i+1][j-1]
+  - 5 Longest Palindromic Substring
+    # 2D DP
+
 * Matain startIndex instead of boolean dp[][]
   - 727. Minimum Window Subsequence
         # 2D DP
@@ -43,6 +47,10 @@ Dynamic Programming
 --------------------
 Binary Search
 --------------------
+* cut1 and cut2= length/2-cut1, l1, r1, l2, r2
+  - 4 Median of Two Sorted Arrays
+
+
 * compare mid with left||right||mid-1||mid+1
 
 * 终极老怪
@@ -123,6 +131,10 @@ Array
   - 750. Number Of Corner Rectangles
     # 2D Array, Math
 
+* int[256] matains previous visited index
+  - 3 Longest Substring Without Repeating Characters
+    # Two Pointers
+
 - 289. Game of Life
 
 
@@ -138,6 +150,9 @@ Stack
 * find next greater element in arr
   - 496. Next Greater Element I
   - 503. Next Greater Element II
+
+* parentheses
+  - 20 Valid Parentheses
 
 --------------------
 String
@@ -164,7 +179,9 @@ Two Pointers
   - 438. Find All Anagrams in a String
   - 76 Minimum Window Substring
 
-- 42. Trapping Rain Water
+* two pointers, water
+  - 11 Container With Most Water
+  - 42. Trapping Rain Water
         # Two Pointers
 
 - 340. Longest Substring with At Most K Distinct Characters
@@ -253,7 +270,16 @@ HashSet
 HashMap
 --------------------
 - 205. Isomorphic Strings
+- 1. Two Sums
 
+--------------------
+LinkedList
+--------------------
+* Doubly Linkedlist, dummy head, tail node
+  - 146 LRU(Least Recently Used) Cache
+    # Doubly LinkedList, HashMap
+
+- 2. Add Two Numbers
 
 --------------------
 Priority Queue
@@ -280,6 +306,13 @@ Greedy
 
 * Matain pre and # of consecutive sequence at pre with length 1, 2, 3
     - 659. Split Array into Consecutive Subsequences
+
+--------------------
+Bit Mnaipulation
+--------------------
+* x ^ y, x&1, x >>= 1
+  - 136 Single Number
+  - 461 Hamming Distance
 
 --------------------
 Design

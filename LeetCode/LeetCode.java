@@ -1,14 +1,8 @@
-/*
-    Solutions: http://www.cnblogs.com/grandyang/p/4606334.html
-    Youtube: https://www.youtube.com/channel/UCTWuRL33U8xBPqk3LehXjFw/playlists
-*/
-
 1 Two Sum
   - Use HashMap to track each visited num
   # HashMap
 
 2 Add Two Numbers
-  ? iteration or recursion
   - Use iteration rather than recursion because of the corner case [9], [9,9]. Its hard to deal with this situation with recursion.
   - When using pointer to deal with each node in the linked list. Use a dummy root node to connect the real root node. At the end, return root.next.
   # Linked List
@@ -16,9 +10,35 @@
 136 Single Number
     - bit manipulation. XOR: x^y
 
-4 Median of Two Sorted Arrays
+* 4 Median of Two Sorted Arrays
   - attention to corner cases
   - (https://www.youtube.com/watch?v=do7ibYtv5nk)
+  -     int length1 = nums1.length;
+        int length2 = nums2.length;
+        int length = length1 + length2;
+        if(length1>length2) return findMedianSortedArrays(nums2, nums1);
+
+        int cutL = 0, cutR = length1;
+        int cut1 = 0, cut2 = 0;
+        while(cut1<=length1) {
+            cut1 = cutL + (cutR - cutL)/2;
+            cut2 = length/2 - cut1;
+            double l1 = cut1 == 0 ? Integer.MIN_VALUE : nums1[cut1-1];
+            double l2 = cut2 == 0 ? Integer.MIN_VALUE : nums2[cut2-1];
+            double r1 = cut1 == length1 ? Integer.MAX_VALUE : nums1[cut1];
+            double r2 = cut2 == length2 ? Integer.MAX_VALUE : nums2[cut2];
+            if(l1>r2) {
+                cutR--;
+            } else if(l2>r1) {
+                cutL++;
+            } else {
+                if(length%2 == 0) {
+                    return (Math.max(l1, l2) + Math.min(r1, r2))/2;
+                } else {
+                    return Math.min(r1, r2);
+                }
+            }
+        }
   # binary search
 
 461 Hamming Distance
@@ -40,7 +60,8 @@
   - Character -> char: Character.charValue()
   - int[] arr = new int[256]; Arrays.fill(arr,-1);
   - Time O(n), Space O(1)
-  - #two pointer
+  - int[] matains the previous visited index
+  # two pointer
 
 20 Valid Parentheses
   - attention to corner case, e.g. check size before pop, check queue before return
@@ -53,18 +74,29 @@
 
 104 Maximum Depth of Binary Tree
 
-55 Longest Palindromic Substring
+*5 Longest Palindromic Substring
   - String.substring(startIndex, endIndex) // "abc".substring(0,2) == "ab"
   - char -> String: Character.toString(char)
   - expand around center Time O(n^2), Space O(1)
-  * dynamic programming (dp) Time O(n^2), Space O(n^2)
-    boolean[][] dp = new boolean[s.length()][s.length()];
-    dp[i][j] = s.charAt(i) == s.charAt(j) && (j-i<=2 || dp[i+1][j-1]);
-  # DP
+  - dynamic programming (dp) Time O(n^2), Space O(n^2)
+  -     boolean[][] dp = new boolean[s.length()][s.length()];
+        int max = 0;
+        String str="";
 
-146 LRU(Least Recently Used) Cache
+        for(int j =0;j<s.length();j++) {
+            for(int i = 0;i<=j;i++) {
+                dp[i][j] = s.charAt(i) == s.charAt(j) && (j-i<=2 || dp[i+1][j-1]);
+                if(dp[i][j] && j-i+1>max) {
+                    max = j-i;
+                    str = s.substring(i, j+1);
+                }
+            }
+        }
+  # 2D DP
+
+*146 LRU(Least Recently Used) Cache
   - HashMap, Double LinkedList
-  - Create Dummy head and tail node
+  - Create Dummy head and tail node, tail node helps remove node
   - private void addNode(LinkedNode node){
         node.next = head.next;node.pre = head;
         head.next.pre = node;head.next = node;
@@ -98,12 +130,32 @@
     }
   # Double LinkedList, HashMap
 
-206 Reverse Linked List
+*206 Reverse Linked List
+  - // Iteration
+    public ListNode reverseList(ListNode head) {
+      ListNode prev = null;
+      ListNode curr = head;
+      while (curr != null) {
+          ListNode nextTemp = curr.next;
+          curr.next = prev;
+          prev = curr;
+          curr = nextTemp;
+      }
+      return prev;
+    }
+    // Recursion
+    public ListNode reverseList(ListNode head) {
+        if (head == null || head.next == null) return head;
+        ListNode p = reverseList(head.next);
+        head.next.next = head;
+        head.next = null;
+        return p;
+    }
   # LinkedList
 
 53 Maximum Subarray
   - int[] arr; int length = arr.length // not length()
-  # DP
+  # Array
 
 155 Min Stack
   - LinkedList: push(), pop(), peek()
@@ -122,7 +174,7 @@
 141 Linked List Cycle
   - set fast runner and slow runner, if has cycle, fast == slow
   # Two Pointers
-
+---------------------------------------------------------------------
 148 Sort List
   - merge sort is preferrable for linked list
   - middle = getMiddle(head);merge(sort(head), sort(middle))

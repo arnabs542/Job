@@ -371,11 +371,18 @@
   - new LinkedList(Collection)
   # Counting Sort, Sort, Array, List
 
-139 Word Break
+*139 Word Break
   - List list.contains()
   - String str.substring()
   - DP for boolean, not only int.
-  # DP
+  -     boolean[] dp = new boolean[s.length()+1];
+        dp[0]=true;
+        for(int i=1;i<=s.length();i++) {
+            for(int j=0;j<i;j++) {
+                if(dp[j] && wordDict.contains(s.substring(j,i))) {
+                    dp[i] = true;
+                    break;}}}
+  # 1D DP
 
 152 Maximum Product Subarray
   - keep track max, min, res
@@ -416,15 +423,49 @@
             sublist.remove(i); // have to remove }}
   # Backtracking
 
-96 Unique Binary Search Trees
+*96 Unique Binary Search Trees
   - f(n) = f(0)*f(n-1) + f(1)*f(n-2) + ... + f(n-1)*f(0)
+  -  1         3     3      2      1
+      \       /     /      / \      \
+       3     2     1      1   3      2
+      /     /       \                 \
+     2     1         2                 3
+     n = 3
+     root : 1   left : 0 right : 2   f(0) * f(2);
+     root : 2   left : 1 right : 1   f(1) * f(1);
+     root : 3   left : 2 right : 0   f(2) * f(0);
   -     dp[0] =1;
-        for(int i=1;i<=n;i++) {
-            for(int j=0;j<i;j++) {
+        for(int i=1;i<=n;i++) { // 1- n 个节点
+            for(int j=0;j<i;j++) {  // 左节点数
                 dp[i] += dp[j]*dp[i-j-1];
             }
         }
   # 1D DP
+
+*95. Unique Binary Search Trees II
+  - (https://leetcode.com/problems/unique-binary-search-trees-ii/description/)
+  - Refer to 96 Unique Binary Search Trees
+  - return genTreeList(1, n);
+    public List<TreeNode> genTreeList(int start, int end) {
+        List<TreeNode> list = new ArrayList<>();
+        if (start > end) {
+            list.add(null);
+        }
+        for (int idx = start; idx <= end; idx++) {
+            List<TreeNode> leftList = genTreeList(start, idx - 1);
+            List<TreeNode> rightList = genTreeList(idx + 1, end);
+            for (TreeNode left : leftList) {
+                for (TreeNode right : rightList) {
+                    TreeNode root = new TreeNode(idx);
+                    root.left = left;
+                    root.right = right;
+                    list.add(root);
+                }
+            }
+        }
+        return list;
+    }
+  # DFS, Tree, PostOrder Traversal
 
 128 Longest Consecutive Sequence
   - keep go down, go up and get difference
@@ -451,14 +492,26 @@
         }
   # HashSet
 
-347 Top K Frequent Elements
+*347 Top K Frequent Elements
   - map.put(key, map.getOrDefault(key, 0) + 1);
   - TreeMap, sorted by key, treeMap.pollLastEntry().getValue()
   - List<Integer>[] bucket = new List[nums.length+1];
   # Sort, TreeMap, Bucket Sort
 
 142 Linked List Cycle II
-  - slow = a + b, fast = a + b + c + b, 2 * slow = fast
+  - slow = a + b, fast = a + b + c + b, 2 * slow = fast -> a = c
+  -     while(fast.next != null && fast.next.next != null) {
+            slow = slow.next;
+            if(fast.next.next == slow) {
+                ListNode pointer =head;
+                while(pointer != slow) {
+                    slow = slow.next;
+                    pointer = pointer.next;
+                }
+                return pointer;
+            }
+            fast = fast.next.next;
+        }
   # Two Pointers
 
 287 Find the Duplicate Number
@@ -2506,32 +2559,6 @@
 59. Spiral Matrix II
   - Similar to 54. Spiral Matrix
   # Array
-
-95. Unique Binary Search Trees II
-  - (https://leetcode.com/problems/unique-binary-search-trees-ii/description/)
-  - Refer to 96 Unique Binary Search Trees
-  -
-  - return genTreeList(1, n);
-    public List<TreeNode> genTreeList(int start, int end) {
-        List<TreeNode> list = new ArrayList<>();
-        if (start > end) {
-            list.add(null);
-        }
-        for (int idx = start; idx <= end; idx++) {
-            List<TreeNode> leftList = genTreeList(start, idx - 1);
-            List<TreeNode> rightList = genTreeList(idx + 1, end);
-            for (TreeNode left : leftList) {
-                for (TreeNode right : rightList) {
-                    TreeNode root = new TreeNode(idx);
-                    root.left = left;
-                    root.right = right;
-                    list.add(root);
-                }
-            }
-        }
-        return list;
-    }
-  # DFS, Tree, PostOrder Traversal
 
 115. Distinct Subsequences
   - Given a string S and a string T, count the number of distinct subsequences of S which equals T.

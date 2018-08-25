@@ -24,6 +24,11 @@ LinkedList
   - 146 LRU(Least Recently Used) Cache
     # Doubly LinkedList, HashMap
 
+* Reverse linkedlist, slow/fast pointer
+  - 234 Palindrome Linked List
+  - 160. Intersection of Two Linked Lists
+  - 142 Linked List Cycle II
+
 - 2. Add Two Numbers
 
 
@@ -61,6 +66,10 @@ Array
 
 * 左到右依次少乘本身，然后右到左乘以right（nums右到左product）
   - 238 Product of Array Except Self
+
+* Rotate array, left to top, bottom to left, ...top to right
+  - 48 Rotate Image
+
 
 - 289. Game of Life
 
@@ -273,15 +282,22 @@ Sort
   - 148 Sort List
   - 23 Merge k Sorted Lists
 
+* counting sort, sort on anagrams
+  - 49 Group Anagrams
+
+* bucket sort, maximax frequence is fixed
+  - 347 Top K Frequent Elements
+
+
 
 --------------------
 Backtracking
 --------------------
-- 17 Letter Combinations of a Phone Number
-
 * # of left parentheses is always >= right
   - 22 Generate Parentheses
 
+- 46 Permutations
+- 17 Letter Combinations of a Phone Number
 
 --------------------
 Greedy
@@ -307,6 +323,14 @@ Dynamic Programming
 --------------------
 * 1D
   - 198 House Robber
+
+* 2 for loops
+  - 139 Word Break
+      # 1D DP
+
+* Unique binary search tree, 2 for loops
+  - 96 Unique Binary Search Trees
+    # 1D DP
 
 * String Matching
   - 10. Regular Expression Matching

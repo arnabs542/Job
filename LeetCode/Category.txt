@@ -1,48 +1,137 @@
 --------------------
-Dynamic Programming
+String
 --------------------
-* String Matching
-  - 10. Regular Expression Matching
-        # 2D DP
-  - 44. Wildcard Matching
-        # 2D DP
-  - 72. Edit Distance (template for 2d DP)
-        # 2D DP
-  - 115. Distinct Subsequences
-        # 2D DP, DFS
+* Split by Regx and compare
+  - 165. Compare Version Numbers
 
-* palindromic, 2 for loops, s.charAt(i) == s.charAt(j) && dp[i+1][j-1]
-  - 5 Longest Palindromic Substring
-    # 2D DP
+* add cols and check if cut string instead of add string and compare cols
+  - 418. Sentence Screen Fitting
 
-* Matain startIndex instead of boolean dp[][]
-  - 727. Minimum Window Subsequence
-        # 2D DP
+- 43. Multiply Strings
+    # String
 
-* use sum range as cols, elements as rows
-  - 494. Target Sum
-        # 2D
+- 249. Group Shifted Strings
+    # String, HashMap
 
-* n个ballon从1个开始循环，2个，最后n个
-  - 312. Burst Balloons
+- 527. Word Abbreviation
+    # String
 
-* Recursion, memorization, 2D
-  - 486. Predict the Winner
 
-* Decode
-  - 91. Decode Ways
-        # 1D
+--------------------
+LinkedList
+--------------------
+* Doubly Linkedlist, dummy head, tail node
+  - 146 LRU(Least Recently Used) Cache
+    # Doubly LinkedList, HashMap
 
-* create student attendance with A, L, P
-  - 552. Student Attendance Record II
-        # 1D
+- 2. Add Two Numbers
 
-* 纯DP
-  - 96. Unique Binary Search Trees
 
-* array中新的value跟过去的value有关
-  - 264. Ugly Number II
-    # Array, 类似DP
+--------------------
+Array
+--------------------
+* Map array value to array index
+  - 41. First Missing Positive
+        # Array, Index
+
+* Intervals. Split to start and end array and sort them.
+  - 56. Merge Intervals
+  - 253. Meeting Rooms II
+    # Array, Sort
+
+* Matain max, min, res
+  - 152. Maximum Product Subarray
+
+* 记住行的kill和列的kill直到碰到墙 then reset
+  - 361. Bomb Enemy
+
+* sum up to current index, and matain sum map
+  - 560. Subarray Sum Equals K
+
+* matain max array and compare with index
+  - 769. Max Chunks To Make Sorted
+
+* 3 for loop, fixed 2 rows and loop cols
+  - 750. Number Of Corner Rectangles
+    # 2D Array, Math
+
+* int[256] matains previous visited index
+  - 3 Longest Substring Without Repeating Characters
+    # Two Pointers
+
+* 左到右依次少乘本身，然后右到左乘以right（nums右到左product）
+  - 238 Product of Array Except Self
+
+- 289. Game of Life
+
+
+--------------------
+Stack
+--------------------
+* calculate expression
+  - 150. Evaluate Reverse Polish Notation
+
+* maintain number stack and res stack and current res
+  - 394. Decode String
+
+* find next greater element in arr
+  - 496. Next Greater Element I
+  - 503. Next Greater Element II
+
+* parentheses
+  - 20 Valid Parentheses
+
+--------------------
+Tree
+--------------------
+- 297. Serialize and Deserialize Binary Tree
+    # BFS, Preorder Traversal, Tree
+
+- 298. Binary Tree Longest Consecutive Sequence
+    # PostOrder, Tree
+
+- 270. Closest Binary Search Tree Value
+
+* Postorder traversal and serialize subtree to string
+  - 652. Find Duplicate Subtrees
+
+
+--------------------
+HashSet
+--------------------
+* find consecutive number by going up and down
+  - 128. Longest Consecutive Sequence
+      # HashSet
+
+* encode to category
+  - 36. Valid Sudoku
+    # HashSet
+
+
+--------------------
+HashMap
+--------------------
+- 205. Isomorphic Strings
+- 1. Two Sums
+
+
+--------------------
+Two Pointers
+--------------------
+* Sliding window
+  - 438. Find All Anagrams in a String
+  - 76 Minimum Window Substring
+
+* two pointers, water
+  - 11 Container With Most Water
+  - 42. Trapping Rain Water
+        # Two Pointers
+
+- 15. 3Sum
+    # Two Pointers, Sort, Edge Case
+
+- 340. Longest Substring with At Most K Distinct Characters
+    # Two Pointers, HashMap
 
 --------------------
 Binary Search
@@ -84,108 +173,10 @@ Binary Search
 
 
 --------------------
-Tree
---------------------
-- 297. Serialize and Deserialize Binary Tree
-    # BFS, Preorder Traversal, Tree
-
-- 298. Binary Tree Longest Consecutive Sequence
-    # PostOrder, Tree
-
-- 270. Closest Binary Search Tree Value
-
-* Postorder traversal and serialize subtree to string
-  - 652. Find Duplicate Subtrees
-
---------------------
 Binary Search Tree
 --------------------
 * Matain (start, end, overlap) time using binary search tree.
   - 731. My Calendar II
-
---------------------
-Array
---------------------
-* Map array value to array index
-  - 41. First Missing Positive
-        # Array, Index
-
-* Intervals. Split to start and end array and sort them.
-  - 56. Merge Intervals
-  - 253. Meeting Rooms II
-    # Array, Sort
-
-* Matain max, min, res
-  - 152. Maximum Product Subarray
-
-* 记住行的kill和列的kill直到碰到墙 then reset
-  - 361. Bomb Enemy
-
-* sum up to current index, and matain sum map
-  - 560. Subarray Sum Equals K
-
-* matain max array and compare with index
-  - 769. Max Chunks To Make Sorted
-
-* 3 for loop, fixed 2 rows and loop cols
-  - 750. Number Of Corner Rectangles
-    # 2D Array, Math
-
-* int[256] matains previous visited index
-  - 3 Longest Substring Without Repeating Characters
-    # Two Pointers
-
-- 289. Game of Life
-
-
---------------------
-Stack
---------------------
-* calculate expression
-  - 150. Evaluate Reverse Polish Notation
-
-* maintain number stack and res stack and current res
-  - 394. Decode String
-
-* find next greater element in arr
-  - 496. Next Greater Element I
-  - 503. Next Greater Element II
-
-* parentheses
-  - 20 Valid Parentheses
-
---------------------
-String
---------------------
-* Split by Regx and compare
-  - 165. Compare Version Numbers
-
-* add cols and check if cut string instead of add string and compare cols
-  - 418. Sentence Screen Fitting
-
-- 43. Multiply Strings
-    # String
-
-- 249. Group Shifted Strings
-    # String, HashMap
-
-- 527. Word Abbreviation
-    # String
-
---------------------
-Two Pointers
---------------------
-* Sliding window
-  - 438. Find All Anagrams in a String
-  - 76 Minimum Window Substring
-
-* two pointers, water
-  - 11 Container With Most Water
-  - 42. Trapping Rain Water
-        # Two Pointers
-
-- 340. Longest Substring with At Most K Distinct Characters
-        # Two Pointers, HashMap
 
 
 --------------------
@@ -255,31 +246,6 @@ Connected Component
 - 721. Accounts Merge
     # BFS/DFS, Union Find, Graph, Connected component
 
---------------------
-HashSet
---------------------
-* find consecutive number by going up and down
-  - 128. Longest Consecutive Sequence
-      # HashSet
-
-* encode to category
-  - 36. Valid Sudoku
-    # HashSet
-
---------------------
-HashMap
---------------------
-- 205. Isomorphic Strings
-- 1. Two Sums
-
---------------------
-LinkedList
---------------------
-* Doubly Linkedlist, dummy head, tail node
-  - 146 LRU(Least Recently Used) Cache
-    # Doubly LinkedList, HashMap
-
-- 2. Add Two Numbers
 
 --------------------
 Priority Queue
@@ -289,6 +255,7 @@ Priority Queue
 
 - 218. The Skyline Problem
 
+
 ----------------------------------
 Fenwick Tree / Binary Indexed Tree
 ----------------------------------
@@ -297,6 +264,24 @@ Fenwick Tree / Binary Indexed Tree
 
 * 2D Binary Indexed Tree
   - 308. Range Sum Query 2D - Mutable
+
+
+--------------------
+Sort
+--------------------
+* LinkedList merge sort
+  - 148 Sort List
+  - 23 Merge k Sorted Lists
+
+
+--------------------
+Backtracking
+--------------------
+- 17 Letter Combinations of a Phone Number
+
+* # of left parentheses is always >= right
+  - 22 Generate Parentheses
+
 
 --------------------
 Greedy
@@ -313,6 +298,59 @@ Bit Mnaipulation
 * x ^ y, x&1, x >>= 1
   - 136 Single Number
   - 461 Hamming Distance
+
+* i&(i - 1)， 这个本来是用来判断一个数是否是2的指数的快捷方法，比如8，二进制位1000, 那么8&(8-1)为0，只要为0就是2的指数
+  - 338 Counting Bits
+
+--------------------
+Dynamic Programming
+--------------------
+* 1D
+  - 198 House Robber
+
+* String Matching
+  - 10. Regular Expression Matching
+        # 2D DP
+  - 44. Wildcard Matching
+        # 2D DP
+  - 72. Edit Distance (template for 2d DP)
+        # 2D DP
+  - 115. Distinct Subsequences
+        # 2D DP, DFS
+
+* palindromic, 2 for loops, s.charAt(i) == s.charAt(j) && dp[i+1][j-1]
+  - 5 Longest Palindromic Substring
+    # 2D DP
+
+* Matain startIndex instead of boolean dp[][]
+  - 727. Minimum Window Subsequence
+        # 2D DP
+
+* use sum range as cols, elements as rows
+  - 494. Target Sum
+        # 2D
+
+* n个ballon从1个开始循环，2个，最后n个
+  - 312. Burst Balloons
+
+* Recursion, memorization, 2D
+  - 486. Predict the Winner
+
+* Decode
+  - 91. Decode Ways
+        # 1D
+
+* create student attendance with A, L, P
+  - 552. Student Attendance Record II
+        # 1D
+
+* 纯DP
+  - 96. Unique Binary Search Trees
+
+* array中新的value跟过去的value有关
+  - 264. Ugly Number II
+    # Array, 类似DP
+
 
 --------------------
 Design

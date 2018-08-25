@@ -1,16 +1,16 @@
-1 Two Sum
+1. Two Sum
   - Use HashMap to track each visited num
   # HashMap
 
-2 Add Two Numbers
+2. Add Two Numbers
   - Use iteration rather than recursion because of the corner case [9], [9,9]. Its hard to deal with this situation with recursion.
   - When using pointer to deal with each node in the linked list. Use a dummy root node to connect the real root node. At the end, return root.next.
   # Linked List
 
-136 Single Number
+136. Single Number
     - bit manipulation. XOR: x^y
 
-* 4 Median of Two Sorted Arrays
+*4. Median of Two Sorted Arrays
   - attention to corner cases
   - (https://www.youtube.com/watch?v=do7ibYtv5nk)
   -     int length1 = nums1.length;
@@ -41,7 +41,7 @@
         }
   # binary search
 
-461 Hamming Distance
+461. Hamming Distance
   - int_num / 2 == int_num >> 1
   -     int res = x^y;
         while(res>0) {
@@ -50,11 +50,11 @@
         }
   # bit manipulation
 
-11 Container With Most Water
+11. Container With Most Water
   - Time O(n), Space O(1)
   # two pointer
 
-3 Longest Substring Without Repeating Characters
+3. Longest Substring Without Repeating Characters
   - String: charAt(), length(), isEmpty()
   - Set: contains(), size(), add(), remove()
   - Character -> char: Character.charValue()
@@ -63,18 +63,18 @@
   - int[] matains the previous visited index
   # two pointer
 
-20 Valid Parentheses
+20. Valid Parentheses
   - attention to corner case, e.g. check size before pop, check queue before return
   - only LinkedList has push & pop, List doesnt have
   # Stack
 
-21 Merge Two Sorted Lists
+21. Merge Two Sorted Lists
   - deal with linkedlist
   # LinkedList
 
 104 Maximum Depth of Binary Tree
 
-*5 Longest Palindromic Substring
+*5. Longest Palindromic Substring
   - String.substring(startIndex, endIndex) // "abc".substring(0,2) == "ab"
   - char -> String: Character.toString(char)
   - expand around center Time O(n^2), Space O(1)
@@ -94,7 +94,7 @@
         }
   # 2D DP
 
-*146 LRU(Least Recently Used) Cache
+*146. LRU(Least Recently Used) Cache
   - HashMap, Double LinkedList
   - Create Dummy head and tail node, tail node helps remove node
   - private void addNode(LinkedNode node){
@@ -130,7 +130,7 @@
     }
   # Double LinkedList, HashMap
 
-*206 Reverse Linked List
+*206. Reverse Linked List
   - // Iteration
     public ListNode reverseList(ListNode head) {
       ListNode prev = null;
@@ -153,76 +153,111 @@
     }
   # LinkedList
 
-53 Maximum Subarray
+53. Maximum Subarray
   - int[] arr; int length = arr.length // not length()
   # Array
 
-155 Min Stack
+155. Min Stack
   - LinkedList: push(), pop(), peek()
   - attention to size() of linkedlist when push() and pop()
   - 在-128~127的Integer值以int进行比较，而超出-128~127的范围，进行==比较时是进行地址及数值比较。转换成int再进行大小比较
   # Stack LinkedList
 
-169 Majority Element
+169. Majority Element
   - Arrays.sort() // nlog(n)
   # HashMap, Moore voting algorithm
 
-283 Move Zeroes
+283. Move Zeroes
   - attention to array length when running two pointers
   # Two Pointers
 
-141 Linked List Cycle
+141. Linked List Cycle
   - set fast runner and slow runner, if has cycle, fast == slow
   # Two Pointers
----------------------------------------------------------------------
-148 Sort List
+
+*148. Sort List
   - merge sort is preferrable for linked list
   - middle = getMiddle(head);merge(sort(head), sort(middle))
   # Merge Sort, Two Pointers, Merge two lists
 
-121 Best Time to Buy and Sell Stock
+121. Best Time to Buy and Sell Stock
 
-70 Climbing Stairs
+70. Climbing Stairs
   - f(result) = f(one step away) + f(two step away)
   - recursion: time O(2^n) iteration: time O(n)
   # Fibonacci, DP
 
-57 Merge k Sorted Lists
+*23. Merge k Sorted Lists
   - Merge sort for array, compare with 148(merge sort on list)
   - ListNode[] lists; lists.length // not lists.size()
   # Merge Sort, Divide and Conquer, Merge two lists
 
-42 Trapping Rain Water
+*42. Trapping Rain Water
   - compare left and right, move towards and keep lMax, rMax
   - main idea is level up
   - Math.max, Math.min
+  -     int l=0, r=height.length-1, lMax=0, rMax = 0, res=0;
+        while(l < r) {
+            if(height[l] < height[r]) {
+                lMax = Math.max(lMax, height[l]);
+                res += lMax - height[l];
+                l++;
+            } else {
+                rMax = Math.max(rMax, height[r]);
+                res += rMax - height[r];
+                r--;
+            }
+        }
   @ Time: O(n), Space: O(1)
   # Two Pointers
 
-226 Invert Binary Tree
+226. Invert Binary Tree
   # Post order traversal of Binary Tree
 
-15 3Sum
+*15. 3Sum
   - be careful of IndexOutOfBoundsException for e.g. arr[i+1]
   - Arrays.sort(). Arrays.asList(T... a)
   - ArrayList rather than LinkedList
+  -     Arrays.sort(nums);
+        for(int i=0;i<nums.length-2;i++) {
+            if(i>0 && nums[i] == nums[i-1]) {
+                continue;
+            }
+            int sum = 0-nums[i];
+            int l = i+1;
+            int r = nums.length-1;
+            while(l < r) {
+                if(nums[l] + nums[r] == sum) {
+                    list.add(Arrays.asList(nums[i], nums[l], nums[r]));
+                    while(l<r && nums[l] == nums[l+1]) {l++;}
+                    while(l<r && nums[r] == nums[r-1]) {r--;}
+                    l++;
+                    r--;
+                } else if (nums[l] + nums[r] < sum){
+                  l++;
+                } else {
+                    r--;
+                }
+            }
   @ Time: O(n^2), O(n)
   # Two Pointers, Sort, Edge Case
 
-* 198 House Robber
+*198. House Robber
   - Rob(n) = Max(Rob(n-2)+ Money(n), Rob(n-1))
-  -     int prevNo = 0;
-        int prevYes = 0;
-        for (int i=0;i<height;i++) {
-            int temp = prevNo;
-            prevNo = Math.max(prevNo, prevYes);
-            prevYes = levels[i] + temp;
+  - public int rob(int[] num) {
+        int prevMax = 0;
+        int currMax = 0;
+        for (int x : num) {
+            int temp = currMax;
+            currMax = Math.max(prevMax + x, currMax);
+            prevMax = temp;
         }
-        return Math.max(prevNo, prevYes);
+        return currMax;
+    }
   @ Time: O(n), Space: O(1)
   # DP
 
-* 10 Regular Expression Matching
+*10. Regular Expression Matching
   - Run s ={x,a,a,b} p = {x,a,*,b}, dp[s.length()+1][p.length()+1]
     when s=p=null, dp[0][0]=true
       initialze dp[0][j] // when p is null
@@ -238,7 +273,7 @@
   - (https://www.youtube.com/watch?v=l3hda49XcDE&t=194s)
   # 2D DP
 
-44. Wildcard Matching
+*44. Wildcard Matching
   - Similar to 10.
   -     for(int i=1;i<=s.length();i++) {
             for(int j=1;j<=p.length();j++) {
@@ -251,28 +286,55 @@
         }
     # 2D DP
 
-238 Product of Array Except Self
+*238. Product of Array Except Self
   - Corner case: 0 # 0, 1 # 0, >1 # 0
+  - 左到右依次少乘本身，然后右到左乘以right（nums右到左product）
+  - public int[] productExceptSelf(int[] nums) {
+        int n = nums.length;
+        int[] res = new int[n];
+        res[0] = 1;
+        for (int i = 1; i < n; i++) {
+            res[i] = res[i - 1] * nums[i - 1];
+        }
+        int right = 1;
+        for (int i = n - 1; i >= 0; i--) {
+            res[i] *= right;
+            right *= nums[i];
+        }
+        return res;
+    }
   @ Time: O(n), Space: O(n)
 
-17 Letter Combinations of a Phone Number
+17. Letter Combinations of a Phone Number
   - Collections.emptyList(), Collections.singletonList()
   - Arrays.asList(T...), String str.toCharArray()
   @ Time: O(n^3), Space: O(n)
   # Recursion, Backtracking
 
-617 Merge Two Binary Trees
+617. Merge Two Binary Trees
+  -  public TreeNode mergeTrees(TreeNode t1, TreeNode t2) {
+        if(t1 == null) {
+            return t2;
+        } else if (t2 == null) {
+            return t1;
+        }
+        TreeNode t = new TreeNode(t1.val + t2.val);
+        t.left = mergeTrees(t1.left, t2.left);
+        t.right = mergeTrees(t1.right, t2.right);
+        return t;
+      }
   # Tree
 
-22 Generate Parentheses
+*22. Generate Parentheses
   - num of left Parentheses always >= right
   # Backtracking
 
-56 Merge Intervals
+*56. Merge Intervals
   - List list.subList()
   - Collections.sort(List list, (a,b)->a-b), sort on list
   - Arrays.sort(), sort on array
   - Object operations are expensive e.g.sort, use primitive as much as possible
+  - maintain start index and end index
   -   for (int i = 0; i < n; i++) {
         starts[i] = intervals.get(i).start;
         ends[i] = intervals.get(i).end;
@@ -289,12 +351,14 @@
       }
   # Array, Sort
 
-338 Counting Bits
+338. Counting Bits
   - i&(i - 1)， 这个本来是用来判断一个数是否是2的指数的快捷方法，比如8，二进制位1000, 那么8&(8-1)为0，只要为0就是2的指数
   - 每个i值都是i&(i-1)对应的值加1
-  # Bit
+  # Bit Mnaipulation
 
-200 Number of Islands
+---------------------------------------------------------------------
+
+200. Number of Islands
   - 2d array, matrix, connected component
   - avoid using collection or object to waste time
   # DFS/BFS, Graph, Connected Component

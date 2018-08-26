@@ -356,8 +356,6 @@
   - 每个i值都是i&(i-1)对应的值加1
   # Bit Mnaipulation
 
----------------------------------------------------------------------
-
 200. Number of Islands
   - 2d array, matrix, connected component
   - avoid using collection or object to waste time
@@ -514,7 +512,7 @@
         }
   # Two Pointers
 
-287 Find the Duplicate Number
+*287 Find the Duplicate Number
   - binary search template
       public int findDuplicate(int[] nums) {
         int max = nums.length-1;
@@ -534,8 +532,8 @@
     Binary Search: time O(nlogn), space O(1)
   # Binary Search, LinkedList Cycle II
 
-406 Queue Reconstruction by Height
-  - sort [a,b] first by decending a, then by increasing b. arr = int[][]
+*406 Queue Reconstruction by Height
+  - sort arr[a][b] first by decending a, then by increasing b. arr = int[][]
     Arrays.sort(arr, (x,y) -> x[0] == y[0]? x[1]-y[1] ? y[0]-x[0])
   - list to array: List.toArray(T[] a)
   - Time: O(n^2), Space: O(n)
@@ -546,7 +544,7 @@
   - Time O(n), Space O(n)
   # Value to Index
 
-279 Perfect Squares
+*279 Perfect Squares
   - for(int i=0;i<=n;i++) {
         for(int j =1;j*j<=i;j++) {
             dp[i] = Math.min(dp[i], dp[i-j*j] + 1);
@@ -601,13 +599,13 @@
   - if question gives 2D array/matrix, use DFS/BFS. e.g. P323(number of islands)
   - if question gives 2D relation array (e.g. node edge, friends relation), use 1D arry Union Find, DFS/BFS. e.g. P323, P547
 
-218 The Skyline Problem
+*218 The Skyline Problem
   - PriorityQueue<Integer> pq, pq.offer(number)
   - Collections.sort(list, (a,b)-> (a[0]==b[0]) ? a[1]-b[1] : a[0]-b[0]);
   - distinguish building start and end by making start as negative, sort first by start and then height in increasing order. Matain priority queue in decending order of height. Conner case would be [[0,2,3],[2,5,3]]
   # Priority Queue, TreeMap, Sweep Line
 
-240 Search a 2D Matrix II
+*240 Search a 2D Matrix II
   - think of O(n) for seach first. Then to think O(logn) using binary search
   - For this question, think from 4 coners
   # Array
@@ -633,9 +631,18 @@
 64 Minimum Path Sum
   # 2D DP
 
-101 Symmetric Tree
+*101 Symmetric Tree
   - In reursion, check treeNode1, treeNode2 null, compare treeNode.val
   - predorder check
+  - private boolean compare(TreeNode n1, TreeNode n2) {
+        if(n1 == null && n2 != null) return false;
+        if(n1 != null && n2 == null) return false;
+        if(n1 == null && n2 == null) return true;
+        if(n1.val != n2.val) return false;
+
+        return compare(n1.left, n2.right) && compare(n1.right, n2.left);
+
+    }
   # Inorder Traversal, Binary Tree
 
 124 Binary Tree Maximum Path Sum
@@ -644,25 +651,23 @@
   - postorder, calculate res = Math.max(res, left+right+node.val), return Math.max(left, right) + node.val
   # PostOrder Traversal, Binary Tree
 
-236 Lowest Common Ancestor of a Binary Tree
+*236 Lowest Common Ancestor of a Binary Tree
   - find first parent that includes both nodes.
-  - private boolean traverse(TreeNode node, TreeNode p, TreeNode q) {
-        if(node == null) return false;
-        boolean left = traverse(node.left, p, q);
-        boolean right = traverse(node.right, p, q);
-        boolean hasPOrQ = node==p || node==q;
-
-        if(left && right) res = node;
-        if((left||right) && hasPOrQ) res = node;
-
-        return left || right || hasPOrQ;
+  -  TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if(root == null || root == p || root == q) return root;
+        TreeNode left = lowestCommonAncestor(root.left, p, q);
+        TreeNode right = lowestCommonAncestor(root.right, p, q);
+        if(left != null && right != null) {
+            return root;
+        }
+        return left != null ? left : right;
     }
-  # Postorder Traversal, Binary Tree
+    # Postorder Traversal, Binary Tree
 
-76 Minimum Window Substring
+*76 Minimum Window Substring
   - Use int array to record num of each char. faster pointer runs and decrease num of each char until total becomes 0. Then slow pointer runs and increase num of each char until total becomes 1. Then get i-j+1 compare with the min distance.
 
-    int[] table = new int[128]; // ascii has 128 values
+    int[] table = new int[256]; // ascii has 256 values
     for(char c:t.toCharArray()) {
         table[c]++;
     }
@@ -679,7 +684,7 @@
 
   # Sliding Window, Two Pointers, HashTable
 
-105 Construct Binary Tree from Preorder and Inorder Traversal
+*105 Construct Binary Tree from Preorder and Inorder Traversal
   - preorder is easy to find root, then find index of root from inorder.
     public TreeNode helper(int preStart, int inStart, int inEnd, int[] preorder, int[] inorder) {
         if (preStart > preorder.length - 1 || inStart > inEnd) return null;
@@ -688,6 +693,8 @@
         root.left = helper(preStart + 1, inStart, inIndex - 1, preorder, inorder);
         root.right = helper(preStart + inIndex - inStart + 1, inIndex + 1, inEnd, preorder, inorder);
   # Tree
+
+---------------------------------------------------------------------
 
 32 Longest Valid Parentheses
   -   for(int i=0;i<s.length();i++) {
@@ -3633,8 +3640,6 @@
 
 
 
-
-*** Go over to 2360 Aug 5
 
 
 

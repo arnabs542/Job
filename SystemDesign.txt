@@ -3,3 +3,75 @@
 * https://www.hiredintech.com/classrooms/system-design/lesson/55
 
 * scalability. e.g. DB(Master-slave), sharding, Cache(Redis, Memcached), Load-balancing.
+
+
+---------------------------
+News Feed
+---------------------------
+* scenario
+    - dau: daily active users
+    - qps(query per second)
+      1. relation with dau * freq / daily seconds
+      2. relation with server.
+         1 webserver 1k QPS, 1 sql 1k, 1 nosql 10k, 1 memcased nosql 1m qps
+
+* service
+  - User Service
+  - Tweet Service
+  - Media Service
+  - Friendship Service
+
+* storage
+  - schema
+  - sql: User Service, Friendship Service
+  - nosql: Tweet Service
+  - file system: Media Service, e.g S3
+
+* scale
+  - sharding
+  - optimze
+  - special case
+
+* Pull
+  - slow for read. Improve by cache
+
+* Push - insync for push to followers
+  - slow for write cause add user/follower relation into tables, but can do insync for post tweet
+
+* Pull + Push
+  - push for normal users with fewer followers
+  - pull for star with lots of followers
+  - 可能出现摇摆问题，吊粉
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

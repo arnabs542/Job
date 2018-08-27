@@ -43,13 +43,43 @@ News Feed
   - pull for star with lots of followers
   - 可能出现摇摆问题，吊粉
 
+---------------------------
+Database
+---------------------------
+* QPS
+  - MySQl 1k
+  - 硬盘型NoSQL数据库 MongoDB/Cassandra 10k
+  - 内存型数据库 Redis/Memcached(单机) 100k - 1m QPS，
+  - Redis支持数据持久化，Memcached不支持数据持久化.Redis 读写都很快的cache-through db.
 
+* 思考读多于写和是反过来
 
+* cache delete ; database set
 
+* Design User System 
+  - AuthService
+    - Session table : login session_key 作为cookie值返回browser, then request to website including cookie. Logout will remove session from table.
+    - session table 推荐存数据库而不是内存
+  - UserService
+  - FriendshipService
+    - mutual friendship: smaller_user_id, bigger_user_id or from_user_id, to_user_id 
 
+* SQL or NoSQL
+  - SQL is mature and support much more things than NoSQL. NoSQL support higher QPS.
+  - NoSQL doesn't support transactional
 
+* Cassandra
+  - insert(row_key, column_key, value)
+  - row_key, column_key, value决定存在哪个database上
+  - row_key: hash_key, for routing, sharding purpose，can't range query
+  - column_key: sorted, support range query
+  - value: 
 
-
+* Scale: Single Point Failure
+  - Sharding: 拆分数据存储到不同数据库
+      Vertical Sharding：tables存入不同数据库
+      Horizontal Sharding: put 1 table into diff dbs. Add new db machine, how to resolve data migration issue? consistent hashing.
+  - Replica
 
 
 

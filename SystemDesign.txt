@@ -81,6 +81,65 @@ Database
       Horizontal Sharding: put 1 table into diff dbs. Add new db machine, how to resolve data migration issue? consistent hashing.
   - Replica
 
+---------------------------
+Crawler & Typehead
+---------------------------
+* Web Crawler
+
+* Scenario 
+  1. how many web pages per second
+  2. how long 
+  3. how large 10k average size of a webpage
+
+* Single-threaded web crawler
+  - Producer Consumer Pattern, buffer 
+  - bfs, remove()-> store page -> extract urls -> offer()
+
+* multiple threaded 
+  - multiple crawler + 1 URL queue
+  - 3 approaches to resolve multi-threaded buffer write
+    1. sleep
+    2. condition variable 
+    3. semaphore
+  - context switch cost, port number limitation, network bottleneck
+
+* distributed web scrawler
+  - URL queue need to be very big: task table(url, state, priority, available_time )
+  - Service: CrawLer, TaskService, StorageServices
+  - Storage: db task table, BigTable to store web pages
+  - Optimization: 
+    1. distributed task tables, horizontal sharding 
+    2. set available_time based on update faliture
+    3. dead cycle, use quota
+
+* Typeahead: 提示关键词
+  - prefix -> top hot search keywords
+
+* Scenario 
+  - DAU 500m, QPS: 138k, Peak: QPS*3
+
+* Service
+  - QueryService: trie (in memory)
+  - DataCollectionService：
+    1. table keyword, hit_count -> prefix, keywords 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

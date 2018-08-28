@@ -690,13 +690,17 @@
         if (preStart > preorder.length - 1 || inStart > inEnd) return null;
         TreeNode root = new TreeNode(preorder[preStart]);
         // find inIndex
+        for (int i = inStart; i <= inEnd; i++) {
+          if (inorder[i] == root.val) {
+              inIndex = i;
+            }
+        }
         root.left = helper(preStart + 1, inStart, inIndex - 1, preorder, inorder);
         root.right = helper(preStart + inIndex - inStart + 1, inIndex + 1, inEnd, preorder, inorder);
   # Tree
 
----------------------------------------------------------------------
-
-32 Longest Valid Parentheses
+*32 Longest Valid Parentheses
+  - push index into stack
   -   for(int i=0;i<s.length();i++) {
         if(s.charAt(i) == '(') {
             stack.push(i);
@@ -707,23 +711,24 @@
               stack.pop();
               res = stack.empty() ? Math.max(res, i-start) : Math.max(res, i-stack.peek());}}}
 
-  # Stack
+  # Stack,
 
 78 Subsets
   - Use startIndex to avoid duplicate
-    for(int i = 1;i<=nums.length;i++)
-        find(new LinkedList<Integer>(), nums, 0, i);
-    }
-    private void find(List<Integer> list, int[] nums, int startIndex, int num) {
-        if(list.size() == num) {
-            res.add(new LinkedList<>(list));
-        }
-        for(int i=startIndex; i<nums.length;i++) {
-            list.add(nums[i]);
-            find(list, nums, i+1, num); // use i+1 to avoid dupilcate
-            list.remove(list.size()-1);
-        }
-    }
+  public List<List<Integer>> subsets(int[] nums) {
+      List<List<Integer>> list = new ArrayList<>();
+      backtrack(list, new ArrayList<>(), nums, 0);
+      return list;
+  }
+
+  private void backtrack(List<List<Integer>> list , List<Integer> tempList, int [] nums, int start){
+      list.add(new ArrayList<>(tempList));
+      for(int i = start; i < nums.length; i++){
+          tempList.add(nums[i]);
+          backtrack(list, tempList, nums, i + 1);
+          tempList.remove(tempList.size() - 1);
+      }
+  }
   # Backtracking
 
 ** 301 Remove Invalid Parentheses
@@ -736,12 +741,15 @@
             if (s.charAt(i) == pair[1]) count--;
             if(count >= 0 ) continue;
             for(int j=slow;j<=i;j++) {
+              // ensure no duplicates
                 if(s.charAt(j) == pair[1] && (j == slow || s.charAt(j-1) != pair[1])) {
                     construct(res, s.substring(0, j) + s.substring(j+1), i, j, pair);
                 }
             }
             return;
         }
+
+        // Check '(' more than ')'
         String rs = new StringBuilder(s).reverse().toString();
         if(pair[0] == '(') {
             construct(res, rs, 0, 0, new char[]{')', '('});
@@ -766,10 +774,36 @@
   - time O(n), space o(1)
   # Greedy
 
-215 Kth Largest Element in an Array
+*215 Kth Largest Element in an Array
   - PriorityQueue is minHeap, poll() removes the least value. Each op takes logk
   - Priority Queue keeps track of k elements. time O(nlogk), space O(n)
   - Quick Select, select pivot, compare and return left index, if left index = k, then return. (http://www.geekviewpoint.com/java/search/quickselect)
+  -   private int quickSelect(int[] nums, int k, int left, int right) {
+          int index = partition(nums, left, right);
+          if(index == k) {
+              return nums[index];
+          } else if(index > k) {
+              return quickSelect(nums, k, left, index-1);
+          } else {
+              return quickSelect(nums, k, index+1, right);
+          }
+      }
+      private int partition(int[] nums, int left, int right) {
+          int pivot = nums[right];
+          int index = left;
+          for(int i = left;i<right;i++) {
+              if(nums[i]>=pivot) {
+                  int temp = nums[index];
+                  nums[index] = nums[i];
+                  nums[i] = temp;
+                  index++;
+              }
+          }
+          int temp = nums[index];
+          nums[index] = nums[right];
+          nums[right] = temp;
+          return index;
+      }
   - Quick Select time average O(n), wrost O(n^2)
   # Quick Select, Priority Queue
 
@@ -777,8 +811,17 @@
   - time O(n), space O(n)
   # Preorder Traversal
 
-647 Palindromic Substrings
+*647 Palindromic Substrings
   - interate string, for each iteration, left-- and right++ to find palindrome until s.charAt(left) != s.charAt(right).
+  -   for(int i=0;i<s.length();i++) {
+          count(s, i, i);
+          count(s, i, i+1);
+      }
+      private void count(String s, int l, int r) {
+          while(l>=0 && r<s.length() && s.charAt(l--) == s.charAt(r++)) {
+              res++;
+          }
+      }
   # String
 
 75 Sort Colors
@@ -820,6 +863,7 @@
         }
         int res = (max-1) * (n+1);
         for(int i:arr) if(i == max) res++;
+        // corner case for tasks.length: n = 0, [A,A,A,B,B,B]
         return Math.max(res, tasks.length);}
 
 *84 Largest Rectangle in Histogram
@@ -838,6 +882,8 @@
     }
   - time O(n), space O(n)
   # Stack
+
+---------------------------------------------------------------------
 
 315 Count of Smaller Numbers After Self
   - TreeMap.lowerKey() // predecessor, TreeMap.higherKey // successor

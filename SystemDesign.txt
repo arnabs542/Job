@@ -121,8 +121,14 @@ Crawler & Typehead
 * Service
   - QueryService: trie (in memory)
   - DataCollectionService：
-    1. table keyword, hit_count -> prefix, keywords 
+    1. table keyword, hit_count -> prefix, keywords  
 
+* distributed trie
+  - can't distribute by a, b, c... cause its not averaged. Use am, ad, ac....
+
+* log data service
+  - modify trie periodically e.g. 10 min, then switch to new trie
+  - probabilistic logging:  
 
 
 

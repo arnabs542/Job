@@ -885,7 +885,7 @@
 
 ---------------------------------------------------------------------
 
-315 Count of Smaller Numbers After Self
+*315 Count of Smaller Numbers After Self
   - TreeMap.lowerKey() // predecessor, TreeMap.higherKey // successor
   - Arrays.asList(Object only)
   -     private int insert(List<Integer> list, int num) {
@@ -946,7 +946,7 @@
 
   # Binary Search, Binary Index Tree/Fenwick Tree
 
-34 Search for a Range
+*34 Search for a Range
    //find first
    private int findFirst(int[] nums, int target) {
         int l = 0; int r = nums.length-1;
@@ -971,15 +971,15 @@
     }
   # Binary Search
 
-309. Best Time to Buy and Sell Stock with Cooldown
+*309. Best Time to Buy and Sell Stock with Cooldown
   - 分析时用状态转移方程
                       <-
                       \ /
-                     rest
+                     rest(hold)
                     /     \
                    |       ^   1 day cooldown, so no sold -> hold
                    V       |
-                  hold -> sold
+                  hold(buy) -> sold(sell)
                    /\
                    ->
     hold[i] = max(hold[i-1], rest[i-1] - price[i])
@@ -988,6 +988,16 @@
     init hold = Integer.MIN_VALUE, rest = sold = 0
     res = max(rest[i], sold)
     time O(n) space O(n) -> O(1) // use iteration
+    -   int hold = Integer.MIN_VALUE;
+        int rest = 0;
+        int sold = 0;
+        for(int price:prices) {
+            int pre_sold = sold;
+            sold = hold + price;
+            hold = Math.max(hold, rest-price);
+            rest = Math.max(rest, pre_sold);
+        }
+        return Math.max(rest, sold);
   # DP
 
 122. Best Time to Buy and Sell Stock II
@@ -998,7 +1008,7 @@
     }
   # Two Pointers, Greedy
 
-123. Best Time to Buy and Sell Stock III
+*123. Best Time to Buy and Sell Stock III
   -     int buy1 = Integer.MIN_VALUE;int sell1 = 0;
         int buy2 = Integer.MIN_VALUE;int sell2 = 0;
         for(int price: prices) {
@@ -1009,8 +1019,8 @@
         }
   # DP
 
-114. Flatten Binary Tree to Linked List
-  - create dummy root for return purpose, cause root is changing
+*114. Flatten Binary Tree to Linked List
+  - create dummy root for return purpose, cause root is changing. iterate right then left.
   -     TreeNode temp = null;
         public void flatten(TreeNode root) {
             if(root == null) return;
@@ -1020,26 +1030,30 @@
             root.left = null;
             temp = root;
         }
-  # Preorder, Tree
+  # PostOrder, Tree
 
-239. Sliding Window Maximum
+*239. Sliding Window Maximum
   - maintain decending order queue, when push new element, remove elements that less than the new element. pop() pops the first element which is also the largest element. Amotized time O(1)
   -     int[] res = new int[n-k+1];
         // Store index into queue rather than value
-        Deque<Integer> queue = new LinkedList<>();
-        for(int i=0;i<n;i++) {
-            // add
-            while(!queue.isEmpty() && nums[queue.peekLast()] < nums[i]){
-                queue.removeLast();}
-            queue.offer(i);
-            // remove if i > k-1
-            if(i>k-1 && queue.peekFirst() == i-k) {
-                queue.pollFirst();}
-            // add res if i>= k-1
-            if(i >= k-1) {
-                res[i-k+1] = nums[queue.peekFirst()];}}
+        Deque<Integer> q = new ArrayDeque<>();
+        for (int i = 0; i < a.length; i++) {
+          // remove numbers out of range k
+          while (!q.isEmpty() && q.peek() < i - k + 1) {
+            q.poll();
+          }
+          // remove smaller numbers in k range as they are useless
+          while (!q.isEmpty() && a[q.peekLast()] < a[i]) {
+            q.pollLast();
+          }
+          // q contains index... r contains content
+          q.offer(i);
+          if (i >= k - 1) {
+            r[ri++] = a[q.peek()];
+          }
   - Priority Queue time O(nlogk), space O(n)
   - Deque time amotized O(n), space O(n)
+  - Using queue instead of stack to operate on both side
   # Monotonic Queue / Deque,
 
 322. Coin Change
@@ -1055,7 +1069,7 @@
   - Refer to Word Break and Perfect Squares
   # 1D DP
 
-94. Binary Tree Inorder Traversal
+*94. Binary Tree Inorder Traversal
   - maintain current node and stack
   -     // Iterative
         TreeNode cur = root;
@@ -1070,7 +1084,7 @@
         }
   # Inorder Traversal, Stack
 
-394. Decode String
+*394. Decode String
   - Stack<> stack = new Stack<>() // Stack<> s = new LinkedList<>() not right
   - Character.isDigit() // check '0' - '9'
   -     //create 2 stacks, one to save number, one to save res.

@@ -79,7 +79,6 @@ Array
 
 - 289. Game of Life
 
-
 --------------------
 Stack
 --------------------
@@ -106,6 +105,8 @@ Stack
 * Matain increasing order index in stack
   - 84 Largest Rectangle in Histogram
 
+* Decode String with 2 stacks and one current res
+  - 394. Decode String
 
 --------------------
 Tree
@@ -124,6 +125,14 @@ Tree
 
 * level traversal, preorder
   - 102 Binary Tree Level Order Traversal
+
+* flatten tree, right -> left
+  - 114. Flatten Binary Tree to Linked List
+      # PostOrder, Tree
+
+* Tree inorder iterative traversal with stack
+  - 94. Binary Tree Inorder Traversal
+      # Inorder Traversal, Stack
 
 - 297. Serialize and Deserialize Binary Tree
     # BFS, Preorder Traversal, Tree
@@ -168,6 +177,10 @@ Two Pointers
   - 438. Find All Anagrams in a String
   - 76 Minimum Window Substring
 
+* Matain index queue of decending num.
+  Use queue to operate on both sides rather than stack
+  - 239. Sliding Window Maximum
+
 * two pointers, water
   - 11 Container With Most Water
   - 42. Trapping Rain Water
@@ -192,6 +205,10 @@ Binary Search
 * fnid duplicates in unsorted array
   - 287 Find the Duplicate Number
     # Binary Search, unsorted array
+
+* find leftmost and rightmost
+  - 34 Search for a Range
+      # Binary Search
 
 * 终极老怪
   - 33. Search in Rotated Sorted Array
@@ -378,6 +395,8 @@ Dynamic Programming
       # 1D DP
   - 279 Perfect Squares
       # 1D DP
+  - 322. Coin Change
+      # 1D DP
 
 * Unique binary search tree, 2 for loops
   - 96 Unique Binary Search Trees
@@ -400,6 +419,14 @@ Dynamic Programming
 * palindromic, 2 for loops, s.charAt(i) == s.charAt(j) && dp[i+1][j-1]
   - 5 Longest Palindromic Substring
     # 2D DP
+
+* buy and sell stock
+  - 309. Best Time to Buy and Sell Stock with Cooldown
+      # 1D DP
+  - 122. Best Time to Buy and Sell Stock II
+      # Greedy
+  - 123. Best Time to Buy and Sell Stock III
+      # 1D DP
 
 * Matain startIndex instead of boolean dp[][]
   - 727. Minimum Window Subsequence

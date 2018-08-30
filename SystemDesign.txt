@@ -130,7 +130,44 @@ Crawler & Typehead
   - modify trie periodically e.g. 10 min, then switch to new trie
   - probabilistic logging: 每1000个log一次
 
+---------------------------
+Distributed File System (Goole File System)
+---------------------------
+* GFS vs HDFS
+  - GFS is not open source, HDFS is. Other is the same.
 
+* Scenario 
+  - read/write file
+  - how large: 1000T
+
+* Service 
+  - client, servers
+  - servers communication
+    - peer to peer: e.g. BitComet, Cassandra 
+    - master, slave: partition, naster扮演管理者位置
+
+* Storage:
+  - Peer 2 Peer: Cassandra, redundency
+  - Master Slave: easy design. 挂了就重启
+
+* Save a small file in one machine
+  - file and meta data. Save meta data separetely 
+  - windows 连续化存储， linux 碎片化存储
+  - meta data has index which includes many blocks(1KB) and each block point to the disk address that the file is stored 
+
+* Save a large file in one machine
+  - index includes chunk(64MB) instead of block to reduce size  
+
+* Save extra-large file in several machines
+  - Master, Slave
+  - Master include index (chunks server) info, Salve ChunkServer includes chunk info  
+
+
+
+* Check & handle systme failure and error
+
+
+* Design DFS
 
 
 

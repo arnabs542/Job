@@ -159,15 +159,34 @@ Distributed File System (Goole File System)
   - index includes chunk(64MB) instead of block to reduce size  
 
 * Save extra-large file in several machines
-  - Master, Slave
+  - Master: matain metadata, map of chunk and chunk server
+  - Slave: store chunk 
   - Master include index (chunks server) info, Salve ChunkServer includes chunk info  
 
+* Write (client, server(master, slave))
+  - 拆分写入DFS: 断点续传，以chunk为单位
+  - client -> master: 写chunk1 
+    master -> client: 回chunkserver list
+    client -> slave: 写， 从slave1，2，3中选个队长1写进去，然后slave1再写给其他slave
+  - Client: Database, WebServer, Server: GFS, client and server是相对的概念
+
+* Update
+  - write new data to fs, change the index in master to the new data address. Leave the old data there.
+
+* Read
+  - 拆分的部分从master index(chunk list)中知道，然后共同读取
+
+* Scale
+  + one master(90% cases) 不够
+  + chunk坏了
+    - checksum(MD5, SHA1, SHA256, SHA512), add checksum to the end of chunk. When read data, calculate checksum and compare the one at the end.
+    - 周期性检查，读的时候检查checksum
+    - Recover: ask master
+  + Replica
+    - 3份
+  + heartbeat,验证chunkserver在不在
 
 
-* Check & handle systme failure and error
-
-
-* Design DFS
 
 
 

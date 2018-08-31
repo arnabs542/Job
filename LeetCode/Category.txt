@@ -134,6 +134,17 @@ Tree
   - 94. Binary Tree Inorder Traversal
       # Inorder Traversal, Stack
 
+* DP in tree
+  - 337. House Robber III
+      # Tree, DP
+
+* path sum from any node
+  - 437. Path Sum III
+      # PreOrder on sum, PostOrder on res, Tree, DFS
+
+* Inorder traversal and compare with previous node
+  - 98. Validate Binary Search Tree
+
 - 297. Serialize and Deserialize Binary Tree
     # BFS, Preorder Traversal, Tree
 
@@ -181,6 +192,10 @@ Two Pointers
   Use queue to operate on both sides rather than stack
   - 239. Sliding Window Maximum
 
+* matain index stack of incresing/decreasing num
+  - 581. Shortest Unsorted Continuous Subarray
+      # Monotonic, Stack
+
 * two pointers, water
   - 11 Container With Most Water
   - 42. Trapping Rain Water
@@ -209,6 +224,10 @@ Binary Search
 * find leftmost and rightmost
   - 34 Search for a Range
       # Binary Search
+
+* Longest Increasing subsequence
+  - 300. Longest Increasing Subsequence
+      # Binary Search, patience sort
 
 * 终极老怪
   - 33. Search in Rotated Sorted Array
@@ -272,6 +291,10 @@ DFS
 * Combine DFS and Tree Generation
     - 95. Unique Binary Search Trees II
         # DFS, Tree, Postorder
+
+* Cycle detection, directed graph
+  - 207. Course Schedule
+      # DFS, Topological Sort, Graph, Adjacent List, Cycle Detection, Back Edge
 
 * Calculate minnum # to sum each num in list to 0
   - 465. Optimal Account Balancing
@@ -427,6 +450,10 @@ Dynamic Programming
       # Greedy
   - 123. Best Time to Buy and Sell Stock III
       # 1D DP
+
+* maximax square
+  - 221. Maximal Square
+      # 2D DP
 
 * Matain startIndex instead of boolean dp[][]
   - 727. Minimum Window Subsequence

@@ -522,7 +522,7 @@
             for(int i = 0; i<nums.length;i++) {
                 if(nums[i]<=mid) count++;
             }
-            if (count>mid) max = mid - 1; else min = mid + 1;
+            if (min<count) max = mid - 1; else min = mid + 1;
         }
         return min; // attention
        }
@@ -1114,9 +1114,6 @@
         }
   # Stack
 
----------------------------------------------------------------------
-
-
 560. Subarray Sum Equals K
   - Map does not have getOrDefault, use HashMap
   - matain sum, hashmap of continuous array sum from index 0 and frequence. Iterate to arr.length, for each sum, find frequence by key = sum - k and add to result:
@@ -1162,7 +1159,7 @@
   - time O(nlogn), space O(n)
   # Binary Search, patience sort
 
-337. House Robber III
+*337. House Robber III
     public int rob(TreeNode root) {
         if(root == null) return 0;
         int val = 0;
@@ -1171,9 +1168,9 @@
         if(root.right !=null)
             val+= rob(root.right.left) + rob(root.right.right);
         return Math.max(val + root.val, rob(root.left)+rob(root.right));}
-  # Tree,
+  # Tree, DP
 
-221. Maximal Square
+*221. Maximal Square
   - Due to i-1, j-1, new dp[rows+1][cols+1] and i,j start from 1 and i<=rows, matrix[i-1][j-1]
 
     for(int i=1;i<=rows;i++) {
@@ -1207,7 +1204,7 @@
 
   # DFS, Topological Sort, Graph, Adjacent List, Cycle Detection, Back Edge
 
-437. Path Sum III
+*437. Path Sum III
   - path can start not from root.
   -     public int pathSum(TreeNode root, int sum) {
             if(root == null) return 0;
@@ -1220,7 +1217,7 @@
             res += dfs(node.left, sum - node.val) + dfs(node.right, sum - node.val);
             return res;
         }
-  # Tree, DFS
+  # PreOrder on sum, PostOrder on res, Tree, DFS
 
 98. Validate Binary Search Tree
   - inorder traversal and the new visited node should larger than the previous ndoe. Maintain pre node val.
@@ -1264,7 +1261,7 @@
     }
   # Tree, Subtree
 
-581. Shortest Unsorted Continuous Subarray
+*581. Shortest Unsorted Continuous Subarray
   - Stack<Integer> stack; stack.clear();
   - Matain increasing order in stack, for new elem, find the index and compare with minLeft.
   -     for(int i=0;i<nums.length;i++) {
@@ -1275,6 +1272,8 @@
         }
   - Refer to Sliding Window Maximum monotonic queue which has 两头. Stack 只有1头
   # Monotonic, Stack
+
+---------------------------------------------------------------------
 
 494. Target Sum
   -  Given nums, +/- each elem to get target S

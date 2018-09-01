@@ -1275,7 +1275,7 @@
 
 ---------------------------------------------------------------------
 
-494. Target Sum
+*494. Target Sum
   -  Given nums, +/- each elem to get target S
       public int findTargetSumWays(int[] nums, int S) {
         int sum = 0;
@@ -1296,7 +1296,7 @@
         return dp[nums.length][S+sum];
   # 2D DP
 
-273. Integer to English Words
+*273. Integer to English Words
   -     while (num > 0) {
             if (num % 1000 != 0) {
                 res = helper(num % 1000) + thousands[i] + " " + res;
@@ -1349,7 +1349,7 @@
         for(int i=2;i<=s.length();i++) {
             int one = s.charAt(i-1) - '0';
             int two = 10*(s.charAt(i-2) -'0') + one;
-
+            // ignore one == 0 case, e.g. 100 -> can't decode
             if(one>=1 && one<=9) {
                 dp[i] = dp[i-1];
             }
@@ -1375,6 +1375,11 @@
   # 1D DP
 
 314. Binary Tree Vertical Order Traversal
+  - Use BFS rather than tree traversal due to case e.g.
+          1
+         2 3
+        4 5
+           6  should be [[4], [2], [1,5], [3,6]], if tree traversal [...[6,3]]
   - find min and max, left -1, right +1. BFS.
   - create second queue to track index
   - TreeMap map.values()

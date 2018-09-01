@@ -10,6 +10,10 @@ String
 * palindromic
   - 647 Palindromic Substrings
 
+* Convert integer to english words
+  - 273. Integer to English Words
+    # Recursion, Math
+
 - 43. Multiply Strings
     # String
 
@@ -18,7 +22,6 @@ String
 
 - 527. Word Abbreviation
     # String
-
 
 --------------------
 LinkedList
@@ -56,6 +59,7 @@ Array
 
 * sum up to current index, and matain sum map
   - 560. Subarray Sum Equals K
+  - 325. Maximum Size Subarray Sum Equals k
 
 * matain max array and compare with index
   - 769. Max Chunks To Make Sorted
@@ -144,6 +148,10 @@ Tree
 
 * Inorder traversal and compare with previous node
   - 98. Validate Binary Search Tree
+
+* vertical order traversal using BFS
+  - 314. Binary Tree Vertical Order Traversal
+      # Tree, BFS
 
 - 297. Serialize and Deserialize Binary Tree
     # BFS, Preorder Traversal, Tree

@@ -186,6 +186,102 @@ Distributed File System (Goole File System)
     - 3份
   + heartbeat,验证chunkserver在不在
 
+------------------------------------
+Consistent Hashing & Design Tiny Url
+------------------------------------
+* Consistent Hashing by Horizontal Sharding
+  - mod 360, 分配给n台机器，每个机器负责一段区间。n从2到3，只有1/3的数据移动。 
+  - 目的是减小数据的移动
+  - 缺陷：数据不均匀(e.g. n从3到4)，迁移压力大
+
+* Consistent hashing 
+  - hash func(数据) return (mod 2^64-1) 个点中一个， 把机器和数据放在这些点上。数据算好点后，顺时针找到的第一个机器(虚拟节点)为要存的。
+  - 1个机器分成1000个虚拟节点，平均分布在环上。1000个虚拟节点有1000个不连续的区间
+
+* Back up vs Replica
+  - backup 是周期的，不是实时的
+  - replica是实时的
+
+* MySql Replica: Master - Slave
+  - Master: write and read
+  - Slave: read, sync from Master (Write Ahead Log, 执行master之前的操作，所以造成一定延迟)
+  - Master 挂了，promote Slave.没有同步过来的数据可能丢失。
+
+* NoSQL Replica
+  - Consistent Hashing 环上顺时针存3份
+  - include sharding and replica (优点)
+
+* Design Tiny URL
+
+* Scenario: 功能，需求，QPS，存储容量
+  - redirect
+  - 产生，点击Tiny URL， 存储量
+
+* Servie
+* Storage
+  - transaction？ no
+  - 丰富的query？a little bit
+  - scalability? 
+  - QPS?
+  - Sequential id?
+
+* Long URL to 6 digit url 
+  - 随机转化：随机生成短的没有用过的url存数据库。随着短网址越来越多，生成速度效率低。
+  - 进制转换：依赖全局自动增加iD，转化成6位62进制的short url。62^6=57B=570亿
+
+* Scale
+  - cache
+  - 地理位置信息提速：DNS解析位置
+  - honrizontal sharding: what sharding key? 
+    1. Long URL 
+       long  -> short: easy 
+       short -> long: broadcast all database
+    2. ID 
+       short -> long: short url to ID, use ID to find db
+       long  -> short: broadcast to all servers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

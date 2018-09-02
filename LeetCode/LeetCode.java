@@ -1273,8 +1273,6 @@
   - Refer to Sliding Window Maximum monotonic queue which has 两头. Stack 只有1头
   # Monotonic, Stack
 
----------------------------------------------------------------------
-
 *494. Target Sum
   -  Given nums, +/- each elem to get target S
       public int findTargetSumWays(int[] nums, int S) {
@@ -1412,7 +1410,7 @@
         return res;
   # Tree, BFS
 
-157. Read N Characters Given Read4
+*157. Read N Characters Given Read4
     // read4 read at most 4 into temp, then copy from temp to buf up to n.
     // cases: 1. abcdef n =5  2.abcdef n=10
     public int read(char[] buf, int n) {
@@ -1429,7 +1427,7 @@
     }
     # String, buffer
 
-158. Read N Characters Given Read4 II - Call multiple times
+*158. Read N Characters Given Read4 II - Call multiple times
   -     int count = 0; // # of elements in temp arr
         int pointer = 0; // pointer in temp
         char[] temp = new char[4];
@@ -1450,9 +1448,27 @@
 
 311. Sparse Matrix Multiplication
   - Refer to (https://leetcode.com/problems/sparse-matrix-multiplication/discuss/76151/54ms-Detailed-Summary-of-Easiest-JAVA-solutions-Beating-99.9)
+  -     int rowA = A.length;
+        int colA = A[0].length;
+        int rowB = B.length;
+        int colB = B[0].length;
+        int[][] res = new int[rowA][colB];
+
+        for(int i=0;i<rowA;i++) {
+            for(int z=0;z<rowB;z++) {
+                if(A[i][z] != 0) {
+                    for(int j=0;j<colB;j++) {
+                        if(B[z][j] !=0) {
+                            res[i][j] += A[i][z]*B[z][j];
+                        }
+                    }
+                }
+
+            }
+        }
   # Math
 
-278. First Bad Version
+*278. First Bad Version
   -     int l = 1;
         int r = n;
         while(l<r-1) {
@@ -1480,7 +1496,7 @@
 257. Binary Tree Paths
   - Integer.toString(int) // int to String
 
-173. Binary Search Tree Iterator
+*173. Binary Search Tree Iterator
   - Keep track of current node and stack
   - Refer to 94. Binary Tree Inorder Traversal
   -     public BSTIterator(TreeNode root) {
@@ -1506,7 +1522,7 @@
   # Stack Implementation of Inorder Traversal
 
 125. Valid Palindrome
-  - Ascii: A~Z[\]^_'a~z
+  - Ascii: A~Z[\]^_'a~z'
   - Character.isLetterOrDigit()
   - Character.toLowerCase()
   # Two Pointers
@@ -1517,8 +1533,21 @@
   if(s.charAt(l+1) == s.charAt(r) && s.charAt(r-1) == s.charAt(l)) return validate(s,l+2,r-1,true) || validate(s,l+1,r-2,true);
   # Two Pointers
 
-636. Exclusive Time of Functions
-  - stack tracks the id ; pre maintains last time. Calculate time based on 4 cases, (start, start), (start, end), (end, start), (end, end)
+*636. Exclusive Time of Functions
+  - matain previous time, for new start or end, calculate curTime-preTime for the id on top of the stack.
+  -   for(String logStr : logs){
+            String[] log = logStr.split(":");
+            int id = Integer.parseInt(log[0]), curTime = Integer.parseInt(log[2]);
+            if(log[1].equals("start")){
+                if(!stack.isEmpty()) res[stack.peek()] += curTime-prevTime;
+                stack.push(id);
+                prevTime = curTime;
+            } else {
+                curTime++;
+                res[stack.pop()] += curTime-prevTime;
+                prevTime = curTime;
+            }
+        }
   # Stack
 
 * 689. Maximum Sum of 3 Non-Overlapping Subarrays
@@ -1537,7 +1566,9 @@
                 ans = {l, i, r};
             }
         }
-  # DP
+  # Array, DP
+
+---------------------------------------------------------------------
 
 252. Meeting Rooms
   - start time arr, end time arr. sort. For each iteration, start time should less than or equals to end time. start time should larger than previous end time.

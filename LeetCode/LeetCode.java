@@ -1872,12 +1872,10 @@
             }
             res += numOf1 * (nums.length -numOf1);
         }
-  - Bit Manipulation
-
----------------------------------------------------------------------
+  # Bit Manipulation
 
 38. Count and Say
-  - 数数， 1 -> 11 -> 21 (2个1) -> 1211 ->(1个2，1个1) -> 111121
+  - 数数， 1 -> 11 -> 21 (2个1) -> 1211 ->(1个2，1个1) -> 111221
         while(i < n) {
             int count = 0;
             StringBuilder sb = new StringBuilder();
@@ -1898,6 +1896,8 @@
             i++;
         }
   # String
+
+---------------------------------------------------------------------
 
 398. Random Pick Index
   - int array may have duplicates for a given target. The possibility of output each index of target is equal.

@@ -28,6 +28,9 @@ String
 - 43. Multiply Strings
     # String
 
+- 38. Count and Say
+    # String
+
 - 249. Group Shifted Strings
     # String, HashMap
 

@@ -1568,8 +1568,6 @@
         }
   # Array, DP
 
----------------------------------------------------------------------
-
 252. Meeting Rooms
   - start time arr, end time arr. sort. For each iteration, start time should less than or equals to end time. start time should larger than previous end time.
   # Array, Sort
@@ -1594,7 +1592,7 @@
     }
   # Trie, Recursion, DFS
 
-282. Expression Add Operators
+**282. Expression Add Operators
   - Refer to (https://www.youtube.com/watch?v=v05R1OIIg08)
     public void dfs(String num, int target, int pos, String exp, long pre, long cur) {
         if(pos == num.length()) {
@@ -1620,7 +1618,7 @@
     }
   # DP
 
-133. Clone Graph
+*133. Clone Graph
   - undirected graph which includes self cycle. Maintain Map<Integer, Node>,
   - private void traverse(Node node, Map<Integer, Node> map) {
         Node root = new Node(node.label);
@@ -1637,7 +1635,7 @@
   - conner case "a", "ab"
   - String
 
-341. Flatten Nested List Iterator
+*341. Flatten Nested List Iterator
   - For the given nestedList, use dfs to find leaf and add to queue.
   # DFS
 
@@ -1652,7 +1650,7 @@
 , 2) as accept_rate;
   # SQL
 
-43. Multiply Strings
+*43. Multiply Strings
     -   index:   0 1 2
         --------------
            m:    1 2 3
@@ -1685,7 +1683,7 @@
         }
   # String, Math
 
-285. Inorder Successor in BST
+*285. Inorder Successor in BST
   - O(n) inorder traversal, O(logn) see follwoing code
   - public TreeNode inorderSuccessor(TreeNode root, TreeNode p) {
         TreeNode res = null;
@@ -1701,35 +1699,32 @@
     }
   - Normally, to find successor in a BST has 3 cases.
     - it has right subtree. Then successor is the left most node in subtree.
-    - it doesn't have right subtree and is the left node of its parent. Then successor is its parent.
-    - it doesn't have right subtree and is the right node of its parent. Then successor is the first ancesstor that has it in its left branch.
+    - it doesnt have right subtree and is the left node of its parent. Then successor is its parent.
+    - it doesnt have right subtree and is the right node of its parent. Then successor is the first ancesstor that has it in its left branch.
   # Tree, Successor
 
-57. Insert Interval
+*57. Insert Interval
   - find the left and right interval that has overlap with newInterval. Use left.start and right.end to create new interval.
-  -       for(Interval i : intervals) {
-            if(newInterval.start >= i.start && newInterval.start <= i.end) left = i;
-            if(newInterval.end >= i.start && newInterval.end <= i.end) right = i;
-            if(newInterval.start < i.start && newInterval.end > i.end) mids.add(i);
-        }
-
-        for(Interval i: mids) {intervals.remove(i);}
-
-        if(left == null & right == null) {
-            intervals.add(newInterval);
-        } else if(left == null) {
-            intervals.add(new Interval(newInterval.start, right.end));
-            intervals.remove(right);
-        } else if(right == null) {
-            intervals.add(new Interval(left.start, newInterval.end));
-            intervals.remove(left);
-        } else {
-            if(left != right) {
-                intervals.remove(left);
-                intervals.remove(right);
-                intervals.add(new Interval(left.start, right.end));
-            }
-        }
+  -   public List<Interval> insert(List<Interval> intervals, Interval newInterval) {
+          List<Interval> res = new ArrayList<Interval>();
+          Interval tmp = newInterval;
+          for (Interval interval : intervals) {
+              if (tmp == null || interval.end < tmp.start) {
+                  res.add(interval);
+              } else if (interval.start > tmp.end) {
+                  res.add(tmp);
+                  res.add(interval);
+                  tmp = null;
+              } else {
+                  tmp.start = Math.min(tmp.start, interval.start);
+                  tmp.end = Math.max(tmp.end, interval.end);
+              }
+          }
+          if (tmp != null) {
+              res.add(tmp);
+          }
+          return res;
+      }
   # Range, Sort
 
 *721. Accounts Merge
@@ -1785,10 +1780,10 @@
 88. Merge Sorted Array
   - Two Pointers
 
-602. Friend Requests II: Who Has the Most Friends
+*602. Friend Requests II: Who Has the Most Friends
   # SQL
 
-670. Maximum Swap
+*670. Maximum Swap
   - if int e.g. 7432 is decreasing, then no swap. Else, find the turning point. e.g 974678 which is 6. Then find max from 6 to the end. Compare max in decreasing order from 4 to 9 and find the largest num that less than max which is 7 and swap. Finnally 984677.
   - new String(charArr) // char arr to String
   # Array
@@ -1811,26 +1806,40 @@
     }
   # Roman, String
 
-785. Is Graph Bipartite?
-  - the adjacent node should have different color.
-  - ^ 异或， 1^0 = 1, 1^1 = 0
-  // color: -1 (not initialzed), 1, 0
-  - private boolean dfs(int i, int[] color, int parentColor, int[][] graph) {
-        if(color[i] == -1) {
-            color[i] = parentColor ^ 1;
-        } else if((color[i] ^ parentColor) != 1){
-             return false;
-        } else {
-            return true;
+*12. Integer to Roman
+  -     int[] values = {1000,900,500,400,100,90,50,40,10,9,5,4,1};
+        String[] strs = {"M","CM","D","CD","C","XC","L","XL","X","IX","V","IV","I"};
+        StringBuilder sb = new StringBuilder();
+        for(int i=0;i<values.length;i++) {
+            while(num >= values[i]) {
+                num -= values[i];
+                sb.append(strs[i]);
+            }
         }
-        for(int n : graph[i]) {
-            if(!dfs(n, color, color[i], graph)) return false;
-        }
-        return true;
-    }
-  # Graph, DFS
+  # String, Math
 
-523. Continuous Subarray Sum
+*785. Is Graph Bipartite
+  - the adjacent node should have different color.
+        //BFS
+        // 0(not meet), 1(black), 2(white)
+  -     int[] visited = new int[graph.length];
+        for (int i = 0; i < graph.length; i++) {
+            if (graph[i].length != 0 && visited[i] == 0) {
+                visited[i] = 1;
+                Queue<Integer> q = new LinkedList<>();
+                q.offer(i);
+                while(! q.isEmpty()) {
+                    int current = q.poll();
+                    for (int c: graph[current]) {
+                            if (visited[c] == 0) {
+                                visited[c] = (visited[current] == 1) ? 2 : 1;
+                                q.offer(c);
+                            } else {
+                                if (visited[c] == visited[current]) return false;
+                            }}}}}
+  # Graph, BFS
+
+*523. Continuous Subarray Sum
   - attention to mod 0 case
   - if k==0, for continous arr of 0 return true. if k!=0, maintain remainder and map of remainder and index. if remainder sum is exist and its array of at least 2. Then return true;
   -     Map<Integer, Integer> map = new HashMap<>(); // map of remainder and index
@@ -1849,9 +1858,9 @@
 
 286. Walls and Gates
   - dfs for each 0.
-  # DFS
+  # BFS/DFS
 
-477. Total Hamming Distance
+*477. Total Hamming Distance
   - refer to 461 Hamming Distance
   - Iterate 0-31 bit, collect num of bit 1 and bit 0, then multiply them.
   -     for(int i = 0;i<32;i++) {
@@ -1864,6 +1873,8 @@
             res += numOf1 * (nums.length -numOf1);
         }
   - Bit Manipulation
+
+---------------------------------------------------------------------
 
 38. Count and Say
   - 数数， 1 -> 11 -> 21 (2个1) -> 1211 ->(1个2，1个1) -> 111121

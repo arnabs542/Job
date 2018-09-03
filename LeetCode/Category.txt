@@ -18,6 +18,13 @@ String
   - 157. Read N Characters Given Read4
   - 158. Read N Characters Given Read4 II - Call multiple times
 
+* Roman to integer
+  - 13. Roman to Integer
+  - 12. Integer to Roman
+
+- 161. One Edit Distance
+    # String
+
 - 43. Multiply Strings
     # String
 
@@ -55,6 +62,9 @@ Array
   - 253. Meeting Rooms II
     # Array, Sort
 
+* insert interval
+  - 57. Insert Interval
+
 * Matain max, min, res
   - 152. Maximum Product Subarray
 
@@ -64,6 +74,9 @@ Array
 * sum up to current index, and matain sum map
   - 560. Subarray Sum Equals K
   - 325. Maximum Size Subarray Sum Equals k
+
+* matain remainder index map instead of sum index map
+  - 523. Continuous Subarray Sum
 
 * matain max array and compare with index
   - 769. Max Chunks To Make Sorted
@@ -90,6 +103,7 @@ Array
     # Array, DP
 
 - 289. Game of Life
+- 670. Maximum Swap
 
 --------------------
 Stack
@@ -166,6 +180,9 @@ Tree
   - 314. Binary Tree Vertical Order Traversal
       # Tree, BFS
 
+- 285. Inorder Successor in BST
+      # Tree, Successor
+
 - 297. Serialize and Deserialize Binary Tree
     # BFS, Preorder Traversal, Tree
 
@@ -180,6 +197,9 @@ Tree
 --------------------
 Trie/Prefix Tree
 --------------------
+* add, find word in trie, "." means any character
+  - 211. Add and Search Word - Data structure design
+
 - 208. Implement Trie (Prefix Tree)
 
 
@@ -316,6 +336,10 @@ BFS
   - 787. Cheapest Flights Within K Stops
   - 815. Bus Routes
 
+* color node
+  - 785. Is Graph Bipartite
+    # Graph, BFS
+
 --------------------
 DFS
 --------------------
@@ -338,6 +362,13 @@ DFS
 * Construct all strings
   - 753. Cracking the Safe
 
+** integer arr to expression
+  - 282. Expression Add Operators
+
+* undirected graph clone, self cycle
+  - 133. Clone Graph
+
+- 341. Flatten Nested List Iterator
 - 37. Sudoku Solver
 - 286. Walls and Gates
 - 529. Minesweeper
@@ -435,6 +466,9 @@ Bit Mnaipulation
   - 136 Single Number
   - 461 Hamming Distance
 
+* 统计1，0个数后相乘 for 32 digit
+  - 477. Total Hamming Distance
+
 * i&(i - 1)， 这个本来是用来判断一个数是否是2的指数的快捷方法，比如8，二进制位1000, 那么8&(8-1)为0，只要为0就是2的指数
   - 338 Counting Bits
 
@@ -515,6 +549,10 @@ Dynamic Programming
   - 264. Ugly Number II
     # Array, 类似DP
 
+--------------------
+SQL
+--------------------
+- 602. Friend Requests II: Who Has the Most Friends
 
 --------------------
 Design

@@ -240,15 +240,36 @@ Consistent Hashing & Design Tiny Url
        short -> long: short url to ID, use ID to find db
        long  -> short: broadcast to all servers
 
+------------------------------------
+Distributed System Design (Google Big Table)
+------------------------------------
+* File System vs Dabase System
+  - FS includes simple file read, write ops. 
+  - DB provides complex queries, 数据库建立在文件系统之上 
 
+* Big Table 
+  - Bigtable: Google, HBase: Yahoo, Cassandra:Facebook, DynamoDB: Amazon
+  - Write: Update appends new data, 时常进行排序整理解决read的二分查询问题。 优化写。 优化方法是有有序块和无序块。
+  - Read: Add index and bloom filter in memory to map from key to address pointer for each unsorted block (sorted block不需要). All index & bloomfilter for all unsorted blocks are stored in the memory.
 
+* Bloom Filter
+  - 高效查找key是否在Sorted Strings Table(SSTable). 无序块里都有1个index和bloom filter，这样可以快速确定key在不在里头
+  - 2个hash function， hash function 多，array大，字符多，越准
+  - False is always false, true may be true
 
+* Skip list
+  - matain all new write data in memory
 
+* SSTable 
+  - unit that stored in the disk
 
+* Distributed
+  - master slave
+  - Read: key -> consistent hash returns slave server -> ask slave server in memory 1. Check Memory Skip List 2. Chech Bloom Filter 3. Check index, then find value in Sstable in Disk
+  - Write: write key -> consistent hashmap retunr slave -server -> ask slave server in memory 1. write data into memory 2. write ahead log 3.skip list 满了写进disk
 
-
-
-
+* Distributed Lock 
+  - ZooKeeper
 
 
 

@@ -454,6 +454,16 @@ Backtracking
 
 
 --------------------
+Math
+--------------------
+* Generate random index 
+  - 398. Random Pick Index
+
+* friends request
+  - 825. Friends Of Appropriate Ages
+    # Array, Continuous array, Math
+
+--------------------
 Greedy
 --------------------
 - 621. Task Scheduler

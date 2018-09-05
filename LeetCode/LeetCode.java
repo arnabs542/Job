@@ -1594,7 +1594,7 @@
 
 **282. Expression Add Operators
   - Refer to (https://www.youtube.com/watch?v=v05R1OIIg08)
-    public void dfs(String num, int target, int pos, String exp, long pre, long cur) {
+    public void dfs(String num, int target, int pos, String exp, long pre, long cur){
         if(pos == num.length()) {
             if(cur == target) {
                 res.add(exp);
@@ -1897,9 +1897,7 @@
         }
   # String
 
----------------------------------------------------------------------
-
-398. Random Pick Index
+*398. Random Pick Index
   - int array may have duplicates for a given target. The possibility of output each index of target is equal.
   - Random r = new Random(); r.nextInt(total); // random between [0, total)
   - e.g. {1,5,5,6,5} output index = 1 : 1 * 1/2 * 2/3 = 1/3
@@ -1907,7 +1905,7 @@
         int total = 0, res = -1;
         for(int i=0;i<nums.length;i++) {
             if(nums[i] == target) {
-                int randomNum = rand.nextInt(++total);
+                int randomNum = rand.nextInt(++total); // 机智
                 res = randomNum == 0 ? i : res;
     }}}
   # Reservior Sampling
@@ -1915,7 +1913,7 @@
 824. Goat Latin
   # String
 
-825. Friends Of Appropriate Ages
+*825. Friends Of Appropriate Ages
   - B request friend A if B in range (0.5*A+7, A], More than 20000 people. Create sum array of ages. For each age of A, find sum of valid B within that range and multiply.
   -     int[] numOfAges = new int[121];
         int[] sumOfAges = new int[121];
@@ -1927,7 +1925,9 @@
             int temp = sumOfAges[i] - sumOfAges[i/2+7];
             res += temp * numOfAges[i] - numOfAges[i];
         }
-  # Array, Continuous array
+  # Array, Continuous array, Math
+
+---------------------------------------------------------------------
 
 209. Minimum Size Subarray Sum
   - Maintain sum array, fast and slow pointer, if sum[fast] - sum[slow] > s, then increase slow and compare.

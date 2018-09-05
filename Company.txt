@@ -19,6 +19,10 @@
     - jet.com
     - Spotify
 
+#    
+    - Yelp
+    - Lyft
+    - Square
 
 Finance:
     - Citadel
@@ -31,7 +35,11 @@ California:
     - Microsoft
     - Airbnb
     - Apple
+    - Hulu
+    - Pinterest
     - RobinHood
+
+
 
 
 Link:

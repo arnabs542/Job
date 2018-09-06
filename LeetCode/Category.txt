@@ -140,6 +140,9 @@ Stack
 * Calculate time for process
   - 636. Exclusive Time of Functions
 
+* Regular expression to split string, put into stack
+  - 71. Simplify Path
+
 --------------------
 Tree
 --------------------
@@ -254,15 +257,24 @@ Two Pointers
   - 125. Valid Palindrome
   - 680. Valid Palindrome II
 
+* create sum array, fast and slow pointers
+  - 209. Minimum Size Subarray Sum
+
 125. Valid Palindrome
     # Two Pointers
 
 - 340. Longest Substring with At Most K Distinct Characters
     # Two Pointers, HashMap
 
+
 --------------------
 Binary Search
 --------------------
+1. while(l<=r) mid<=target l=mid+1; else r=mid-1;
+2. while(l<r) mid<=target l=mid+1; else r=mid-1;
+3. while(l<r-1) mid<target l=mid ; else r=mid;
+
+
 * cut1 and cut2= length/2-cut1, l1, r1, l2, r2
   - 4 Median of Two Sorted Arrays
 
@@ -312,6 +324,9 @@ Binary Search
 * find single element
   - 540. Single Element in a Sorted Array
 
+- 69. Sqrt(x)
+    # Binary Search
+
 
 --------------------
 Binary Search Tree
@@ -325,7 +340,7 @@ Graph
 --------------------
 * convert letter sequence to directed graph and use topological sort
   - Alien Dictionary
-    # Topological Sort, DFS, Graph, Character order, directed graph
+    # Topological Sort, DFS, Directed Graph, Character order
 
 
 --------------------
@@ -447,6 +462,9 @@ Backtracking
 * number of left parentheses is always >= right
   - 22 Generate Parentheses
 
+* arr has duplicate, sort and dfs(ignore if pre==cur) to create subset
+  - 90. Subsets II
+
 - 46 Permutations
 - 17 Letter Combinations of a Phone Number
 - 39. Combination Sum
@@ -456,7 +474,7 @@ Backtracking
 --------------------
 Math
 --------------------
-* Generate random index 
+* Generate random index
   - 398. Random Pick Index
 
 * friends request
@@ -491,13 +509,15 @@ Dynamic Programming
 * 1D
   - 198 House Robber
 
-* 2 for loops
+* 2 for loops, 以target num为第一循环，单词或者coins或者each array为第二循环
   - 139 Word Break
       # 1D DP
   - 279 Perfect Squares
       # 1D DP
   - 322. Coin Change
       # 1D DP
+  - 377. Combination Sum IV
+      # 1D DP, Backtracking, Target DP
 
 * Unique binary search tree, 2 for loops
   - 96 Unique Binary Search Trees
@@ -577,6 +597,9 @@ Design
         # Design, Scale, Buffer
   - 346. Moving Average from Data Stream
         # Design, Queue, Buffer
+
+* Matain HashMap of val and index, and ArrayList
+  - 380. Insert Delete GetRandom O(1)
 
 - 146. LRU Cache
     # Double LinkedList, HashMap

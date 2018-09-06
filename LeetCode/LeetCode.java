@@ -1927,8 +1927,6 @@
         }
   # Array, Continuous array, Math
 
----------------------------------------------------------------------
-
 209. Minimum Size Subarray Sum
   - Maintain sum array, fast and slow pointer, if sum[fast] - sum[slow] > s, then increase slow and compare.
   -     sum[0] = nums[0];
@@ -1946,7 +1944,7 @@
   - Time O(n), Space O(n) -> can be reduced to O(1)
   # Two Pointers
 
-380. Insert Delete GetRandom O(1)
+*380. Insert Delete GetRandom O(1)
   - Maintain HashMap of val and index, ArrayList of val. For insertion, insert to both. For deletion, swap the val to delete in ArrayList with the last elem, and change the last elem index in HashMap.
   - public boolean remove(int val) {
         if(!map.containsKey(val)) return false;
@@ -1963,7 +1961,7 @@
     }
   # Design, HashMap, ArrayList
 
-269. Alien Dictionary
+*269. Alien Dictionary
   - Based on the word list order, figure out character order. Compare each pair to find the charater order and create edge from high order to low order. Then do topological sort.
 
   -     // create edge by compare each pair of word
@@ -2007,9 +2005,9 @@
         stack.push(c);
     }
   - Refer to 207 Course Schedule
-  # Topological Sort, DFS, Graph, Character order, directed graph
+  # Topological Sort, DFS, Directed Graph, Character Order
 
-71. Simplify Path
+*71. Simplify Path
   - "." means stay current dir, ".." means back to last dir. e.g.path = "/a/./b/../../c/", => "/c"
   -     String[] arr = path.split("/+");
         Stack<String> stack = new Stack<>();
@@ -2117,7 +2115,7 @@
   - for target issue, create 1d dp array of range [0,target]. Iterate amount and matain dp arr. Refer to 494. Target Sum, 322. Coin Change
   # 1D DP, Backtracking, Target DP
 
-69. Sqrt(x)
+*69. Sqrt(x)
   - Refer to 34 Search for a Range
     // find the left most result, assign mid to r if nums[mid] = target
     while(l < r-1) {
@@ -2149,6 +2147,8 @@
         }
         return left;
   # Binary Search
+
+---------------------------------------------------------------------
 
 127. Word Ladder
   - Put startWord into queue, for each char, iterate from 'a' to 'z' to check if new created string is exist in wordlist, if yes, add to queue and level map.

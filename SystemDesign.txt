@@ -271,13 +271,36 @@ Distributed System Design (Google Big Table)
 * Distributed Lock 
   - ZooKeeper
 
+------------------------------------
+Map Reduce
+------------------------------------
+* 10G才算大数据
 
+* 不提倡用hashmap，因为大数据处理
 
+* 分布式计算框架
+  - input, split, map, 传输汇总，reduce, output
+  - map，reduce机器数 e.g. 10T, 1000map, 1000reduce
+  - 机器越多越好？每个处理时间短，但启动时间长
+  - 不考虑启动时间，reduce机器越多越好？上限是key的数目
 
+* 计算文章的单词数 
+  - Map:拆分单词, 数据放硬盘不是内存，按文章行数分。
+  - Reduce: 汇总单词，按key来分。
+  - 传输汇总：Partition and Sort(硬盘外排序) -> Fetch and Merge Sort(k merge sort)
 
+* Inverted Index 
+  - Input: 文章Id:单词组
+  - Map: key 文章id， value content of the line
+  - Reduce: key 单词， value 文章Id.
 
+* Anagram
+  - reduce : key sorted word， value list of words
 
-
+* Notes
+  - Reducer 一个机器key特别大怎么办？加个random后缀，类似shard key
+  - input和output放哪？ GFS
+  
 
 
 

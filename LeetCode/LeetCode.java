@@ -1820,7 +1820,7 @@
 
 *785. Is Graph Bipartite
   - the adjacent node should have different color.
-        //BFS
+        // BFS
         // 0(not meet), 1(black), 2(white)
   -     int[] visited = new int[graph.length];
         for (int i = 0; i < graph.length; i++) {
@@ -2148,8 +2148,6 @@
         return left;
   # Binary Search
 
----------------------------------------------------------------------
-
 127. Word Ladder
   - Put startWord into queue, for each char, iterate from 'a' to 'z' to check if new created string is exist in wordlist, if yes, add to queue and level map.
   -     HashSet<String> set = new HashSet<>(wordList);
@@ -2177,13 +2175,21 @@
 
 235. Lowest Common Ancestor of a Binary Search Tree
   - find the first node that have p, and q on left and right
+  -     if(root == null) return null;
+        if(root == p || root == q) return root;
+        TreeNode l = lowestCommonAncestor(root.left, p, q);
+        TreeNode r = lowestCommonAncestor(root.right, p, q);
+        if(l != null && r != null) return root;
+        if(l != null || r != null) return l != null ? l : r;
+        return null;
   # BST
 
-639. Decode Ways II
+*639. Decode Ways II
+  - (https://leetcode.com/problems/decode-ways-ii/description/)
   - Refer to 91. Decode Ways. add '*', means 1-9. 细分情况
   # 1 DP
 
-*334. Increasing Triplet Subsequence
+**334. Increasing Triplet Subsequence
   - Refer to 300. Longest Increasing Subsequence, 84 Largest Rectangle in Histogram. 300 and 84 are different, e.g. [8,2,5,3,0] for 300, result is [0,3], for 84, result is [0]. 300 keeps the OLD longest increasing order, 84 tracks the CURRTENT longest increasing order
   -     int[] arr = new int[3];
         int numInArr = 0;
@@ -2203,7 +2209,7 @@
         }
   # Binary Search, patience sort, Longest Increasing subsequence
 
-117. Populating Next Right Pointers in Each Node II
+*117. Populating Next Right Pointers in Each Node II
             1 -> NULL row 1
            /  \
           2 -> 3 -> NULL row 2
@@ -2240,7 +2246,7 @@
         }
   # Tree, Level Traversal
 
-714. Best Time to Buy and Sell Stock with Transaction Fee
+*714. Best Time to Buy and Sell Stock with Transaction Fee
   - 状态转移， Refer to 309. Best Time to Buy and Sell Stock with Cooldown
   - buy[i] = Math.max(buy[i - 1], sell[i - 1] - prices[i]-fee);
     sell[i] = Math.max(sell[i - 1], buy[i - 1] + prices[i]);
@@ -2251,13 +2257,13 @@
         buy[0] = -prices[0]-fee;
         sell[0] = 0;
         for(int i=1;i<days;i++) {
-            buy[i] = Math.max(buy[i-1], sell[i-1]-prices[i]-fee);
             sell[i] = Math.max(sell[i-1], buy[i-1]+prices[i]);
+            buy[i] = Math.max(buy[i-1], sell[i-1]-prices[i]-fee);
         }
         return sell[days-1];
   # DP
 
-50. Pow(x, n)
+*50. Pow(x, n)
   - e.g. 2^7 = 2* 2^6 = 2* 4^3 = 2* 4* 4^2 = 2* 4* 16
   - Attention to Integer.MIN_VALUE, e.g. -128 to 127.
       public double myPow(double x, int n)  {
@@ -2414,6 +2420,8 @@
         }
         return sb.reverse().toString();
   # Math
+
+---------------------------------------------------------------------
 
 535. Encode and Decode TinyURL
   - In industry, shorten url service is by database, one auto increasing long number as primary key.  whenever a long url need to be shorten, append to the database, and return the primary key number. (https://leetcode.com/problems/encode-and-decode-tinyurl/discuss/100276/Easy-solution-in-java-5-line-code.)

@@ -37,6 +37,9 @@ String
 - 527. Word Abbreviation
     # String
 
+- 68. Text Justification
+    # String
+
 --------------------
 LinkedList
 --------------------
@@ -59,6 +62,8 @@ Array
   - 41. First Missing Positive
         # Array, Index
   - 448 Find All Numbers Disappeared in an Array
+  - 268. Missing Number
+        # Array, 高斯公式
 
 * Intervals. Split to start and end array and sort them.
   - 56. Merge Intervals
@@ -133,6 +138,7 @@ Stack
 
 * Matain increasing order index in stack
   - 84 Largest Rectangle in Histogram
+  - 85. Maximal Rectangle
 
 * Decode String with 2 stacks and one current res
   - 394. Decode String
@@ -160,6 +166,8 @@ Tree
 
 * level traversal, preorder
   - 102 Binary Tree Level Order Traversal
+  - 117. Populating Next Right Pointers in Each Node II
+      # Tree, Level Traversal
 
 * flatten tree, right -> left
   - 114. Flatten Binary Tree to Linked List
@@ -314,7 +322,7 @@ Binary Search
   - 222. Count Complete Tree Nodes
         # Binary Search, Tree, Complete Tree
 
-* Matain longest increasing subsequence
+** Matain longest increasing subsequence
   - 300. Longest Increasing Subsequence
   - 334. Increasing Triplet Subsequence
 
@@ -327,6 +335,8 @@ Binary Search
 - 69. Sqrt(x)
     # Binary Search
 
+- 50. Pow(x, n)
+    # Binary Search
 
 --------------------
 Binary Search Tree
@@ -368,6 +378,8 @@ DFS
 * Cycle detection, directed graph
   - 207. Course Schedule
       # DFS, Topological Sort, Graph, Adjacent List, Cycle Detection, Back Edge
+  - 210. Course Schedule II
+      # Directed Graph, Topological Sort, Stack
 
 * Calculate minnum # to sum each num in list to 0
   - 465. Optimal Account Balancing
@@ -404,6 +416,9 @@ Union Find
 * detect cycle and multiple parents in directed graph
   - 684. Redundant Connection
   - 685. Redundant Connection II
+
+* detact cycle in undirected graph
+  - 261. Graph Valid Tree
 
 * interesting couple swap
   - 765. Couples Holding Hands
@@ -450,6 +465,10 @@ Sort
 * bucket sort, maximax frequence is fixed
   - 347 Top K Frequent Elements
 
+* bucket sort
+  - 274. H-Index
+    # Bucket Sort
+
 * sort int[][] arr by sort 2 dimension
   - 406 Queue Reconstruction by Height
 
@@ -470,7 +489,6 @@ Backtracking
 - 39. Combination Sum
 - 78 Subsets
 
-
 --------------------
 Math
 --------------------
@@ -480,6 +498,10 @@ Math
 * friends request
   - 825. Friends Of Appropriate Ages
     # Array, Continuous array, Math
+
+* 10进制变成26进制
+  - 168. Excel Sheet Column Title
+    # Math
 
 --------------------
 Greedy
@@ -548,6 +570,8 @@ Dynamic Programming
       # Greedy
   - 123. Best Time to Buy and Sell Stock III
       # 1D DP
+  - 714. Best Time to Buy and Sell Stock with Transaction Fee
+      # 2个 1D DP
 
 * maximax square
   - 221. Maximal Square
@@ -569,6 +593,8 @@ Dynamic Programming
 
 * Decode
   - 91. Decode Ways
+        # 1D
+  - 639. Decode Ways II
         # 1D
 
 * create student attendance with A, L, P

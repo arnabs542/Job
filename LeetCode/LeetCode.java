@@ -2421,8 +2421,6 @@
         return sb.reverse().toString();
   # Math
 
----------------------------------------------------------------------
-
 535. Encode and Decode TinyURL
   - In industry, shorten url service is by database, one auto increasing long number as primary key.  whenever a long url need to be shorten, append to the database, and return the primary key number. (https://leetcode.com/problems/encode-and-decode-tinyurl/discuss/100276/Easy-solution-in-java-5-line-code.)
   - List<String> list = new LinkedList<>();
@@ -2441,7 +2439,7 @@
   - Use String.hashCode() and put it into map is not correct. Since 2 different string may have the same hashcode.
   # System Design
 
-801. Minimum Swaps To Make Sequences Increasing
+*801. Minimum Swaps To Make Sequences Increasing
   - Matain 2 dp arrays, keep[] and swap[]
     Refer to 714. Best Time to Buy and Sell Stock with Transaction Fee
              309. Best Time to Buy and Sell Stock with Cooldown
@@ -2464,7 +2462,7 @@
         return Math.min(swap[N - 1], not_swap[N - 1]);
   # DP
 
-525. Contiguous Array
+*525. Contiguous Array
   - For continous array issue, think about iterate and sum up each val and store into hashmap. Map stores <#1-#0 diff, index>, if diff ==0, compare with res, if diff is exist in map, calculate and compare with res.
   -     int[] diffArr = new int[nums.length];
         Map<Integer, Integer> map = new HashMap<>();
@@ -2484,7 +2482,7 @@
    - Refer to 523. Continuous Subarray Sum
   # HashMap, Consider Two Pointers and HashMap for continous issue
 
-750. Number Of Corner Rectangles
+*750. Number Of Corner Rectangles
   - Fix two rows i, j. iterate col k to find total pairs grid[i][k] == grid[j][k]==1, then calculate combinations. Then continue;
   -     for(int i=0;i<grid.length-1;i++) {
             for(int j=i+1;j<grid.length;j++) {
@@ -2499,7 +2497,7 @@
   # 2D Array
 
 637. Average of Levels in Binary Tree
-  # Tree
+  # Tree, BFS
 
 *764. Largest Plus Sign
   -  Each val in arr is calculated 4 times that from left to right, from right to left, from up to down and from down to up.
@@ -2536,6 +2534,8 @@
 
 275. H-Index II
   # Binary Search
+
+---------------------------------------------------------------------
 
 745. Prefix and Suffix Search
   - e.g. "apple", instead of create a->p->p->l->e and e->l->p->p->a 2 tries. Create follwing trie structure. Use HashMap to record children rather than fix array size children[27][27], 26 letters + null.
@@ -3557,7 +3557,6 @@
 
   # Binary Search Tree
 
-<<<<<<< Updated upstream
 753. Cracking the Safe
   - Total number of differences should be Math.pow(k,n). Matain set for string. Run dfs until num matches total.
   -     int total = (int)Math.pow(k,n);

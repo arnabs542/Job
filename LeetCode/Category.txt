@@ -93,6 +93,10 @@ Array
   - 750. Number Of Corner Rectangles
     # 2D Array, Math
 
+* array 中每个value=min(l,r,u,d), 神循环
+  - 764. Largest Plus Sign
+    # 2D Array
+
 * int[256] matains previous visited index
   - 3 Longest Substring Without Repeating Characters
     # Two Pointers
@@ -232,9 +236,11 @@ HashSet
 --------------------
 HashMap
 --------------------
+* Contiguous Array 类型, consider HashMap and Two Pointers
+  - 525. Contiguous Array
+
 - 205. Isomorphic Strings
 - 1. Two Sums
-
 
 --------------------
 Two Pointers
@@ -468,6 +474,8 @@ Sort
 * bucket sort
   - 274. H-Index
     # Bucket Sort
+  - 275. H-Index II
+    # Binary Search
 
 * sort int[][] arr by sort 2 dimension
   - 406 Queue Reconstruction by Height
@@ -608,10 +616,13 @@ Dynamic Programming
   - 264. Ugly Number II
     # Array, 类似DP
 
+- 801. Minimum Swaps To Make Sequences Increasing
+
 --------------------
 SQL
 --------------------
 - 602. Friend Requests II: Who Has the Most Friends
+- 578. Get Highest Answer Rate Question
 
 --------------------
 Design

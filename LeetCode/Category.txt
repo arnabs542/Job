@@ -107,6 +107,12 @@ Array
 * Rotate array, left to top, bottom to left, ...top to right
   - 48 Rotate Image
 
+* spiral matrix
+  - 54. Spiral Matrix
+    # 2D Array
+  - 59. Spiral Matrix II
+    # 2D Array
+
 * search in sorted rows and cols array
   - 240 Search a 2D Matrix II
 
@@ -218,6 +224,9 @@ Trie/Prefix Tree
 * add, find word in trie, "." means any character
   - 211. Add and Search Word - Data structure design
 
+* encode prefix and suffix to integer, combine prefix and suffix tree
+  - 745. Prefix and Suffix Search
+
 - 208. Implement Trie (Prefix Tree)
 
 
@@ -313,7 +322,7 @@ Binary Search
   - 33. Search in Rotated Sorted Array
         # Binary Search
 
-* search in rotated sorted array
+* compare mid & mid-1, compare mid & (left || right)
   - 33. Search in Rotated Sorted Array
         # Binary Search, Array
   - 153. Find Minimum in Rotated Sorted Array
@@ -516,6 +525,9 @@ Greedy
 --------------------
 - 621. Task Scheduler
     # Greedy, Math
+
+- 134. Gas Station
+    # Greedy
 
 * Matain pre and # of consecutive sequence at pre with length 1, 2, 3
     - 659. Split Array into Consecutive Subsequences

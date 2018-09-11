@@ -385,7 +385,7 @@
 152 Maximum Product Subarray
   - keep track max, min, res
 
-48 Rotate Image
+48. Rotate Image
   - int[][] matrix, int[] arr = matrix[]  // pass by reference, matrix change, arr change.
   # Array
 
@@ -2535,9 +2535,7 @@
 275. H-Index II
   # Binary Search
 
----------------------------------------------------------------------
-
-745. Prefix and Suffix Search
+*745. Prefix and Suffix Search
   - e.g. "apple", instead of create a->p->p->l->e and e->l->p->p->a 2 tries. Create follwing trie structure. Use HashMap to record children rather than fix array size children[27][27], 26 letters + null.
                                            ""
                    (a,e)                      (a,null)            (null,e)
@@ -2577,7 +2575,7 @@
     }
   # Trie
 
-36. Valid Sudoku
+*36. Valid Sudoku
   - Validate row, column and 3x3 sub-boxes. Matain a set, encode each element and add to set, if it has been added before. Then return false.
       // e.g. board[i][j] = k, encode to "kri", "kcj", "kij" and add to set
   -   Set<String> set = new HashSet<>();
@@ -2593,9 +2591,8 @@
           }
   - 很聪明的encode节省了时间
   # HashSet, Encode
-  $ Google
 
-37. Sudoku Solver
+*37. Sudoku Solver
   - Related to 36. Valid Sudoku. For each empty space, Iterate from 1-9, validate each and call DFS if valid.
   - private boolean dfs(char[][] board) {
         for(int i=0;i<board.length;i++) {
@@ -2629,9 +2626,8 @@
          return true;
      }
   # DFS
-  $ Google
 
-41. First Missing Positive
+*41. First Missing Positive
   - Given an unsorted integer array, find the smallest missing positive integer
   - Map each array element to array index.
         for(int i=0;i<nums.length;i++) {
@@ -2649,7 +2645,7 @@
         return nums.length+1;
   # Array, Index
 
-54. Spiral Matrix
+*54. Spiral Matrix
   -     int rowBegin = 0;
         int rowEnd = matrix.length -1;
         int colBegin = 0;
@@ -2663,26 +2659,26 @@
                 res.add(matrix[i][colEnd]);
             }
             colEnd--;
-            if(rowBegin<=rowEnd) {
+            if(rowBegin<=rowEnd) { // careful
                 for(int i=colEnd;i>=colBegin;i--) {
                     res.add(matrix[rowEnd][i]);
                 }
             }
             rowEnd--;
-            if(colBegin<=colEnd) {
+            if(colBegin<=colEnd) {  // careful
                 for(int i=rowEnd;i>=rowBegin;i--) {
                     res.add(matrix[i][colBegin]);
                 }
             }
             colBegin++;
         }
-  # Array
+  # 2D Array
 
 59. Spiral Matrix II
   - Similar to 54. Spiral Matrix
-  # Array
+  # 2D Array
 
-115. Distinct Subsequences
+*115. Distinct Subsequences
   - Given a string S and a string T, count the number of distinct subsequences of S which equals T.
   -     for(int i=1;i<=s.length();i++) {
             for(int j=1;j<=t.length();j++) {
@@ -2695,7 +2691,7 @@
         }
   # 2D DP, DFS
 
-134. Gas Station
+*134. Gas Station
   -     int gasSum = 0, costSum = 0, tank = 0, start = 0;
         for(int i=0; i<gas.length; i++) {
             gasSum += gas[i];
@@ -2715,7 +2711,7 @@
 150. Evaluate Reverse Polish Notation
   # Stack
 
-33 Search in Rotated Sorted Array
+*33. Search in Rotated Sorted Array
   - either [left, mid] or (mid,right] is sorted, check in sorted side
   - draw pic like (https://www.youtube.com/watch?v=w6nusIojP9c)
   - attention to using >= or >
@@ -2736,7 +2732,7 @@
                 }}}
   # Binary Search
 
-153. Find Minimum in Rotated Sorted Array
+*153. Find Minimum in Rotated Sorted Array
   - [0,1,2,4,5,6,7] might become  [4,5,6,7,0,1,2].Find the minimum element.
   -     int l = 0, r = nums.length-1;
         while(l < r) {
@@ -2751,7 +2747,7 @@
         return nums[l];
   # Binary Search
 
-162. Find Peak Element
+*162. Find Peak Element
   - 想象一下爬山，nums[mid] < nums[mid+1] 在上山山峰在右，反之则在下山
   -     // l<r, 保证了存在 mid+1
         // l = mid+1, r = mid 保证了最后的解是l
@@ -2803,6 +2799,8 @@
             }
         }
   # HashMap
+
+---------------------------------------------------------------------
 
 222. Count Complete Tree Nodes
   - bit manipulation (https://www.vojtechruzicka.com/bit-manipulation-java-bitwise-bit-shift-operations/)

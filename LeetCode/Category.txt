@@ -22,6 +22,12 @@ String
   - 13. Roman to Integer
   - 12. Integer to Roman
 
+* Build Strobogrammatic Number with dfs with l, r
+  - 248. Strobogrammatic Number III
+
+* Shift String
+  - 249. Group Shifted Strings
+
 - 161. One Edit Distance
     # String
 
@@ -121,6 +127,8 @@ Array
     # Array, DP
 
 - 289. Game of Life
+    # 2D Array
+
 - 670. Maximum Swap
 
 --------------------
@@ -424,6 +432,7 @@ Union Find
 --------------------
 * track connected component
   - 305. Number of Islands II
+    # Union Find
 
 * Convert equation to graph, use Map to matain parent relation
   - 399. Evaluate Division

@@ -942,7 +942,7 @@
         }
     }
 
-  # Binary Search, Binary Index Tree/Fenwick Tree
+  # Binary Search, Binary Indexed Tree/Fenwick Tree
 
 *34 Search for a Range
    //find first
@@ -2800,8 +2800,6 @@
         }
   # HashMap
 
----------------------------------------------------------------------
-
 222. Count Complete Tree Nodes
   - bit manipulation (https://www.vojtechruzicka.com/bit-manipulation-java-bitwise-bit-shift-operations/)
   - <<, >> 等bit操作优先级小于+ - ，所以要加括号 e.g.(1<<2) == 100 = 2^2 = 4
@@ -2824,10 +2822,10 @@
       }
   # Binary Search, Tree, Complete Tree
 
-248. Strobogrammatic Number III
+*248. Strobogrammatic Number III
   - String a.compareTo(b) // - : a<b, 0: a=b, +: a>b
   - Iterate length between [low.length(), high.length()] to build Strobogrammatic number. Then filter by v.compareTo(low)>=0 && v.compareTo(high)<=0
-  # String,
+  # String, DFS
 
 249. Group Shifted Strings
   - Encode each string by setting the first char to z and shift other chars. e.g. yab -> zbc. Use encoded string as key in map. Put all strings into map.
@@ -2850,7 +2848,7 @@
     }
   # String, HashMap
 
-264. Ugly Number II
+*264. Ugly Number II
   - Ugly numbers are positive numbers whose prime factors only include 2, 3, 5。
   - (https://leetcode.com/problems/ugly-number-ii/discuss/69362/O(n)-Java-solution)
   -     int[] ugly = new int[n];
@@ -2872,9 +2870,9 @@
 
 289. Game of Life
     - use 01, 10 to represent 0 -> 1, 1 -> 0 status
-    # Array
+    # 2D Array
 
-295. Find Median from Data Stream
+*295. Find Median from Data Stream
   - use minHeap to maintain larger half values, use maxHeap to maintain smller half values.
   - PriorityQueue<Integer> minHeap = new PriorityQueue<>();
     PriorityQueue<Integer> maxHeap = new PriorityQueue<>(1000, Collections.reverseOrder());
@@ -2898,7 +2896,7 @@
   - post order traverse, each time return the current longest consecutive number
   # PostOrder, Tree
 
-305. Number of Islands II
+*305. Number of Islands II
   - Matain 2D arr of islands and 1D union find arr. For each island placement, check left, right, up, down, if they are islands, check find and then union.
         int[][] arr = new int[m][n];
         int[] ufArr = new int[m*n];
@@ -2941,7 +2939,7 @@
 
   # Union Find
 
-308. Range Sum Query 2D - Mutable
+*308. Range Sum Query 2D - Mutable
   - pure 2D binary indexed tree.
   Refer to (https://www.geeksforgeeks.org/two-dimensional-binary-indexed-tree-or-fenwick-tree/)
 
@@ -2985,7 +2983,7 @@
     }
   # 2D Fenwik Tree / Binary Indexed Tree
 
-312. Burst Balloons
+*312. Burst Balloons
   - 从1个balloon arr开始 to nums.length个ballon, 每次index从start=1 to end=nums.length, 从中iterate k, which is the last ballon to burst in [start, end]
   - Refer to (https://www.youtube.com/watch?v=z3hu2Be92UA)
   -     int size = nums.length;
@@ -3010,6 +3008,8 @@
 
 340. Longest Substring with At Most K Distinct Characters
   # Two Pointers, HashMap
+
+---------------------------------------------------------------------
 
 346. Moving Average from Data Stream
   - private int [] window;

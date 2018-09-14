@@ -2499,7 +2499,7 @@
 637. Average of Levels in Binary Tree
   # Tree, BFS
 
-*764. Largest Plus Sign
+**764. Largest Plus Sign
   -  Each val in arr is calculated 4 times that from left to right, from right to left, from up to down and from down to up.
   -     int[][] arr = new int[N][N];
         for(int i=0;i<N;i++) {
@@ -3009,9 +3009,7 @@
 340. Longest Substring with At Most K Distinct Characters
   # Two Pointers, HashMap
 
----------------------------------------------------------------------
-
-346. Moving Average from Data Stream
+*346. Moving Average from Data Stream
   - private int [] window;
     private int n, insert=0;
     private long sum=0;
@@ -3059,7 +3057,7 @@
     }
   # Design, Scale, Buffer, HashSet
 
-362. Design Hit Counter
+*362. Design Hit Counter
   - Design a hit counter which counts the number of hits received in the past 5 minutes.
 
   - private int[] time = new int[300];
@@ -3086,9 +3084,8 @@
     }
   # Design, Scale, Buffer
 
-361. Bomb Enemy
+*361. Bomb Enemy
   - 每一行我们可以在第0列或者当前位置前一列为墙的时候从第当前列开始往右搜索直到撞到墙. 每一列可以在第0行的时候或者在当前行前一行为墙的时候从当前行往下搜索, 直到碰到墙为止. 这样就可以一次计算出一行直到碰到墙之前有几个敌人, 一列在没有碰到墙之前有几个敌人. 直到当某个某位之前位置墙的时候才会重新计算. O(mn + mn + mn)
-
   -     int rowHit = 0;
         int[] colHit = new int[cols];
         for(int i=0;i<rows;i++) {
@@ -3112,9 +3109,10 @@
                 }
             }
         }
+  - Refer to 764 神循环
   # Array
 
-392. Is Subsequence
+*392. Is Subsequence
   - Given a string s and a string t, check if s is subsequence of t by deleting some chars in t. If there are lots of incoming S, say S1, S2, ... , Sk where k >= 1B, and you want to check one by one to see if T has its subsequence. Thus use Binary Search
   - maintain index list for each char in t. Then for each char in s, find if exist in list and index in increasing order.
   -     List<Integer>[] list = new List[256];
@@ -3147,7 +3145,7 @@
   - Collections.binarySearch()
   # Binary Search
 
-399. Evaluate Division
+*399. Evaluate Division
   - Give equations, run queries. Instead of using union find int array, use Map<key, Node>, Node{parent, ratio} to track node parent relationship.
   - convert equation to graph (https://leetcode.com/problems/evaluate-division/description/)
   - Map<String, Node> map = new HashMap<>();
@@ -3195,7 +3193,7 @@
     }
   # Union Find, HashMap
 
-418. Sentence Screen Fitting
+*418. Sentence Screen Fitting
   - cols may far bigger than sentence. So for each row, add cols first and then backtrack if cut string until find whitespace. Finally, index/len
   -     for(String str : sentence) {
             if(str.length() > cols) return 0;
@@ -3248,6 +3246,9 @@
         return transactions;
     }
   # DFS
+
+---------------------------------------------------------------------
+
 
 490. The Maze
   - Ball movement has direction. Use while loop when ball moving until reach wall. Check stop position if its destination.

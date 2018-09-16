@@ -40,9 +40,6 @@ String
 - 249. Group Shifted Strings
     # String, HashMap
 
-- 527. Word Abbreviation
-    # String
-
 - 68. Text Justification
     # String
 
@@ -165,6 +162,10 @@ Stack
 * Regular expression to split string, put into stack
   - 71. Simplify Path
 
+* matain decreasing order in stack, pop to get next greater element
+  - 496. Next Greater Element I
+  - 503. Next Greater Element II
+
 --------------------
 Tree
 --------------------
@@ -223,6 +224,7 @@ Tree
 
 * Postorder traversal and serialize subtree to string
   - 652. Find Duplicate Subtrees
+    # Tree, Postorder Traversal, Serialize
 
 --------------------
 Trie/Prefix Tree
@@ -232,6 +234,10 @@ Trie/Prefix Tree
 
 * encode prefix and suffix to integer, combine prefix and suffix tree
   - 745. Prefix and Suffix Search
+
+* build trie, each trie node matains # of words that have the prefix, isWord
+- 527. Word Abbreviation
+    # String, Trie
 
 - 208. Implement Trie (Prefix Tree)
 
@@ -358,6 +364,7 @@ Binary Search
 
 * find single element
   - 540. Single Element in a Sorted Array
+      # Binary Search
 
 - 69. Sqrt(x)
     # Binary Search
@@ -414,6 +421,8 @@ DFS
 * Maze, ball moving with direction
   - 490. The Maze
   - 505. The Maze II
+    # BFS, Shortest Path
+  499. The Maze III
     # BFS, Shortest Path
 
 * Construct all strings
@@ -544,6 +553,7 @@ Greedy
 
 * Matain pre and # of consecutive sequence at pre with length 1, 2, 3
     - 659. Split Array into Consecutive Subsequences
+      # Greedy
 
 --------------------
 Bit Mnaipulation
@@ -621,8 +631,9 @@ Dynamic Programming
 * n个ballon从1个开始循环，2个，最后n个
   - 312. Burst Balloons
 
-* Recursion, memorization, 2D
+** Recursion, memorization, 2D
   - 486. Predict the Winner
+    # Recursion, Memorization, 2D
 
 * Decode
   - 91. Decode Ways

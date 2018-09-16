@@ -3059,7 +3059,6 @@
 
 *362. Design Hit Counter
   - Design a hit counter which counts the number of hits received in the past 5 minutes.
-
   - private int[] time = new int[300];
     private int[] hits = new int[300];
 
@@ -3247,10 +3246,7 @@
     }
   # DFS
 
----------------------------------------------------------------------
-
-
-490. The Maze
+*490. The Maze
   - Ball movement has direction. Use while loop when ball moving until reach wall. Check stop position if its destination.
   - Add before check
   - Use direction arr instead of up, down, left, right
@@ -3275,7 +3271,7 @@
     }
   # DFS
 
-505. The Maze II
+*505. The Maze II
   - Use bfs. Instead of use boolean[] visited, use int[] visited to track smallest distance at ball stop position.
   -     int[][] visited = new int[rows][cols];
         for(int[] arr : visited) Arrays.fill(arr, Integer.MAX_VALUE);
@@ -3315,11 +3311,11 @@
         }
   # BFS, Shortest Path
 
-499. The Maze III
+*499. The Maze III
   - (https://leetcode.com/problems/the-maze-iii/description/)
   # BFS, Shortest Path
 
-486. Predict the Winner
+*486. Predict the Winner
   - without memorization, time is O(2^n). With memorization, O(n^2)
   - 每次选左或选右，最大化差值
   -   int[][] memory = new int[nums.length][nums.length];
@@ -3350,28 +3346,28 @@
   - it has duplicates. Run second time. Use one more index stack instead of map.
   # Stack
 
-527. Word Abbreviation
-  - (https://leetcode.com/problems/word-abbreviation/discuss/99782/Really-simple-and-straightforward-Java-solution)
-  - Matain prefix int[]
-  # String
+*527. Word Abbreviation
+  - build trie, each node matains count (num of words that have this prefix) and isWord. Then iterate trie, count is 1, then create abbreviation, if the abbreviation lenght is same as word length, then use origianl word.
+  # Trie, String
 
 529. Minesweeper
-  - DFS
+  - dfs to unreveal all adjacent "E", for each "E" get num of Bombs, if more than 1 end, if 0 continue dfs.
+  # DFS
 
-540. Single Element in a Sorted Array
+*540. Single Element in a Sorted Array
   - Find the single element in a sorted array that include pair elements and one single element.
   -  public static int singleNonDuplicate(int[] nums) {
           int start = 0, end = nums.length - 1;
           while (start < end) { // not start<=end to avoid out of bound e.g. (0,1,1)
               int mid = (start + end) / 2;
-              if (mid % 2 == 1) mid--;
+              if (mid % 2 == 1) mid--;  // important
               if (nums[mid] != nums[mid + 1]) end = mid; else start = mid + 2;
           }
           return nums[start];
       }
-  - Binary Search
+  # Binary Search
 
-552. Student Attendance Record II
+*552. Student Attendance Record II
   - /*
     dp[i] = total num of rewardable student records at index i
     1. without A
@@ -3402,12 +3398,12 @@
     }
   # 1D DP
 
-652. Find Duplicate Subtrees
+*652. Find Duplicate Subtrees
   - postorder traverval and serialize each subtree to string and put into a map<String, Integer>, if Integer == 2, add to res.
   # Tree, Postorder Traversal, Serialize
 
-659. Split Array into Consecutive Subsequences
-  - matain pre, p1, p2, p3 which are he number of consecutive subsequences ending at pre with length of 1, length of 2 and length >= 3. If count<p1+p2 during iteration, false. At end, if p1 !=0 || p2 !=0, false;
+*659. Split Array into Consecutive Subsequences
+  - matain pre, p1, p2, p3 which are the number of consecutive subsequences ending at pre with length of 1, length of 2 and length >= 3. If count<p1+p2 during iteration, false. At end, if p1 !=0 || p2 !=0, false;
 
   - int pre = Integer.MIN_VALUE, p1 = 0, p2 = 0, p3 = 0;
     int cur = 0, cnt = 0, c1 = 0, c2 = 0, c3 = 0;
@@ -3432,9 +3428,10 @@
   # Greedy
 
 684. Redundant Connection
+  - cycle detection in undirected graph.
   # Union Find, undirected graph
 
-685. Redundant Connection II
+*685. Redundant Connection II
   - directed graph, 3 cases
     (1) circle, same as 684
     (2) node has 2 parents
@@ -3470,6 +3467,8 @@
         }
         return candidate1;
   # Union Find, directed graph
+
+---------------------------------------------------------------------
 
 *727. Minimum Window Subsequence
   - Given strings S and T, find the minimum (contiguous) substring W of S, so that T is a subsequence of W.

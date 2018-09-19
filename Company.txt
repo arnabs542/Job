@@ -1,69 +1,103 @@
+-----------------------
 ***
-    - Google
-    - Facebook
+-----------------------
+* Google
+* Facebook
 
-
+-----------------------
 **
-    - LinkedIn
-    - Uber
-    - Palantir
+-----------------------
+* LinkedIn
+* Uber
+* Palantir
 
-
+-----------------------
 *
-    - Bloomberg
-    - Amazon
-    - Snapchat
-    - ebay
-    - dropbox
-    - twitter
-    - jet.com
-    - Spotify
+-----------------------
+* Bloomberg
+* Amazon
+* Snapchat
+* ebay
+* dropbox
+* twitter
+* jet.com
+* Spotify
 
-#    
-    - Yelp
-    - Lyft
-    - Square
 
+-----------------------
+*
+-----------------------
+* Yelp
+* Lyft
+* Square
+
+
+-----------------------
 Finance:
-    - Citadel
-    - Two Sigma
-    - Goldman Saches
-    - AQR
+-----------------------
+* Citadel
 
+* Two Sigma
 
+* Goldman Saches
+  1. PWM Technology Software Engineer (https://uscareers-goldmansachs.icims.com/jobs/41782/pwm-technology---software-engineer/job?hub=7)
+  2. Equity Technology Developer (https://uscareers-goldmansachs.icims.com/jobs/46298/equities-technology---developer/job?hub=7)
+
+-----------------------
 California:
-    - Microsoft
-    - Airbnb
-    - Apple
-    - Hulu
-    - Pinterest
-    - RobinHood
+-----------------------
+* Microsoft
+  - Office, Bing, Windows, xBox, Skype
+  - Azure
+    # data:
+      - (https://careers.microsoft.com/us/en/job/450401/Software-Engineer-II)
+      - (https://careers.microsoft.com/us/en/job/464158/Software-Engineer-2)
+    # compute:
+      - (https://careers.microsoft.com/us/en/job/448754/Software-Engineer-II)
+    # Data Factory: SparkSQL
+      - (https://careers.microsoft.com/us/en/job/493747/Senior-Software-Engineer)
+    # storage: Cosmos DB
+    # container
+    # app service: devops
+    # Networking
+    # Active Directory B2C (AAD B2C)
+
+
+  1. Microsoft Cloud AI team (https://careers.microsoft.com/us/en/job/415681/Software-Development-Engineer-II)
+
+  2. Azure Data teams (https://careers.microsoft.com/us/en/job/450401/Software-Engineer-II)
+
+* Airbnb
+* Apple
+* Hulu
+* Pinterest
+* RobinHood
 
 
 
 
 Link:
-    - (http://www.1point3acres.com/bbs/forum.php?mod=viewthread&tid=200593&extra=page%3D1%26filter%3Dsortid%26sortid%3D192%26sortid%3D192)
+* (http://www.1point3acres.com/bbs/forum.php?mod=viewthread&tid=200593&extra=page%3D1%26filter%3Dsortid%26sortid%3D192%26sortid%3D192)
 
-------------------------------------
+*
 Career
-------------------------------------
+*
 * 如何衡量一个好的工作？
-  - 用户
+* 用户
     面向公众，还是clients，还是internal clients。用户人数多少。
 
-  - 工作带来的收益
+* 工作带来的收益
     能给公司或个人挣多少钱
 
-  - 技术
+* 技术
     技术上的应用是否新颖。
     前端，后端，数据库，前后端的数据交互，后端数据库的数据交互, 移动端。
     对速度和memory上的要求。
 
-  - 团队管理
+* 团队管理
     团队人数，管理方式，带不带人。
 
-  - work life balance
+* work life balance
 
 * 感兴趣的工作是什么样的？
   （1）有直观的产品可以评价

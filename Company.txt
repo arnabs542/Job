@@ -15,7 +15,27 @@
 *
 -----------------------
 * Bloomberg
+  - Multi Asset Mars
+    (https://careers.bloomberg.com/job/detail/62612?el=Experienced+Hires&nr=100&fd=Engineering&lc=New+York&sd=Software+Developer%2FEngineering)
+  - Equity
+    (https://careers.bloomberg.com/job/detail/63388?el=Experienced+Hires&nr=100&fd=Engineering&lc=New+York&sd=Software+Developer%2FEngineering)
+
 * Amazon
+  - Display Ad Products
+  (https://www.amazon.jobs/en/jobs/718036/software-development-engineer)
+
+  - Amazon Media Group
+  (https://www.amazon.jobs/en/jobs/718048/software-development-engineer)
+
+  - Self Service Performance Advertising
+  (https://www.amazon.jobs/en/jobs/685989/software-development-engineer)
+
+  - Advertising Engineering and Technology
+
+  - AWS Software Development Engineers
+  (https://www.amazon.jobs/en/jobs/666707/software-development-engineer-big-data-aws-elastic-mapreduce-emr)
+
+
 * Snapchat
 * ebay
 * dropbox

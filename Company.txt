@@ -96,11 +96,7 @@ California:
     # app service: devops
     # Networking
     # Active Directory B2C (AAD B2C)
-
-
-  1. Microsoft Cloud AI team (https://careers.microsoft.com/us/en/job/415681/Software-Development-Engineer-II)
-
-  2. Azure Data teams (https://careers.microsoft.com/us/en/job/450401/Software-Engineer-II)
+  - Microsoft Cloud AI team (https://careers.microsoft.com/us/en/job/415681/Software-Development-Engineer-II)
 
 * Airbnb
 * Apple
@@ -109,6 +105,11 @@ California:
 * RobinHood
 
 
+-----------------------
+自我介绍
+-----------------------
+Tingyu Chen is currently a senior software engineer in Core System Infrastructure(CSI) team within BlackRock. This team is responsible for developing core software infrastructure including BlackRock Messaging System(BMS), Aladdin Data Layer(Solr, Cassandra), Continuous Integration and Delivery (CICD) System. Tingyu is working on CICD and BMS projects now using Java, Angular 5, Sybase and Cassandra. Before joined CSI, he has worked as rotational software engineer in Order Management System Team, Portfolio Tool Team and Accouting Team. Tingyu mainly uses Java, SQL, Cassandra for daily work and familar with TypeScript, Python, Git, Jenkins, Splunk and so on. 
+Tingyu is interested in latest technology such as big data, cloud, large-scale distributed system. 
 
 
 Link:

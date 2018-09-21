@@ -1,20 +1,35 @@
 -----------------------
+Plan
+-----------------------
+* 九月中十月初 goldman saches, microsoft, bloomberg
+* 十月中十一月中 Amazon, Facebook, Google, Airbnb, LinkedIn
+* 十一月中到十二月
+
+
+-----------------------
 ***
 -----------------------
 * Google
+  - Software Engineer
+    (https://careers.google.com/jobs#!t=jo&jid=/google/software-engineer-76-9th-ave-new-york-ny-10011-usa-2748170192&f=true&)
+
 * Facebook
+  - 多是 SE infrastructure职位
+    (https://www.facebook.com/careers/jobs/a0I1H00000LJnkVUAT/)
 
 -----------------------
 **
 -----------------------
 * LinkedIn
+  - Search (https://www.linkedin.com/jobs/search/?f_C=1337&f_F=eng&keywords=software%20engineer&location=United%20States&locationId=us%3A0)
+
 * Uber
 * Palantir
 
 -----------------------
 *
 -----------------------
-* Bloomberg
+* Bloomberg (这周末申请)
   - Multi Asset Mars
     (https://careers.bloomberg.com/job/detail/62612?el=Experienced+Hires&nr=100&fd=Engineering&lc=New+York&sd=Software+Developer%2FEngineering)
   - Equity
@@ -99,9 +114,9 @@ California:
 Link:
 * (http://www.1point3acres.com/bbs/forum.php?mod=viewthread&tid=200593&extra=page%3D1%26filter%3Dsortid%26sortid%3D192%26sortid%3D192)
 
-*
-Career
-*
+-----------------------
+Careers
+-----------------------
 * 如何衡量一个好的工作？
 * 用户
     面向公众，还是clients，还是internal clients。用户人数多少。

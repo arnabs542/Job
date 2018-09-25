@@ -1,8 +1,24 @@
 -----------------------
+HR Connection
+----------------------
+Justin Lane: 
+* Bloomberg
+
+Lauren Sokai:
+* TripAdvisor
+
+Nick Zurick
+* Uber 
+* Snap
+* JetBlack - Jet.com
+* Palantir 
+
+
+-----------------------
 Plan
 -----------------------
 * 九月中十月初 goldman saches, microsoft, bloomberg
-* 十月中十一月中 Amazon, Facebook, Google, Airbnb, LinkedIn
+* 十月中十一月中 Amazon, Facebook, Google, Airbnb, LinkedIn, Uber
 * 十一月中到十二月
 
 
@@ -30,10 +46,9 @@ Plan
 *
 -----------------------
 * Bloomberg (这周末申请)
-  - Multi Asset Mars
-    (https://careers.bloomberg.com/job/detail/62612?el=Experienced+Hires&nr=100&fd=Engineering&lc=New+York&sd=Software+Developer%2FEngineering)
-  - Equity
-    (https://careers.bloomberg.com/job/detail/63388?el=Experienced+Hires&nr=100&fd=Engineering&lc=New+York&sd=Software+Developer%2FEngineering)
+  - Software Engineer - Multi Asset Risk Systems (MARS)
+  - Software Engineer - Portfolio Analytics
+  - Senior Software Engineer - Trading Systems
 
 * Amazon
   - Display Ad Products
@@ -50,12 +65,11 @@ Plan
   - AWS Software Development Engineers
   (https://www.amazon.jobs/en/jobs/666707/software-development-engineer-big-data-aws-elastic-mapreduce-emr)
 
-
-* Snapchat
+* Snapchat: Go
 * ebay
 * dropbox
 * twitter
-* jet.com
+* jet.com: Using F#, Kafka, Redis, Elastic Search, Azure SQL, Event Store and Azure Storage
 * Spotify
 
 

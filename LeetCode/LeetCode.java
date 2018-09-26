@@ -491,6 +491,7 @@
   # HashSet
 
 *347 Top K Frequent Elements
+  - (https://leetcode.com/problems/top-k-frequent-elements/discuss/81635/3-Java-Solution-using-Array-MaxHeap-TreeMap)
   - map.put(key, map.getOrDefault(key, 0) + 1);
   - TreeMap, sorted by key, treeMap.pollLastEntry().getValue()
   - List<Integer>[] bucket = new List[nums.length+1];
@@ -944,7 +945,7 @@
 
   # Binary Search, Binary Indexed Tree/Fenwick Tree
 
-*34 Search for a Range
+*34. Search for a Range
    //find first
    private int findFirst(int[] nums, int target) {
         int l = 0; int r = nums.length-1;

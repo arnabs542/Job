@@ -3469,8 +3469,6 @@
         return candidate1;
   # Union Find, directed graph
 
----------------------------------------------------------------------
-
 *727. Minimum Window Subsequence
   - Given strings S and T, find the minimum (contiguous) substring W of S, so that T is a subsequence of W.
   - Track the start index. e.g. S = abcde, T = be
@@ -3505,7 +3503,7 @@
         return len == lenS + 1 ? "" : S.substring(start, start + len);
   # 2D DP
 
-731. My Calendar II
+*731. My Calendar II
   - Insert (start, end), if there is triple event intersection, return false, else return true. Construct binary search tree.
   - private Node insert(Node node, int start, int end) {
         if(start>=end) return node;
@@ -3656,6 +3654,9 @@
         count++; // 聪明，每次每种情况走一步，算最短路径
     }
   # BFS
+
+---------------------------------------------------------------------
+
 
 787. Cheapest Flights Within K Stops
   - 保证queue里头的每一批都走一步，直到k stops. int[] visisted matains minimum total price for each position.

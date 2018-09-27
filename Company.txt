@@ -45,18 +45,22 @@ Plan
 -----------------------
 *
 -----------------------
-* Bloomberg (这周末申请)
+* Bloomberg ()
   - Software Engineer - Multi Asset Risk Systems (MARS)
   - Software Engineer - Portfolio Analytics
   - Senior Software Engineer - Trading Systems
 
-* Amazon
+* Amazon (Applied)
   - Self Service Performance Advertising
+  HM: Krishna Kumar Rajagopalan
   (https://www.amazon.jobs/en/jobs/685989/software-development-engineer)
+
+  HM: Henry DeGregorio
   (https://www.amazon.jobs/en/jobs/689896/software-development-engineer)
 
   - Amazon Media Group
-  (https://www.amazon.jobs/en/jobs/718048/software-development-engineer)
+    HM: Zoltan Szilagyi, Supply Chain Optimization Tech, demand forcasting
+    (https://www.amazon.jobs/en/jobs/718048/software-development-engineer)
 
   - Display Ad Products
   (https://www.amazon.jobs/en/jobs/718036/software-development-engineer)
@@ -66,6 +70,7 @@ Plan
   - AWS Software Development Engineers
   (https://www.amazon.jobs/en/jobs/666707/software-development-engineer-big-data-aws-elastic-mapreduce-emr)
 
+* TripAdvisor (Applied)
 * Snapchat: Go
 * ebay
 * dropbox
@@ -89,14 +94,14 @@ Finance:
 
 * Two Sigma
 
-* Goldman Saches
+* Goldman Saches (Applied)
   1. PWM Technology Software Engineer (https://uscareers-goldmansachs.icims.com/jobs/41782/pwm-technology---software-engineer/job?hub=7)
   2. Equity Technology Developer (https://uscareers-goldmansachs.icims.com/jobs/46298/equities-technology---developer/job?hub=7)
 
 -----------------------
 California:
 -----------------------
-* Microsoft
+* Microsoft (Applied)
   - Office, Bing, Windows, xBox, Skype
   - Azure
     # data:

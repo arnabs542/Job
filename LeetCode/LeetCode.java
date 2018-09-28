@@ -3655,10 +3655,7 @@
     }
   # BFS
 
----------------------------------------------------------------------
-
-
-787. Cheapest Flights Within K Stops
+*787. Cheapest Flights Within K Stops
   - 保证queue里头的每一批都走一步，直到k stops. int[] visisted matains minimum total price for each position.
   -     while(stops++<=K+1) {
             int size = queue.size();
@@ -3682,7 +3679,7 @@
   # BFS
 
 734. Sentence Similarity
-  # HashMap
+  # HashMap， Set
 
 737. Sentence Similarity II
   -     private void union(Map<String, String> map, String s1, String s2) {
@@ -3708,7 +3705,7 @@
             map.put(s1, s);
             return s;
         }
-  # String Union Find
+  # String, Union Find
 
 739. Daily Temperatures
   - Put index into stack instead of value because its more easy to calculte index diff.

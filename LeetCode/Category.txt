@@ -153,6 +153,7 @@ Stack
 * Matain increasing order index in stack
   - 84 Largest Rectangle in Histogram
   - 85. Maximal Rectangle
+  - 739. Daily Temperatures
 
 * Decode String with 2 stacks and one current res
   - 394. Decode String
@@ -423,7 +424,7 @@ DFS
   - 490. The Maze
   - 505. The Maze II
     # BFS, Shortest Path
-  499. The Maze III
+  - 499. The Maze III
     # BFS, Shortest Path
 
 * Construct all strings

@@ -1,0 +1,44 @@
+----------------------
+Amazon
+----------------------
+* Preparation
+  - distributed system knowledge
+  - Scalability: caching, load balancing, no-sql, micro services and sharding
+  - OS: memory management, processes, threads, synchronization, paging, multihtreading
+
+* Behavior Questions
+  - http://www.1point3acres.com/bbs/thread-307462-1-1.html
+
+* Work Simulation
+  - http://www.1point3acres.com/bbs/thread-445121-1-1.html
+
+
+----------------------
+Goldman Sachs
+----------------------
+* 电面
+  -
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

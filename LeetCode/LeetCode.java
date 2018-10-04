@@ -361,7 +361,7 @@
   - avoid using collection or object to waste time
   # DFS/BFS, Graph, Connected Component
 
-49 Group Anagrams
+*49. Group Anagrams
   - String s.toCharArray()
   - Arrays.sort(s.toCharArray())
   - new String(s.toCharArray())

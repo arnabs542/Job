@@ -1,6 +1,12 @@
 --------------------
 String
 --------------------
+*
+  - str.compareTo(str2)
+  - str.split(regx)
+  - str.join(" ", strArr)
+  - Integre.parseInt
+
 * Split by Regx and compare
   - 165. Compare Version Numbers
 
@@ -36,9 +42,6 @@ String
 
 - 38. Count and Say
     # String
-
-- 249. Group Shifted Strings
-    # String, HashMap
 
 - 68. Text Justification
     # String

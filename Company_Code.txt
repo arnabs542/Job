@@ -17,7 +17,10 @@ Amazon
 Goldman Sachs
 ----------------------
 * 电面
-  -
+  - min matrix slice类似利口的triangle的那道DP题，只不过它这里是矩形，可以走下，左下和右下。我用的二维DP，应该空间复杂度可以用滚动数组优化到一维.
+
+* learn test
+
 
 
 

@@ -158,18 +158,11 @@ Stack
   - 85. Maximal Rectangle
   - 739. Daily Temperatures
 
-* Decode String with 2 stacks and one current res
-  - 394. Decode String
-
 * Calculate time for process
   - 636. Exclusive Time of Functions
 
 * Regular expression to split string, put into stack
   - 71. Simplify Path
-
-* matain decreasing order in stack, pop to get next greater element
-  - 496. Next Greater Element I
-  - 503. Next Greater Element II
 
 --------------------
 Tree

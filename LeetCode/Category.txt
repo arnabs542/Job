@@ -333,10 +333,6 @@ Binary Search
   - 300. Longest Increasing Subsequence
       # Binary Search, patience sort
 
-* 终极老怪
-  - 33. Search in Rotated Sorted Array
-        # Binary Search
-
 * compare mid & mid-1, compare mid & (left || right)
   - 33. Search in Rotated Sorted Array
         # Binary Search, Array

@@ -12,35 +12,34 @@ Amazon
 * Work Simulation
   - http://www.1point3acres.com/bbs/thread-445121-1-1.html
 
+* Onsite:
 
-----------------------
-Goldman Sachs
-----------------------
-* 电面
-  - min matrix slice类似利口的triangle的那道DP题，只不过它这里是矩形，可以走下，左下和右下。我用的二维DP，应该空间复杂度可以用滚动数组优化到一维.
+  - Technical Coaching Call 
+    Tuesday & Thursday 3pm - 4pm 
 
-* learn test
-  @FunctionalInterface
-  interface Square
-  {
-      int calculate(int x);
-  }
+  - Behavior Questions 
 
-  class Test
-  {
-      public static void main(String args[])
-      {
-          int a = 5;
+  - System Design 
 
-          // lambda expression to define the calculate method
-          Square s = (int x)->x*x;
 
-          // parameter passed and return type must be
-          // same as defined in the prototype
-          int ans = s.calculate(a);
-          System.out.println(ans);
-      }
-  }
+Questions: 
+  - From 10am to 4.15pm, how many rounds of interviews? 
+
+  - how many coding questions, system design questions, OOD questions
+
+  - use desktop for coding questions, compile and run the code
+
+  - Evaulate the performance for each round of interviews? 
+  
+5 hours, 1 hour lunch
+
+4 hours tech + behavior 
+  - 1 coding, logical 
+  - 1 data structure & algorithm 
+  - problem solving 
+  - System design 
+1 behavior 
+  - leadership principles 5-7 projects, I vs We 
 
 
 

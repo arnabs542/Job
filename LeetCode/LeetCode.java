@@ -12,7 +12,7 @@
 
 *4. Median of Two Sorted Arrays
   - attention to corner cases
-  - (https://www.youtube.com/watch?v=do7ibYtv5nk)
+  - (https://www.youtube.com/wa  tch?v=do7ibYtv5nk)
   -     int length1 = nums1.length;
         int length2 = nums2.length;
         int length = length1 + length2;

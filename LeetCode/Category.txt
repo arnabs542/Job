@@ -293,9 +293,6 @@ Two Pointers
 * create sum array, fast and slow pointers
   - 209. Minimum Size Subarray Sum
 
-125. Valid Palindrome
-    # Two Pointers
-
 - 340. Longest Substring with At Most K Distinct Characters
     # Two Pointers, HashMap
 

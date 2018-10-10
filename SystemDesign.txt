@@ -56,13 +56,13 @@ Database
 
 * cache delete ; database set
 
-* Design User System 
+* Design User System
   - AuthService
     - Session table : login session_key 作为cookie值返回browser, then request to website including cookie. Logout will remove session from table.
     - session table 推荐存数据库而不是内存
   - UserService
   - FriendshipService
-    - mutual friendship: smaller_user_id, bigger_user_id or from_user_id, to_user_id 
+    - mutual friendship: smaller_user_id, bigger_user_id or from_user_id, to_user_id
 
 * SQL or NoSQL
   - SQL is mature and support much more things than NoSQL. NoSQL support higher QPS.
@@ -73,7 +73,7 @@ Database
   - row_key, column_key, value决定存在哪个database上
   - row_key: hash_key, for routing, sharding purpose，can't range query
   - column_key: sorted, support range query
-  - value: 
+  - value:
 
 * Scale: Single Point Failure
   - Sharding: 拆分数据存储到不同数据库
@@ -86,20 +86,20 @@ Crawler & Typehead
 ---------------------------
 * Web Crawler
 
-* Scenario 
+* Scenario
   1. how many web pages per second
-  2. how long 
+  2. how long
   3. how large 10k average size of a webpage
 
 * Single-threaded web crawler
-  - Producer Consumer Pattern, buffer 
+  - Producer Consumer Pattern, buffer
   - bfs, remove()-> store page -> extract urls -> offer()
 
-* multiple threaded 
+* multiple threaded
   - multiple crawler + 1 URL queue
   - 3 approaches to resolve multi-threaded buffer write
     1. sleep
-    2. condition variable 
+    2. condition variable
     3. semaphore
   - context switch cost, port number limitation, network bottleneck
 
@@ -107,21 +107,21 @@ Crawler & Typehead
   - URL queue need to be very big: task table(url, state, priority, available_time )
   - Service: CrawLer, TaskService, StorageServices
   - Storage: db task table, BigTable to store web pages
-  - Optimization: 
-    1. distributed task tables, horizontal sharding 
+  - Optimization:
+    1. distributed task tables, horizontal sharding
     2. set available_time based on update faliture
     3. dead cycle, use quota
 
 * Typeahead: 提示关键词
   - prefix -> top hot search keywords
 
-* Scenario 
+* Scenario
   - DAU 500m, QPS: 138k, Peak: QPS*3
 
 * Service
   - QueryService: trie (in memory)
   - DataCollectionService：
-    1. table keyword, hit_count -> prefix, keywords  
+    1. table keyword, hit_count -> prefix, keywords
 
 * distributed trie
   - can't distribute by a, b, c... cause its not averaged. Calculate hash and matain map from hash to distributed server
@@ -136,14 +136,14 @@ Distributed File System (Goole File System)
 * GFS vs HDFS
   - GFS is not open source, HDFS is. Other is the same.
 
-* Scenario 
+* Scenario
   - read/write file
   - how large: 1000T
 
-* Service 
+* Service
   - client, servers
   - servers communication
-    - peer to peer: e.g. BitComet, Cassandra 
+    - peer to peer: e.g. BitComet, Cassandra
     - master, slave: partition, naster扮演管理者位置
 
 * Storage:
@@ -151,21 +151,21 @@ Distributed File System (Goole File System)
   - Master Slave: easy design. 挂了就重启
 
 * Save a small file in one machine
-  - file and meta data. Save meta data separetely 
+  - file and meta data. Save meta data separetely
   - windows 连续化存储， linux 碎片化存储
-  - meta data has index which includes many blocks(1KB) and each block point to the disk address that the file is stored 
+  - meta data has index which includes many blocks(1KB) and each block point to the disk address that the file is stored
 
 * Save a large file in one machine
-  - index includes chunk(64MB) instead of block to reduce size  
+  - index includes chunk(64MB) instead of block to reduce size
 
 * Save extra-large file in several machines
   - Master: matain metadata, map of chunk and chunk server
-  - Slave: store chunk 
-  - Master include index (chunks server) info, Salve ChunkServer includes chunk info  
+  - Slave: store chunk
+  - Master include index (chunks server) info, Salve ChunkServer includes chunk info
 
 * Write (client, server(master, slave))
   - 拆分写入DFS: 断点续传，以chunk为单位
-  - client -> master: 写chunk1 
+  - client -> master: 写chunk1
     master -> client: 回chunkserver list
     client -> slave: 写， 从slave1，2，3中选个队长1写进去，然后slave1再写给其他slave
   - Client: Database, WebServer, Server: GFS, client and server是相对的概念
@@ -190,11 +190,11 @@ Distributed File System (Goole File System)
 Consistent Hashing & Design Tiny Url
 ------------------------------------
 * Consistent Hashing by Horizontal Sharding
-  - mod 360, 分配给n台机器，每个机器负责一段区间。n从2到3，只有1/3的数据移动。 
+  - mod 360, 分配给n台机器，每个机器负责一段区间。n从2到3，只有1/3的数据移动。
   - 目的是减小数据的移动
   - 缺陷：数据不均匀(e.g. n从3到4)，迁移压力大
 
-* Consistent hashing 
+* Consistent hashing
   - hash func(数据) return (mod 2^64-1) 个点中一个， 把机器和数据放在这些点上。数据算好点后，顺时针找到的第一个机器(虚拟节点)为要存的。
   - 1个机器分成1000个虚拟节点，平均分布在环上。1000个虚拟节点有1000个不连续的区间
 
@@ -221,22 +221,22 @@ Consistent Hashing & Design Tiny Url
 * Storage
   - transaction？ no
   - 丰富的query？a little bit
-  - scalability? 
+  - scalability?
   - QPS?
   - Sequential id?
 
-* Long URL to 6 digit url 
+* Long URL to 6 digit url
   - 随机转化：随机生成短的没有用过的url存数据库。随着短网址越来越多，生成速度效率低。
   - 进制转换：依赖全局自动增加iD，转化成6位62进制的short url。62^6=57B=570亿
 
 * Scale
   - cache
   - 地理位置信息提速：DNS解析位置
-  - honrizontal sharding: what sharding key? 
-    1. Long URL 
-       long  -> short: easy 
+  - honrizontal sharding: what sharding key?
+    1. Long URL
+       long  -> short: easy
        short -> long: broadcast all database
-    2. ID 
+    2. ID
        short -> long: short url to ID, use ID to find db
        long  -> short: broadcast to all servers
 
@@ -244,10 +244,10 @@ Consistent Hashing & Design Tiny Url
 Distributed System Design (Google Big Table)
 ------------------------------------
 * File System vs Dabase System
-  - FS includes simple file read, write ops. 
-  - DB provides complex queries, 数据库建立在文件系统之上 
+  - FS includes simple file read, write ops.
+  - DB provides complex queries, 数据库建立在文件系统之上
 
-* Big Table 
+* Big Table
   - Bigtable: Google, HBase: Yahoo, Cassandra:Facebook, DynamoDB: Amazon
   - Write: Update appends new data, 时常进行排序整理解决read的二分查询问题。 优化写。 优化方法是有有序块和无序块。
   - Read: Add index and bloom filter in memory to map from key to address pointer for each unsorted block (sorted block不需要). All index & bloomfilter for all unsorted blocks are stored in the memory.
@@ -260,7 +260,7 @@ Distributed System Design (Google Big Table)
 * Skip list
   - matain all new write data in memory
 
-* SSTable 
+* SSTable
   - unit that stored in the disk
 
 * Distributed
@@ -268,7 +268,7 @@ Distributed System Design (Google Big Table)
   - Read: key -> consistent hash returns slave server -> ask slave server in memory 1. Check Memory Skip List 2. Chech Bloom Filter 3. Check index, then find value in Sstable in Disk
   - Write: write key -> consistent hashmap retunr slave -server -> ask slave server in memory 1. write data into memory 2. write ahead log 3.skip list 满了写进disk
 
-* Distributed Lock 
+* Distributed Lock
   - ZooKeeper
 
 ------------------------------------
@@ -284,12 +284,12 @@ Map Reduce
   - 机器越多越好？每个处理时间短，但启动时间长
   - 不考虑启动时间，reduce机器越多越好？上限是key的数目
 
-* 计算文章的单词数 
+* 计算文章的单词数
   - Map:拆分单词, 数据放硬盘不是内存，按文章行数分。
   - Reduce: 汇总单词，按key来分。
   - 传输汇总：Partition and Sort(硬盘外排序) -> Fetch and Merge Sort(k merge sort)
 
-* Inverted Index 
+* Inverted Index
   - Input: 文章Id:单词组
   - Map: key 文章id， value content of the line
   - Reduce: key 单词， value 文章Id.
@@ -300,7 +300,7 @@ Map Reduce
 * Notes
   - Reducer 一个机器key特别大怎么办？加个random后缀，类似shard key
   - input和output放哪？ GFS
-  
+
 
 
 

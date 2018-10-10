@@ -1,0 +1,65 @@
+----------------------
+Amazon
+----------------------
+* Preparation
+  - distributed system knowledge
+  - Scalability: caching, load balancing, no-sql, micro services and sharding
+  - OS: memory management, processes, threads, synchronization, paging, multihtreading
+
+----------------------
+Behavior Questions
+----------------------
+- (http://www.1point3acres.com/bbs/thread-307462-1-1.html)
+- leadership principles, 5-7 projects, I vs We
+
+
+----------------------
+System Design
+----------------------
+* Workflow
+  1. Ask clarifying questions:
+     * active users, peak active users
+     * qps
+
+  2. Create diagram and workflow
+     * create services
+     * data storage
+       - sql or nosql
+       - cache
+       - optimize read or write
+
+  3. Tradeoff and Scale
+     * sharding
+     * failure recover, replica
+     * special cases
+
+  4. Monitor operational performance
+     - server heartbeat
+     - splunk to track logs
+
+----------------------
+Coding Questions
+----------------------
+- Problem Solving: Give a vague problem.
+  1. Ask questions.
+  2. Make Assumption.
+  3. Ask example.
+
+- Data Structure and Algorithm
+
+- Logical and Maintainable Code
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -19,6 +19,9 @@ Behavior Questions
 ----------------------
 System Design
 ----------------------
+* Topics
+  - service oriented archetecture, mapReduce, distributed caching, load balancing
+
 * Workflow
   1. Ask clarifying questions:
      * active users, peak active users

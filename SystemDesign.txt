@@ -4,6 +4,15 @@
 
 * scalability. e.g. DB(Master-slave), sharding, Cache(Redis, Memcached), Load-balancing.
 
+---------------------------
+Notes
+---------------------------
+* Scenario
+  - Ask daily active users, calculate average qps, peak qps, assume read/write qps to decide how many servers to use.
+
+* Service
+* Storage
+* Scale
 
 ---------------------------
 News Feed
@@ -14,6 +23,8 @@ News Feed
       1. relation with dau * freq / daily seconds
       2. relation with server.
          1 webserver 1k QPS, 1 sql 1k, 1 nosql 10k, 1 memcased nosql 1m qps
+      3. peak qps = 3 * average qps
+      4. fast growing product
 
 * service
   - User Service
@@ -28,8 +39,10 @@ News Feed
   - file system: Media Service, e.g S3
 
 * scale
+  - use cache
   - sharding
   - optimze
+  - failure recover
   - special case
 
 * Pull
@@ -50,9 +63,9 @@ Database
   - MySQl 1k
   - 硬盘型NoSQL数据库 MongoDB/Cassandra 10k
   - 内存型数据库 Redis/Memcached(单机) 100k - 1m QPS，
-  - Redis支持数据持久化，Memcached不支持数据持久化.Redis 读写都很快的cache-through db.
+  - Redis单机支持数据持久化，Memcached可分步不支持数据持久化.Redis 读写都很快的cache-through db.
 
-* 思考读多于写和是反过来
+* 思考读多于写和是反过来，读的多一定要用cache来优化
 
 * cache delete ; database set
 

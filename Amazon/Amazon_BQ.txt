@@ -14,24 +14,95 @@ Notes
 Projects
 ----------------------
 1. 4D
-   - Customer Obsession
+  *  Customer Obsession
      users centric, 1500 internal users, symphony chat group
 
+  * brief introduction
+    - 4D is a framework to streamline and improve continuous integration and delivery. If project is existed in Bitbucket, then the project can be onboarded into 4D. Out of the box, builds will be triggered with every commit/merge on every branch. Code quality and coverage metrics will be captured and made available in 4D. 
+    - Give example: test_server, master branch.
+
+  * Integration of 3 tools
+    - Jenkins: Automation server.
+      1. pipeline: build, test, quality, publish, delivery, activation, restart
+      2. Pipeline configuration gives the flexibility to configure pipeline for specific branch. e.g. last stop.
+    - SonarQube: Tool to inspect code quality.
+    - Bitbucket: Souce code management tool.
+
+  * What I work on 
+    - UI: ag-grid (cache data, colum group), minor ui features, ui server commnication
+    - Server: integration with Jenkins, Sonar, Bitbucket
+    - Pipeline: add appPkg delivery and activation to 4D 
+    - Storage: put jenkins build log into Cassandra
+
+  * Improvement:
+    - UI: user dashboard
+    - Server: docker image, provide easureable framework for mataining 4d reliability, customized 4d
+
+  * User request 
+    - last build time, build trigger, user dashboard
+    - pipeline to build docker image 
+
+  * data
+    - 1700 projects, 3000 users, 600 users in 4D community chat group
+
 2. SRPT - Application Packaging
-   - Ownership: optimization for long-term
+  * Ownership: optimization for long-term
+  * Introduction
+    - Think of application package as docker image. It consists of files that make up an application. These files such as jar files, config files are bundled as a directory.
+    - AppPkg types: backend applications, web application, Python
+    - release vault, delivery, activation
+    - package.pl
+
+  * What I work on
+    - integrate appPkg to 4D
+    - delivery and activation part
+    - enable appPkg for web application and python  
+
+  * Benefits  
+    - Before, when we do release, we just copy file one after another to different clients in order. Release is diffcult. Now, sparate devliery and activation, release become fast and easy. Rollback is easy. 
 
 3. Http2Bms Configuration Tool
    - Invent and Simplify
    - Learn and Be Curious: learn angular
+  * Introduction
+    - Http2Bms is part of the BMS infrastructure which provides native HTTP client access to BMS. 
+    - This is meant to be used by developers to help configure Http2Bms routes and provision them in select environments directly from front-end application without manually editing and pushing files out to clients.
 
 4. Prism/Explore
    - team work, Prims & FMG & PM, US Austrilla India
+  * Introduction
+    - Prism is an interactive portfolio reporting and analysis tool and provides flexibility for viewing portfolio holdings, portfolio risk and returns information. Prism interacts with many data sources like GPX database, VARServer to retrieve data.
+
+  * What I did
+    - Prism client may facing memory issues when retrieving large amount of data from Prism Server. To improve user experience, we want to reduce the memory usage by 30 percent of the original amount of data. 1. change data structure from object to primitive if possible 2. avoid multiple copies of portfolio 3. manully remove portfolio from cache 4. Use RamUsageEstimator to monitor memory usage.
+
+  * team work 
+    - daily meeting with ny indian austrila team, weekly meeting with FMG, PM
 
 5. Accounting System
    - Are Right, A Lot: Calculate merger
+  * Introduction
+    -  Alpha Performance group is responsible for the generation of data used for Accounting and Performance valuations for Institutional BLK clients. It includes NAV calculation, Various Performance calculations. 
+
+  * What I did
+    - I was responsible for developing and maintaining accounting system used by operations professionals at Blackrock and at Aladdin clients. Following are the projects he has worked on. 
+    - Add Alpha Position Calculation to AlphaCluster Service. AlphaCluster is a collection of mirrored server nodes joined into a cluster to host and perform computation on in-memory distributed partitioned caches for ledger transactions, alpha cash and cash reconciliation state. At present, alpha position is calculated when the client request for it and the calculation takes some time before get back to the client. To save time for the calcuation, we want to calculate position as transactions come in and store the positions in the Ignite.
+
+  * fact 
+    - Reduce the number of accountants in BLK. Sell accounting system to external institutional clients. 
 
 6. Portfolio Challenging
    - Have Backbone; Disagree and Commit: 扯投资比特币
+   - Manage a multi-asset portfolio for 3 months and generate alpha over a multi asset global benchmark. We were first given 25 million dollars that only exist in the BLK internal tools. We were limited to buy certain assets. e.g. No Derivatives, IPOs or Alternatives. After 3 months, all participating teams will be ranked on their portfolio’s Information Ratio and the top 10 teams with the highest IR’s will be selected to move forward to the presentation round. For presentation, we need to demonstrate the portfolio strategy, team participation, and level of engagement with the Aladdin tools.
+
+    Strategy 
+    1. Paied attention to big market event. e.g. 2016 brexit, cash, gold, vix were held to hedge risk of market event like US election and Brexit.
+    2. Track finantial and technology sector. Paied attention to quarterly report
+    3. Prefer ETF rather than individual stock 
+    4. digital currency
+
+   - Others
+    - Had weekly meeting to discuss how to adjust the portfolio.
 
 ----------------------
 Leadership Principles
@@ -75,7 +146,7 @@ Leadership Principles
   - Leaders have relentlessly high standards - many people may think these standards are unreasonably high. Leaders are continually raising the bar and drive their teams to deliver high quality products, services and processes. Leaders ensure that defects do not get sent down the line and that problems are fixed so they stay fixed.
 
   1. I took the initiative to add tests to SRPT servers.
-  2. Set up daily meeting with Indian team for communication.
+  2. Set up daily meeting with Indian team.
 
 * Think Big
   - Thinking small is a self-fulfilling prophecy. Leaders create and communicate a bold direction that inspires results. They think differently and look around corners for ways to serve customers.

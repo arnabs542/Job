@@ -18,7 +18,7 @@ Projects
      users centric, 1500 internal users, symphony chat group
 
   * brief introduction
-    - 4D is a framework to streamline and improve continuous integration and delivery. If project is existed in Bitbucket, then the project can be onboarded into 4D. Out of the box, builds will be triggered with every commit/merge on every branch. Code quality and coverage metrics will be captured and made available in 4D. 
+    - 4D is a framework to streamline and improve continuous integration and delivery. If project is existed in Bitbucket, then the project can be onboarded into 4D. Out of the box, builds will be triggered with every commit/merge on every branch. Code quality and coverage metrics will be captured and made available in 4D.
     - Give example: test_server, master branch.
 
   * Integration of 3 tools
@@ -28,19 +28,19 @@ Projects
     - SonarQube: Tool to inspect code quality.
     - Bitbucket: Souce code management tool.
 
-  * What I work on 
+  * What I work on
     - UI: ag-grid (cache data, colum group), minor ui features, ui server commnication
     - Server: integration with Jenkins, Sonar, Bitbucket
-    - Pipeline: add appPkg delivery and activation to 4D 
+    - Pipeline: add appPkg delivery and activation to 4D
     - Storage: put jenkins build log into Cassandra
 
   * Improvement:
     - UI: user dashboard
     - Server: docker image, provide easureable framework for mataining 4d reliability, customized 4d
 
-  * User request 
+  * User request
     - last build time, build trigger, user dashboard
-    - pipeline to build docker image 
+    - pipeline to build docker image
 
   * data
     - 1700 projects, 3000 users, 600 users in 4D community chat group
@@ -56,16 +56,16 @@ Projects
   * What I work on
     - integrate appPkg to 4D
     - delivery and activation part
-    - enable appPkg for web application and python  
+    - enable appPkg for web application and python
 
-  * Benefits  
-    - Before, when we do release, we just copy file one after another to different clients in order. Release is diffcult. Now, sparate devliery and activation, release become fast and easy. Rollback is easy. 
+  * Benefits
+    - Before, when we do release, we just copy file one after another to different clients in order. Release is diffcult. Now, sparate devliery and activation, release become fast and easy. Rollback is easy.
 
 3. Http2Bms Configuration Tool
    - Invent and Simplify
    - Learn and Be Curious: learn angular
   * Introduction
-    - Http2Bms is part of the BMS infrastructure which provides native HTTP client access to BMS. 
+    - Http2Bms is part of the BMS infrastructure which provides native HTTP client access to BMS.
     - This is meant to be used by developers to help configure Http2Bms routes and provision them in select environments directly from front-end application without manually editing and pushing files out to clients.
 
 4. Prism/Explore
@@ -76,29 +76,29 @@ Projects
   * What I did
     - Prism client may facing memory issues when retrieving large amount of data from Prism Server. To improve user experience, we want to reduce the memory usage by 30 percent of the original amount of data. 1. change data structure from object to primitive if possible 2. avoid multiple copies of portfolio 3. manully remove portfolio from cache 4. Use RamUsageEstimator to monitor memory usage.
 
-  * team work 
+  * team work
     - daily meeting with ny indian austrila team, weekly meeting with FMG, PM
 
 5. Accounting System
    - Are Right, A Lot: Calculate merger
   * Introduction
-    -  Alpha Performance group is responsible for the generation of data used for Accounting and Performance valuations for Institutional BLK clients. It includes NAV calculation, Various Performance calculations. 
+    -  Alpha Performance group is responsible for the generation of data used for Accounting and Performance valuations for Institutional BLK clients. It includes NAV calculation, Various Performance calculations.
 
   * What I did
-    - I was responsible for developing and maintaining accounting system used by operations professionals at Blackrock and at Aladdin clients. Following are the projects he has worked on. 
+    - I was responsible for developing and maintaining accounting system used by operations professionals at Blackrock and at Aladdin clients. Following are the projects he has worked on.
     - Add Alpha Position Calculation to AlphaCluster Service. AlphaCluster is a collection of mirrored server nodes joined into a cluster to host and perform computation on in-memory distributed partitioned caches for ledger transactions, alpha cash and cash reconciliation state. At present, alpha position is calculated when the client request for it and the calculation takes some time before get back to the client. To save time for the calcuation, we want to calculate position as transactions come in and store the positions in the Ignite.
 
-  * fact 
-    - Reduce the number of accountants in BLK. Sell accounting system to external institutional clients. 
+  * fact
+    - Reduce the number of accountants in BLK. Sell accounting system to external institutional clients.
 
 6. Portfolio Challenging
    - Have Backbone; Disagree and Commit: 扯投资比特币
    - Manage a multi-asset portfolio for 3 months and generate alpha over a multi asset global benchmark. We were first given 25 million dollars that only exist in the BLK internal tools. We were limited to buy certain assets. e.g. No Derivatives, IPOs or Alternatives. After 3 months, all participating teams will be ranked on their portfolio’s Information Ratio and the top 10 teams with the highest IR’s will be selected to move forward to the presentation round. For presentation, we need to demonstrate the portfolio strategy, team participation, and level of engagement with the Aladdin tools.
 
-    Strategy 
+    Strategy
     1. Paied attention to big market event. e.g. 2016 brexit, cash, gold, vix were held to hedge risk of market event like US election and Brexit.
     2. Track finantial and technology sector. Paied attention to quarterly report
-    3. Prefer ETF rather than individual stock 
+    3. Prefer ETF rather than individual stock
     4. digital currency
 
    - Others
@@ -167,3 +167,113 @@ Leaders operate at all levels, stay connected to the details, audit frequently, 
 
 * Deliver Results
 Leaders focus on the key inputs for their business and deliver them with the right quality and in a timely fashion. Despite setbacks, they rise to the occasion and never settle.
+
+----------------------
+Questions
+----------------------
+* Why Amazon?
+  - Top internet retailing company with wide range of products, Alexa, Kindle, AWS.
+  - Many talented engineers working in Amazon, building innovative systems and creative products with the latest technology. I could learn a lot from here.
+  - Amazon focus on customer experience. e.g. Amazon go
+
+* Why Ads?
+  - Amazon is investing heavily in building a world class advertising business. Hire the most talented people to build the most sofistivated system that impact billions of people around the world. I could work on the product that impacting so many people around the world. This is so cool.
+
+  - When done correctly, advertising allows customers to discover new products they love and brands to find new customers. Revenues generated from advertising allow us to decrease costs for our customers
+
+* Biggest mistake？
+  - Position Calculation error. After calculate posiiton of portfoilo A, change it in port B but not port C.
+  - Explain issue to clients and rollback changes, delay release
+  - clients and manager sit together and walk through the change that need to be made. Fix issue. Releaes ok. Very Happy cause its faster now. Earn trust.
+  - Communicate
+
+* Chanllenging Projects
+  - Http2Bms config tool
+  - Challening part is database schema design. I need to collect all the use cases. I talked to the potential users and my manager. After that, I discussed with the software engineer that working on Cassandra about how to design the schema to make the query fast.
+  - Another chanllenging part is front-end design. Angular 2. I went through the tutorials online. Join in the font end development symphony chat group to ask for help.
+  - Successfully built the configuration tool. There are more than 500 users using that the tool the configure routes. Simply the route configuration process.
+
+* Can't finish task before deadline (deliver, ownership)
+  - copy application pacakges for new client. Gold client is a special client environment.
+  - instead of only allowing copy from goldclient to new client, we should also allow to copy from specific client to another cleint. Devops team and manager agreed on that. I made changes to the exisitng implmentation and delay the deadline.
+  - think from long term, rather than a working solution if the deadline is not urgent.
+
+* Helped a customer through a difficult process (customer obsession)
+  - artifactory manager, blackduck
+  - challenge is which tool to use to check security, legal, liscense issue of third party library
+  - disscuss with the team, research online
+  - it turned out that the artifactory manager is very helpful. Save time for users and also for developers.
+
+* Give me a example of when you took a risk and it failed.
+  - test write/read performance of the blackrock hadoop file system.
+  - Spent much time learning hadoop and related technology. We didn't have enough time actually writing the code. We were given 2 weeks to work on that. But after 2 weeks, we didn't come up the a working solution.
+  - what we learn from it is dont spend much time on learning knowledge, get your hands dirty and tried to come up with a working solution. Then we can think about how to improve that. Another lesson we learned ask manager for help and advice, which will save your lots of time.
+
+* Tell me a time when you created an innovative product.
+  - Google glass. indoor mapping
+  - Final presentation attracted lots of attention.
+
+* observed two business opportunities to improve ROI,
+  - bmsJs vs Http2Bms
+  - run performance test
+  - as a result Http2Bms, it works pretty well
+
+* LEARN AND BE CURIOUS: How do you find the time to stay inspired, acquire new knowledge, innovate in your work?
+  - Self learning ui angular, backend system design
+  - learn from colleague, manager
+
+* HIRE AND DEVELOP THE BEST Tell me about a time when you had to deal with a poor performer on your team.
+  - I used to lead a rotatational anaylst.
+
+* INSIST ON THE HIGHEST STANDARDS: Tell me about a time when you could have stopped working but persisted.
+  - Add test code to application packaging in srpt. Srpt doesn't have enough tests.
+
+* THINK BIG: Tell me about a time when you proposed a new business.
+  - Suggest to invest in digital currency
+
+* BIAS FOR ACTION: Describe how you would handle a busy situation where three people are waiting for help from you.
+  - Speed matters. Prioritize questions based on how urgent the problems. Then give working solution for each. The answer dones't have to be perfect. Later, we can disscuss.
+  - e.g. our team had 4 summer interns, they have lots of questions at the very beginning and some of the qeustions are duplicated. I asked them disscuss first so that they can learn together. If there are issues they can not resolve. Come to ask me.
+
+* FRUGALITY: Tell me about a time where you thought of a clever new way to save money for the company.
+
+* where do you see yourself in 5 years
+  - In the first 2-3 years, I want to polish up my programming skills and become a true expert as a software engineering at Amazon. I can learn from talented engineers and sofisticated system. Then as my technology skills grow, as I know more about business, I can do more things. I can check is there area I can improve to make it more effient, to improve user experience.
+
+* weakness
+  - I used to have problem when I work on mulitple tasks. Its easy to deal with one task and all I need to do is focus on it. In order to solve that, I learned to note all tasks down. I wrote all the requirements, important notices, deadline down and prioritize tasks. As a result, I am capable of handling multiple tasks.
+
+Questions:
+How did you come to work here?
+What do you love most about working here?
+Who's the most successful recent hire and why?
+Who didn't succeed as a new hire and why?
+What's the company' biggest challenge this year?
+what additional skills or experience do you wish I had that would make me a better fit for this job?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

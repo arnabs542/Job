@@ -236,6 +236,29 @@ Questions
   - e.g. our team had 4 summer interns, they have lots of questions at the very beginning and some of the qeustions are duplicated. I asked them disscuss first so that they can learn together. If there are issues they can not resolve. Come to ask me.
 
 * FRUGALITY: Tell me about a time where you thought of a clever new way to save money for the company.
+  - ag-grid, create tree strucutre data, now feature is only in enterprice version which require thousands of dollars. It doesnt impact other features.
+  - webstorm
+
+* EARN TRUST: Tell me a time when you earned trust of a group.
+  - was not confident
+  - migrate prism to web application, fmg group people
+  ask specific questions to understand their expection, provide demo to show progress
+
+* DIVE DEEP: Tell me about a time when you had to dive deep into the data and the results you achieved.
+  - http2bms config tool clean up service, wrote lots of test data, test in local and dev
+
+* HAVE BACKBONE, DISAGREE AND COMMIT : Tell me about the most difficult interaction you had at work.
+  - If I have different idea with my manager or boss, I will try to collect data or make a prototype trying to convince him. If I have tried my best and he still disagree, then I would respect his decision and start committing for that.
+  - srpt shared library
+  - convince manger to merge 2 libs to improve the code quality. Its so confusing right now. Code is hard to matain.
+
+* DELIVER RESULTS: Tell me about a time where you overcame an obstacle and delivered results.
+  - portfilio challenge
+  - one challenge is put team members together every week. Another is we may give up if the performance is not good.
+  - team collaboration is very important
+
+* what you’d do after you realized you couldn’t hit the date?
+  - Try every possible way to hit the date, e.g. work more time, ask for help from collegue and manger. If not, delay the release, if not, prioritize the tasks and work on important things fisrt and appology and try to minimize the impact.
 
 * where do you see yourself in 5 years
   - In the first 2-3 years, I want to polish up my programming skills and become a true expert as a software engineering at Amazon. I can learn from talented engineers and sofisticated system. Then as my technology skills grow, as I know more about business, I can do more things. I can check is there area I can improve to make it more effient, to improve user experience.

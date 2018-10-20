@@ -7,16 +7,6 @@ Amazon
   - OS: memory management, processes, threads, synchronization, paging, multihtreading
 
 ----------------------
-Behavior Questions
-----------------------
-* (http://www.1point3acres.com/bbs/thread-307462-1-1.html)
-* leadership principles, 5-7 projects, I vs We
-
-* Questions
-  - Motivation to make a move.
-
-
-----------------------
 System Design
 ----------------------
 * Topics
@@ -54,6 +44,66 @@ Coding Questions
 - Data Structure and Algorithm
 
 - Logical and Maintainable Code
+
+----------------------
+Package
+----------------------
+* New Grad
+  - 112k + (36k + 31k) + 35
+
+* SDE I
+  - 3-1年：134k + (52K + 36K) + 55
+  - 3-1年：120k + (40k + 30k) + 50
+  - 1-3年：130k + (30k + 27k) + 40  too low
+  - 3-5年：130k + (36k + 28k) + 90
+
+* SDE II
+  - 3-5年：163k + (60k + 48k) + 100
+  - 5-10年：145k + (70k + 50k) + 80
+  - 1-3年：170k + (95k + 70k) + 117 from google
+  - 3-5年：155k + (150k) + 100
+
+* 期望
+  - 140k + (50k + 40k) + 80
+
+* Negociation
+  - 先表示感谢，表达对亚马逊的兴趣，对没有达到II的遗憾
+  - 了解市场，给几个比较高的报价
+  - 表明手上有goldman, google 面试
+  - 不要催HR
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

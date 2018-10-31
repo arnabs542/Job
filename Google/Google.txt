@@ -1,0 +1,100 @@
+1. Unique Path
+   * LC 62, 63
+   * 详解（https://www.1point3acres.com/bbs/thread-423857-1-1.html）
+   * 从左上角走到右上角，要求每一步只能向正右、右上或右下走，即 →↗↘
+      dp[0][0] = 1;
+      for(int j = 1;j<cols;j++) {
+        for(int i=0;i<rows;i++) {
+          dp[i][j] = dp[i][y-1];
+          if(i>0) dp[i][j] += dp[i-1][j];
+          if(i+1<rows) dp[i][j] += dp[i+1][j];
+        }
+      }
+      return dp[0][cols-1];
+   * 优化空间复杂度至 O(n)
+     int[] dp = new int[rows];
+     dp[0] = 1;
+     for(int i=1;i<cols;i++) {
+        int pre = 0, cur = 0;
+        for(int j=0;j<rows;j++) {
+          pre = cur;
+          cur = dp[j];
+          if(j > 0) {
+            dp[j] += pre;
+          }
+          if(j+1 < rows) {
+            dp[j] += dp[j+1];
+          }
+        }
+     }
+    * 如果给矩形里的三个点，要求解决上述问题的同时，遍历这三个点
+      - 切割矩形，一个一个地做DP，然后相加
+    * 如何判断这三个点一个是合理的，即存在遍历这三个点的路经
+      - 三个点的纵坐标必须是不等的，按照列排序后（Point2.col - Point1.col）>= abs(Point2.row - Point1.row)
+    * 如果给你一个H，要求你的路径必须向下越过H这个界
+      - 思路是先做一遍正常的，接着把低于 H 的归零，然后再从 x == H 遍历到终点
+
+2. LC50. Pow(x, n)
+  - e.g. 2^7 = 2* 2^6 = 2* 4^3 = 2* 4* 4^2 = 2* 4* 16
+  - Attention to Integer.MIN_VALUE, e.g. -128 to 127.
+      public double myPow(double x, int n)  {
+        if(n==0 || x==1) return 1;
+        if(n==1) return x;
+        // n=0, x=1
+        double res = 1;
+        if(n<0) return 1/(x*myPow(x, -(n+1))); // deal with Integer.MIN_VALUE
+        while(n>1) {
+            if(n%2==1) {
+                res = x*res;
+                n--;
+            } else {
+                x *= x;
+                n /=2;
+            }
+        }
+        return res*x;
+    }
+
+3. 两个字符串s和t，t可以重复很多次，并且重复之后可以删除上面的任意字母，问最后能否得到s，如果能，最少重复几次。
+  - first check if all chars in s are in t. then yes. Keep appending t until get s
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

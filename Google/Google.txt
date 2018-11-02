@@ -58,6 +58,18 @@
 3. 两个字符串s和t，t可以重复很多次，并且重复之后可以删除上面的任意字母，问最后能否得到s，如果能，最少重复几次。
   - first check if all chars in s are in t. then yes. Keep appending t until get s
 
+4. 带时间戳expiration的hashmap以及删除expired的entry
+  - 类似，LRU 和 359. Logger Rate Limiter
+
+* LC
+  - 31 next permutation
+  - 769. Max Chunks To Make Sorted
+  - 94. Binary Tree Inorder Traversal: iterative
+  - 269. Alien Dictionary
+  - 773. Sliding Puzzle
+  - 215. Kth Largest Element in an Array
+  - 399. Evaluate Division
+
 
 
 

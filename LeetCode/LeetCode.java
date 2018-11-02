@@ -562,7 +562,7 @@
   # Two Pointers
 
 31 Next Permutation
-  - Iterate from left to right in an array to find the first index that arr[index] < arr[index+1], then from right to index find the first index2 that arr[index2]>arr[index], swap these two. Then inverse from index+1 to rightmost. e.g. 4202320 -> 4203220 -> 4203022
+  - Iterate from right to left in an array to find the first index that arr[index] < arr[index+1], then from right to index find the first index2 that arr[index2]>arr[index], swap these two. Then inverse from index+1 to rightmost. e.g. 4202320 -> 4203220 -> 4203022
 
 62 Unique Paths
   - dp[i][j] = dp[i-1][j] + dp[i][j-1]

@@ -61,15 +61,33 @@
 4. 带时间戳expiration的hashmap以及删除expired的entry
   - 类似，LRU 和 359. Logger Rate Limiter
 
+5. Semantic match query
+   - HashMap + UnionFind, like accounts merge
+
+6. 设计黑白棋后端api
+   - 对A的四个方向做dfs，如果所剩的slot不多，可以空的进行dfs
+
+7. 找到一条线将坐标系中的点分成两等份
+   - 考虑与x,y平行的线，然后 ax + b < y
+
+8. 长凳坐人
+   - 可以将intervals加入PriorityQueue，每次新来 人的时候，取出最长的interval,split成相等的两个intervals再入队列即可。对于Follow up，可以维护K个PriorityQueue，每次取出K个peek中最长Interval即可
+
+9. Facebook的friend suggestion
+   - HashMap<userId, Set<userId>>, find all 2nd connection, compute number of common friends
+
 * LC
-  - 31 next permutation
+  - 31. next permutation
   - 769. Max Chunks To Make Sorted
   - 94. Binary Tree Inorder Traversal: iterative
   - 269. Alien Dictionary
   - 773. Sliding Puzzle
   - 215. Kth Largest Element in an Array
   - 399. Evaluate Division
-
+  - 398. Random Pick Index
+  - 721. Accounts Merge: bfs, dfs, union find
+  - 23. Merge k Sorted Lists
+  - 529. Minesweeper
 
 
 

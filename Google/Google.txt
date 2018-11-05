@@ -76,6 +76,187 @@
 9. Facebook的friend suggestion
    - HashMap<userId, Set<userId>>, find all 2nd connection, compute number of common friends
 
+10. 扫地机器人
+  - Class Robot {
+    int U = 0, R = 1, D = 2, L = 3;
+    int[] dirs = {U, R, D, L};
+    int[][] move = {{0,-1}, {1,0}, {0,1}, {-1,0}};
+    int face = D;
+  }
+  - dfs
+
+11. 找最大font fit sentence on screen
+  - binary search 优化， 分能截断string和不能
+
+12. 0-1矩阵找connected components count
+  - union find
+
+13. Maximum sum rectangle in a 2D matrix
+  for(int i=0;i<rows;i++) {
+    int[] arr = new int[cols];
+    for(int j=i;j<rows;j++) {
+      for(int k = 0;k<cols;k++) {
+        arr[k] += rectangle[j][k];
+        cur += arr[k];
+        max = Math.max(max, cur);
+        cur = cur<0 ? 0 : cur;
+      }
+    }
+  }
+
+14. 用最少的正方形填满矩形
+  - 如果长=宽，return 1, else if (row > )
+    int get(int[][] arr, int row, int col) {
+      if(row == col) {
+        return 1;
+      } else if(row > col) {
+        return 1 +  get(arr, row - col, col);
+      } else {
+        return 1 + get(arr, row, col - row);
+      }
+    }
+
+15. 匹配自行车和人
+  - greedy: 计算出每人到每车的距离，放到priority queue里，然后取出直到所有人都有车骑
+  - graph: 每个人matain 车 distance list, 对所有人做dfs， 使得所有人distance最短
+
+16. 找出单词里所有的extension
+    boolean find(String s, int index){
+        for(int i = index+1;i<s.length();i++) {
+          if(s.charAt(i) != s.charAt(index)) {
+            if(i - index>2) {
+
+              return find() || find() || find()
+            }
+          }
+        }
+        if(Dictionary.contains(s)) {
+          return true;
+        } else false;
+    }
+
+17. 是男人就跳问题
+  - 构造点到挡板左右两点的adjacent list graph, then run dfs
+
+18. Event fire问题
+  - 假设event的总数为N, 每当有新的event的时候就放到queue尾，然后 从queue的头部开始比对event是不是outdated, 如果是就pop出去，最后判断下queue的长度是不 是长于n, 这样的话amortized时间复杂度是O(1)，但是worst case下时间和空间均可能为O(N)。优化完的思路为每次把新的event放到队尾后，如果queue的长度大于n，就一直pop到n个为止， 然后判断queue的头有没有outdated, 这样space不会超过n, worst case时间复杂度也是O(1)， 其 实就换了个判断的思路。
+
+19. 01 matrix toggle to all 1
+  - DFS+记录，就是把当前matrix的状态作为一个点，然后做dfs.
+  - backtracking, 找到2^(m+n)的可能性
+
+20. 用n台电脑排序天文数字级数量的数字
+    - (n/c)log(n/c) + nlogc
+
+21. 多线程分布式计算number sum
+    -   //  MAX_T = numOfCPU * cores * 2 threads
+        AtomicInteger machineNum;
+        int[] result = new int[N];
+
+        ExecutorService pool = Executors.newFixedThreadPool(MAX_T);
+        for(int i=0;i<N;i++) {
+            pool.execute(new Runnable() {
+                @Override
+                public void run() {
+                  while(results[i] = FAIL_STATUS) {
+                    results[i] = computeSum(fileId, machineNum++);
+                  }
+                }
+            });
+        }
+    - 多个机器算一个
+
+22. 字符映射问题char mapping
+
+23. IP address blacklist matching
+    - TrieNode{char value; List<String> list; boolean isIp; TrieNode[] children}
+
+24. (高频)王位继承
+    - dfs
+
+25. 公交车管理问题
+   - Map<String, PriorityQueue> companyToQueue
+
+26. Decide complete binary tree
+   -
+   Queue<Node> queue = new LinkedList<>();
+   queue.add(node)
+   List<Node> nodes  =  new ArrayList<>();
+   while(!queue.isEmpty()) {
+     Node node =  queue.poll();
+     if(node != null) {
+      queue.add(node.left);
+      queue.add(node.right);
+     }
+     nodes.add(node) ;
+   }
+   boolean hasNull = false;
+   for(int i=0;i<nodes.size();i++) {
+      if(hasNull && nodes.get(i) != null) {
+        return false;
+      }
+      if(nodes.get(i) == null) {
+        hasNull = true;
+      }
+   }
+   return true;
+
+   - 2i+1, 2i+2 construct recursion
+   Node buildTree(int[] arr, int l, int r) {
+      if(l == r) return new Node(arr[l]);
+      mid = l + (r -l)/2;
+      Node node = new Node(arr[mid]);
+      node.left = buildTree(arr, l, mid-1);
+      node.right = buildTree(arr, mid+1, r+1);
+   }
+
+27. Choose a random point uniformly in the list of rectangles
+  - Random r = new Random(); r.nextInt(total); // random between [0, total)
+  -  算所有的矩形的面积和 S 然后给每一个矩形分配一个对应的区间 比如 3个矩形的面积分别是1 ，4，9 那可以分别分配[0,1],[1,5],[5,14]。 随机产生[0，S]里的数通过这个数落在哪个区间里来决定哪个矩形被选中. 在这个矩形里 根据分别在x 和y 的方向上产生随机坐标 得到的点就是符合要求的点
+
+28. Speed Cluster
+   - 遍历一遍记录最小值, coner case 新加的放最顶头
+
+29. Double map with eplision
+   - 精度是0.1， bucket, key*10找 +-1的找
+
+30. Implement一个Set class
+   - 要求4个O(1)时间的API: add, contains, remove, getRandom. 挺简单的OOD，因为 getRandom也要常熟时间，所以每次删除就把最后一个元素和被删除的swap就可以. HashSet + array + random swap
+
+31. (高频)计算Log中TopK说话最多的用户
+   - nlogk heap
+
+32. Find string matching from stream
+   - 把词典的word逆序后建Trie树
+
+33. Triangle array search
+   - binary search
+
+34. 拿硬币和最大问题
+   - getCoin(int[] arr, int cur, int left, int right, int goal)
+
+35. BST找range和
+   - binary search
+
+36. 数组shuffle问题
+   - 生成 index to index map
+    arr1  1 2 3 4
+    arr2  4 2 1 3
+    val2NewIndex   4 -> 0, 2->1, 1 -> 2, 3 -> 3
+    index2NewIndex 0 -> 2, 1->1, 2 -> 3, 3->0
+
+37. User CPU Peak问题
+   - new int[]{startTime, +cup}, new int[]{endTime, -cpu}, add all to list then sort by time Arrays.sort((a,b)-> a[0]-b[0])升序，然后iterate and matain 最大cpu
+
+38. 拿卡片游戏
+   - dfs
+
+39. skyline简化
+   - create start arr and end arr (2,8,a) -> (2,a), (8,-a), sort and then iterate
+
+40. 01矩阵走路问题
+   - bfs
+
 * LC
   - 31. next permutation
   - 769. Max Chunks To Make Sorted
@@ -88,6 +269,34 @@
   - 721. Accounts Merge: bfs, dfs, union find
   - 23. Merge k Sorted Lists
   - 529. Minesweeper
+  - 248. Strobogrammatic Number III
+  - 105 Construct Binary Tree from Preorder and Inorder Traversal
+  - 106. Construct Binary Tree from Inorder and Postorder Traversal
+  - 889. Construct Binary Tree from Preorder and Postorder Traversal
+  - 753. Cracking the Safe
+  - 57. Insert Interval
+  - 253. Meeting Rooms II
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

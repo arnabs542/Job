@@ -3764,7 +3764,26 @@
 889. Construct Binary Tree from Preorder and Postorder Traversal
   - (https://zxi.mytechroad.com/blog/tree/leetcode-889-construct-binary-tree-from-preorder-and-postorder-traversal/)
 
+*568. Maximum Vacation Days
+  -   private int dfs(int city, int curWeek, int numOfWeeks) {
+        if(curWeek == numOfWeeks) {
+            return 0;
+        }
 
+        if(map[city][curWeek] != 0) {
+            return map[city][curWeek];
+        }
+
+        int maxPlayDays = Integer.MIN_VALUE;
+        for(int i=0;i<flights.length;i++) {
+            if(flights[city][i] == 1 || i== city) {
+                maxPlayDays = Math.max(maxPlayDays, days[i][curWeek] + dfs(i, curWeek+1, numOfWeeks));
+            }
+        }
+        map[city][curWeek] = maxPlayDays;
+        return maxPlayDays;
+    }
+    # DFS + memorization
 
 
 

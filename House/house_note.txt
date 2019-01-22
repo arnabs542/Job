@@ -28,6 +28,10 @@ Ideas
 -------------------------------------------
 Jersey City
 -------------------------------------------
+* Research
+  - Development Map (https://jerseydigs.com/all-jersey-city-development-map/)
+  - Zillow (https://www.zillow.com/jersey-city-nj/home-values/)
+  - Trulia (https://www.trulia.com/real_estate/Jersey_City-New_Jersey/market-trends/)
 
 * 201 Marin Blvd
 
@@ -36,6 +40,14 @@ Jersey City
 * Mandlay (20 2ND ST)
 
 * 10 Provost 
+
+-------------------------------------------
+Long Island City
+-------------------------------------------
+* LIC development map (https://ny.curbed.com/maps/long-island-city-development-boom-construction-map)
+
+* Skyline Tower
+  - Sales from Q3 2019 
 
 -------------------------------------------
 Weehawken/Union City/West New York

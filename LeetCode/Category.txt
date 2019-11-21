@@ -302,13 +302,13 @@ Binary Search
 --------------------
 1. l<=r
    - l=mid+1, r=mid-1 可能会越界，所以要不返回target，要不越界找不到
-   - l=mid+1, r=mid 可能会死循环卡在r=mid上
+   - l=mid+1, r=mid 可能会死循环卡在r=mid上，可能越界
 
 2. l < r
-   - l=mid+1, r=mid 最后都返回l
+   - l=mid+1, r=mid 最后都返回l.应该不会越界
 
 3. l < r-1
-   - l=mid, r=mid 最后返回l或者r
+   - l=mid, r=mid 最后返回l或者r。应该不会越界
 
 * cut1 and cut2= length/2-cut1, l1, r1, l2, r2
   - 4 Median of Two Sorted Arrays
@@ -629,7 +629,7 @@ Dynamic Programming
 * Decode
   - 91. Decode Ways
         # 1D
-  - 639. Decode Ways II
+    - 639. Decode Ways II
         # 1D
 
 * create student attendance with A, L, P

@@ -182,6 +182,14 @@
             }
             return i;
         }
+        public int find(int[] arr, int index) {
+          if(arr[index] == index) {
+            return index;
+        }
+
+          arr[index] = find(arr, arr[index]);
+          return arr[index];
+        }
         public void union(int[] arr, int[] rank, int i, int j) {
             int RootI = find(arr, i);
             int RootJ = find(arr, j);
@@ -300,7 +308,7 @@
   - Maintain path set and array of distance from each vertex to source. For each interation, add the smallest distance vertext to path set and update distance array until V-1. Similar to Prim's MST
   - work for both directed graph and undirected graph
   - for negative weight edges, need to use Bellman-Ford algo, or turn negative edge into base 0.
-  # O(V^2) for adjacency matrix, O(E log V) for adjacency list with binary heap
+  # O(V^2) for adjacency matrix, O(E log V) for adjacency list with binary heap (https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-in-java-using-priorityqueue/)
 
 * Least Common Ancestor
   - post traversal, find the first node includes i, j

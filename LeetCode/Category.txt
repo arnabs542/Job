@@ -5,7 +5,7 @@ String
   - str.compareTo(str2)
   - str.split(regx)
   - str.join(" ", strArr)
-  - Integre.parseInt
+  - Integer.parseInt
 
 * Split by Regx and compare
   - 165. Compare Version Numbers

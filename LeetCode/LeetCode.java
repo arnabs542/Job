@@ -391,6 +391,24 @@
 
 234 Palindrome Linked List
   - reverse linked list
+  -     ListNode pre = null;
+        ListNode slow = head;
+        ListNode fast = head.next;
+        while(fast.next !=null && fast.next.next!=null) {
+            fast = fast.next.next;
+            ListNode temp = slow.next;
+            slow.next = pre;
+            pre = slow;
+            slow = temp;
+        }
+        ListNode temp;
+        if(fast.next == null) {
+            temp = slow.next;
+        } else {
+            temp = slow.next.next;
+        }
+        slow.next = pre;
+        return compare(temp, slow);
   # Two Pointers, Reverse LinkedList
 
 160 Intersection of Two Linked Lists
@@ -2509,7 +2527,7 @@
         for(int[] mine:mines) {
             arr[mine[0]][mine[1]]=0;
         }
-        // 神循环，each val is initilzed as N. Each val is calculated to find the minimum from left to right, right to left, up to down and down to up.
+        // 神循环，each val is initilzed as N. Each val is calculated to find the minimum from left to right, right to left, up to down and down to up. 前提是N*N，M*N就不行了
         for(int i=0;i<N;i++) {
             for(int j=0, k=N-1,l=0,r=0,u=0,d=0;j<N;j++,k--) {
                 arr[i][j] = Math.min(arr[i][j], l=arr[i][j]==0?0:l+1);
@@ -3504,9 +3522,9 @@
   # 2D DP
 
 *731. My Calendar II
-  - Insert (start, end), if there is triple event intersection, return false, else return true. Construct binary search tree.
+  - Insert (start, end), if there is triple event intersection, return false, else return true. Construct binary search tree. Corner case start == end
   - private Node insert(Node node, int start, int end) {
-        if(start>=end) return node;
+        if(start==end) return node;
         if(node == null) return new Node(start, end);
         if(start >= node.end) {
             node.r = insert(node.r, start, end);
@@ -3527,7 +3545,7 @@
     }
 
     private boolean insertable(Node node, int start, int end) {
-        if(start>=end) return true;
+        if(start==end) return true;
         if(node == null) return true;
         if(start>=node.end) {
             return insertable(node.r, start, end);

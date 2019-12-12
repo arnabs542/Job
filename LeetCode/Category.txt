@@ -142,9 +142,10 @@ Stack
 * maintain number stack and res stack and current res
   - 394. Decode String
 
-* find next greater element in arr
+** find next greater element in arr
   - 496. Next Greater Element I
   - 503. Next Greater Element II
+  - 739. Daily Temperatures
 
 * parentheses
   - 20 Valid Parentheses
@@ -156,10 +157,9 @@ Stack
   - 301 Remove Invalid Parentheses
       # Backtracking/DFS, Two Pointers
 
-* Matain increasing order index in stack
+** Matain increasing order index in stack, pop if new height lower than stack.peek(). Calculate h[stack.pop()] * (i-stack.peek()-1) 
   - 84 Largest Rectangle in Histogram
   - 85. Maximal Rectangle
-  - 739. Daily Temperatures
 
 * Calculate time for process
   - 636. Exclusive Time of Functions

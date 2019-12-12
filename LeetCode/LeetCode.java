@@ -720,6 +720,7 @@
 
 *32 Longest Valid Parentheses
   - push index into stack
+  - cant use sum map method in array cause e.g. )(. 
   -   for(int i=0;i<s.length();i++) {
         if(s.charAt(i) == '(') {
             stack.push(i);
@@ -3358,6 +3359,24 @@
                 map.put(stack.pop(), num);
             }
             stack.push(num);
+        }
+  - interate from right to left, and matains increasing order in stack. Keep track of stack and map. 
+  -     for(int i = nums2.length -1 ; i>=0;i--) {
+            while(!stack.empty()) {
+                if(nums2[i]>=stack.peek()) {
+                    stack.pop();
+                } else {
+                    break;
+                }
+            }
+            
+            if(stack.empty()) {
+                map.put(nums2[i], -1);
+            } else {
+                map.put(nums2[i], stack.peek());
+            }
+            stack.push(nums2[i]);
+
         }
   # Stack
 

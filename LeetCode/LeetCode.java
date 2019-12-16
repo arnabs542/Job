@@ -720,7 +720,7 @@
 
 *32 Longest Valid Parentheses
   - push index into stack
-  - cant use sum map method in array cause e.g. )(. 
+  - cant use sum map method in array cause e.g. )(.
   -   for(int i=0;i<s.length();i++) {
         if(s.charAt(i) == '(') {
             stack.push(i);
@@ -786,6 +786,37 @@
   - Deque<> deque = new LinkedList<>(Arrays.asList(data.split(",")))
   - (int)Math.pow(2,n), (int)Math.log(8)
   - convert tree to array, children of arr[i] should be 2*i+1, 2*i+2. i is index rather than tree level.
+  -     // Encodes a tree to a single string.
+    public String serialize(TreeNode root) {
+        StringBuilder sb = new StringBuilder();
+        traverse(root, sb);
+        return sb.toString();
+    }
+
+    private void traverse(TreeNode node, StringBuilder sb) {
+        if(node == null) {
+            sb.append("null,");
+            return;
+        }
+        sb.append(node.val + ",");
+        traverse(node.left, sb);
+        traverse(node.right, sb);
+    }
+
+    // Decodes your encoded data to tree.
+    public TreeNode deserialize(String data) {
+        Deque<String> queue = new LinkedList<>(Arrays.asList(data.split(",")));
+        return build(queue);
+    }
+
+    private TreeNode build(Deque<String> queue) {
+        String val = queue.remove();
+        if(val.equals("null")) return null;
+        TreeNode node = new TreeNode(Integer.parseInt(val));
+        node.left = build(queue);
+        node.right = build(queue);
+        return node;
+    }
   # BFS, Preorder Traversal
 
 55 Jump Game
@@ -829,7 +860,27 @@
 
 102 Binary Tree Level Order Traversal
   - time O(n), space O(n)
-  # Preorder Traversal
+  -     int num =1;
+        int temp = 0;
+        while(num != 0) {
+            List<Integer> list = new ArrayList<>();
+            for(int i=0;i<num;i++) {
+                TreeNode node = queue.poll();
+                if(node.left != null) {
+                    queue.offer(node.left);
+                    temp++;
+                }
+                if(node.right != null) {
+                   queue.offer(node.right);
+                    temp++;
+                }
+                list.add(node.val);
+            }
+            num = temp;
+            temp = 0;
+            res.add(list);
+        }
+  # Preorder Traversal, Queue
 
 *647 Palindromic Substrings
   - interate string, for each iteration, left-- and right++ to find palindrome until s.charAt(left) != s.charAt(right).
@@ -1224,7 +1275,7 @@
 
   # DFS, Topological Sort, Graph, Adjacent List, Cycle Detection, Back Edge
 
-*437. Path Sum III
+**437. Path Sum III
   - path can start not from root.
   -     public int pathSum(TreeNode root, int sum) {
             if(root == null) return 0;
@@ -1242,7 +1293,7 @@
 98. Validate Binary Search Tree
   - inorder traversal and the new visited node should larger than the previous ndoe. Maintain pre node val.
   - first assign pre = Integer.MIN_VALUE, test case has node.val = Integer.MIN_VALUE. Be careful.
-  # Tree, Inorder Traversal
+  # Tree, Inorder Traversal, Stack
 
 538. Convert BST to Greater Tree
   - Traverse from right to left
@@ -3360,7 +3411,7 @@
             }
             stack.push(num);
         }
-  - interate from right to left, and matains increasing order in stack. Keep track of stack and map. 
+  - interate from right to left, and matains increasing order in stack. Keep track of stack and map.
   -     for(int i = nums2.length -1 ; i>=0;i--) {
             while(!stack.empty()) {
                 if(nums2[i]>=stack.peek()) {
@@ -3369,7 +3420,7 @@
                     break;
                 }
             }
-            
+
             if(stack.empty()) {
                 map.put(nums2[i], -1);
             } else {
@@ -3822,8 +3873,18 @@
     }
     # DFS + memorization
 
-
-
+270. Closest Binary Search Tree Value
+  -     while(root != null) {
+            if(Math.abs(root.val-target)<Math.abs(res-target)) {
+                res = root.val;
+            }
+            if(root.val > target) {
+                root = root.left;
+            } else {
+                root = root.right;
+            }
+        }
+    # Tree
 
 
 

@@ -157,7 +157,7 @@ Stack
   - 301 Remove Invalid Parentheses
       # Backtracking/DFS, Two Pointers
 
-** Matain increasing order index in stack, pop if new height lower than stack.peek(). Calculate h[stack.pop()] * (i-stack.peek()-1) 
+** Matain increasing order index in stack, pop if new height lower than stack.peek(). Calculate h[stack.pop()] * (i-stack.peek()-1)
   - 84 Largest Rectangle in Histogram
   - 85. Maximal Rectangle
 
@@ -176,6 +176,18 @@ Tree
 * matain max sum for each path using recursion
   - 124 Binary Tree Maximum Path Sum
 
+* Postorder traversal and serialize subtree to string
+  - 652. Find Duplicate Subtrees
+    # Tree, Postorder Traversal, Serialize
+
+* post order 返回个数，思路像124
+  - 298. Binary Tree Longest Consecutive Sequence
+      # PostOrder, Tree
+
+* DP in tree
+  - 337. House Robber III
+      # Tree, DP
+
 * lowest common ancestor
   - 236 Lowest Common Ancestor of a Binary Tree
 
@@ -185,7 +197,7 @@ Tree
 * level traversal, preorder
   - 102 Binary Tree Level Order Traversal
   - 117. Populating Next Right Pointers in Each Node II
-      # Tree, Level Traversal
+      # Tree, Level Traversal, Queue
 
 * flatten tree, right -> left
   - 114. Flatten Binary Tree to Linked List
@@ -196,36 +208,24 @@ Tree
       # Inorder Traversal, Stack
   - 173. Binary Search Tree Iterator
       # Stack
-
-* DP in tree
-  - 337. House Robber III
-      # Tree, DP
+  - 98. Validate Binary Search Tree
+      # Stack
 
 * path sum from any node
   - 437. Path Sum III
       # PreOrder on sum, PostOrder on res, Tree, DFS
 
-* Inorder traversal and compare with previous node
-  - 98. Validate Binary Search Tree
-
 * vertical order traversal using BFS
   - 314. Binary Tree Vertical Order Traversal
-      # Tree, BFS
+      # Tree, BFS, Queue
 
-- 285. Inorder Successor in BST
-      # Tree, Successor
+* Search Value in tree
+  - 270. Closest Binary Search Tree Value
+  - 285. Inorder Successor in BST
+        # Tree, Successor
 
 - 297. Serialize and Deserialize Binary Tree
     # BFS, Preorder Traversal, Tree
-
-- 298. Binary Tree Longest Consecutive Sequence
-    # PostOrder, Tree
-
-- 270. Closest Binary Search Tree Value
-
-* Postorder traversal and serialize subtree to string
-  - 652. Find Duplicate Subtrees
-    # Tree, Postorder Traversal, Serialize
 
 --------------------
 Trie/Prefix Tree
@@ -242,7 +242,6 @@ Trie/Prefix Tree
 
 - 208. Implement Trie (Prefix Tree)
 
-
 --------------------
 HashSet
 --------------------
@@ -253,7 +252,6 @@ HashSet
 * encode to category
   - 36. Valid Sudoku
     # HashSet
-
 
 --------------------
 HashMap

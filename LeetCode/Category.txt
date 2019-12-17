@@ -236,7 +236,7 @@ Trie/Prefix Tree
 * encode prefix and suffix to integer, combine prefix and suffix tree
   - 745. Prefix and Suffix Search
 
-* build trie, each trie node matains # of words that have the prefix, isWord
+* Create shortest abbreviation for each word, for duplicates, increase abbreviation length util not duplicates
 - 527. Word Abbreviation
     # String, Trie
 
@@ -249,7 +249,7 @@ HashSet
   - 128. Longest Consecutive Sequence
       # HashSet
 
-* encode to category
+* encode to category，牛
   - 36. Valid Sudoku
     # HashSet
 
@@ -296,7 +296,6 @@ Two Pointers
 
 - 340. Longest Substring with At Most K Distinct Characters
     # Two Pointers, HashMap
-
 
 --------------------
 Binary Search

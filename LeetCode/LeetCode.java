@@ -3436,7 +3436,9 @@
   # Stack
 
 *527. Word Abbreviation
-  - build trie, each node matains count (num of words that have this prefix) and isWord. Then iterate trie, count is 1, then create abbreviation, if the abbreviation lenght is same as word length, then use origianl word.
+  - build trie, each node matains count (num of words that have this prefix) and isWord. Then iterate trie, count is 1, then create abbreviation, if the abbreviation lenght is same as word length, then use origianl word. This is incorrect for this question e.g. [ "internal","internet", "interval", "intension", "intrusion"], Output: ["internal","i6t","interval","inte4n","intr4n"]
+  - Create shortest abbreviation for each word. Then, while we have duplicates, we increase the length of all duplicates.
+
   # Trie, String
 
 529. Minesweeper

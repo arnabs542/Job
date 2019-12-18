@@ -265,12 +265,11 @@ HashMap
 --------------------
 Two Pointers
 --------------------
-* Sliding window
+** Sliding window
   - 438. Find All Anagrams in a String
   - 76 Minimum Window Substring
 
-* Matain index queue of decending num.
-  Use queue to operate on both sides rather than stack
+* Matain index queue of decending num. Use queue to operate on both sides rather than stack
   - 239. Sliding Window Maximum
 
 * matain index stack of incresing/decreasing num

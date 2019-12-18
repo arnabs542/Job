@@ -686,20 +686,29 @@
 *76 Minimum Window Substring
   - Use int array to record num of each char. faster pointer runs and decrease num of each char until total becomes 0. Then slow pointer runs and increase num of each char until total becomes 1. Then get i-j+1 compare with the min distance.
 
-    int[] table = new int[256]; // ascii has 256 values
-    for(char c:t.toCharArray()) {
-        table[c]++;
-    }
-    int from =0;
-    int min = Integer.MAX_VALUE;
-    int total = t.length();
+        char[] tArr = t.toCharArray();
+        char[] sArr = s.toCharArray();
+        int[] arr = new int[256];
+        for(char c : tArr) {
+            arr[c-'A']++;
+        }
 
-    for(int i=0, j=0;i<s.length();i++) {
-        if(table[s.charAt(i)]-- > 0) total--;
-        while(total ==0) {
-            if(i-j+1 < min) {
-                min = i-j+1; from = j;}
-            if(++table[s.charAt(j++)] > 0) total++;}}
+        int total = tArr.length;
+        int sp = 0;
+        String res = "";
+        for(int i =0;i< sArr.length;i++) {
+            if(arr[sArr[i] - 'A']-- > 0) total--;
+            if(total == 0) {
+                while(++arr[sArr[sp] - 'A'] <= 0) {
+                    sp++;
+                }
+                if(res == "" || i-sp+1 < res.length()) {
+                    res = s.substring(sp,i+1);
+                }
+                sp++;
+                total++;
+            }
+        }
 
   # Sliding Window, Two Pointers, HashTable
 
@@ -1104,6 +1113,7 @@
 *239. Sliding Window Maximum
   - maintain decending order queue, when push new element, remove elements that less than the new element. pop() pops the first element which is also the largest element. Amotized time O(1)
   -     int[] res = new int[n-k+1];
+        // Use queue rather than stack
         // Store index into queue rather than value
         Deque<Integer> q = new ArrayDeque<>();
         for (int i = 0; i < a.length; i++) {
@@ -1300,7 +1310,7 @@
   # Tree
 
 438. Find All Anagrams in a String
-  - matain num of characters in String, it num ==0, put into result. Fast pointer and slow pointer.
+  - matain num of characters in String, it num ==0, put into result. Fast pointer and slow pointer = fp - fixedWindowSize
   -     int[] arr = new int[26];
         for(char c : p.toCharArray()) {arr[c-'a']++;}
         int total = p.length();
@@ -1342,6 +1352,7 @@
             stack.push(i);
         }
   - Refer to Sliding Window Maximum monotonic queue which has 两头. Stack 只有1头
+  - Refer to 769
   # Monotonic, Stack
 
 *494. Target Sum

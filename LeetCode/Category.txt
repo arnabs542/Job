@@ -265,6 +265,8 @@ HashMap
 --------------------
 Two Pointers
 --------------------
+* Think of two pointers when question incldues consecutive / substring / palindrome / sliding.
+
 ** Sliding window
   - 438. Find All Anagrams in a String
   - 76 Minimum Window Substring
@@ -299,35 +301,39 @@ Two Pointers
 --------------------
 Binary Search
 --------------------
-1. l<=r
+Approach 1. l<=r
    - l=mid+1, r=mid-1 可能会越界，所以要不返回target，要不越界找不到
    - l=mid+1, r=mid 可能会死循环卡在r=mid上，可能越界
 
-2. l < r
-   - l=mid+1, r=mid 最后都返回l.应该不会越界
+Approach 2. l < r
+   - l=mid+1, r=mid 最后都返回l.不会越界
+     - mid < target, 1st that >= target
+     - mid = target,
 
-3. l < r-1
-   - l=mid, r=mid 最后返回l或者r。应该不会越界
+Approach 3. l < r-1
+   - l=mid, r=mid, based on check, 返回l或者r或者null。不会越界
 
 * cut1 and cut2= length/2-cut1, l1, r1, l2, r2
   - 4 Median of Two Sorted Arrays
 
-* compare mid with left||right||mid-1||mid+1
-
-* fnid duplicates in unsorted array
+* Approach 2
   - 287 Find the Duplicate Number
+    - l < r, mid <= target, l = mid+1, r = mid, find 1st elem > target
     # Binary Search, unsorted array
 
-* find leftmost and rightmost
+  - 300. Longest Increasing Subsequence
+    - l < r, mid < target, l = mid+1,r = mid, find 1st elem that >= target.
+      # Binary Search, patience sort
+
+* find leftmost and rightmost, Approach 3
   - 34 Search for a Range
-      # Binary Search
+    - leftmost  l<r-1, mid<target, l=mid, r=mid
+    - rightmost l<r-1, mid<=target, l=mid, r=mid
+    # Binary Search
 
 * find bad version
   - 278. First Bad Version
-
-* Longest Increasing subsequence
-  - 300. Longest Increasing Subsequence
-      # Binary Search, patience sort
+    - Approach 2, 3都行
 
 * compare mid & mid-1, compare mid & (left || right)
   - 33. Search in Rotated Sorted Array
@@ -338,13 +344,14 @@ Binary Search
 * 理解l<r 还是l<=r, l=mid+1 r=mid 边界条件
   - 162. Find Peak Element
         - compare mid with mid + 1
+        - Approach 2, 不会越界和必有结果
         # Binary Search
 
 * compare left tree height and right tree height
   - 222. Count Complete Tree Nodes
         # Binary Search, Tree, Complete Tree
 
-** Matain longest increasing subsequence
+* Matain longest increasing subsequence
   - 300. Longest Increasing Subsequence
   - 334. Increasing Triplet Subsequence
 
@@ -357,6 +364,7 @@ Binary Search
       # Binary Search
 
 - 69. Sqrt(x)
+    - Approach 3, can't use Approach 2
     # Binary Search
 
 - 50. Pow(x, n)

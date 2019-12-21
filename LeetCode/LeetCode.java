@@ -536,12 +536,12 @@
       public int findDuplicate(int[] nums) {
         int max = nums.length-1;
         int min = 1;
-        while(min<=max) {
+        while(min<max) {
             int mid = (min+max)/2, count = 0;
             for(int i = 0; i<nums.length;i++) {
                 if(nums[i]<=mid) count++;
             }
-            if (min<count) max = mid - 1; else min = mid + 1;
+            if (min<count) max = mid; else min = mid + 1;
         }
         return min; // attention
        }
@@ -1041,7 +1041,7 @@
         int l = 0; int r = nums.length-1;
         while(l < r-1) {
             int mid = (l+r)/2;
-            if(nums[mid] > target) {r = mid;} else {l = mid;}
+            if(nums[mid] <= target) {l = mid;} else {r = mid;}
         }
         if(nums[r] == target) return r;
         if(nums[l] == target) return l;
@@ -1223,20 +1223,25 @@
   # Tree, Postorder Traversal
 
 *300. Longest Increasing Subsequence
-  - maintain increasing order subsequence. iterate, for new element, If its larger than the last elem of subsequence, append it to the end. Else, find the proper index by binary search and replace it.
+  - Maintain increasing order arr. For new element, find first elem in arr that larger or equal to new elem, then replace it.
   -
             int[] subsequence  = new int[nums.length];
             int numOfSubsequence = 0;
             for(int n : nums) {
                 int l = 0; int r = numOfSubsequence;
-                while(l != r) {
+                while(l < r) {
                     int mid = (l+r)/2;
-                    if(subsequence[mid] < n) {l=mid+1;} else {r= mid;}
+                    if(subsequence[mid] < n) { // find 1st mid >= n
+                      l=mid+1;
+                    } else {
+                      r= mid;
+                    }
                 }
                 subsequence[l] = n;
                 if(l == numOfSubsequence) numOfSubsequence++;
             }
 
+  - 不能用stack，e.g. [1,3,6,7,9,4,10,5,6], 5 but expect 6
   - time O(nlogn), space O(n)
   # Binary Search, patience sort
 

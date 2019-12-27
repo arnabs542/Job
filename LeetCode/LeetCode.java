@@ -3323,7 +3323,9 @@
         int transactions = Integer.MAX_VALUE;
         for(int i=index+1;i<balances.size();i++) {
             if(balances.get(index) * balances.get(i) <0) {
+                // sum index and i
                 balances.set(i, balances.get(index) + balances.get(i));
+                // dfs index + 1 rather than i+1
                 transactions = Math.min(transactions, 1 + dfs(index+1, balances));
                 balances.set(i, balances.get(i) - balances.get(index));
             }

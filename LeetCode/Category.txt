@@ -416,6 +416,7 @@ DFS
 
 * Maze, ball moving with direction
   - 490. The Maze
+    # DFS
   - 505. The Maze II
     # BFS, Shortest Path
   - 499. The Maze III

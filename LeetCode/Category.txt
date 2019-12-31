@@ -411,9 +411,6 @@ DFS
   - 210. Course Schedule II
       # Directed Graph, Topological Sort, Stack
 
-* Calculate minnum # to sum each num in list to 0
-  - 465. Optimal Account Balancing
-
 * Maze, ball moving with direction
   - 490. The Maze
     # DFS
@@ -422,10 +419,13 @@ DFS
   - 499. The Maze III
     # BFS, Shortest Path
 
+* Calculate minnum # to sum each num in list to 0
+  - 465. Optimal Account Balancing
+
 * Construct all strings
   - 753. Cracking the Safe
 
-** integer arr to expression
+** integer arr to expression, keep pre during dfs for calculation
   - 282. Expression Add Operators
 
 * undirected graph clone, self cycle

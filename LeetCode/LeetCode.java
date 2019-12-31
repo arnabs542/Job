@@ -1711,6 +1711,7 @@
         Node root = new Node(node.label);
         map.put(root.label, root);
         for(Node n : node.neighbors) {
+            // Check if visited
             if(!map.containsKey(n.label)) {
                 traverse(n, map);
             }

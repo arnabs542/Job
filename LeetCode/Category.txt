@@ -386,6 +386,8 @@ Graph
 --------------------
 BFS
 --------------------
+1. Shortest path, in K stop/steps
+
 * Shortest Path
   - 127. Word Ladder
 
@@ -401,6 +403,9 @@ BFS
 --------------------
 DFS
 --------------------
+1. cycle detection in directed graph
+2. find/construct/generate path
+
 * Combine DFS and Tree Generation
     - 95. Unique Binary Search Trees II
         # DFS, Tree, Postorder
@@ -440,6 +445,10 @@ DFS
 --------------------
 Union Find
 --------------------
+1. cycle detection in undirected/directed graph.
+2. connected component
+3. 分类 e.g. 737
+
 * track connected component
   - 305. Number of Islands II
     # Union Find
@@ -447,25 +456,21 @@ Union Find
 * Convert equation to graph, use Map instead of array to matain parent relation
   - 399. Evaluate Division
 
-* detect cycle and multiple parents in directed graph
+* detect cycle and multiple parents in undirected and directed graph
   - 684. Redundant Connection
   - 685. Redundant Connection II
 
-* detact cycle in undirected graph
+* detect cycle in undirected graph
   - 261. Graph Valid Tree
 
 * interesting couple swap
   - 765. Couples Holding Hands
 
-* String union find
+* String union find, Map<String, String>
   - 737. Sentence Similarity II
 
---------------------
-Connected Component
---------------------
-- 721. Accounts Merge
-    # BFS/DFS, Union Find, Graph, Connected component
-
+* 分类
+  - 721. Accounts Merge
 
 --------------------
 Priority Queue
@@ -475,7 +480,6 @@ Priority Queue
 
 - 218. The Skyline Problem
 
-
 ----------------------------------
 Fenwick Tree / Binary Indexed Tree
 ----------------------------------
@@ -484,7 +488,6 @@ Fenwick Tree / Binary Indexed Tree
 
 * 2D Binary Indexed Tree
   - 308. Range Sum Query 2D - Mutable
-
 
 --------------------
 Sort

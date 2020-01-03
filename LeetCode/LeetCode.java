@@ -993,17 +993,16 @@
 
         int[] diffArr = new int[nums.length];
         for(int i=0;i<nums.length;i++) {
-            // avoid diffArr[i]-1 of -1
-            diffArr[i] = nums[i]-min+1;
+            diffArr[i] = nums[i]-min;
             max = Math.max(max, diffArr[i]);
         }
 
         // fenwickTree has a dummy root at fenwickTree[0]
         int[] fenwickTree = new int[max+1];
         for(int i= nums.length-1;i>=0;i--) {
-            // diffArr[i]-1 means all previous prefix sum
-            list.add(0, getSum(fenwickTree, diffArr[i]-1));
-            update(fenwickTree, diffArr[i], 1);
+            // find all ranks < diffArr[i]
+            list.add(0, getSum(fenwickTree, diffArr[i]));
+            update(fenwickTree, diffArr[i]+1, 1);
         }
 
     private int getSum(int[] fenwickTree, int index) {

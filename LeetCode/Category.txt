@@ -570,7 +570,7 @@ Greedy
 --------------------
 Bit Mnaipulation
 --------------------
-* x ^ y, x&1, x >>= 1
+* x ^ y, x&1, x >> 1
   - 136 Single Number
   - 461 Hamming Distance
 
@@ -579,6 +579,23 @@ Bit Mnaipulation
 
 * i&(i - 1)， 这个本来是用来判断一个数是否是2的指数的快捷方法，比如8，二进制位1000, 那么8&(8-1)为0，只要为0就是2的指数
   - 338 Counting Bits
+
+--------------------
+Design
+--------------------
+* Buffer
+  - 359. Logger Rate Limiter
+        # Design, Scale, Buffer, HashSet
+  - 362. Design Hit Counter
+        # Design, Scale, Buffer
+  - 346. Moving Average from Data Stream
+        # Design, Queue, Buffer
+
+* Matain HashMap of val and index, and ArrayList
+  - 380. Insert Delete GetRandom O(1)
+
+- 146. LRU Cache
+    # Double LinkedList, HashMap
 
 --------------------
 Dynamic Programming
@@ -671,23 +688,4 @@ SQL
 --------------------
 - 602. Friend Requests II: Who Has the Most Friends
 - 578. Get Highest Answer Rate Question
-
---------------------
-Design
---------------------
-* Buffer
-  - 359. Logger Rate Limiter
-        # Design, Scale, Buffer, HashSet
-  - 362. Design Hit Counter
-        # Design, Scale, Buffer
-  - 346. Moving Average from Data Stream
-        # Design, Queue, Buffer
-
-* Matain HashMap of val and index, and ArrayList
-  - 380. Insert Delete GetRandom O(1)
-
-- 146. LRU Cache
-    # Double LinkedList, HashMap
-
-
 

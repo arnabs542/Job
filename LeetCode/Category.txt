@@ -525,16 +525,20 @@ Sort
 --------------------
 Backtracking
 --------------------
+1. related to dfs
+2. check duplicate or not
+3. recursion includes array, startIndex, res ...
+
 * number of left parentheses is always >= right
   - 22 Generate Parentheses
 
 * arr has duplicate, sort and dfs(ignore if pre==cur) to create subset
   - 90. Subsets II
+  - 78 Subsets
 
 - 46 Permutations
 - 17 Letter Combinations of a Phone Number
 - 39. Combination Sum
-- 78 Subsets
 
 --------------------
 Math

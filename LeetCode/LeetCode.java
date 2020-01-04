@@ -935,6 +935,8 @@
     # Trie
 
 621 Task Scheduler
+  - 1. interval is big enough e.g. n = 1, [A,A,A,B,B,B]
+    2. interval is not enough e.g. n = 1, [A,A,A,B,B,B,C,C,C]
   -     public int leastInterval(char[] tasks, int n) {
         int[] arr = new int[26]; int max = 0;
         for(char c : tasks) {
@@ -2010,7 +2012,7 @@
         for(int i=15;i<121;i++) {
             if(numOfAges[i] == 0) continue;
             int temp = sumOfAges[i] - sumOfAges[i/2+7];
-            res += temp * numOfAges[i] - numOfAges[i];
+            res += temp * numOfAges[i] - numOfAges[i]; // exclude self
         }
   # Array, Continuous array, Math
 
@@ -2501,7 +2503,7 @@
 168. Excel Sheet Column Title
   - 10进制变成26进制
   -     while(n>0){
-            n--;
+              n--;
             sb.append((char)('A'+n%26));
             n/=26;
         }
@@ -2788,6 +2790,7 @@
   # 2D DP, DFS
 
 *134. Gas Station
+  - if gas >= cost, gaurantee to have solution
   -     int gasSum = 0, costSum = 0, tank = 0, start = 0;
         for(int i=0; i<gas.length; i++) {
             gasSum += gas[i];

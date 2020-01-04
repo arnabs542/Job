@@ -683,7 +683,7 @@
     }
     # Postorder Traversal, Binary Tree
 
-*76 Minimum Window Substring
+*76. Minimum Window Substring
   - Use int array to record num of each char. faster pointer runs and decrease num of each char until total becomes 0. Then slow pointer runs and increase num of each char until total becomes 1. Then get i-j+1 compare with the min distance.
 
         char[] tArr = t.toCharArray();
@@ -2620,6 +2620,15 @@
   # SQL
 
 275. H-Index II
+  -     while(l<=r) {
+            int mid = l + (r-l)/2;
+            if(citations[mid] == size -mid) {
+                return size-mid;
+            } else if(citations[mid] < size - mid) {
+                l = mid +1;
+            } else {
+                r = mid-1;}}
+        return size-l;
   # Binary Search
 
 *745. Prefix and Suffix Search

@@ -254,6 +254,24 @@
         }
         return currMax;
     }
+  - public int rob(int[] nums) {
+        if(nums == null || nums.length == 0) {
+            return 0;
+        }
+        if(nums.length == 1) {
+            return nums[0];
+        }
+
+        int[] dp = new int[nums.length];
+        dp[0] = nums[0];
+        dp[1] = Math.max(nums[0], nums[1]);
+
+        for(int i = 2;i<nums.length;i++) {
+            dp[i] = Math.max(dp[i-1], dp[i-2]+nums[i]);
+        }
+
+        return dp[nums.length-1];
+    }
   @ Time: O(n), Space: O(1)
   # DP
 
@@ -564,7 +582,7 @@
   # Value to Index
 
 *279 Perfect Squares
-  - for(int i=0;i<=n;i++) {
+  - for(int i=1;i<=n;i++) {
         for(int j =1;j*j<=i;j++) {
             dp[i] = Math.min(dp[i], dp[i-j*j] + 1);
         }
@@ -1428,20 +1446,26 @@
 
 *91. Decode Ways: decode digit string(e.g. "123") to A-Z
   - each iteration, cur digit!=0, dp[i] = dp[i-1], 9<pre digit + cur digit<27, dp[i] != dp[i-2]
-  - 好好区分下dp中index和string中index关系， dpIndex = strIndex +1
+  - 好好区分下dp中index和string中index关系
+    public int numDecodings(String s) {
         int[] dp = new int[s.length()+1];
         dp[0] = 1;
-        dp[1] = s.charAt(0) != '0' ? 1 : 0;
-        for(int i=2;i<=s.length();i++) {
-            int one = s.charAt(i-1) - '0';
-            int two = 10*(s.charAt(i-2) -'0') + one;
-            // ignore one == 0 case, e.g. 100 -> can't decode
-            if(one>=1 && one<=9) {
+        for(int i=1;i<=s.length();i++) {
+            if(s.charAt(i-1) != '0') {
                 dp[i] = dp[i-1];
             }
-            if(two>=10 && two<=26) {
+            if(i-2>=0 && isDoubleDigits(s, i-2, i)) {
                 dp[i] += dp[i-2];
             }
+        }
+
+        return dp[s.length()];
+    }
+
+    private boolean isDoubleDigits(String s, int start, int end) {
+        int n =Integer.parseInt(s.substring(start, end));
+        return n>9 && n<27;
+    }
         }
   - // 空间复杂度优化
         int c1 = 1;

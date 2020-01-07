@@ -588,7 +588,7 @@ Design
         # Design, Scale, Buffer, HashSet
   - 362. Design Hit Counter
         # Design, Scale, Buffer
-  - 346. Moving Average from Data Stream
+  - 346. Matainoving Average from Data Stream
         # Design, Queue, Buffer
 
 * Matain HashMap of val and index, and ArrayList
@@ -612,6 +612,16 @@ Dynamic Programming
       # 1D DP
   - 377. Combination Sum IV
       # 1D DP, Backtracking, Target DP
+
+* Decode
+  - 91. Decode Ways
+        # 1D
+  - 639. Decode Ways II
+        # 1D
+
+* create student attendance with A, L, P
+  - 552. Student Attendance Record II
+        # 1D
 
 * Unique binary search tree, 2 for loops
   - 96 Unique Binary Search Trees
@@ -663,16 +673,6 @@ Dynamic Programming
 ** Recursion, memorization, 2D
   - 486. Predict the Winner
     # Recursion, Memorization, 2D
-
-* Decode
-  - 91. Decode Ways
-        # 1D
-    - 639. Decode Ways II
-        # 1D
-
-* create student attendance with A, L, P
-  - 552. Student Attendance Record II
-        # 1D
 
 * 纯DP
   - 96. Unique Binary Search Trees

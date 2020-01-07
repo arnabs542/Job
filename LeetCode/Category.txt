@@ -674,9 +674,6 @@ Dynamic Programming
   - 486. Predict the Winner
     # Recursion, Memorization, 2D
 
-* 纯DP
-  - 96. Unique Binary Search Trees
-
 * array中新的value跟过去的value有关
   - 264. Ugly Number II
     # Array, 类似DP

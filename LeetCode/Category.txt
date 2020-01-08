@@ -631,7 +631,7 @@ Dynamic Programming
   - 64 Minimum Path Sum
       # 2D DP
 
-* String Matching
+* String Matching, row is string/convert from, column is pattern/convert to
   - 10. Regular Expression Matching
         # 2D DP
   - 44. Wildcard Matching

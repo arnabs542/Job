@@ -646,14 +646,14 @@ Dynamic Programming
     # 2D DP
 
 * buy and sell stock
-  - 309. Best Time to Buy and Sell Stock with Cooldown
-      # 1D DP
   - 122. Best Time to Buy and Sell Stock II
       # Greedy
-  - 123. Best Time to Buy and Sell Stock III
-      # 1D DP
+  - 309. Best Time to Buy and Sell Stock with Cooldown
+      # 2个 1D DP
   - 714. Best Time to Buy and Sell Stock with Transaction Fee
       # 2个 1D DP
+  - 123. Best Time to Buy and Sell Stock III
+      # 1D DP
 
 * maximax square
   - 221. Maximal Square

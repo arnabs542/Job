@@ -1069,32 +1069,36 @@
   # Binary Search
 
 *309. Best Time to Buy and Sell Stock with Cooldown
-  - 分析时用状态转移方程
-                      <-
-                      \ /
-                     rest(hold)
-                    /     \
-                   |       ^   1 day cooldown, so no sold -> hold
-                   V       |
-                  hold(buy) -> sold(sell)
-                   /\
-                   ->
-    hold[i] = max(hold[i-1], rest[i-1] - price[i])
-    sold[i] = hold[i-1] + price[i]
-    rest[i] = max(rest[i-1], sold[i-1])
-    init hold = Integer.MIN_VALUE, rest = sold = 0
-    res = max(rest[i], sold)
-    time O(n) space O(n) -> O(1) // use iteration
-    -   int hold = Integer.MIN_VALUE;
-        int rest = 0;
-        int sold = 0;
-        for(int price:prices) {
-            int pre_sold = sold;
-            sold = hold + price;
-            hold = Math.max(hold, rest-price);
-            rest = Math.max(rest, pre_sold);
+    public int maxProfit(int[] prices) {
+        int n = prices.length;
+        if(n < 2) return 0;
+
+        int[] buy = new int[n + 1];
+        int[] sell = new int[n + 1];
+        buy[1] = -prices[0];
+        for(int i = 2; i <= n; i++){
+            buy[i] = Math.max(buy[i - 1], sell[i - 2] - prices[i - 1]);
+            sell[i] = Math.max(sell[i - 1], buy[i - 1] + prices[i - 1]);
         }
-        return Math.max(rest, sold);
+        return sell[n];
+    }
+  # DP
+
+*714. Best Time to Buy and Sell Stock with Transaction Fee
+  - 状态转移， Refer to 309. Best Time to Buy and Sell Stock with Cooldown
+  - buy[i] = Math.max(buy[i - 1], sell[i - 1] - prices[i]-fee);
+    sell[i] = Math.max(sell[i - 1], buy[i - 1] + prices[i]);
+    (https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/discuss/108871/2-solutions-2-states-DP-solutions-clear-explanation!)
+  -     int days = prices.length;
+        int[] buy = new int[days]; // current and last status on i is buy
+        int[] sell = new int[days];
+        buy[0] = -prices[0]-fee;
+        sell[0] = 0;
+        for(int i=1;i<days;i++) {
+            buy[i] = Math.max(buy[i-1], sell[i-1]-prices[i]-fee);
+            sell[i] = Math.max(sell[i-1], buy[i-1]+prices[i]);
+        }
+        return sell[days-1];
   # DP
 
 122. Best Time to Buy and Sell Stock II
@@ -2358,23 +2362,6 @@
             parent = childHead;
         }
   # Tree, Level Traversal
-
-*714. Best Time to Buy and Sell Stock with Transaction Fee
-  - 状态转移， Refer to 309. Best Time to Buy and Sell Stock with Cooldown
-  - buy[i] = Math.max(buy[i - 1], sell[i - 1] - prices[i]-fee);
-    sell[i] = Math.max(sell[i - 1], buy[i - 1] + prices[i]);
-    (https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/discuss/108871/2-solutions-2-states-DP-solutions-clear-explanation!)
-  -     int days = prices.length;
-        int[] buy = new int[days]; // current and last status on i is buy
-        int[] sell = new int[days];
-        buy[0] = -prices[0]-fee;
-        sell[0] = 0;
-        for(int i=1;i<days;i++) {
-            sell[i] = Math.max(sell[i-1], buy[i-1]+prices[i]);
-            buy[i] = Math.max(buy[i-1], sell[i-1]-prices[i]-fee);
-        }
-        return sell[days-1];
-  # DP
 
 *50. Pow(x, n)
   - e.g. 2^7 = 2* 2^6 = 2* 4^3 = 2* 4* 4^2 = 2* 4* 16

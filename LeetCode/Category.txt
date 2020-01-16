@@ -678,6 +678,10 @@ Dynamic Programming
   - 264. Ugly Number II
     # Array, 类似DP
 
+* 4 conditions, 不用dfs，dp
+  - 1007
+    # Greedy
+
 - 801. Minimum Swaps To Make Sequences Increasing
 
 --------------------

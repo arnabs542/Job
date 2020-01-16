@@ -966,7 +966,7 @@
         // corner case for tasks.length: n = 0, [A,A,A,B,B,B]
         return Math.max(res, tasks.length);}
 
-*84 Largest Rectangle in Histogram
+*84. Largest Rectangle in Histogram
   - maintain increasing order index in stack, for new height, pop up all height that heigher and calculate
   - for(int i =0;i<=heights.length;i++) {
         // deal with corner case: [1,3,4,5]
@@ -3929,6 +3929,9 @@
         }
     # Tree
 
+1007. Minimum Domino Rotations For Equal Row
+  - 4 个loop
+  - https://www.youtube.com/watch?v=yjfGwiYPdfc
 
 
 

@@ -3933,6 +3933,58 @@
   - 4 个loop
   - https://www.youtube.com/watch?v=yjfGwiYPdfc
 
+953. Verifying an Alien Dictionary
+  # String
+
+1249. Minimum Remove to Make Valid Parentheses
+  # String
+
+973. K Closest Points to Origin
+  - PriorityQueue<int[]> queue = new PriorityQueue<>(K, (a,b) -> a[0]*a[0]+a[1]*a[1] - b[1]*b[1] - b[0]*b[0]);
+  # PriorityQueue, Quick Select
+
+426. Convert Binary Search Tree to Sorted Doubly Linked List
+  - public void helper(Node node) {
+      if (node != null) {
+        helper(node.left);
+        if (last != null) {
+          last.right = node;
+          node.left = last;
+        }
+        else {
+          first = node;
+        }
+        last = node;
+        helper(node.right);
+      }}
+  # Inorder Traversal
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

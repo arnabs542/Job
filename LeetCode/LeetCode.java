@@ -400,6 +400,67 @@
                     break;}}}
   # 1D DP
 
+** 140. Word Break II
+  - // DFS, time out
+    public void dfs(String s, int index, String sentence, Set<String> set, List<String> res) {
+        if(index == s.length()) {
+            res.add(sentence.trim());
+        }
+        /* Trade off here. Take approach 1
+           1. Iterate rest of string, use set contains to check
+           2. Iterate through word dictionary
+        */
+        for(int i=index;i<s.length();i++) {
+            if(set.contains(s.substring(index, i+1))) {
+                dfs(s, i+1, sentence + s.substring(index, i+1) + " ", set, res);
+            }
+        }
+    }
+  - // DP, time out
+        for(int i=0;i<s.length();i++) {
+            String str = s.substring(0, i+1);
+            List<String> list = new ArrayList<>();
+
+            // Take approach 2, iterate through word dictionary
+            for(String word : wordDict) {
+                if(word.equals(str)) {
+                    list.add(word);
+                    continue;
+                }
+
+                if(word.length() <= str.length() && str.endsWith(word) && map.containsKey(str.substring(0,str.length()-word.length()))){
+                    List<String> l = map.get(str.substring(0,str.length()-word.length()));
+                    for(String se : l) {
+                        list.add(se + " " + word);
+                    }
+
+                }
+            }
+
+            map.put(str, list);
+        }
+    - // DFS + Memorization, bottom up. Map keeps String and its combinitions
+    List<String> DFS(String s, Set<String> wordDict, HashMap<String, LinkedList<String>>map) {
+        // Important memorization
+        if (map.containsKey(s))
+            return map.get(s);
+        // Inlcude all possible solutions for String s
+        LinkedList<String>res = new LinkedList<String>();
+        if (s.length() == 0) {
+            res.add("");
+            return res;
+        }
+        for (String word : wordDict) {
+            if (s.startsWith(word)) {
+                List<String>sublist = DFS(s.substring(word.length()), wordDict, map);
+                for (String sub : sublist)
+                    res.add(word + (sub.isEmpty() ? "" : " ") + sub);
+            }
+        }
+        map.put(s, res);
+        return res;
+    }
+
 152 Maximum Product Subarray
   - keep track max, min, res
 
@@ -2932,6 +2993,9 @@
       }
   # Binary Search, Tree, Complete Tree
 
+247. Strobogrammatic Number II
+  # String
+
 *248. Strobogrammatic Number III
   - String a.compareTo(b) // - : a<b, 0: a=b, +: a>b
   - Iterate length between [low.length(), high.length()] to build Strobogrammatic number. Then filter by v.compareTo(low)>=0 && v.compareTo(high)<=0
@@ -3959,20 +4023,95 @@
       }}
   # Inorder Traversal
 
+415. Add Strings
+  # String
 
+199. Binary Tree Right Side View
+  # Level Order Tree Traversal
 
+986. Interval List Intersections
+  # Interval
 
+349. Intersection of Two Arrays
+  # Set, Two Pointers
 
+987. Vertical Order Traversal of a Binary Tree
+  - 在（x, y）坐标相同下，val小的优先。所以不能用level traversal， 反例 [0,2,1,3,null,null,null,4,5,null,7,6,null,10,8,11,9]， 7和6有相同的坐标，根据level traver，7先，但6数值小应该排前头。所以traversal给所有点标上坐标，先根据x分类，然后先比较y然后val
+  - Collections.sort(l, (a,b) -> a.y == b.y ? a.val - b.val : b.y - a.y);
+  # Tree Traversal, Compare
 
+304. Range Sum Query 2D - Immutable
+  # DP
 
+65. Valid Number
+         // flags
+        int signCount = 0;
+        boolean hasE = false;
+        boolean hasNum = false;
+        boolean hasPoint = false;
 
+        for (int i = 0; i < n; i++) {
+            char c = s.charAt(i);
+            // invalid character
+            if (!isValid(c)) return false;
+            // digit is always fine
+            if (c >= '0' && c <= '9') hasNum = true;
+            // e or E
+            if (c == 'e' || c == 'E') {
+                // e cannot appear twice and digits must be in front of it
+                if (hasE || !hasNum) return false;
+                // e cannot be the last one
+                if (i == n - 1) return false;
+                hasE = true;
+            }
+            // decimal place
+            if (c == '.') {
+                // . cannot appear twice and it cannot appear after e
+                if (hasPoint || hasE) return false;
+                // if . is the last one, digits must be in front of it, e.g. "7."
+                if (i == n - 1 && !hasNum) return false;
 
+                hasPoint = true;
+            }
+            // signs
+            if (c == '+' || c == '-') {
+                // no more than 2 signs
+                if (signCount == 2) return false;
+                // sign cannot be the last one
+                if (i == n - 1) return false;
+                // sign can appear in the middle only when e appears in front
+                if (i > 0 && !hasE) return false;
 
+                signCount++;}}
+  # String
 
-
-
-
-
+767. Reorganize String
+  - Build string based on its count in decreasing order
+  -     // Greedy: fetch char of max count as next char in the result.
+        // Use PriorityQueue to store pairs of (char, count) and sort by count DESC.
+        PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> b[1] - a[1]);
+        for (char c : map.keySet()) {
+            pq.add(new int[] {c, map.get(c)});
+        }
+        // Build the result. Get highest count char and gaurantee same char is not adjacent
+        StringBuilder sb = new StringBuilder();
+        while (!pq.isEmpty()) {
+            int[] first = pq.poll();
+            if (sb.length() == 0 || first[0] != sb.charAt(sb.length() - 1)) {
+                sb.append((char) first[0]);
+                if (--first[1] > 0) {
+                    pq.add(first);
+                }
+            } else {
+                int[] second = pq.poll();
+                sb.append((char) second[0]);
+                if (--second[1] > 0) {
+                    pq.add(second);
+                }
+                pq.add(first);
+            }
+        }
+  # String, Greedy, PriorityQueue
 
 
 

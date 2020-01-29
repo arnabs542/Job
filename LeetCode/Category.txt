@@ -30,6 +30,7 @@ String
 
 * Build Strobogrammatic Number with dfs with l, r。单双情况
   - 248. Strobogrammatic Number III
+  - 247. Strobogrammatic Number II
 
 * Shift String
   - 249. Group Shifted Strings
@@ -46,8 +47,12 @@ String
 - 68. Text Justification
     # String
 
+* 分类
+  - 65. Valid Number
+
 - 269. Alien Dictionary
 - 1249. Minimum Remove to Make Valid Parentheses
+- 415. Add Strings
 
 --------------------
 LinkedList
@@ -85,6 +90,7 @@ Array
 * insert interval
   - 57. Insert Interval
   - 731. My Calendar II
+  - 986. Interval List Intersections
 
 * Matain max, min, res
   - 152. Maximum Product Subarray
@@ -199,6 +205,7 @@ Tree
 
 * level traversal, preorder
   - 102 Binary Tree Level Order Traversal
+  - 199. Binary Tree Right Side View
   - 117. Populating Next Right Pointers in Each Node II
       # Tree, Level Traversal, Queue
 
@@ -455,6 +462,9 @@ DFS
 * undirected graph clone, self cycle
   - 133. Clone Graph
 
+** DFS Memorization, keep map of string and its combinitions list
+  - 140. Word Break II
+
 - 341. Flatten Nested List Iterator
 - 37. Sudoku Solver
 - 286. Walls and Gates
@@ -508,6 +518,7 @@ Fenwick Tree / Binary Indexed Tree
 
 * 2D Binary Indexed Tree
   - 308. Range Sum Query 2D - Mutable
+  - 304. Range Sum Query 2D - Immutable
 
 --------------------
 Sort
@@ -691,6 +702,7 @@ Dynamic Programming
     # Greedy
 
 - 801. Minimum Swaps To Make Sequences Increasing
+- 304. Range Sum Query 2D - Immutable
 
 --------------------
 SQL

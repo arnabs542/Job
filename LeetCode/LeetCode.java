@@ -4113,12 +4113,74 @@
         }
   # String, Greedy, PriorityQueue
 
+863. All Nodes Distance K in Binary Tree
+  - Build non-directional graph and run bfs
+  # Graph, BFS
 
+1027. Longest Arithmetic Sequence
+  - dp[diff][idx]表示等差为diff，以系数idx结尾的最长子序列长度。
+  - https://www.youtube.com/watch?v=mSplC7Q-Rm8
+  - public int longestArithSeqLength(int[] A) {
+        int res = 2, n = A.length;
+        HashMap<Integer, Integer>[] dp = new HashMap[n];
+        for (int j = 0; j < A.length; j++) {
+            dp[j] = new HashMap<>();
+            for (int i = 0; i < j; i++) {
+                int d = A[j] - A[i];
+                dp[j].put(d, dp[i].getOrDefault(d, 1) + 1);
+                res = Math.max(res, dp[j].get(d));
+            }
+        }
+        return res;
+    }
+  # DP
 
+1197. Minimum Knight Moves
+  - 仅看第一象限就好，x>-1, y>-1.走BFS
+  -    queue.add(new int[]{0,0});
+        int[][] steps = new int[][]{{2, 1}, {1, 2}, {-1, 2}, {-2, 1}, {-2, -1}, {-1, -2}, {1, -2}, {2, -1}};
+        int s = 0;
+        x = Math.abs(x);
+        y = Math.abs(y);
+        set.add("0#0");
+        while(++s>0) {
+            int size = queue.size();
+            while(size-- > 0) {
+                int[] pos = queue.poll();
+                for(int[] step : steps) {
+                    int newX = pos[0]+step[0];
+                    int newY = pos[1]+step[1];
+                    if(newX<-1 || newY<-1) continue;
+                    if(newX == x && newY == y) {
+                        return s;
+                    }
+                    if(!set.contains(newX+"#"+newY)) {
+                        set.add(newX+"#"+newY);
+                        queue.add(new int[]{newX,newY});
+                    }}}}
+  # BFS
 
-
-
-
+*1004. Max Consecutive Ones III
+  - 注意快慢指针的位置！！！ fp - sp 得到距离
+  -     int fp = 0;
+        int sp = 0;
+        int res = Integer.MIN_VALUE;
+        // write as fp++ will out of bound
+        while(fp< A.length) {
+            if(A[fp] == 0) {
+                // always minus 1 incase of K=0
+                if(K-- == 0) {
+                  res = Math.max(res, fp - sp);
+                  // Bypass one 0
+                  while(A[sp++] != 0) {};
+                  K++;
+                }
+            }
+            fp++;
+        }
+        // Coner case that [0,0,0,1] K=4
+        res = Math.max(res, fp - sp);
+  # Two Pointers, Sliding Window
 
 
 

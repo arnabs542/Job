@@ -283,7 +283,8 @@ Two Pointers
 
 ** Sliding window
   - 438. Find All Anagrams in a String
-  - 76 Minimum Window Substring
+  - 76. Minimum Window Substring
+  - 1004. Max Consecutive Ones III
 
 * Matain index queue of decending num. Use queue to operate on both sides rather than stack
   - 239. Sliding Window Maximum
@@ -425,6 +426,12 @@ BFS
 * color node
   - 785. Is Graph Bipartite
     # Graph, BFS
+
+* Convert tree to non-directional graph and run BFS
+  - 863. All Nodes Distance K in Binary Tree
+
+* 看第一象限，最短， 走斜格子
+  - 1197. Minimum Knight Moves
 
 --------------------
 DFS
@@ -698,8 +705,12 @@ Dynamic Programming
     # Array, 类似DP
 
 * 4 conditions, 不用dfs，dp
-  - 1007
+  - 1007. Minimum Domino Rotations For Equal Row
     # Greedy
+
+* dp[diff][idx]表示等差为diff，以系数idx结尾的最长子序列长度
+  - 1027. Longest Arithmetic Sequence
+  # 2D DP
 
 - 801. Minimum Swaps To Make Sequences Increasing
 - 304. Range Sum Query 2D - Immutable

@@ -66,6 +66,9 @@ LinkedList
   - 160. Intersection of Two Linked Lists
   - 142 Linked List Cycle II
 
+* 指针找中点，转向，头尾相对着跑。细心，举单双例子跑
+  - 143. Reorder List
+
 - 2. Add Two Numbers
 
 --------------------
@@ -275,11 +278,16 @@ HashMap
 
 - 205. Isomorphic Strings
 - 1. Two Sums
+- 350. Intersection of Two Arrays II
 
 --------------------
 Two Pointers
 --------------------
-* Think of two pointers when question incldues consecutive / substring / palindrome / sliding.
+*** KeyWords
+- consecutive: sliding window
+- substring
+- palindrome
+- sliding
 
 ** Sliding window
   - 438. Find All Anagrams in a String
@@ -316,6 +324,9 @@ Two Pointers
 --------------------
 Binary Search
 --------------------
+*** Keywords
+- sorted
+
 Approach 1. l<=r
    - l=mid+1, r=mid-1 可能会越界，所以要不返回target，要不越界找不到
    - l=mid+1, r=mid 可能会死循环卡在r=mid上，可能越界
@@ -433,6 +444,8 @@ BFS
 * 看第一象限，最短， 走斜格子
   - 1197. Minimum Knight Moves
 
+- 958. Check Completeness of a Binary Tree
+
 --------------------
 DFS
 --------------------
@@ -513,6 +526,7 @@ Priority Queue
 --------------------
 * Use minHeap and maxHeap to maintain median
   - 295. Find Median from Data Stream
+  - 480. Sliding Window Median
 
 - 218. The Skyline Problem
 - 973. K Closest Points to Origin
@@ -596,6 +610,12 @@ Greedy
 --------------------
 Bit Mnaipulation
 --------------------
+1 << 1 = 2, 左移1位相当于乘以2。
+8 >> 1 = 4, 右移1位相当于除以2.
+int 范围 [-2^31, 2^31 -1]
+1<<31 = -2^31
+1<<31 - 1 = 2^31 -1
+
 * x ^ y, x&1, x >> 1
   - 136 Single Number
   - 461 Hamming Distance
@@ -605,6 +625,9 @@ Bit Mnaipulation
 
 * i&(i - 1)， 这个本来是用来判断一个数是否是2的指数的快捷方法，比如8，二进制位1000, 那么8&(8-1)为0，只要为0就是2的指数
   - 338 Counting Bits
+
+* 神操作
+  - 29. Divide Two Integers
 
 --------------------
 Design

@@ -4182,6 +4182,195 @@
         res = Math.max(res, fp - sp);
   # Two Pointers, Sliding Window
 
+* 29. Divide Two Integers
+  - 神操作 1<<1,左移1位乘以2， 1>>1,右移1位除以2
+  -     // 1<<31 = Integer.MIN_VALUE, (1<<31)-1 = Integer.MAX_VALUE
+        if (A == 1 << 31 && B == -1) return (1 << 31) - 1;
+        int a = Math.abs(A), b = Math.abs(B), res = 0, x = 0;
+        while (a - b >= 0) {
+            // A = 50, B = 4
+            // x = 0, 50 - 4*2 >0
+            // x= 1, 50 - 4*2^(1+1)>0
+            // x = 2, 50 - 4*2^(2+1)>0
+            // x = 3, 50 - 4*2^(3+1)<0, thus res += 2^3
+            for (x = 0; a - (b << x << 1) >= 0; x++);
+            res += 1 << x;
+            a -= b << x;
+        }
+        return (A > 0) == (B > 0) ? res : -res;
+  # Bit Manipulation
+
+958. Check Completeness of a Binary Tree
+  - level order traversal, if start getting null, all the rest should be null for complete binary tree, if not, then wrong
+  -     while(!queue.isEmpty()) {
+            TreeNode node = queue.poll();
+            if(node == null) {
+                if(!startToHaveNull) {
+                    startToHaveNull = true;
+                }
+            } else {
+                if(startToHaveNull) {
+                    return false;
+                }
+                queue.add(node.left);
+                queue.add(node.right);
+            }
+        }
+  # Level Order Traversal,
+
+143. Reorder List
+  - 快慢指针，找到中点。后半部分指针转向。然后头指针和尾指针轮流指
+  - 细心，举单双数例子跑
+  -     ListNode sp = head;
+        ListNode fp = head;
+        //找中点
+        while(fp.next != null && fp.next.next!=null) {
+            fp = fp.next.next;
+            sp = sp.next;
+        }
+
+        fp = sp.next;
+        sp.next = null;
+        //后半部分转向
+        while(fp != null) {
+            ListNode temp = fp.next;
+            fp.next = sp;
+            sp = fp;
+            fp = temp;
+        }
+
+        ListNode h = head;
+        // 轮流指
+        while(h != sp && h != sp.next) {
+            ListNode temp = h.next;
+            h.next = sp;
+            h = temp;
+            temp = sp.next;
+            sp.next = h;
+            sp = temp;
+        }
+
+        if(h == sp) {
+            h.next = null;
+        } else {
+            h.next = sp;
+            sp.next = null;
+        }
+  # Two Pointers
+
+350. Intersection of Two Arrays II
+  # HashMap, Two Pointers
+
+246. Strobogrammatic Number
+  # Two Pointers
+
+708. Insert into a Sorted Circular Linked List
+  - duplicates exist in the list
+        Node n = new Node(insertVal);
+        if(head == null) {
+            n.next = n;
+            return n;
+        } else if(head.next == head) {
+            head.next = n;
+            n.next = head;
+            return head;
+        }
+
+        max = head;
+        min = head;
+        Node pre = head;
+        Node cur = head.next;
+        do {
+            if(cur.val>=max.val) { // due to duplicates, >= not >
+                max = cur;
+            }
+            if(cur.val <= min.val) { // duplicates, <= not <
+                min = cur;
+            }
+            if(n.val<=cur.val && n.val>=pre.val) { // dup, 得有=
+                pre.next = n;
+                n.next = cur;
+                return head;
+            }
+
+            pre = pre.next;
+            cur = cur.next;
+        } while(pre != head); // 保证绕一圈
+
+        max.next = n;
+        n.next = min;
+  # Two Pointers
+
+480. Sliding Window Median
+  - 坑是minQ里新加val，maxQ加minQ里最小的。如果减掉的val在minQ里，minQ加maxQ最大的
+  - Refer to 295. Find Median from Data Stream
+  -     initializeQueue(nums,k);
+        double[] res = new double[nums.length - k + 1];
+        res[0] = getMedian(k);
+        for(int i = k,j=1;i<nums.length;i++,j++) {
+            res[j] = processAndGetMedian(nums, i-k , i, k);
+        }
+
+    // maxQ keeps 1 more if k is odd
+    private void initializeQueue(int[] nums, int k) {
+        for(int i = 0;i<k;i++) {
+            minQ.add(nums[i]);
+        }
+        for(int i=0;i<k/2;i++) {
+            maxQ.add(minQ.poll());
+        }
+    }
+
+    //先加入minQ,然后maxQ，如果减的在minQ里，再从MaxQ里加一个
+    private double processAndGetMedian(int[] nums, int remove, int add, int k) {
+        minQ.add(nums[add]);
+        maxQ.add(minQ.poll());
+        if(minQ.remove(nums[remove])) {
+            minQ.add(maxQ.poll());
+        } else {
+            maxQ.remove(nums[remove]);
+        }
+
+        return getMedian(k);
+    }
+
+    private double getMedian(int k) {
+        if(k%2 ==1) {
+            return minQ.peek();
+        } else {
+          // 小心 2<<31-1 coner case
+            return ((double)minQ.peek() + (double)maxQ.peek()) / 2;
+        }
+    }
+  # Sliding Window, PriorityQueue
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

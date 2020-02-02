@@ -1,6 +1,9 @@
 --------------------
 String
 --------------------
+* Palindrome
+  - 先考虑两边到中间 l < r
+
 *
   - str.compareTo(str2)
   - str.split(regx)
@@ -485,6 +488,9 @@ DFS
 ** DFS Memorization, keep map of string and its combinitions list
   - 140. Word Break II
 
+** DFS + Memorization
+  - 1216. Valid Palindrome III
+
 - 341. Flatten Nested List Iterator
 - 37. Sudoku Solver
 - 286. Walls and Gates
@@ -693,6 +699,10 @@ Dynamic Programming
 * palindromic, 2 for loops, s.charAt(i) == s.charAt(j) && dp[i+1][j-1]
   - 5 Longest Palindromic Substring
     # 2D DP
+
+* delete char k times, valid palindrome
+  - 1216. Valid Palindrome III
+    # 2D DP, DFS + Memorization,Two Pointers
 
 * buy and sell stock
   - 122. Best Time to Buy and Sell Stock II

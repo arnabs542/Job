@@ -4344,7 +4344,52 @@
     }
   # Sliding Window, PriorityQueue
 
+**1216. Valid Palindrome III
+  - 因为delete string会出现奇变偶或偶变奇的情况，所以中间数不确定，不能从中间到两边。e.g. abbababa。 所以用l,r两边往中间走。
+  - DFS + Memorization
 
+    Integer[][] cache = new Integer[s.length()][s.length()];
+    return aux(s, 0, s.length()-1, cache) <= k;
+
+    private int aux(String s, int left, int right, Integer[][] cache) {
+        // l == r || right < left
+        if (right - left < 1) return 0;
+        if (cache[left][right] != null) return cache[left][right];
+
+        int step = 0;
+        if (s.charAt(left) == s.charAt(right)) {
+            step = aux(s, left+1, right-1, cache);
+        } else {
+            step = 1 + Math.min(aux(s, left+1, right, cache), aux(s, left, right-1, cache));
+        }
+        cache[left][right] = step;
+        return step;
+
+  - 2D DP
+        int[][] dp = new int[s.length()][s.length()];
+        for(int i =0; i<s.length();i++) {
+            for(int j=i;j>=0;j--) {
+                // 奇数i==j或者偶数j>i两种情况
+                if(i-j<1) {
+                    dp[i][j] = 0;
+                } else if(s.charAt(i) == s.charAt(j)) {
+                    dp[i][j] = dp[i-1][j+1];
+                } else {
+                    // 因为 dp[i][j+1]。所以j从右往左走
+                    dp[i][j] = 1 + Math.min(dp[i-1][j], dp[i][j+1]);
+                }
+            }
+        }
+        return dp[s.length()-1][0] <= k;
+     e.g. abcdea
+      0 0 0 0 0 0
+      1 0 0 0 0 0
+      2 1 0 0 0 0
+      3 2 1 0 0 0
+      4 3 2 1 0 0
+      3 4 3 2 1 0
+
+  # 2D DP, DFS + Memorization，Two Pointers
 
 
 

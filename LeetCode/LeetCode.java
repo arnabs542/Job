@@ -4391,16 +4391,97 @@
 
   # 2D DP, DFS + Memorization，Two Pointers
 
+528. Random Pick with Weight
+  - Calculate prefix sum of each elem in array and total weight. Use random to pick from total weight. Then binary search prefix sum and get index
+  - public Solution(int[] w) {
+        random = new Random();
+        weight = new int[w.length];
+        for(int i=0;i<w.length;i++) {
+            totalWeight += w[i];
+            weight[i] = totalWeight;
+        }
+    }
+    public int pickIndex() {
+        // [1,totalWight]
+        int target  = random.nextInt(totalWeight)+1;
+        int l = 0;
+        int r = weight.length;
+        while(l < r) {
+            int mid = (l+r)/2;
+            if(target > weight[mid]) {
+                l = mid + 1;
+            } else {
+                r = mid;
+            }
+        }
 
+        return l;
+    }
+  - Refer to 398. Random Pick Index
+  # Random, Binary Search
 
+938. Range Sum of BST
+  # Binary Search Tree
 
+921. Minimum Add to Make Parentheses Valid
+     -  int res = 0;
+        // ‘(’比 ‘)'多的个数
+        int lMinusR=0;
+        for(char c : S.toCharArray()) {
+            if(c == '(') {
+                lMinusR++;
+            } else {
+                if(lMinusR == 0) {
+                    res++;
+                } else {
+                    lMinusR--;
+                }
+            }
+        }
 
+        res += lMinusR;
+  # Parentheses
 
+* 1060. Missing Element in Sorted Array
+  - 用不了 l<r, l = mid+ 1,所以用 l<r-1, l=mid, r=mid。
+  - public int missingElement(int[] nums, int k) {
+        int l = 0;
+        int r = nums.length-1;
+        while(l < r-1) {
+            int mid = (l+r)/2;
+            if(nums[0] + k + mid > nums[mid]) {
+                l = mid;
+            } else {
+                r = mid;
+            }
+        }
+        int res = nums[0] + k + l;
+        if(res < nums[r]) {
+            return res;
+        } else {
+            return res + 1;
+        }
+    }
+  # Binary Search
 
+138. Copy List with Random Pointer
+  - Matain Map<oldNode, newNode>, then connect through oldNode link
+    Map<Node, Node> map = new HashMap<Node, Node>();
 
-
-
-
+    // loop 1. copy all the nodes
+    Node node = head;
+    while (node != null) {
+      map.put(node, new Node(node.val));
+      node = node.next;
+    }
+    // loop 2. assign next and random pointers
+    node = head;
+    while (node != null) {
+      map.get(node).next = map.get(node.next);
+      map.get(node).random = map.get(node.random);
+      node = node.next;
+    }
+  # HashMap
 
 
 

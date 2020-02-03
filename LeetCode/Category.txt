@@ -279,6 +279,9 @@ HashMap
 * Contiguous Array 类型, consider HashMap and Two Pointers
   - 525. Contiguous Array
 
+* Maintain Map of oldNode and newNode
+  - 138. Copy List with Random Pointer
+
 - 205. Isomorphic Strings
 - 1. Two Sums
 - 350. Intersection of Two Arrays II
@@ -375,6 +378,11 @@ Approach 3. l < r-1
 * find bad version
   - 278. First Bad Version
     - Approach 2, 3都行
+
+* find missing element,
+  - 1060. Missing Element in Sorted Array
+    - l < r -1, l=mid, r=mid
+    - 用不了App 2, 只能用 App 3
 
 * compare mid & mid-1, compare mid & (left || right)
   - 33. Search in Rotated Sorted Array
@@ -591,6 +599,8 @@ Math
 --------------------
 * Generate random index
   - 398. Random Pick Index
+  - 528. Random Pick with Weight
+    # Random, Binary Search
 
 * friends request
   - 825. Friends Of Appropriate Ages

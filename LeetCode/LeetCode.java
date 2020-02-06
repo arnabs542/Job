@@ -4483,14 +4483,71 @@
     }
   # HashMap
 
+*126. Word Ladder II
+  - Diff is that this quesiton asks for shortest *PAHTS*, not single shortest path.
+  - Build undirected graph, then run bfs to find shortest path. Note that can not use visited set due to corner case:
+    beginWord:"red", endWord: "tax", wordList: ["ted","tex","red","tax","tad","den","rex","pee"]
+    output with visited: [["red","ted","tex","tax"],["red","ted","tad","tax"]]
+    expected: [["red","ted","tad","tax"],["red","ted","tex","tax"],["red","rex","tex","tax"]]
+        -> ted
+    red         -> tex -> tax
+        -> rex
+    If maintain visited. the rex route is missing. Thus only maintain accessed list for each path.
+  # Grpah, BFS
 
+843. Guess the Word
+  - Come up with match method to find num of matching chars of two words. Then pick least 0 matching word to guess cause word mostly get 0 matches so that it can eliminate the most words. Or scoring, for each char in 6-letter, find most char, calculate words and find highest score.
+  - https://leetcode.com/problems/guess-the-word/discuss/133862/Random-Guess-and-Minimax-Guess-with-Comparison
+    public void findSecretWord(String[] wordlist, Master master) {
+        for (int i = 0, x = 0; i < 10 && x < 6; ++i) {
+            HashMap<String, Integer> count = new HashMap<>();
+            // cal match for each word
+            for (String w1 : wordlist)
+                for (String w2 : wordlist)
+                    //
+                    if (match(w1, w2) == 0)
+                        count.put(w1, count.getOrDefault(w1 , 0) + 1);
+            String guess = "";
+            int min0 = 100;
+            // find word with lowest num of 0 match
+            for (String w : wordlist)
+                if (count.getOrDefault(w, 0) < min0) {
+                    guess = w;
+                    min0 = count.getOrDefault(w, 0);
+                }
+            x = master.guess(guess);
+            List<String> wordlist2 = new ArrayList<String>();
+            for (String w : wordlist)
+                if (match(guess, w) == x)
+                    wordlist2.add(w);
+            wordlist = wordlist2.toArray(new String[0]);
+        }
+    }
+  # interactive problem, Minimax
 
+1153. String Transforms Into Another String
+  - 1. one char cant transform to two char 2. if cycle e.g. a->b->c->a, it should have 1 more ununsed char
+  -   public boolean canConvert(String str1, String str2) {
+        // If same, return true
+        if (str1.equals(str2)) return true;
+        Map<Character, Character> map = new HashMap<>();
+        for(int i=0;i<str1.length();i++) {
+            // 1 char can't transform to 2 char
+            if(map.containsKey(str1.charAt(i)) && map.get(str1.charAt(i)) != str2.charAt(i)) {
+                return false;
+            }
+            map.put(str1.charAt(i), str2.charAt(i));
+        }
 
+        // if cycle e.g. a ->b ->c ->a, it has to have 1 extra ununsed char
+        return new HashSet<>(map.values()).size()<26;
+    }
+  # Graph
 
-
-
-
-
+1088. Confusing Number II
+  - Calculate num of all combinations of 0, 1, 6, 8, 9 less than N. Then build Strobogrammatic numbers less than N. Total减去 Strobogrammatic numbers就是答案
+  - 代码太多太复杂，自己看：https://leetcode.com/problems/confusing-number-ii/
+  # Math, Backtracking
 
 
 

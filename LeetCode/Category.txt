@@ -34,6 +34,8 @@ String
 * Build Strobogrammatic Number with dfs with l, r。单双情况
   - 248. Strobogrammatic Number III
   - 247. Strobogrammatic Number II
+  - 1088. Confusing Number II
+    # 烦死了
 
 * Shift String
   - 249. Group Shifted Strings
@@ -327,6 +329,8 @@ Two Pointers
 - 340. Longest Substring with At Most K Distinct Characters
     # Two Pointers, HashMap
 
+- 809. Expressive Words
+    # Two Pointers
 --------------------
 Binary Search
 --------------------
@@ -419,6 +423,9 @@ Approach 3. l < r-1
 - 50. Pow(x, n)
     # Binary Search
 
+- 410. Split Array Largest Sum
+    # Binary Search, DP, DFS
+
 --------------------
 Binary Search Tree
 --------------------
@@ -432,6 +439,9 @@ Graph
   - 269. Alien Dictionary
     # Topological Sort, DFS, Directed Graph, Character order
 
+* 1153. String Transforms Into Another String
+  # Graph
+
 --------------------
 BFS
 --------------------
@@ -439,6 +449,8 @@ BFS
 
 * Shortest Path
   - 127. Word Ladder
+  - 126. Word Ladder II
+    # 求最短的不同路径，不太一样。不能maintain visited
 
 * Shortest Path, encode int[][] to string and keep Set<String> visited
   - 773. Sliding Puzzle
@@ -757,6 +769,14 @@ Dynamic Programming
 
 - 801. Minimum Swaps To Make Sequences Increasing
 - 304. Range Sum Query 2D - Immutable
+
+--------------------
+Interactive Question
+--------------------
+- 843. Guess the Word
+  # Minimax
+
+
 
 --------------------
 SQL

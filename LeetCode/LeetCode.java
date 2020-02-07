@@ -4549,10 +4549,57 @@
   - 代码太多太复杂，自己看：https://leetcode.com/problems/confusing-number-ii/
   # Math, Backtracking
 
+410. Split Array Largest Sum
+  - Binary Search: 下限是max的数，上限是sum。然后做BS，对每一轮找需要多少组，多于题中的组，就return false。
+          //binary search
+  -     long l = max; long r = sum;
+        while (l <= r) {
+            long mid = (l + r)/ 2;
+            if (valid(mid, nums, m)) {
+                r = mid-1;
+            } else {
+                l = mid+1;
+            }
+        }
 
+        return (int)l;
+    }
+    public boolean valid(long target, int[] nums, int m) {
+        int count = 1;
+        long total = 0;
+        for(int num : nums) {
+            total += num;
+            if (total > target) {
+                total = num;
+                count++;
+                if (count > m) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+  # DFS, DP, Binary Search
 
-
-
+809. Expressive Words
+    public int expressiveWords(String S, String[] words) {
+        int res = 0;
+        for (String W : words) if (check(S, W)) res++;
+        return res;
+    }
+    public boolean check(String S, String W) {
+        int n = S.length(), m = W.length(), j = 0;
+        for (int i = 0; i < n; i++)
+            // j<m is required as abb, ab
+            if (j < m && S.charAt(i) == W.charAt(j)) j++;
+            // deal with abbb, ab
+            else if (i > 1 && S.charAt(i) == S.charAt(i - 1) && S.charAt(i - 1) == S.charAt(i - 2));
+            // deal with abbb, abb
+            else if (0 < i && i < n - 1 && S.charAt(i - 1) == S.charAt(i) && S.charAt(i) == S.charAt(i + 1));
+            else return false;
+        return j == m;
+    }
+  # Two Pointers
 
 
 

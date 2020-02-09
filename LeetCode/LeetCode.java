@@ -4549,7 +4549,7 @@
   - 代码太多太复杂，自己看：https://leetcode.com/problems/confusing-number-ii/
   # Math, Backtracking
 
-410. Split Array Largest Sum
+**410. Split Array Largest Sum
   - Binary Search: 下限是max的数，上限是sum。然后做BS，对每一轮找需要多少组，多于题中的组，就return false。
           //binary search
   -     long l = max; long r = sum;
@@ -4600,6 +4600,335 @@
         return j == m;
     }
   # Two Pointers
+
+363. Max Sum of Rectangle No Larger Than K
+  - 循环所有的矩阵，再循环所有的起始位置。所以是 O(n^4)
+  - borrows the idea to find max subarray with sum <= k in 1D array. find all rectangles bounded between r1 & r2, with columns from 0 to end. Pick a pair from TREESET ceiling. O(n^3logn). https://leetcode.com/problems/max-sum-of-rectangle-no-larger-than-k/discuss/83618/2-Accepted-Java-Solution
+        int[][] sum = populateSumMatrix(matrix);
+        int maxSum = Integer.MIN_VALUE;
+        // 循环矩阵大小
+        for(int l=1;l<=rows;l++) {
+            for(int w=1;w<=cols;w++) {
+                // 循环起始位置
+                for(int i=0;i+l<=rows;i++) {
+                    for(int j=0;j+w<=cols;j++) {
+                        int s = sum[i+l-1][j+w-1];
+                        if(i>0 && j>0) {
+                            s += sum[i-1][j-1];
+                        }
+                        if(i>0) {
+                            //别写错sum[i-1][j]
+                            s -= sum[i-1][j+w-1];
+                        }
+                        if(j>0) {
+                            // 别写错sum[i][j-1]
+                            s -= sum[i+l-1][j-1];
+                        }
+                        if(s == k) {
+                            return k;
+                        } else if(s<k) {
+                            maxSum = Math.max(maxSum, s);
+                        }}}}
+
+    // 求每个位置到(0,0)的和矩阵
+    private int[][] populateSumMatrix(int[][] matrix) {
+        int rows = matrix.length;
+        int cols = matrix[0].length;
+        int[][] sum = new int[rows][cols];
+        sum[0][0] = matrix[0][0];
+        for(int i=1;i<rows;i++) {
+            sum[i][0] = matrix[i][0] + sum[i-1][0];
+        }
+        for(int i=1;i<cols;i++) {
+            sum[0][i] = matrix[0][i] + sum[0][i-1];
+        }
+        for(int i=1;i<rows;i++) {
+            for(int j=1;j<cols;j++) {
+                sum[i][j] = matrix[i][j] + sum[i-1][j] + sum[i][j-1] - sum[i-1][j-1];
+            }
+        }
+        return sum;
+    }
+
+  # Array, TreeSet
+
+1055. Shortest Way to Form String
+  - save each char position in source string to map<Character, list<Integer>>. Iterate target string.
+        Map<Character, List<Integer>> map = new HashMap<>();
+        for(int i=0;i< source.length();i++) {
+            char c = source.charAt(i);
+            if(!map.containsKey(c)) {
+                map.put(c, new ArrayList<>());
+            }
+            map.get(c).add(i);
+        }
+
+        int res = 1;
+        // current pos in source string
+        int num = -1;
+        for(char c : target.toCharArray()) {
+            if(!map.containsKey(c)) {
+                return -1;
+            }
+            List<Integer> list = map.get(c);
+            int i= binarySearch(list, num);
+            // no i pos > num, then reiterate source string, res++
+            if(i == list.size()) {
+                res++;
+                num = list.get(0);
+            } else {
+                num = list.get(i);
+            }
+        }
+  # HashMap, String, Binary Search
+
+1110. Delete Nodes And Return Forest
+  - Populate map<node, parent>, and map<val, node>. For each delete node, remove from parent and set, add children to set. Finally, return set
+  - 小心维护parentMap，用来删节点用的。删root是conner case，没有parent
+  -     // pop nodeMap and parentMap
+        postOrderTraversal(root, nodeMap, parentMap);
+        set.add(root.val);
+        for(int v : to_delete) {
+            TreeNode node = nodeMap.get(v);
+            // Handle children
+            if(node.left != null) {
+                set.add(node.left.val);
+            }
+            if(node.right != null) {
+                set.add(node.right.val);
+            }
+            // handle roots
+            if(set.contains(v)) {
+                set.remove(v);
+            }
+            // handle parent
+            TreeNode parent = parentMap.get(v);
+            // Coner case, root doesnt have parent
+            if(v == root.val) {
+                continue;
+            }
+            if(parent.left != null && parent.left.val == v) {
+                parent.left = null;
+            } else {
+                parent.right = null;
+            }
+
+        }
+  # Tree
+
+1057. Campus Bikes
+  - calculate distance for each worker and bike pair, put into PriorityQueue. Retrieve one by one until all workers have bikes.
+  # PriorityQueue, Greedy
+
+299. Bulls and Cows
+  - matain int[] to record char occurrence.
+  -     int[] numbers = new int[10];
+        for (int i = 0; i<secret.length(); i++) {
+            int s = Character.getNumericValue(secret.charAt(i));
+            int g = Character.getNumericValue(guess.charAt(i));
+            if (s == g) bulls++;
+            else {
+                // Smart! 每次secret加，guess提前减。
+                if (numbers[s] < 0) cows++;
+                if (numbers[g] > 0) cows++;
+                numbers[s] ++;
+                numbers[g] --;
+            }
+        }
+  # String
+
+1170. Compare Strings by Frequency of the Smallest Character
+  - 从右往左维护post position sum array
+  # Array
+
+
+1231. Divide Chocolate
+  - 参考 410. Split Array Largest Sum，找巧克力甜度结果的上下限。
+        // 求平均数，也是结果的max value
+        int max = sum/(K+1);
+        // 改成binary search
+        // for(int i = max;i>0;i--) {
+        //     if(cut(sweetness, K, i)) {
+        //         return i;
+        // }}
+        int r = sum/(K+1);
+        int l = 0;
+        while(l < r-1) {
+            int mid = (l+r)/2;
+            if(cut(sweetness, K, mid)) {
+                l = mid;
+            } else {
+                r = mid;
+            }
+        }
+        if(cut(sweetness, K, r)) {
+            return r;
+        }
+        return l;
+
+        private boolean cut(int[] sweetness, int K, int num) {
+            int cut = 0;
+            int sum = 0;
+            // 看切几刀能满足最小值>= num。如果>=K, 则true
+            for(int i=0;i<sweetness.length;i++) {
+                sum += sweetness[i];
+                if(sum>=num) {
+                    cut++;
+                    sum=0;
+                }
+            }
+            cut--;
+            if(cut>=K) {
+                return true;
+            }
+
+            return false;
+        }
+  # Binary Search
+
+430. Flatten a Multilevel Doubly Linked List
+  - 从头节点开始循环，每次按有无child, next, stack.isEmpty分情况
+  -     Node n = head;
+        while(n.next != null || n.child != null || !stack.isEmpty()) {
+            // 有child
+            if(n.child != null) {
+                if(n.next != null) {
+                    stack.push(n.next);
+                }
+                n.next = n.child;
+                n.next.prev = n;
+                n.child = null;
+                n = n.next;
+            // 有next
+            } else if(n.next != null) {
+                n = n.next;
+            // 有stack
+            } else {
+                Node temp = stack.pop();
+                temp.prev = n;
+                n.next = temp;
+                n = n.next;
+            }
+        }
+  # Stack
+
+482. License Key Formatting
+  - corner case 很多
+  -     for(int i = S.length()-1;i>=0;i--) {
+            if(S.charAt(i) == '-') {
+                continue;
+            }
+            res = convert(S.charAt(i)) + res;
+            n++;
+            if(n == K) {
+                res = '-' + res;
+                n = 0;
+            }
+        }
+        // 验证 len
+        if(res.length() > 0 && res.charAt(0) == '-') {
+            return res.substring(1);
+        }
+
+        return res;
+    }
+
+    private String convert(char c) {
+        if(c >='a' && c<='z') {
+          //注意cast char
+            return ""+ (char)(c-'a'+'A');
+        }
+
+        return "" + c;
+    }
+  # String
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

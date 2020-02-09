@@ -58,6 +58,8 @@ String
 - 269. Alien Dictionary
 - 1249. Minimum Remove to Make Valid Parentheses
 - 415. Add Strings
+- 299. Bulls and Cows
+- 482. License Key Formatting
 
 --------------------
 LinkedList
@@ -145,10 +147,16 @@ Array
   - 689. Maximum Sum of 3 Non-Overlapping Subarrays
     # Array, DP
 
+* 循环所有矩阵再循环起始位置，用treeset优化
+  - 363. Max Sum of Rectangle No Larger Than K
+
 - 289. Game of Life
     # 2D Array
 
 - 670. Maximum Swap
+- 1055. Shortest Way to Form String
+  # HashMap, String, Binary Search
+- 1170. Compare Strings by Frequency of the Smallest Character
 
 --------------------
 Stack
@@ -183,6 +191,9 @@ Stack
 
 * Regular expression to split string, put into stack
   - 71. Simplify Path
+
+* 按有无child, next, stack.isEmpty分情况
+  - 430. Flatten a Multilevel Doubly Linked List
 
 --------------------
 Tree
@@ -248,6 +259,9 @@ Tree
 * Matain first and last node while inorder traversal
   - 426. Convert Binary Search Tree to Sorted Doubly Linked List
     # Inorder
+
+* 维护节点parentMap用来删点
+  - 1110. Delete Nodes And Return Forest
 
 --------------------
 Trie/Prefix Tree
@@ -423,8 +437,11 @@ Approach 3. l < r-1
 - 50. Pow(x, n)
     # Binary Search
 
-- 410. Split Array Largest Sum
+** 判断上下限，然后做Binary Search
+  - 410. Split Array Largest Sum
     # Binary Search, DP, DFS
+  - 1231. Divide Chocolate
+    # Binary Search
 
 --------------------
 Binary Search Tree
@@ -556,6 +573,7 @@ Priority Queue
 
 - 218. The Skyline Problem
 - 973. K Closest Points to Origin
+- 1057. Campus Bikes
 
 ----------------------------------
 Fenwick Tree / Binary Indexed Tree
@@ -634,6 +652,9 @@ Greedy
 * Matain pre and # of consecutive sequence at pre with length 1, 2, 3
     - 659. Split Array into Consecutive Subsequences
       # Greedy
+
+- 1057. Campus Bikes
+  # PriorityQueue, Greedy
 
 --------------------
 Bit Mnaipulation

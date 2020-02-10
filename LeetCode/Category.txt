@@ -273,10 +273,22 @@ Trie/Prefix Tree
   - 745. Prefix and Suffix Search
 
 * Create shortest abbreviation for each word, for duplicates, increase abbreviation length util not duplicates
-- 527. Word Abbreviation
+  - 527. Word Abbreviation
     # String, Trie
 
+* search autocomplete, trie && priority queue
+  - 642. Design Search Autocomplete System
+    # Trie, Priority Queue
+
 - 208. Implement Trie (Prefix Tree)
+
+--------------------
+TreeMap
+--------------------
+* TreeMap is ordered map by key. e.g. firstKey(), lastKey()
+
+- 846. Hand of Straights
+
 
 --------------------
 HashSet
@@ -567,6 +579,13 @@ Union Find
 --------------------
 Priority Queue
 --------------------
+// By default, it increasing order
+// e.g. num从大到小，string ASICII从小到大
+   PriorityQueue<Node> queue = new PriorityQueue<>((n1, n2)->{
+        return n1.num == n2.num ? n1.name.compareTo(n2.name) : n2.num - n1.num;
+    });
+
+
 * Use minHeap and maxHeap to maintain median
   - 295. Find Median from Data Stream
   - 480. Sliding Window Median

@@ -4843,9 +4843,81 @@
     }
   # String
 
+* 642. Design Search Autocomplete System
+  - 每个trie node维护Map<char, trie node>, Map<sentence, count>，返回是用priority queue排序。
+  - 注意 priority queue 的iterator不是排序好的！只有没有poll，才是排序的
+  - public List<String> input(char c) {
+        if(c == '#') {
+            insert(newSentence, 1);
+            newSentence = "";
+            curNode = root;
+            return Collections.emptyList();
+        } else {
+            newSentence += c;
+            if(curNode == null) {
+                return Collections.emptyList();
+            }
+            if (curNode.children.containsKey(c)) {
+                Node child = curNode.children.get(c);
+                //先count降序，后sentence升序
+                PriorityQueue<SO> queue = new PriorityQueue<>((a,b) -> a.n == b.n ? a.s.compareTo(b.s) : b.n - a.n);
+                for(String str : child.counts.keySet()) {
+                    int num = child.counts.get(str);
+                    queue.add(new SO(str, num));
+                }
+                List<String> res = new ArrayList<>();
+                for(int i=0;i<3 && !queue.isEmpty();i++) {
+                    res.add(queue.poll().s);
+                }
+                curNode = child;
+                return res;
+            } else {
+                curNode = null;
+            }
 
+            return Collections.emptyList();
+        }
 
+    }
 
+    private void insert(String sentence, int times) {
+        curNode = root;
+        for(char c : sentence.toCharArray()) {
+            if(!curNode.children.containsKey(c)) {
+                Node n = new Node();
+                n.counts.put(sentence,times);
+                curNode.children.put(c, n);
+                curNode = n;
+            } else {
+                Node n = curNode.children.get(c);
+                n.counts.put(sentence, n.counts.getOrDefault(sentence, times-1)+1);
+                curNode = n;
+            }
+        }
+        curNode = root;
+    }
+  # Trie
+
+846. Hand of Straights
+  - 从最小的牌开始，每次remove W张，出现问题就false
+  -     // TreeMap is ordered map, order by key
+        TreeMap<Integer, Integer> count = new TreeMap();
+        for (int card: hand) {
+            if (!count.containsKey(card))
+                count.put(card, 1);
+            else
+                count.replace(card, count.get(card) + 1);
+        }
+        while (count.size() > 0) {
+            int first = count.firstKey();
+            for (int card = first; card < first + W; ++card) {
+                if (!count.containsKey(card)) return false;
+                int c = count.get(card);
+                if (c == 1) count.remove(card);
+                else count.replace(card, c - 1);
+            }
+        }
+  # TreeMap
 
 
 

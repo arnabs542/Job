@@ -301,6 +301,9 @@ HashSet
   - 36. Valid Sudoku
     # HashSet
 
+* 矩形先确定2个不在同一row,col的点
+  - 939. Minimum Area Rectangle
+
 --------------------
 HashMap
 --------------------
@@ -496,7 +499,17 @@ BFS
 * 看第一象限，最短， 走斜格子
   - 1197. Minimum Knight Moves
 
+* 4位，每位有上下两种可能，bfs每次有8种可能
+  - 752. Open the Lock
+
 - 958. Check Completeness of a Binary Tree
+
+--------------------
+Djikstra
+--------------------
+* For directed or undirected weighted graph
+
+- 743. Network Delay Time
 
 --------------------
 DFS

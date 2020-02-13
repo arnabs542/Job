@@ -4919,14 +4919,63 @@
         }
   # TreeMap
 
+752. Open the Lock
+  - 4位的lock每位有上下两种可能性，所以BFS每走一步有8种可能。
+  # BFS
 
+939. Minimum Area Rectangle
+  - 找出所有2个点不在一个row和column，然后剩下2个点的x，y也就确定了，如果set里存在就计算面积比较
+        for(int[] p : points) {
+            set.add(p[0] + "#" + p[1]);
+        }
+        for(int[] p1 : points) {
+            for(int[] p2 : points) {
+                // 不在 X,Y轴的垂线上
+                if(p1[0] == p2[0] || p1[1] == p2[1]) {
+                    continue;
+                } else if(set.contains(p1[0]+"#"+p2[1]) && set.contains(p2[0]+"#"+p1[1])) {
+                    res = Math.min(res, Math.abs(p1[0]-p2[0])*Math.abs(p1[1]-p2[1]));
+                }
+            }
+        }
+  # HashSet
 
+*743. Network Delay Time
+  - Matain weight[] for each node, if visit node i time more than weight[i], then return
+class Solution {
+  - public int networkDelayTime(int[][] times, int N, int K) {
+        Map<Integer, Map<Integer,Integer>> map = new HashMap<>();
+        for(int[] time : times){
+            map.putIfAbsent(time[0], new HashMap<>());
+            map.get(time[0]).put(time[1], time[2]);
+        }
+        //Compare with BFS, use priority queue instead of queue
+        Queue<int[]> pq = new PriorityQueue<>((a,b) -> (a[0] - b[0]));
+        pq.add(new int[]{0, K});
+        boolean[] visited = new boolean[N+1];
+        int res = 0;
 
+        while(!pq.isEmpty()){
+            int[] cur = pq.remove();
+            int curNode = cur[1];
+            int curDist = cur[0];
+            if(visited[curNode]) continue;
+            visited[curNode] = true;
+            res = curDist;
+            N--;
+            if(map.containsKey(curNode)){
+                for(int next : map.get(curNode).keySet()){
+                    pq.add(new int[]{curDist + map.get(curNode).get(next), next});
+                }
+            }
+        }
+  # Directed Weighted Graph, DFS, Djikstra
 
-
-
-
-
+1145. Binary Tree Coloring Game
+  - 1. red.left > n/2
+    2. red.right > n/2
+    3. (n-red子孙) > n/2
+  # Tree, Traversal
 
 
 

@@ -4650,7 +4650,7 @@
         return sum;
     }
 
-  # Array, TreeSet
+  # Array, TreeSet, 矩形题
 
 1055. Shortest Way to Form String
   - save each char position in source string to map<Character, list<Integer>>. Iterate target string.
@@ -4843,7 +4843,7 @@
     }
   # String
 
-* 642. Design Search Autocomplete System
+*642. Design Search Autocomplete System
   - 每个trie node维护Map<char, trie node>, Map<sentence, count>，返回是用priority queue排序。
   - 注意 priority queue 的iterator不是排序好的！只有没有poll，才是排序的
   - public List<String> input(char c) {
@@ -4977,14 +4977,85 @@ class Solution {
     3. (n-red子孙) > n/2
   # Tree, Traversal
 
+1011. Capacity To Ship Packages Within D Days
+  - To find minWeight, it has range from min package weight to package sum weight. Then do binary search
+  -     while(l<r-1) {
+            int mid = (l+r)/2;
+            if(check(weights, D, mid)) {
+                r = mid;
+            } else {
+                l = mid;
+            }
+        }
+        return check(weights, D, l) ? l : r;
+  # Binary Search
 
+*271. Encode and Decode Strings
+  - String can be any asicii 256 chars, thus hard to find delimiter. Then use 字符长度/字符组 来encode, decode,
+      // Encodes a list of strings to a single string.
+  - public String encode(List<String> strs) {
+        StringBuilder sb = new StringBuilder();
+        for(String s : strs) {
+          //用字符数/字符组来，机智！
+            sb.append(s.length()).append('/').append(s);
+        }
+        return sb.toString();
+    }
+    // Decodes a single string to a list of strings.
+    public List<String> decode(String s) {
+        List<String> res = new ArrayList<>();
+        for(int i=0;i<s.length();) {
+            String len = "";
+            while(s.charAt(i)!='/') {
+                len +=s.charAt(i);
+                i++;
+            }
+            int leng = Integer.parseInt(len);
+            res.add(s.substring(i+1, i+1+leng));
+            i = i+1+leng;
+        }
+  # String
 
+835. Image Overlap
+  - Only care 1 in A and B. Get all 1 A and B, put into list. For each pair, calculate i, j diff and put into map<diff, count>, get max count. Any position in A can loverlap B.
+  -     Map<String, Integer> map = new HashMap<>();
+        int res = 0;
+        for(int[] a : listA) {
+            for(int[] b : listB) {
+                // 计算所有pos间的diff，累加找到最大的
+                String diff = (a[0]-b[0]) + "#" + (a[1]-b[1]);
+                if(!map.containsKey(diff)) {
+                    map.put(diff, 0);
+                }
+                res = Math.max(res, map.get(diff) +1);
+                map.put(diff, map.get(diff)+1);
+            }
+        }
+  # Array
 
-
-
-
-
-
+1074. Number of Submatrices That Sum to Target
+  - Refer to 363. Max Sum of Rectangle No Larger Than K
+  - 矩形题，考虑固定2个row，然后走column.走column时matain prefix sum
+  -     for(int i = 0;i<matrix.length;i++) {
+            for(int j=i;j<matrix.length;j++) {
+                Map<Integer, Integer> map = new HashMap<>();
+                map.put(0,1);
+                for(int k=0;k<matrix[0].length;k++) {
+                    int size = sum[j][k];
+                    if(i>0) {
+                        size -= sum[i-1][k];
+                    }
+                    if(map.containsKey(size - target)) {
+                        res += map.get(size - target);
+                    }
+                    if(!map.containsKey(size)) {
+                        map.put(size,0);
+                    }
+                    map.put(size, map.get(size)+1);
+                }
+            }
+        }
+  # Array，矩形题，prefix sum
 
 
 

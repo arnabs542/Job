@@ -55,6 +55,9 @@ String
 * 分类
   - 65. Valid Number
 
+* 用字符数/字符组来encode, decode
+  - 271. Encode and Decode Strings
+
 - 269. Alien Dictionary
 - 1249. Minimum Remove to Make Valid Parentheses
 - 415. Add Strings
@@ -105,9 +108,16 @@ Array
 * Matain max, min, res
   - 152. Maximum Product Subarray
 
-* sum up to current index, and matain sum map
+* 矩形题，sum up to current index, and matain sum map
   - 560. Subarray Sum Equals K
   - 325. Maximum Size Subarray Sum Equals k
+
+* 矩形题，考虑固定2个row，然后走column
+  - 363. Max Sum of Rectangle No Larger Than K
+  - 1074. Number of Submatrices That Sum to Target
+
+* 矩形题，先确定2个不在同一row,col的点
+  - 939. Minimum Area Rectangle
 
 * matain remainder index map instead of sum index map
   - 523. Continuous Subarray Sum
@@ -147,12 +157,11 @@ Array
   - 689. Maximum Sum of 3 Non-Overlapping Subarrays
     # Array, DP
 
-* 循环所有矩阵再循环起始位置，用treeset优化
-  - 363. Max Sum of Rectangle No Larger Than K
+* 只找A，B数组中的1，然后算diff，累加
+  - 835. Image Overlap
 
 - 289. Game of Life
     # 2D Array
-
 - 670. Maximum Swap
 - 1055. Shortest Way to Form String
   # HashMap, String, Binary Search
@@ -301,9 +310,6 @@ HashSet
   - 36. Valid Sudoku
     # HashSet
 
-* 矩形先确定2个不在同一row,col的点
-  - 939. Minimum Area Rectangle
-
 --------------------
 HashMap
 --------------------
@@ -365,6 +371,7 @@ Binary Search
 --------------------
 *** Keywords
 - sorted
+- shortest
 
 Approach 1. l<=r
    - l=mid+1, r=mid-1 可能会越界，所以要不返回target，要不越界找不到
@@ -457,6 +464,7 @@ Approach 3. l < r-1
     # Binary Search, DP, DFS
   - 1231. Divide Chocolate
     # Binary Search
+  - 1011. Capacity To Ship Packages Within D Days
 
 --------------------
 Binary Search Tree

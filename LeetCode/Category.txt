@@ -88,6 +88,49 @@ Array
   - Arrays.sort(s)
   - Collections.sort(intervals, (x,y) -> x.start - y.start);
 
+1. 矩形题
+
+  * sum up to current index, and matain sum map
+    - 560. Subarray Sum Equals K
+    - 325. Maximum Size Subarray Sum Equals k
+
+  * 考虑固定2个row，然后走column
+    - 363. Max Sum of Rectangle No Larger Than K
+    - 1074. Number of Submatrices That Sum to Target
+
+  * 先确定2个不在同一row,col的点
+    - 939. Minimum Area Rectangle
+
+  * 判断4个点能构成正方形
+    - 593. Valid Square
+
+  * 3 for loop, fixed 2 rows and loop cols
+    - 750. Number Of Corner Rectangles
+      # 2D Array, Math
+
+2. Interval 题
+  * Intervals. Split to start and end array and sort them.
+    - 56. Merge Intervals
+    - 253. Meeting Rooms II
+      # Array, Sort
+
+  * insert interval
+    - 57. Insert Interval
+    - 731. My Calendar II
+    - 986. Interval List Intersections
+
+3. 维护 increasing order index in queue
+  - 862. Shortest Subarray with Sum at Least K
+
+  * matain max array and compare with index
+    - 769. Max Chunks To Make Sorted
+
+4. Prefix Sum
+  * matain remainder index map instead of sum index map
+    - 523. Continuous Subarray
+  * create sum array, fast and slow pointers
+    - 209. Minimum Size Subarray Sum
+
 * Map array value to array index
   - 41. First Missing Positive
         # Array, Index
@@ -95,39 +138,8 @@ Array
   - 268. Missing Number
         # Array, 高斯公式
 
-* Intervals. Split to start and end array and sort them.
-  - 56. Merge Intervals
-  - 253. Meeting Rooms II
-    # Array, Sort
-
-* insert interval
-  - 57. Insert Interval
-  - 731. My Calendar II
-  - 986. Interval List Intersections
-
 * Matain max, min, res
   - 152. Maximum Product Subarray
-
-* 矩形题，sum up to current index, and matain sum map
-  - 560. Subarray Sum Equals K
-  - 325. Maximum Size Subarray Sum Equals k
-
-* 矩形题，考虑固定2个row，然后走column
-  - 363. Max Sum of Rectangle No Larger Than K
-  - 1074. Number of Submatrices That Sum to Target
-
-* 矩形题，先确定2个不在同一row,col的点
-  - 939. Minimum Area Rectangle
-
-* matain remainder index map instead of sum index map
-  - 523. Continuous Subarray Sum
-
-* matain max array and compare with index
-  - 769. Max Chunks To Make Sorted
-
-* 3 for loop, fixed 2 rows and loop cols
-  - 750. Number Of Corner Rectangles
-    # 2D Array, Math
 
 * array 中每个value=min(l,r,u,d), 神循环
   - 764. Largest Plus Sign
@@ -324,7 +336,7 @@ HashMap
 - 350. Intersection of Two Arrays II
 
 --------------------
-Two Pointers
+Two Pointers / Sliding Window
 --------------------
 *** KeyWords
 - consecutive: sliding window
@@ -357,9 +369,6 @@ Two Pointers
 * palindrome: while l<r, compare and l--, r--
   - 125. Valid Palindrome
   - 680. Valid Palindrome II
-
-* create sum array, fast and slow pointers
-  - 209. Minimum Size Subarray Sum
 
 - 340. Longest Substring with At Most K Distinct Characters
     # Two Pointers, HashMap
@@ -837,11 +846,36 @@ Interactive Question
 - 843. Guess the Word
   # Minimax
 
-
-
 --------------------
 SQL
 --------------------
 - 602. Friend Requests II: Who Has the Most Friends
 - 578. Get Highest Answer Rate Question
+
+
+
+-----------------------------
+Consecutive/contiguous Array
+-----------------------------
+* Prefix Sum
+* Binary Search
+* Two Pointers
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

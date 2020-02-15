@@ -2120,7 +2120,7 @@
             }
         }
   - Time O(n), Space O(n) -> can be reduced to O(1)
-  # Two Pointers
+  # Two Pointers, Prefix Sum, Sliding Window
 
 *380. Insert Delete GetRandom O(1)
   - Maintain HashMap of val and index, ArrayList of val. For insertion, insert to both. For deletion, swap the val to delete in ArrayList with the last elem, and change the last elem index in HashMap.
@@ -5057,11 +5057,57 @@ class Solution {
         }
   # Array，矩形题，prefix sum
 
+951. Flip Equivalent Binary Trees
+  # Tree
 
+593. Valid Square
+  -  算出6条边的长度，应该4条一样长，2条一样长。同时点没有重复。
+  -     Map<Double, Integer> map = new HashMap<>();
+        for(int i=0; i< arr.length;i++) {
+            for(int j=i+1;j<arr.length;j++) {
+                if(arr[i][0] == arr[j][0] && arr[i][1] == arr[j][1]) {
+                    return false;
+                }
+                double dis = calDis(arr[i], arr[j]);
+                if(!map.containsKey(dis)) {
+                    map.put(dis, 0);
+                }
+                map.put(dis, map.get(dis)+1);
+            }}
 
+         if(map.size() == 2) {
+            boolean temp = true;
+            for(int v : map.values()) {
+               if(v !=2 && v !=4) {
+                   temp = false;
+               }
+            }
+            if(temp) {
+                return true;
+            }}}
+    private double calDis(int[] a, int[] b) {
+        return (double)Math.sqrt(Math.pow(a[0] - b[0],2) + Math.pow(a[1]-b[1],2));
+    }
+  # Array, Square, HashMap
 
-
-
+*862. Shortest Subarray with Sum at Least K
+ - Return the length of the shortest, non-empty, contiguous subarray of A with sum at least K. e.g. A = [2,-1,2]
+ - 先会想到prefix sum, sliding window。但是，array里有负数，所以sliding window不行。然后TreeMap来matain sum也不行，因为找到的floorKey满足at least K但不一定是最小的index。
+ - 维护一个sum Increasing 的index queue。循环sum array，每次pollFirst from queue如果满足at least K, 然后把当前sum加进queue里。
+ -      int N = A.length, res = N + 1;
+        int[] B = new int[N + 1];
+        for (int i = 0; i < N; i++) B[i + 1] = B[i] + A[i];
+        Deque<Integer> d = new ArrayDeque<>();
+        for (int i = 0; i < N + 1; i++) {
+            // 可以poll掉，因为每次poll出来能保证是最短的
+            while (d.size() > 0 && B[i] - B[d.getFirst()] >=  K)
+                res = Math.min(res, i - d.pollFirst());
+            while (d.size() > 0 && B[i] <= B[d.getLast()])
+                d.pollLast();
+            d.addLast(i);
+        }
+        return res <= N ? res : -1;
+ # Queue, Sliding Window, Prefix Sum
 
 
 

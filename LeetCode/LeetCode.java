@@ -5109,13 +5109,124 @@ class Solution {
         return res <= N ? res : -1;
  # Queue, Sliding Window, Prefix Sum
 
+*679. 24 Game
+  - 因为有括号，所以不必按照从左到右的顺序。所以每次找2数个进行加减乘除，然后更新array，dfs循环至array只剩一个数
+  - private boolean dfs(List<Double> list) {
+        if (list.size() == 1) {
+            if (Math.abs(list.get(0)- 24.0) < 0.001) {
+                return true;
+            }
+            return false;
+        }
+        for(int i = 0; i < list.size(); i++) {
+            for(int j = i + 1; j < list.size(); j++) {
+                // 挑2数进行加减乘除运算，dfs
+                for (double c : generatePossibleResults(list.get(i), list.get(j))) {
+                    List<Double> nextRound = new ArrayList<>();
+                    nextRound.add(c);
+                    for(int k = 0; k < list.size(); k++) {
+                        if(k == j || k == i) continue;
+                        nextRound.add(list.get(k));
+                    }
+                    if(dfs(nextRound)) return true;
+                }
+            }
+        }return false;}
 
+  # DFS， Array
 
+*489. Robot Room Cleaner
+  - 每一次向四周走，完后返回初始位置和方向
+  - int[][] dirs = new int[][]{{0,1},{1,0},{0,-1},{-1,0}};
 
+    public void dfs(Robot robot, int[] pos, int dir, Set<String> visited) {
+        robot.clean();
+        if(visited.contains(pos[0] + "#" + pos[1])) {
+            return;
+        }
+        visited.add(pos[0] + "#" + pos[1]);
 
+        //走周围四个方向
+        for(int i=0;i<4;i++) {
+            int newDir = (dir + i) % 4;
+            int[] newPos = new int[]{pos[0] + dirs[newDir][0], pos[1] + dirs[newDir][1]};
+            if(robot.move()) {
+                dfs(robot, newPos, newDir, visited);
+                // 返回到原来位置和方向
+                robot.turnRight();
+                robot.turnRight();
+                robot.move();
+                robot.turnRight();
+                robot.turnRight();
+            }
+            // 转个方向，一共转4次最后回到初始方向
+            robot.turnRight();
+        }
+    }
+  # Directed DFS
 
+1032. Stream of Characters
+  - 建立 reverse word trie, 同时找出单词最长长度建立dequeue作为cache。
+  - Deque<Character> queue;
+    public StreamChecker(String[] words) {
+        root = new Node();
+        int size = 0;
+        for(String w : words) {
+            size = Math.max(size, w.length());
+            String word = new StringBuilder(w).reverse().toString();
+            build(root, word.toCharArray(),0);
+        }
+        queue = new ArrayDeque<>(size);
+    }
+    public boolean query(char letter) {
+        queue.add(letter);
+        // queue 从后向前走
+        Iterator iterator = queue.descendingIterator();
+        Node n = root;
+        // 如果出现match的单词，则true
+        while(iterator.hasNext()) {
+            char c = (char)iterator.next();
+            if(n.children[c-'a'] != null) {
+                if(n.children[c-'a'].isWord) {
+                    return true;
+                } else {
+                    n = n.children[c-'a'];
+                }
+            } else {
+                break;
+            }
+        }
 
+        return false;
+    }
+  # Trie， Dequeue
 
+*1168. Optimize Water Distribution in a Village
+  - 每个房子都可以建水源，或者铺水管。将建水源看做self edge，和水管edge一起放进 PriorityQueue里，然后就可以做 Dijkstra了
+  - undirected graph，所以可以用 Kruskal or Prim algorithm
+  -  PriorityQueue<int[]> queue = new PriorityQueue<>((a,b)-> a[1] - b[1]);
+      for(int i=1;i<=n;i++) {
+          queue.add(new int[]{i, wells[i-1]});
+      }
+
+      Set<Integer> set = new HashSet<>();
+      // 水源edge和管道edge都有了，从小到达取
+      while(!queue.isEmpty() && set.size() < n) {
+          int[] arr = queue.poll();
+          if(set.contains(arr[0])) {
+              continue;
+          }
+          res += arr[1];
+          if(map.get(arr[0]) != null) {
+              for(int[] a : map.get(arr[0])) {
+                  queue.add(a);
+              }
+          }
+
+          set.add(arr[0]);
+      }
+
+  # Dijkstra, Kruskal, Prim
 
 
 

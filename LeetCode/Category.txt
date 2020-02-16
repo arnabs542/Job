@@ -131,6 +131,14 @@ Array
   * create sum array, fast and slow pointers
     - 209. Minimum Size Subarray Sum
 
+5. String array 进行加减乘除运算，calculator 题
+  * 加减乘除带括号
+    - 679. 24 Game
+  * 加减，带括号，stack
+    - 224. Basic Calculator
+  * 加减乘，没括号，顺序dfs，维持pre，cur sum
+    - 282. Expression Add Operators
+
 * Map array value to array index
   - 41. First Missing Positive
         # Array, Index
@@ -300,6 +308,9 @@ Trie/Prefix Tree
 * search autocomplete, trie && priority queue
   - 642. Design Search Autocomplete System
     # Trie, Priority Queue
+
+* 建立 reverse word trie, 同时找出单词最长长度建立dequeue作为cache
+  - 1032. Stream of Characters
 
 - 208. Implement Trie (Prefix Tree)
 
@@ -522,11 +533,12 @@ BFS
 - 958. Check Completeness of a Binary Tree
 
 --------------------
-Djikstra
+Dijkstra
 --------------------
 * For directed or undirected weighted graph
 
 - 743. Network Delay Time
+- 1168. Optimize Water Distribution in a Village
 
 --------------------
 DFS
@@ -569,6 +581,10 @@ DFS
 
 ** DFS + Memorization
   - 1216. Valid Palindrome III
+
+** 每次走四个方向，每次都返回原位置原方向
+  - 489. Robot Room Cleaner
+    # Directed DFS
 
 - 341. Flatten Nested List Iterator
 - 37. Sudoku Solver
@@ -852,8 +868,6 @@ SQL
 - 602. Friend Requests II: Who Has the Most Friends
 - 578. Get Highest Answer Rate Question
 
-
-
 -----------------------------
 Consecutive/contiguous Array
 -----------------------------
@@ -861,9 +875,12 @@ Consecutive/contiguous Array
 * Binary Search
 * Two Pointers
 
-
-
-
+-----------------------------
+String Calculator 题型
+-----------------------------
+- 282. Expression Add Operators
+- 224. Basic Calculator
+- 679. 24 Game
 
 
 

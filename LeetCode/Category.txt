@@ -130,6 +130,7 @@ Array
     - 523. Continuous Subarray
   * create sum array, fast and slow pointers
     - 209. Minimum Size Subarray Sum
+  - 1292. Maximum Side Length of a Square with Sum Less than or Equal to Threshold
 
 5. String array 进行加减乘除运算，calculator 题
   * 加减乘除带括号
@@ -182,10 +183,12 @@ Array
 
 - 289. Game of Life
     # 2D Array
+
 - 670. Maximum Swap
 - 1055. Shortest Way to Form String
   # HashMap, String, Binary Search
 - 1170. Compare Strings by Frequency of the Smallest Character
+- 844. Backspace String Compare
 
 --------------------
 Stack
@@ -195,6 +198,7 @@ Stack
 
 * maintain number stack and res stack and current res
   - 394. Decode String
+  - 726. Number of Atoms
 
 ** find next greater element in arr
   - 496. Next Greater Element I
@@ -531,6 +535,7 @@ BFS
   - 752. Open the Lock
 
 - 958. Check Completeness of a Binary Tree
+- 317. Shortest Distance from All Buildings
 
 --------------------
 Dijkstra
@@ -873,7 +878,7 @@ Consecutive/contiguous Array
 -----------------------------
 * Prefix Sum
 * Binary Search
-* Two Pointers
+* Two Pointers / Sliding Window
 
 -----------------------------
 String Calculator 题型

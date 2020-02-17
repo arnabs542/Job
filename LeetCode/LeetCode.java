@@ -5228,13 +5228,66 @@ class Solution {
 
   # Dijkstra, Kruskal, Prim
 
+317. Shortest Distance from All Buildings
+  - 常规dfs算到每个房子最短距离，最后求和找最小。区别是这题可以先算房子到每个空地最短距离，然后每个空地循环找到到所有房子最短的。因为房子数远小于空地数。
+  # BFS
 
+726. Number of Atoms
+  - 用1个String Stack 和一个Integer Stack。分(,),String三种情况进行处理。代码多，小心处理。https://leetcode.com/problems/number-of-atoms/
+  # Stack, TreeMap，Parenthese
 
+844. Backspace String Compare
+  - 从后往前两个pointers走。
+  -     while(i>= 0 || j>=0) {
+            //
+            while(i>=0 && (sn>0 || S.charAt(i) == '#')) {
+                if(S.charAt(i) == '#') {
+                    sn++;
+                } else {
+                    sn--;
+                }
+                i--;
+            }
 
+            while(j>=0 && (tn>0 || T.charAt(j) == '#')) {
+                if(T.charAt(j) == '#') {
+                    tn++;
+                } else {
+                    tn--;
+                }
+                j--;
+            }
 
+            if(i<0 && j< 0) {
+                return true;
+            } else if(i>=0 && j>=0 &&S.charAt(i) == T.charAt(j)) {
+                i--;
+                j--;
+                continue;
+            } else {
+                return false;
+            }
+        }
+  # Array， Two Pointers
 
+1292. Maximum Side Length of a Square with Sum Less than or Equal to Threshold
+  - 作prefix sum时，always checking if a square exists which is one size bigger than current maximum sqaure when building prefixsum
+  -     int m = mat.length;
+        int n = mat[0].length;
+        int[][] sum = new int[m + 1][n + 1];
 
+        int res = 0;
+        int len = 1; // square side length
 
+        for (int i = 1; i <= m; i++) {
+            for (int j = 1; j <= n; j++) {
+                sum[i][j] = sum[i-1][j] + sum[i][j-1] - sum[i-1][j-1] + mat[i-1][j-1];
+                // 找比当前len大一个的max square是否存在
+                if (i >= len && j >= len && sum[i][j] - sum[i-len][j] - sum[i][j-len] + sum[i-len][j-len] <= threshold)
+                    res = len++;
+            }
+        }
+  # Rectangle， Prefix Sum, Binary Search (O(n^2logn))
 
 
 

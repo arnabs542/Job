@@ -5289,26 +5289,175 @@ class Solution {
         }
   # Rectangle， Prefix Sum, Binary Search (O(n^2logn))
 
+*562. Longest Line of Consecutive One in Matrix
+  - 容易犯错。行列对角线最长，所以array中每个值都要最少访问4次。
+  -     for(int i=0;i<rows;i++) {
+            // 行
+            res = Math.max(res, traverse(new int[]{i,0}, new int[]{0,1}, M));
+            res = Math.max(res, traverse(new int[]{i,0}, new int[]{1,1}, M));
+            res = Math.max(res, traverse(new int[]{i,cols-1}, new int[]{1,-1}, M));
+        }
+        for(int i=0;i<cols;i++) {
+            //列
+            res = Math.max(res, traverse(new int[]{0,i}, new int[]{1,0}, M));
+            res = Math.max(res, traverse(new int[]{0,i}, new int[]{1,1}, M));
+            res = Math.max(res, traverse(new int[]{0,i}, new int[]{1,-1}, M));
+        }
 
+    private int traverse(int[] pos, int[] dir, int[][] grid) {
+        int rows = grid.length;
+        int cols = grid[0].length;
+        int res = 0;
+        int cur = 0;
+        while(pos[0] >= 0 && pos[0]<rows && pos[1]>=0 && pos[1]<cols) {
+            if(grid[pos[0]][pos[1]] == 1) {
+                cur++;
+                res = Math.max(res, cur);
+            } else {
+                cur = 0;
+            }
+            pos[0] += dir[0];
+            pos[1] += dir[1];
+        }
+        return res;}
+  # Array
 
+1219. Path with Maximum Gold
+  # DFS
 
+1048. Longest String Chain
+  - 建立graph，然后dfs + memorization
+  - sort words, then 从短到长 DP
+    public int longestStrChain(String[] words) {
+        Map<String, Integer> dp = new HashMap<>();
+        Arrays.sort(words, (a, b)->a.length() - b.length());
+        int res = 0;
+        for (String word : words) {
+            int best = 0;
+            for (int i = 0; i < word.length(); ++i) {
+                String prev = word.substring(0, i) + word.substring(i + 1);
+                best = Math.max(best, dp.getOrDefault(prev, 0) + 1);
+            }
+            dp.put(word, best);
+            res = Math.max(res, best);
+        }
+        return res;
+    }
+  # DP, DFS
 
+*1146. Snapshot Array
+  - 每次take Snapshot储存量太大，所以每次存diff。对于snapid 搜索，用Binary Search
+  - class SnapshotArray {
+        // TreeMap sort by snap id
+        TreeMap<Integer, Integer>[] A;
+        int snap_id = 0;
+        public SnapshotArray(int length) {
+            A = new TreeMap[length];
+            for (int i = 0; i < length; i++) {
+                A[i] = new TreeMap<Integer, Integer>();
+                A[i].put(0, 0);
+            }
+        }
 
+        public void set(int index, int val) {
+            A[index].put(snap_id, val);
+        }
 
+        public int snap() {
+            return snap_id++;
+        }
 
+        // Binary Search to get floor snap id
+        public int get(int index, int snap_id) {
+            return A[index].floorEntry(snap_id).getValue();
+        }
+    }
+  # Data Structure, Binary Search, TreeMap, Diff Store
 
+681. Next Closest Time
+  - 得到available 数字，然后DFS造时间，valid time中找最小的。没有valid time，那就造个最小的
+  # DFS
 
+946. Validate Stack Sequences
+  - Check 2 array size, if not equal, return false. Then create stack and add. Every time compare.
+  # Stack
 
+329. Longest Increasing Path in a Matrix
+  # DFS Memorization
 
+853. Car Fleet
+  - 先对里程进行大到小排序，从最大里程开始算到达target时间，维持时间变量，如果小里程车用了更小的时间，则是同一fleet，otherwise，fleet + 1
+  # Array
 
+729. My Calendar I
+  - Build tree structure. Each node has start time, end time, left node and right node.
+  # Tree
 
+*444. Sequence Reconstruction
+  - 建立有向图，和indegree map (记录每个node有多少被指向)。从没有被指的节点开始，按方向走，如果出现2个及以上的点只有1个indegree，说明有2条及以上路径，return false
+  -     Map<Integer, List<Integer>> graph = new HashMap<>();
+        Map<Integer, Integer> indegree = new HashMap<>();
+        for (List<Integer> seq : seqs) {
+            for (int i = 0; i < seq.size(); i++) {
+                graph.putIfAbsent(seq.get(i), new ArrayList<Integer>());
+                indegree.putIfAbsent(seq.get(i), 0);
+                if (i > 0) {
+                    graph.get(seq.get(i-1)).add(seq.get(i));
+                    indegree.put(seq.get(i), indegree.get(seq.get(i)) + 1);
+                }
+            }
+        }
+        if (org.length != indegree.size()) {
+            return false;
+        }
 
+        Queue<Integer> q = new LinkedList<>();
+        for (Integer key : indegree.keySet()) {
+            if (indegree.get(key) == 0) {
+                q.add(key);
+            }
+        }
 
+        int index = 0;
+        while (!q.isEmpty()) {
+            if (q.size() > 1) {
+                return false;
+            }
+            int curr = q.poll();
+            if (org[index++] != curr) {
+                return false;
+            }
+            for (int nb : graph.get(curr)) {
+                indegree.put(nb, indegree.get(nb) - 1);
+                if (indegree.get(nb) == 0) {
+                    q.add(nb);
+                }
+            }
+        }
+        return index == org.length;
+  # BFS, indegree
 
+*459. Repeated Substring Pattern
+  - 按可能的重复个数循环找，从1个到len/2个。
+        for(int n = 1;n<=s.length()/2;n++) {
+            // 总数/循环个数要除的尽
+            if(s.length()%n != 0) continue;
+            String sample = s.substring(0, n);
+            boolean res = true;
+            // 比较
+            for(int i = 0;i<=s.length()-n;) {
+                if(!sample.equals(s.substring(i,i+n))) {
+                    res = false;
+                    i = s.length();
+                }
+                i +=n;
+            }
 
-
-
-
+            if(res) {
+                return true;
+            }
+        }
+  # String
 
 
 

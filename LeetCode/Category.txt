@@ -58,6 +58,9 @@ String
 * 用字符数/字符组来encode, decode
   - 271. Encode and Decode Strings
 
+* 重复patern，按重复个数循环找
+  - 459. Repeated Substring Pattern
+
 - 269. Alien Dictionary
 - 1249. Minimum Remove to Make Valid Parentheses
 - 415. Add Strings
@@ -181,6 +184,9 @@ Array
 * 只找A，B数组中的1，然后算diff，累加
   - 835. Image Overlap
 
+* 小心
+  - 562. Longest Line of Consecutive One in Matrix
+
 - 289. Game of Life
     # 2D Array
 
@@ -189,6 +195,7 @@ Array
   # HashMap, String, Binary Search
 - 1170. Compare Strings by Frequency of the Smallest Character
 - 844. Backspace String Compare
+- 853. Car Fleet
 
 --------------------
 Stack
@@ -490,11 +497,15 @@ Approach 3. l < r-1
     # Binary Search
   - 1011. Capacity To Ship Packages Within D Days
 
+** TreeMap<>[], 自带Binary Search. 存diff
+  - 1146. Snapshot Array
+
 --------------------
 Binary Search Tree
 --------------------
 * Matain (start, end, overlap) time using binary search tree.
   - 731. My Calendar II
+  - 729. My Calendar I
 
 --------------------
 Graph
@@ -533,6 +544,9 @@ BFS
 
 * 4位，每位有上下两种可能，bfs每次有8种可能
   - 752. Open the Lock
+
+* 唯一走向图，记录 indegree,
+  - 444. Sequence Reconstruction
 
 - 958. Check Completeness of a Binary Tree
 - 317. Shortest Distance from All Buildings
@@ -590,6 +604,9 @@ DFS
 ** 每次走四个方向，每次都返回原位置原方向
   - 489. Robot Room Cleaner
     # Directed DFS
+
+* 典型 DFS Memorization
+  - 329. Longest Increasing Path in a Matrix
 
 - 341. Flatten Nested List Iterator
 - 37. Sudoku Solver
@@ -860,6 +877,7 @@ Dynamic Programming
 
 - 801. Minimum Swaps To Make Sequences Increasing
 - 304. Range Sum Query 2D - Immutable
+- 1048. Longest String Chain
 
 --------------------
 Interactive Question

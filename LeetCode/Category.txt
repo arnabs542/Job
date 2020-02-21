@@ -142,6 +142,9 @@ Array
     - 224. Basic Calculator
   * 加减乘，没括号，顺序dfs，维持pre，cur sum
     - 282. Expression Add Operators
+  * 加减乘除，带括号
+    - 772. Basic Calculator
+    - 类型解法(https://leetcode.com/problems/basic-calculator-iii/discuss/113592/Development-of-a-generic-solution-for-the-series-of-the-calculator-problems)
 
 * Map array value to array index
   - 41. First Missing Positive
@@ -531,6 +534,7 @@ BFS
   - 773. Sliding Puzzle
   - 787. Cheapest Flights Within K Stops
   - 815. Bus Routes
+  - 1284. Minimum Number of Flips to Convert Binary Matrix to Zero Matrix
 
 * color node
   - 785. Is Graph Bipartite
@@ -903,6 +907,7 @@ String Calculator 题型
 -----------------------------
 - 282. Expression Add Operators
 - 224. Basic Calculator
+- 772. Basic Calculator III
 - 679. 24 Game
 
 

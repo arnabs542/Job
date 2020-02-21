@@ -5459,12 +5459,116 @@ class Solution {
         }
   # String
 
+*1284. Minimum Number of Flips to Convert Binary Matrix to Zero Matrix
+  - BFS 最短路径走法，每走一步把所有matrix里的值进行翻转，存入Set里。直到遇到都是0的结果。
+  - 难点在于matrix怎么存储在set里，encode 成 string
+  - 代码：https://leetcode.com/problems/minimum-number-of-flips-to-convert-binary-matrix-to-zero-matrix/
+  # BFS
 
+224. Basic Calculator
+        int res = 0;
+        Stack<Integer> numStack = new Stack<>();
+        Stack<String> opStack = new Stack<>();
+        numStack.push(0);
+        opStack.push("+");
 
+        for(int i=0;i<s.length();i++) {
+            char c = s.charAt(i);
+            if(c == '(') {
+                numStack.push(res);
+                int[] t = getNextNum(s, i+1);
+                res = t[0];
+                i = t[1]-1;
+                // System.out.println("(: push " + numStack.peek() + " res="+res + " i=" +i);
+            } else if(c == ')'){
+                String ops = opStack.pop();
+                int n = numStack.pop();
+                // System.out.println("): pop " + ops + " pop num " + n + " cur res " +res);
+                res = calculate(ops, n, res);
+            } else if(Character.isDigit(c)) {
+                int[] vals = getNextNum(s, i);
+                // System.out.print(vals[0]+": " + " pop " + opStack.peek() + " cur res " +res);
+                res = calculate(opStack.pop(), res, vals[0]);
+                System.out.println(" cal res " + res);
+                i = vals[1]-1;
+            } else {
+                // System.out.println("push " + Character.toString(c));
+                opStack.push(Character.toString(c));
+            }
+        }
+  # String, Stack
 
+*772. Basic Calculator III
+  - https://leetcode.com/problems/basic-calculator-iii/
+  - Refer to 224. Basic Calculator 的 维持当前res 和 res stack的想法
+  - Refer to 282. Expression Add Operators 的维持 res 和 pre的想法
+  -     s = s.replaceAll("\\s", "");
+        Stack<Integer> resStack = new Stack<>();
+        Stack<Character> opsStack = new Stack<>();
+        Stack<Integer> preStack = new Stack<>();
+        int res = 0;  //当前结果
+        int pre = 0;  //之前的数
+        for(int i=0;i<s.length();i++) {
+            if(s.charAt(i) == '(') {
+                if(i>0) {
+                    resStack.push(res);
+                    preStack.push(pre);
+                    opsStack.push(s.charAt(i-1));
+                }
+                res = 0;
+                pre = 0;
+            } else if(s.charAt(i) == ')') {
+                if(opsStack.isEmpty()) {
+                    pre = res;
+                } else {
+                    char op = opsStack.pop();
+                    int oldRes = resStack.pop();
+                    int oldPre = preStack.pop();
+                    if(op == '+') {
+                        pre = res;
+                        res += oldRes;
+                    } else if(op == '-') {
+                        pre = -res;
+                        res = oldRes - res;
+                    } else if(op =='*') {
+                        pre = oldPre*res;
+                        res = oldRes - oldPre + oldPre*res;
+                    } else if(op == '/'){
+                        pre = oldPre / res;
+                        res = oldRes - oldPre + oldPre/res;
+                    } else if(op == '(') {
+                        pre = res;
+                    }
+                }
 
-
-
+            } else if(Character.isDigit(s.charAt(i))) {
+                int[] results = getNum(s, i);
+                int n = results[0];
+                i = results[1];
+                int di = results[2];
+                // 应该将 opperand push 到stack里
+                if(i == 0 ||i == di-1) {
+                    res = n;
+                    pre = n;
+                } else if(i>0 && s.charAt(i-di) == '+') {
+                    res += n;
+                    pre = n;
+                } else if(i>0 && s.charAt(i-di) == '-') {
+                    res -= n;
+                    pre = -n;
+                } else if(i>0 && s.charAt(i-di) == '*') {
+                    res = res - pre + pre*n;
+                    pre = pre*n;
+                } else if(i>0 && s.charAt(i-di) == '/') {
+                    res = res - pre + pre/n;
+                    pre = pre/n;
+                } else if(i>0 && s.charAt(i-di) == '(') {
+                    res = n;
+                    pre = n;
+                }
+            }
+        }
+  # String, Stack
 
 
 

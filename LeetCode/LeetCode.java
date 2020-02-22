@@ -5570,6 +5570,87 @@ class Solution {
         }
   # String, Stack
 
+913. Cat and Mouse
+  - 至尊难题。从猫和老鼠一定赢输得状态点出发，逆BFS倒退出上一步确定的状态。1. 这一步mouse赢了，上一步是mouse走，那上一步肯定也是mouse赢了，cat同样道理 2. 下一步mouse都赢了，说明这一步cat走的肯定输
+    // mouse, cat, turn: 1 mouse 接下来走，2 cat接下来走
+  - int[][][] color;
+    public int catMouseGame(int[][] g) {
+        int N = g.length;
+        color = new int[N][N][3];
+        Queue<int[]> q = new LinkedList<>();
+        for(int i = 0; i < N; i++) {
+            for(int t = 1; t <= 2; t++) {
+                color[0][i][t] = 1; // mouse wins
+                q.offer(new int[]{0, i, t});
+
+                if(i == 0) continue;
+                color[i][i][t] = 2; // cat wins
+                q.offer(new int[]{i, i, t});
+            }
+        }
+
+        while(!q.isEmpty()) {
+            int[] tmp = q.poll();
+            int m = tmp[0], c = tmp[1], t = tmp[2], state = color[m][c][t];
+            for(int[] p : findParents(g, m, c, t)) {
+                if(color[p[0]][p[1]][p[2]] != 0) continue;
+                // 如果这步mouse赢了，上一步是mouse走，那上一步肯定mouse赢。cat也是一样道理
+                if(p[2] == state) {
+                    color[p[0]][p[1]][p[2]] = state;
+                    q.offer(new int[]{p[0], p[1], p[2]});
+                // 如果下一步mouse都输了，那这步mouse肯定也输了。cat一样道理
+                } else if(allChildWin(g, p[0], p[1], p[2])){
+                    color[p[0]][p[1]][p[2]] = 3 - p[2];
+                    q.offer(new int[]{p[0], p[1], p[2]});
+                }
+
+            }
+
+        }
+        return color[1][2][1];
+    }
+    // 找出下一步所有对手赢的情况，那么这一步肯定输了
+    boolean allChildWin(int[][] g, int m, int c, int t) {
+        if(t == 1) {
+            for(int mc : g[m]) if(color[mc][c][3-t] != 2) return false;
+        } else {
+            for(int cc : g[c]) if(cc != 0 && color[m][cc][3-t] != 1) return false;
+        }
+        return true;
+    }
+    //找出上一步
+    List<int[]> findParents(int[][] g, int m, int c, int t) {
+        List<int[]> res = new ArrayList<>();
+        if(t == 1) {// current mouse move, previouse cat move
+            for(int cp : g[c]) if(cp != 0) res.add(new int[]{m, cp, 3 - t});
+        } else {   // current cat move, previouse mouse move
+            for(int mp : g[m]) res.add(new int[]{mp, c, 3 - t});
+        }
+        return res;
+    }
+  # BFS
+
+1031. Maximum Sum of Two Non-Overlapping Subarrays
+  - L is always before M, we maintain a Lmax to keep track of the max sum of L subarray, and sliding the window of M from left to right to cover all the M subarray. The same for the case where M is before L.
+  - (https://leetcode.com/problems/maximum-sum-of-two-non-overlapping-subarrays/discuss/278251/JavaC%2B%2BPython-O(N)Time-O(1)-Space)
+    int lMax = preSum[L], mMax = preSum[M];
+    int res = preSum[L + M];
+    for (int i = L + M; i <= n; i++) {
+        //case 1: L subarray is always before M subarray
+        lMax = Math.max(lMax, preSum[i - M] - preSum[i - M - L]);
+        //case 2: M subarray is always before L subarray
+        mMax = Math.max(mMax, preSum[i - L] - preSum[i - M - L]);
+        //compare two cases and update res
+        res = Math.max(res, Math.max(lMax + preSum[i] - preSum[i - M], mMax + preSum[i] - preSum[i - L]));
+    }
+  # Array
+
+723. Candy Crush
+  # Array
+
+
+
+
 
 
 

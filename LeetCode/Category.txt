@@ -190,6 +190,10 @@ Array
 * 小心
   - 562. Longest Line of Consecutive One in Matrix
 
+* 维护L max 和 M max， sliding window M/L to get O(n)
+  - 1031. Maximum Sum of Two Non-Overlapping Subarrays
+
+
 - 289. Game of Life
     # 2D Array
 
@@ -551,6 +555,9 @@ BFS
 
 * 唯一走向图，记录 indegree,
   - 444. Sequence Reconstruction
+
+* 至尊难题，BFS逆推
+  - 913. Cat and Mouse
 
 - 958. Check Completeness of a Binary Tree
 - 317. Shortest Distance from All Buildings

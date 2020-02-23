@@ -5648,13 +5648,66 @@ class Solution {
 723. Candy Crush
   # Array
 
+1087. Brace Expansion
+  # DFS
 
+*1096. Brace Expansion II
+  1. BFS, 每次从stack取出String，从左找到第一对{}，把里头string split by comma, 然后对每个数append before and end，then put into stack.如果从stack中取出string没有{},则加入结果
+  - private void iter_dfs(Stack<String> stack){
+        while(!stack.isEmpty()) {
+            String str = stack.pop();
+            //找不到{}，则加入结果
+            if (str.indexOf('{') == -1) {
+                if (!set.contains(str)) {
+                    res.add(str);
+                    set.add(str);
+                }
+                continue;
+            }
+            //找到第一对{}.好！克结合cur, pre 282 思路解决basic calculator问题
+            int i = 0, l = 0, r = 0;
+            while (str.charAt(i) != '}') {
+                if (str.charAt(i++) == '{')
+                    l = i - 1;
+            }
+            r = i;
 
+            String before = str.substring(0, l);
+            String after = str.substring(r + 1, str.length());
+            String[] args = str.substring(l + 1, r).split(",");
+            // append前后，加入stack
+            for (String s : args) {
+                sb.setLength(0);
+                stack.push(sb.append(before).append(s).append(after).toString());
+            }
+        }
+    }
+  # BFS, Refer to 772. Basic Calculator III
 
+*1320. Minimum Distance to Type a Word Using Two Fingers
+  - matain memorization using int[Figure1][Figure2][wordLength]
+  - DFS -> DFS + Memorization -> Bottom-Up DP -> Memory-Optimized Bottom-Up DP (https://leetcode.com/problems/minimum-distance-to-type-a-word-using-two-fingers/discuss/477659/4%2B-DP-Solutions)
+  - private int dfs(String word, int index, char f1, char f2, boolean hasF2) {
+        if(index == word.length()) {
+            return 0;
+        }
+        if(dp[f1][f2][index] != 0) {
+            return dp[f1][f2][index];
+        }
+        char curPos = word.charAt(index);
+        int ans = Integer.MAX_VALUE;
 
+        if(hasF2) {
+            ans = Math.min(dis(f1, curPos) + dfs(word, index +1, curPos, f2, true), dis(f2, curPos) + dfs(word, index +1, f1, curPos, true));
+        } else {
+            int distance = dis(f1, curPos);
+            ans = Math.min(dfs(word, index + 1, f1, curPos, true), distance + dfs(word, index + 1, curPos, f2, false));
+        }
 
-
-
+        dp[f1][f2][index] = ans;
+        return ans;
+    }
+  # DFS Memorization = Top Down DP
 
 
 

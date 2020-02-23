@@ -145,6 +145,8 @@ Array
   * 加减乘除，带括号
     - 772. Basic Calculator
     - 类型解法(https://leetcode.com/problems/basic-calculator-iii/discuss/113592/Development-of-a-generic-solution-for-the-series-of-the-calculator-problems)
+  * union, merge
+    - 1096. Brace Expansion II
 
 * Map array value to array index
   - 41. First Missing Positive
@@ -576,6 +578,23 @@ DFS
 1. cycle detection in directed graph
 2. find/construct/generate path
 
+1. DFS + Memorization
+        private int dfs() {
+          if(end) {
+            return num;
+          }
+
+          if(dp[][][] != 0) {
+            return dp[][][];
+          }
+
+          int min;
+          ...
+          dp[][][] = min;
+          return dp[][][];
+        }
+   - 1320. Minimum Distance to Type a Word Using Two Fingers
+
 * Combine DFS and Tree Generation
     - 95. Unique Binary Search Trees II
         # DFS, Tree, Postorder
@@ -915,6 +934,7 @@ String Calculator 题型
 - 282. Expression Add Operators
 - 224. Basic Calculator
 - 772. Basic Calculator III
+- 1096. Brace Expansion II
 - 679. 24 Game
 
 

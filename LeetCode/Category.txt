@@ -1,4 +1,19 @@
 --------------------
+思路
+--------------------
+1. 哪个类型题
+   - Graph: BFS, DFS, Union Find, Dijkstra
+   - DP
+   - Binary Search
+   - Priority Queue
+   - Tree
+   - Array: prefix sum, sliding window
+   - Two Pointers
+   - String
+   - Stack
+
+
+--------------------
 String
 --------------------
 * Palindrome
@@ -512,6 +527,9 @@ Approach 3. l < r-1
 ** TreeMap<>[], 自带Binary Search. 存diff
   - 1146. Snapshot Array
 
+* random pick, 然后 index list里 Binary search
+  - 1157. Online Majority Element In Subarray
+
 --------------------
 Binary Search Tree
 --------------------
@@ -686,10 +704,12 @@ Priority Queue
         return n1.num == n2.num ? n1.name.compareTo(n2.name) : n2.num - n1.num;
     });
 
-
 * Use minHeap and maxHeap to maintain median
   - 295. Find Median from Data Stream
   - 480. Sliding Window Median
+
+* 找出最小的range覆盖每个list中至少一个值
+  - 632. Smallest Range Covering Elements from K Lists
 
 - 218. The Skyline Problem
 - 973. K Closest Points to Origin

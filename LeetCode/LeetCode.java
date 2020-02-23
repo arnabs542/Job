@@ -5730,10 +5730,71 @@ class Solution {
     }
     # String 相对位置关系
 
+*632. Smallest Range Covering Elements from K Lists
+  - 详见视频(https://leetcode.com/problems/smallest-range-covering-elements-from-k-lists/discuss/104893/Java-Code-using-PriorityQueue.-similar-to-merge-k-array)
+  - 将List<List<Integer>>每一行的第一个数放进Priority Queue里排序，每次从中取出最小的作为最小min计算range，如果小于当前range则更新start, end. 然后找到这个在list中的下一个值，更新max且投入 queue 中。
+        //int[3], 0:val, 1:row index, 2: col index
+        PriorityQueue<int[]> queue = new PriorityQueue<>((a,b) -> a[0] - b[0]);
 
+        int min = Integer.MAX_VALUE;
+        int max = Integer.MIN_VALUE;
+        for(int i=0;i<nums.size();i++) {
+            queue.add(new int[]{nums.get(i).get(0), i, 0});
+            min = Math.min(min, nums.get(i).get(0));
+            max = Math.max(max, nums.get(i).get(0));
+        }
 
+        int start = -1;
+        int end = -1;
+        int range = Integer.MAX_VALUE;
 
+        while(queue.size() == nums.size()) {
+            int[] arr = queue.poll();
+            min = arr[0];
+            if(max - min < range) {
+                start = min;
+                end = max;
+                range = max - min;
+            }
+            if(arr[2] + 1 < nums.get(arr[1]).size()) {
+                int[] newElement = new int[]{nums.get(arr[1]).get(arr[2]+1), arr[1], arr[2]+1};
+                queue.add(newElement);
 
+                if(newElement[0] > max) {
+                    max = newElement[0];
+                }}}
+    # PriorityQueue
+
+1157. Online Majority Element In Subarray
+  - 对每个element，matain list of its index in increasing order.然后从 left, right 里random pick一个数，在index treeset里 query看有没有 > threshold,多的话就返回。不然，继续random pick
+  - int[] arr;
+    HashMap<Integer,ArrayList<Integer>> map = new HashMap<>();
+    public MajorityChecker(int[] arr) {
+        this.arr = arr;
+        for(int i = 0;i<arr.length;i++){
+            ArrayList<Integer> temp = map.getOrDefault(arr[i],new ArrayList<Integer>());
+            temp.add(i);
+            map.put(arr[i],temp);
+        }
+    }
+
+    public int query(int left, int right, int threshold) {
+        for(int i = 0;i<20;i++){
+            int min = left, max = right;
+            int candidate = arr[min + (int)(Math.random() * (max-min+1))];
+            ArrayList<Integer> temp = map.get(candidate);
+            if(temp.size() < threshold) continue;
+            // the range will be [low,high]
+            int low = Collections.binarySearch(temp,left);
+            int high = Collections.binarySearch(temp,right);
+            //if low or high is negative, means not found, will return (-insert postion - 1);
+            if(low < 0) low = - low - 1;
+            if(high < 0) high = (- high - 1) - 1;//make high positive, then high--
+            if(high - low + 1 >= threshold) return candidate;
+        }
+        return -1;
+    }
+    # Bianry Search
 
 
 

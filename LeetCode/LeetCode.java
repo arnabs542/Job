@@ -5709,9 +5709,26 @@ class Solution {
     }
   # DFS Memorization = Top Down DP
 
-
-
-
+*777. Swap Adjacent in LR String
+  - String相对位置关系。首先确认start, end String中 L, R相对位置是一致的。然后确认每对R或L的位置关系
+    // 确认 start, end的 L R相对位置一致，否则false
+    if (!start.replace("X", "").equals(end.replace("X", ""))) return false;
+    int p1 = 0;
+    int p2 = 0;
+    char[] ch1 = start.toCharArray();
+    char[] ch2 = end.toCharArray();
+    while (p1 < start.length()) {
+        while (p1 < ch1.length && ch1[p1] == 'X') p1++;
+        while (p2 < ch2.length && ch2[p2] == 'X') p2++;
+        if (p1 == ch1.length || p2 == ch2.length) return true;
+        // start里的R一定要在end里R的左边，因为R可以右移。否则e.g."XXRXXLXXXX", "XXXXRXXLXX"
+        if (ch1[p1] == 'R' && p1 > p2) return false;
+        // start里的L一定要在end里L的右边，因为L可以左移
+        if (ch1[p1] == 'L' && p1 < p2) return false;
+        p1++;
+        p2++;
+    }
+    # String 相对位置关系
 
 
 

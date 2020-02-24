@@ -5796,12 +5796,108 @@ class Solution {
     }
     # Bianry Search
 
+833. Find And Replace in String
+  - index array is not sorted, need to sort first
+  -     TreeMap<Integer, String[]> map = new TreeMap<>();
+        for(int i=0;i<indexes.length;i++) {
+            map.put(indexes[i], new String[]{sources[i], targets[i]});
+        }
 
+        for(int i : map.keySet()) {
+            String source = map.get(i)[0];
+            String target = map.get(i)[1];
+            if(i+source.length()-1<S.length() && S.substring(i, i+source.length()).equals(source)) {
+                res += S.substring(j, i);
+                j = i + source.length();
+                res += target;
+            }
+        }
 
+        if(j<S.length()) {
+            res += S.substring(j, S.length());
+        }
+  # String
 
+336. Palindrome Pairs
+  - 能组成palindrome的分3种情况 1. CAT|TAC string互为reverse 2. prefix+Palindrome e.g. xxxTAT 3. Palindrome+suffix TATxxx
+  - private List<String> allValidPrefixes(String word) {
+        List<String> validPrefixes = new ArrayList<>();
+        for (int i = 0; i < word.length(); i++) {
+            if (isPalindromeBetween(word, i, word.length() - 1)) {
+                validPrefixes.add(word.substring(0, i));
+            }
+        }
+        return validPrefixes;
+    }
+    private List<String> allValidSuffixes(String word) {
+        List<String> validSuffixes = new ArrayList<>();
+        for (int i = 0; i < word.length(); i++) {
+            if (isPalindromeBetween(word, 0, i)) {
+                validSuffixes.add(word.substring(i + 1, word.length()));
+            }
+        }
+        return validSuffixes;
+    }
+    // Is the prefix ending at i a palindrome?
+    private boolean isPalindromeBetween(String word, int front, int back) {
+        while (front < back) {
+            if (word.charAt(front) != word.charAt(back)) return false;
+            front++;
+            back--;
+        }
+        return true;
+    }
+    public List<List<Integer>> palindromePairs(String[] words) {
+        // Build a word -> original index mapping for efficient lookup.
+        Map<String, Integer> wordSet = new HashMap<>();
+        for (int i = 0; i < words.length; i++) {
+            wordSet.put(words[i], i);
+        }
+        // Make a list to put all the palindrome pairs we find in.
+        List<List<Integer>> solution = new ArrayList<>();
 
+        for (String word : wordSet.keySet()) {
 
+            int currentWordIndex = wordSet.get(word);
+            String reversedWord = new StringBuilder(word).reverse().toString();
+            // Build solutions of case #1. This word will be word 1.
+            if (wordSet.containsKey(reversedWord)
+              && wordSet.get(reversedWord) != currentWordIndex) {
+                solution.add(Arrays.asList(currentWordIndex, wordSet.get(reversedWord)));
+            }
+            // Build solutions of case #2. This word will be word 2.
+            for (String suffix : allValidSuffixes(word)) {
+                String reversedSuffix = new StringBuilder(suffix).reverse().toString();
+                if (wordSet.containsKey(reversedSuffix)) {
+                    solution.add(Arrays.asList(wordSet.get(reversedSuffix), currentWordIndex));
+                }
+            }
+            // Build solutions of case #3. This word will be word 1.
+            for (String prefix : allValidPrefixes(word)) {
+                String reversedPrefix = new StringBuilder(prefix).reverse().toString();
+                if (wordSet.containsKey(reversedPrefix)) {
+                    solution.add(Arrays.asList(currentWordIndex, wordSet.get(reversedPrefix)));
+                }
+            }
+        }
+        return solution;
+    }
+  # HashMap, Palindrome, Trie
 
+774. Minimize Max Distance to Gas Station
+  - 对第一个到最后一个gas station 总长做binary search， count 和K进行比较
+        int count, N = st.length;
+        double left = 0, right = st[N - 1] - st[0], mid;
 
+        while (left +1e-6 < right) {
+            mid = (left + right) / 2;
+            count = 0;
+            for (int i = 0; i < N - 1; ++i)
+                count += Math.ceil((st[i + 1] - st[i]) / mid) - 1;
+            if (count > K) left = mid;
+            else right = mid;
+        }
+        return right;
+  # Binary Search
 
 

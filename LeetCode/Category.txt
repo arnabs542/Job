@@ -18,6 +18,7 @@ String
 --------------------
 * Palindrome
   - 先考虑两边到中间 l < r
+  - 考虑 Hashtable, Trie 的解法
 
 *
   - str.compareTo(str2)
@@ -84,6 +85,7 @@ String
 - 415. Add Strings
 - 299. Bulls and Cows
 - 482. License Key Formatting
+- 833. Find And Replace in String
 
 --------------------
 LinkedList
@@ -380,6 +382,9 @@ HashMap
 * Maintain Map of oldNode and newNode
   - 138. Copy List with Random Pointer
 
+* Palindrome, 分3种情况造，suffix, prefix, reverse
+  - 336. Palindrome Pairs
+
 - 205. Isomorphic Strings
 - 1. Two Sums
 - 350. Intersection of Two Arrays II
@@ -415,7 +420,7 @@ Two Pointers / Sliding Window
   - 15. 3Sum
     # Two Pointers, Sort, Edge Case
 
-* palindrome: while l<r, compare and l--, r--
+* palindrome: while l<r, compare and l++, r--
   - 125. Valid Palindrome
   - 680. Valid Palindrome II
 
@@ -523,6 +528,7 @@ Approach 3. l < r-1
   - 1231. Divide Chocolate
     # Binary Search
   - 1011. Capacity To Ship Packages Within D Days
+  - 774. Minimize Max Distance to Gas Station
 
 ** TreeMap<>[], 自带Binary Search. 存diff
   - 1146. Snapshot Array

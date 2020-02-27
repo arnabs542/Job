@@ -4,14 +4,23 @@
 1. 哪个类型题
    - Graph: BFS, DFS, Union Find, Dijkstra
    - DP
-   - Binary Search
-   - Priority Queue
-   - Tree
-   - Array: prefix sum, sliding window
-   - Two Pointers
-   - String
-   - Stack
 
+   - Binary Search
+
+   - Priority Queue
+
+   - Tree
+
+   - Array: prefix sum, sliding window
+
+   - Two Pointers
+   - Stack
+   - Queue
+
+   - HashMap
+   - Trie
+
+   - String
 
 --------------------
 String
@@ -112,24 +121,16 @@ Array
   - Collections.sort(intervals, (x,y) -> x.start - y.start);
 
 1. 矩形题
-
-  * sum up to current index, and matain sum map
-    - 560. Subarray Sum Equals K
-    - 325. Maximum Size Subarray Sum Equals k
-
   * 考虑固定2个row，然后走column
     - 363. Max Sum of Rectangle No Larger Than K
     - 1074. Number of Submatrices That Sum to Target
+    - 750. Number Of Corner Rectangles
 
   * 先确定2个不在同一row,col的点
     - 939. Minimum Area Rectangle
 
-  * 判断4个点能构成正方形
+  * 判断4个点能构成正方形, 4条边相等2条边相等
     - 593. Valid Square
-
-  * 3 for loop, fixed 2 rows and loop cols
-    - 750. Number Of Corner Rectangles
-      # 2D Array, Math
 
 2. Interval 题
   * Intervals. Split to start and end array and sort them.
@@ -137,22 +138,26 @@ Array
     - 253. Meeting Rooms II
       # Array, Sort
 
-  * insert interval
+  * insert interval. Matain start & end. Tree structure
     - 57. Insert Interval
     - 731. My Calendar II
     - 986. Interval List Intersections
 
-3. 维护 increasing order index in queue
+3. 维护 increasing sum index in queue
   - 862. Shortest Subarray with Sum at Least K
+  - 209. Minimum Size Subarray Sum
 
   * matain max array and compare with index
     - 769. Max Chunks To Make Sorted
 
-4. Prefix Sum
+4. Prefix Sum, HashMap, TreeMap
+  * sum up to current index, and matain sum map
+    - 560. Subarray Sum Equals K
+    - 325. Maximum Size Subarray Sum Equals k
+
   * matain remainder index map instead of sum index map
     - 523. Continuous Subarray
-  * create sum array, fast and slow pointers
-    - 209. Minimum Size Subarray Sum
+
   - 1292. Maximum Side Length of a Square with Sum Less than or Equal to Threshold
 
 5. String array 进行加减乘除运算，calculator 题
@@ -215,7 +220,6 @@ Array
 * 维护L max 和 M max， sliding window M/L to get O(n)
   - 1031. Maximum Sum of Two Non-Overlapping Subarrays
 
-
 - 289. Game of Life
     # 2D Array
 
@@ -229,6 +233,20 @@ Array
 --------------------
 Stack
 --------------------
+1. String + Stack 题型
+   - matain resStack, curRes, intStack if necessary, pre if necessary
+   - 150, 394, 726
+
+2. Find next greater elem in array, put INDEX into stack
+   - 739, 496
+
+3. Parentheses, put INDEX into stack if necessary
+   - 32, 20, 301
+
+4. increasing index in stack, calculate rectangle size
+   - 84, 85
+
+
 * calculate expression
   - 150. Evaluate Reverse Polish Notation
 
@@ -236,7 +254,7 @@ Stack
   - 394. Decode String
   - 726. Number of Atoms
 
-** find next greater element in arr
+** find next greater element in arr, push index to stack
   - 496. Next Greater Element I
   - 503. Next Greater Element II
   - 739. Daily Temperatures
@@ -244,7 +262,7 @@ Stack
 * parentheses
   - 20 Valid Parentheses
 
-* parentheses, push index into stack
+* parentheses, push INDEX into stack
   - 32 Longest Valid Parentheses
 
 * parentheses, remove invalid parentheses
@@ -264,9 +282,19 @@ Stack
 * 按有无child, next, stack.isEmpty分情况
   - 430. Flatten a Multilevel Doubly Linked List
 
+- 1209. Remove All Adjacent Duplicates in String II
+
 --------------------
 Tree
 --------------------
+1. PostOrder, PreOrder, InOrder
+2. Stack for PostOrder, PreOrder, InOrder
+3. BFS level order traversal
+4. 维护global变量，用来link list
+   - 114, 426
+5. preorder找，postorder变结构
+   - 450, 776
+
 * recursion on 2 nodes and compare
   - 101 Symmetric Tree
 
@@ -290,6 +318,7 @@ Tree
 
 * construct tree from Preorder and Inorder Traversal
   - 105 Construct Binary Tree from Preorder and Inorder Traversal
+    # PreOrder
 
 * level traversal, preorder
   - 102 Binary Tree Level Order Traversal
@@ -301,15 +330,21 @@ Tree
   - 114. Flatten Binary Tree to Linked List
       # PostOrder, Tree
 
+* Matain first and last node while inorder traversal
+  - 426. Convert Binary Search Tree to Sorted Doubly Linked List
+    # Inorder
+
 * Tree inorder iterative traversal with stack
   - 94. Binary Tree Inorder Traversal
       # Inorder Traversal, Stack
+  - 145. Binary Tree Postorder Traversal
+      # PostOrder Traversal, Stack
   - 173. Binary Search Tree Iterator
       # Stack
   - 98. Validate Binary Search Tree
       # Stack
 
-* path sum from any node
+** path sum from any node
   - 437. Path Sum III
       # PreOrder on sum, PostOrder on res, Tree, DFS
 
@@ -322,14 +357,14 @@ Tree
   - 285. Inorder Successor in BST
         # Tree, Successor
 
-* 297. Serialize and Deserialize Binary Tree
+* Search in Preorder and Construct in PostOrder
+  - 450. Delete Node in a BST
+
+
+** 297. Serialize and Deserialize Binary Tree
     # BFS, Preorder Traversal, Tree
 
-* Matain first and last node while inorder traversal
-  - 426. Convert Binary Search Tree to Sorted Doubly Linked List
-    # Inorder
-
-* 维护节点parentMap用来删点
+* 维护节点parentMap用来删点, 或者postorder
   - 1110. Delete Nodes And Return Forest
 
 --------------------
@@ -506,6 +541,7 @@ Approach 3. l < r-1
 * Matain longest increasing subsequence
   - 300. Longest Increasing Subsequence
   - 334. Increasing Triplet Subsequence
+  - 354. Russian Doll Envelopes
 
 * Matain list of char sequence index list for each char in String t
   - 392. Is Subsequence
@@ -588,8 +624,13 @@ BFS
 * 至尊难题，BFS逆推
   - 913. Cat and Mouse
 
+* BFS + visited set 找最短到position
+  - 818. Race Car
+
+
 - 958. Check Completeness of a Binary Tree
 - 317. Shortest Distance from All Buildings
+- 1136. Parallel Courses
 
 --------------------
 Dijkstra
@@ -954,8 +995,8 @@ SQL
 Consecutive/contiguous Array
 -----------------------------
 * Prefix Sum
-* Binary Search
 * Two Pointers / Sliding Window
+* Binary Search
 
 -----------------------------
 String Calculator 题型

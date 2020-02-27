@@ -5900,4 +5900,101 @@ class Solution {
         return right;
   # Binary Search
 
+818. Race Car
+  - BFS 出所有情况，用visited set of position and speed 进行优化
+  - （https://leetcode.com/problems/race-car/discuss/124326/Summary-of-the-BFS-and-DP-solutions-with-intuitive-explanation）
+  # BFS + visited，  DP
+
+354. Russian Doll Envelopes
+  - 1. first sort by width, then dfs + memorization
+  - 2. first sort by width, then find longest increasing order using binary search nlogn
+  # DFS + Memorization, Longest increasing Sequence
+
+1136. Parallel Courses
+  - 按steps 算 BFS， cycle detection
+  # Topological Sort + BFS
+
+1209. Remove All Adjacent Duplicates in String II
+  - Stack matain string and count
+  # Stack
+
+895. Maximum Frequency Stack
+  - Matain HashMap of key and frequence. And HashMap of frequence and List<key>
+  # HashMap
+
+145. Binary Tree Postorder Traversal
+  -     LinkedList<Integer> res = new LinkedList<>();
+        stack.push(root);
+        while(!stack.isEmpty()) {
+            TreeNode n = stack.pop();
+            res.addFirst(n.val);
+            if(n.left != null) {
+                stack.push(n.left);
+            }
+            if(n.right != null) {
+                stack.push(n.right);
+            }
+        }
+  # Stack
+
+450. Delete Node in a BST
+  -  public TreeNode deleteNode(TreeNode root, int key) {
+        if(root == null){
+            return null;
+        }
+        if(key < root.val){
+            root.left = deleteNode(root.left, key);
+        }else if(key > root.val){
+            root.right = deleteNode(root.right, key);
+        }else{
+            if(root.left == null){
+                return root.right;
+            }else if(root.right == null){
+                return root.left;
+            }
+            // Find successor
+            TreeNode minNode = findMin(root.right);
+            root.val = minNode.val;
+            root.right = deleteNode(root.right, root.val);
+        }
+        return root;
+    }
+
+    private TreeNode findMin(TreeNode node){
+        while(node.left != null){
+            node = node.left;
+        }
+        return node;
+    }
+  # Tree, PreOrder, PostOrder
+
+*776. Split BST
+ - 每次返回left, right branch。preoder 找位置，postorder组结构。
+   // TreeNode[] : 0 is left branch, 1 is right branch
+ - public TreeNode[] splitBST(TreeNode root, int V) {
+          if(root == null) {
+              return new TreeNode[]{null, null};
+          }
+          if(root.val>V){
+              TreeNode[] subR = splitBST(root.left, V);
+               // 4.left take right branch, 4 take 3
+               root.left = subR[1];
+               return new TreeNode[]{subR[0], root};
+          } else {
+              TreeNode[] subR = splitBST(root.right, V);
+              root.right = subR[0];
+              return new TreeNode[]{root, subR[1]};
+          }
+      }
+  # Tree
+
+
+
+
+
+
+
+
+
+
 

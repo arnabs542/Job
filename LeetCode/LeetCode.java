@@ -439,7 +439,7 @@
 
             map.put(str, list);
         }
-    - // DFS + Memorization, bottom up. Map keeps String and its combinitions
+    - // DFS + Memorization, top down. Map keeps String and its combinitions
     List<String> DFS(String s, Set<String> wordDict, HashMap<String, LinkedList<String>>map) {
         // Important memorization
         if (map.containsKey(s))
@@ -4443,24 +4443,29 @@
   # Parentheses
 
 * 1060. Missing Element in Sorted Array
-  - 用不了 l<r, l = mid+ 1,所以用 l<r-1, l=mid, r=mid。
-  - public int missingElement(int[] nums, int k) {
+    public int missingElement(int[] nums, int k) {
+        int n = nums.length;
         int l = 0;
-        int r = nums.length-1;
-        while(l < r-1) {
-            int mid = (l+r)/2;
-            if(nums[0] + k + mid > nums[mid]) {
-                l = mid;
+        int h = n - 1;
+        int missingNum = nums[n - 1] - nums[0] + 1 - n;
+        if (missingNum < k) {
+            return nums[n - 1] + k - missingNum;
+        }
+
+        while (l < h - 1) {
+            int m = l + (h - l) / 2;
+            int missing = nums[m] - nums[l] - (m - l);
+
+            if (missing >= k) {
+          // when the number is larger than k, then the index won't be located in (m, h]
+                h = m;
             } else {
-                r = mid;
+          // when the number is smaller than k, then the index won't be located in [l, m), update k -= missing
+                k -= missing;
+                l = m;
             }
         }
-        int res = nums[0] + k + l;
-        if(res < nums[r]) {
-            return res;
-        } else {
-            return res + 1;
-        }
+        return nums[l] + k;
     }
   # Binary Search
 
@@ -5466,36 +5471,31 @@ class Solution {
   # BFS
 
 224. Basic Calculator
-        int res = 0;
-        Stack<Integer> numStack = new Stack<>();
-        Stack<String> opStack = new Stack<>();
-        numStack.push(0);
-        opStack.push("+");
+  int len = s.length(), sign = 1, result = 0;
+  Stack<Integer> stack = new Stack<Integer>();
+  for (int i = 0; i < len; i++) {
+    if (Character.isDigit(s.charAt(i))) {
+      int sum = s.charAt(i) - '0';
+      while (i + 1 < len && Character.isDigit(s.charAt(i + 1))) {
+        sum = sum * 10 + s.charAt(i + 1) - '0';
+        i++;
+      }
+      result += sum * sign;
+    } else if (s.charAt(i) == '+')
+      sign = 1;
+    else if (s.charAt(i) == '-')
+      sign = -1;
+    else if (s.charAt(i) == '(') {
+      stack.push(result);
+      stack.push(sign);
+      result = 0;
+      sign = 1;
+    } else if (s.charAt(i) == ')') {
+      result = result * stack.pop() + stack.pop();
+    }
 
-        for(int i=0;i<s.length();i++) {
-            char c = s.charAt(i);
-            if(c == '(') {
-                numStack.push(res);
-                int[] t = getNextNum(s, i+1);
-                res = t[0];
-                i = t[1]-1;
-                // System.out.println("(: push " + numStack.peek() + " res="+res + " i=" +i);
-            } else if(c == ')'){
-                String ops = opStack.pop();
-                int n = numStack.pop();
-                // System.out.println("): pop " + ops + " pop num " + n + " cur res " +res);
-                res = calculate(ops, n, res);
-            } else if(Character.isDigit(c)) {
-                int[] vals = getNextNum(s, i);
-                // System.out.print(vals[0]+": " + " pop " + opStack.peek() + " cur res " +res);
-                res = calculate(opStack.pop(), res, vals[0]);
-                System.out.println(" cal res " + res);
-                i = vals[1]-1;
-            } else {
-                // System.out.println("push " + Character.toString(c));
-                opStack.push(Character.toString(c));
-            }
-        }
+  }
+  return result;
   # String, Stack
 
 *772. Basic Calculator III

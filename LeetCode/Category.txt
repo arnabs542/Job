@@ -121,7 +121,7 @@ Array
   - Collections.sort(intervals, (x,y) -> x.start - y.start);
 
 1. 矩形题
-  * 考虑固定2个row，然后走column
+  * 考虑固定2个row，然后走column，TreeMap
     - 363. Max Sum of Rectangle No Larger Than K
     - 1074. Number of Submatrices That Sum to Target
     - 750. Number Of Corner Rectangles
@@ -173,7 +173,7 @@ Array
   * union, merge
     - 1096. Brace Expansion II
 
-* Map array value to array index
+6. Map array value to array index
   - 41. First Missing Positive
         # Array, Index
   - 448 Find All Numbers Disappeared in an Array
@@ -370,6 +370,8 @@ Tree
 --------------------
 Trie/Prefix Tree
 --------------------
+1. String search/find, prefix/postfix
+
 * add, find word in trie, "." means any character
   - 211. Add and Search Word - Data structure design
 
@@ -394,8 +396,10 @@ TreeMap
 --------------------
 * TreeMap is ordered map by key. e.g. firstKey(), lastKey()
 
-- 846. Hand of Straights
+* TreeMap<>[], 自带Binary Search. 存diff
+  - 1146. Snapshot Array
 
+- 846. Hand of Straights
 
 --------------------
 HashSet
@@ -433,13 +437,14 @@ Two Pointers / Sliding Window
 - palindrome
 - sliding
 
-** Sliding window
+** Sliding window, fp - sp 得到距离
   - 438. Find All Anagrams in a String
   - 76. Minimum Window Substring
   - 1004. Max Consecutive Ones III
 
 * Matain index queue of decending num. Use queue to operate on both sides rather than stack
   - 239. Sliding Window Maximum
+  - Refer to 862. Shortest Subarray with Sum at Least K
 
 * matain index stack of incresing/decreasing num
   - 581. Shortest Unsorted Continuous Subarray
@@ -471,6 +476,12 @@ Binary Search
 - sorted
 - shortest
 
+1. HashMap<char, index>, binary search on index
+   - 392
+
+2. Divide/split range/distance/sum, 判断上下限，然后做Binary Search
+   - 410
+
 Approach 1. l<=r
    - l=mid+1, r=mid-1 可能会越界，所以要不返回target，要不越界找不到
    - l=mid+1, r=mid 可能会死循环卡在r=mid上，可能越界
@@ -493,6 +504,7 @@ Approach 3. l < r-1
 
   - 300. Longest Increasing Subsequence
     - l < r, mid < target, l = mid+1,r = mid, find 1st elem that >= target.
+    - 区分下 128. Longest Consecutive Sequence
       # Binary Search, patience sort
 
 * find leftmost and rightmost, Approach 3
@@ -566,9 +578,6 @@ Approach 3. l < r-1
   - 1011. Capacity To Ship Packages Within D Days
   - 774. Minimize Max Distance to Gas Station
 
-** TreeMap<>[], 自带Binary Search. 存diff
-  - 1146. Snapshot Array
-
 * random pick, 然后 index list里 Binary search
   - 1157. Online Majority Element In Subarray
 
@@ -592,7 +601,10 @@ Graph
 --------------------
 BFS
 --------------------
-1. Shortest path, in K stop/steps
+1. Shortest directed weighted PATH, in K stop/steps. May not matain visited set.
+
+Notice: * 求 int res 和 path 不一样，小心区别
+        * indegree 求唯一或合理性
 
 * Shortest Path
   - 127. Word Ladder
@@ -627,7 +639,6 @@ BFS
 * BFS + visited set 找最短到position
   - 818. Race Car
 
-
 - 958. Check Completeness of a Binary Tree
 - 317. Shortest Distance from All Buildings
 - 1136. Parallel Courses
@@ -641,12 +652,17 @@ Dijkstra
 - 1168. Optimize Water Distribution in a Village
 
 --------------------
-DFS
+DFS 遍历所有情况
 --------------------
 1. cycle detection in directed graph
 2. find/construct/generate path
+3. 出现至少或最多K的问题，可以换个思路，考虑至少或最多需要多少N,最后比较N和K。
+   - 1216. Valid Palindrome III
+   - 334. Increasing Triplet Subsequence
 
-1. DFS + Memorization
+4. 求path or string or non-int non-boolean, 考虑能不能用visited set
+
+5. DFS + Memorization
         private int dfs() {
           if(end) {
             return num;
@@ -662,6 +678,7 @@ DFS
           return dp[][][];
         }
    - 1320. Minimum Distance to Type a Word Using Two Fingers
+   - 140. Word Break II
 
 * Combine DFS and Tree Generation
     - 95. Unique Binary Search Trees II
@@ -719,7 +736,7 @@ Union Find
 2. connected component
 3. 分类 e.g. 737
 
-* track connected component
+* track connected component of undirected graph
   - 305. Number of Islands II
     # Union Find
 

@@ -1,0 +1,112 @@
+* https://biginterview.com/blog/behavioral-interview-questions
+* Use STAR
+  - S (Situation)
+  - T (Task)
+  - A (Actions)
+  - R (Results)
+    - Revenue generated
+    - Cost Reduced
+    - Time Saved
+    - Client Won
+    - Client Saved
+    - Pormotion Earned
+
+
+* teamwork
+  - Influencer Onsite Attribution
+    # Warhol app
+    # Data team
+    # AIP team
+    # Portal team
+
+  - Paragon Customer Support
+    # Marketing Team
+    # Warhol team
+    # Paragon team
+
+* leadership
+  - Asin level campaign creation
+    # Design
+
+* project
+  - Tiering
+    # Product Manager, Portal, Data
+
+  - Asin level campaign creation
+
+* challenge
+  - Http2BMS configuration Tool
+  - Asin level campaign creation
+
+* conflict handling
+  - Zach - code review and design meeting
+  - Oncall vs Task
+
+* problem solving
+  - Search Front Migration
+
+* biggest failure
+  - Paragon
+
+* greatest accomplishment
+  - Asin level campaign creation
+  - Tiering
+
+-------------------------------
+Projects
+-------------------------------
+* Tiering
+
+* Asin level compaign creation
+
+* Influencer Program
+  - Account
+  - Commission
+  - Tier
+
+* BFCM Scale Test
+
+* Search Front Migration
+  - customer centric
+
+* Paragon
+
+* Traffic Upload Improvement
+
+* CICD
+
+* Http2Bms configuration Tool
+
+* Influencer Onsite Attribution
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

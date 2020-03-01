@@ -943,7 +943,7 @@ Dynamic Programming
   - 115. Distinct Subsequences
         # 2D DP, DFS
 
-* palindromic, 2 for loops, s.charAt(i) == s.charAt(j) && dp[i+1][j-1]
+** palindromic, 2 for loops, s.charAt(i) == s.charAt(j) && dp[i-1][j+1]
   - 5 Longest Palindromic Substring
     # 2D DP
 

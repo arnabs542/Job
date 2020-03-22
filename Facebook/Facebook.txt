@@ -1,0 +1,21 @@
+----------------------------------
+Schedule
+----------------------------------
+Monday April 6, 2020
+10:00 AM - 10:15 AM EDT - Greet and VC Setup
+10:15 AM - 11:00 AM EDT - Coding - https://coderpad.io/P76N7DHM
+11:00 AM - 11:45 AM EDT - Product Architecture https://docs.google.com/drawings/
+11:45 AM - 12:30 PM EDT - Break - please remain in the video conference
+12:30 PM - 01:15 PM EDT - Coding - https://coderpad.io/KYYFYYCD
+01:15 PM - 02:00 PM EDT - Career/Coding - https://coderpad.io/P94YYXQG
+
+To Join the Meeting: https://fb.bluejeans.com/370618661
+
+----------------------------------
+Notes
+----------------------------------
+* STAR for behavior interview 
+  - https://www.themuse.com/advice/star-interview-method
+
+* Grokking the system design interview 
+  - https://www.educative.io/courses/grokking-the-system-design-interview

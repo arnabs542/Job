@@ -726,7 +726,7 @@
   - time : O(2^n), space : O(n)
   # Backtracking
 
-64 Minimum Path Sum
+64. Minimum Path Sum
   # 2D DP
 
 *101 Symmetric Tree
@@ -3599,6 +3599,8 @@
   # Tree, Postorder Traversal, Serialize
 
 *659. Split Array into Consecutive Subsequences
+  - Check (https://leetcode.com/problems/split-array-into-consecutive-subsequences/discuss/106514/Python-Easy-Understand-Greedy)
+
   - matain pre, p1, p2, p3 which are the number of consecutive subsequences ending at pre with length of 1, length of 2 and length >= 3. If count<p1+p2 during iteration, false. At end, if p1 !=0 || p2 !=0, false;
 
   - int pre = Integer.MIN_VALUE, p1 = 0, p2 = 0, p3 = 0;

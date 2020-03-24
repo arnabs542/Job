@@ -14,8 +14,8 @@ To Join the Meeting: https://fb.bluejeans.com/370618661
 ----------------------------------
 Notes
 ----------------------------------
-* STAR for behavior interview 
+* STAR for behavior interview
   - https://www.themuse.com/advice/star-interview-method
 
-* Grokking the system design interview 
+* Grokking the system design interview
   - https://www.educative.io/courses/grokking-the-system-design-interview

@@ -8,11 +8,23 @@
 Notes
 ---------------------------
 * Scenario
-  - Ask daily active users, calculate average qps, peak qps, assume read/write qps to decide how many servers to use.
+  - daily active users (DAU)
+  - average qps
+  - peak qps, assume
+  - read/write qps to decide how many servers to use
+  - feature / interfaces
 
 * Service
+  - Error Handling / Retry
+  - Alarm
+
 * Storage
+  - schema, sql, nosql, file system, memory
+  - read, write
+
 * Scale
+  - special cases
+  - sharding / optimize
 
 ---------------------------
 News Feed
@@ -25,36 +37,110 @@ News Feed
          1 webserver 1k QPS, 1 sql 1k, 1 nosql 10k, 1 memcased nosql 1m qps
       3. peak qps = 3 * average qps
       4. fast growing product
+    - feature / interfaces
+    - Enumerate features
+        - Register / Login
+        - profile display
+        - Post tweet
+        - news feed
+        - follow / unfollow user
+        - Search
+        - upload image / video
+      Then Sort features
+        1. Post tweet 2. Timeline 3. News Feed 4. Follow 5. Register
 
 * service
-  - User Service
-  - Tweet Service
-  - Media Service
-  - Friendship Service
+  - 将scenario 里的features进行过一遍然后按照逻辑进行归类
+
+  1. User Service
+    - Register
+    - Login
+
+  2. Tweet Service
+    - Post tweet
+    - News Feed
+
+  3. Media Service
+    - Upload Image
+    - Upload Video
+
+  4. Friendship Service
+     - Follow / UnFollow
 
 * storage
   - schema
-  - sql: User Service, Friendship Service
-  - nosql: Tweet Service
-  - file system: Media Service, e.g S3
+  1. User Service (SQL)
+     - User table
+      - id: int
+      - username: string
+      - email: string
+      - password: string
+
+  2. Tweet Service (NoSQL)
+     - Tweet Table
+       - id: int
+       - user_id: foreign key
+       - content: string
+       - created_at: timestamp
+
+  3. Media Service (File System)
+
+  4. Friendship Service (SQL / NoSQL)
+     - Friendship
+      - id: int
+      - from_user_id: foreign key
+      - to_user_id: foreign key
+
+* News Feed，
+  - Pull: 读慢
+    - 根据上次刷新时间和现在时间，获取所有followers的tweets
+    1. request to get news feed
+    2. get followers
+    3. get tweets based on user id, time
+    4. merge and return
+    Notes: 慢，synchronized call
+
+  - Push: 写慢
+    - 每个用户建个news feed table， 当用户发tweet后，推送到table里，查看时从中读取。
+    - News Feed Table
+      - id: int
+      - owner_id: foreign key
+      - tweet_id: foreign key
+      - created_at: timestamp
+    - read 1DB, DB write可以异步执行，无需等待。但用户量可能很大
+    - workflow
+      1. Post a new tweet
+      2. Insert to tweet table
+      3. get followers
+      4. fanout to followers news feed
 
 * scale
-  - use cache
+  - Cache
+    1. Pull: cache 用户的news feed
+
   - sharding
   - optimze
   - failure recover
   - special case
 
-* Pull
-  - slow for read. Improve by cache
-
-* Push - insync for push to followers
-  - slow for write cause add user/follower relation into tables, but can do insync for post tweet
-
 * Pull + Push
   - push for normal users with fewer followers
   - pull for star with lots of followers
   - 可能出现摇摆问题，吊粉
+
+* Follow / Unfollow
+  - follow， 异步将timeline合并到news feed。Unfollow 则异步移除。异步好处，用户立马得到反馈，坏处是news feed有延迟
+
+* Like
+  - Like Table
+    - id: int
+    - user_id: Foreign Key
+    - tweet_id: Foreign Key
+    - Created_at timestamp
+  - Tweet Table: de-normalized
+    - like_nums: int
+    - comment_nums: int
+    - retweet_nums
 
 ---------------------------
 Database

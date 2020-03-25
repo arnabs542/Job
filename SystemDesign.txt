@@ -156,12 +156,31 @@ Database
 * cache delete ; database set
 
 * Design User System
-  - AuthService
-    - Session table : login session_key 作为cookie值返回browser, then request to website including cookie. Logout will remove session from table.
-    - session table 推荐存数据库而不是内存
-  - UserService
-  - FriendshipService
-    - mutual friendship: smaller_user_id, bigger_user_id or from_user_id, to_user_id
+  * Scenario
+    - register, login, search, profile modification, friendship
+    - DAU 100M
+    - For register, login, profile: 100M * 0.1 / 24*3600 = 100 QPS, Peak 3 * 100 = 300 QPS. For search, 100M * 100 / 24 * 3600 = 100k, Peak 300K
+
+  * Service
+    - AuthService (Login, Register)
+      - Login uses session table. 作为cookie值返回browser, then request to website including cookie. Logout will remove session from table or get expired
+      - session table 推荐存数据库而不是内存
+    - UserService
+      - search
+    - FriendshipService
+      - mutual friendship: smaller_user_id, bigger_user_id or from_user_id, to_user_id
+
+  * Storage
+    - Session Table // for login,可允许1个user多个session key， 说明在不同浏览器上登录
+      id: int
+      user_id: int
+      session_key: string
+      expire_time: timestamp
+
+    - FriendShip Table
+      id: int
+      from_user_id: id
+      to_user_id: id
 
 * SQL or NoSQL
   - SQL is mature and support much more things than NoSQL. NoSQL support higher QPS.
@@ -172,7 +191,6 @@ Database
   - row_key, column_key, value决定存在哪个database上
   - row_key: hash_key, for routing, sharding purpose，can't range query
   - column_key: sorted, support range query
-  - value:
 
 * Scale: Single Point Failure
   - Sharding: 拆分数据存储到不同数据库

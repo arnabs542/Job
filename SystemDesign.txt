@@ -202,11 +202,32 @@ Database
 Crawler & Typehead
 ---------------------------
 * Web Crawler
+  * Scenario
+    1. how many web pages per second
+    2. how long
+    3. how large 10k average size of a webpage
 
-* Scenario
-  1. how many web pages per second
-  2. how long
-  3. how large 10k average size of a webpage
+  * Service
+    - Crawler
+    - Storage Service
+    - Task Service
+
+  * Storage
+    - db to store tasks (queue e.g. sqs is small)
+      id: int
+      url: string
+      state: enum
+      priority: int
+      available_time: timestamp // 控制抓取频率
+
+  * Scale
+    - single thread -> multi thread
+    - multi thread -> distributed
+    - queue -> table
+    - slow select -> db horizontal sharding
+    - crawl failure -> exponetial retry
+
+    - bigTable to store web pages
 
 * Single-threaded web crawler
   - Producer Consumer Pattern, buffer

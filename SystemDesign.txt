@@ -271,6 +271,8 @@ Crawler & Typehead
 ---------------------------
 Distributed File System (Goole File System)
 ---------------------------
+* Peer To Peer vs Master Slave
+
 * GFS vs HDFS
   - GFS is not open source, HDFS is. Other is the same.
 
@@ -321,7 +323,7 @@ Distributed File System (Goole File System)
     - 周期性检查，读的时候检查checksum
     - Recover: ask master
   + Replica
-    - 3份
+    - 3份: 2个近的，1个远的
   + heartbeat,验证chunkserver在不在
 
 ------------------------------------

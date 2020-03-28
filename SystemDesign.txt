@@ -352,22 +352,25 @@ Consistent Hashing & Design Tiny Url
   - include sharding and replica (优点)
 
 * Design Tiny URL
+  * Scenario: 功能，需求，QPS，存储容量
+    - redirect
+    - 产生，点击Tiny URL， 存储量
 
-* Scenario: 功能，需求，QPS，存储容量
-  - redirect
-  - 产生，点击Tiny URL， 存储量
+  * Servie
+    - URLService
+      - shortToLong
+      - longToShort
 
-* Servie
-* Storage
-  - transaction？ no
-  - 丰富的query？a little bit
-  - scalability?
-  - QPS?
-  - Sequential id?
+  * Storage
+    - transaction？ no
+    - 丰富的query？a little bit
+    - scalability?
+    - QPS?
+    - Sequential id?
 
 * Long URL to 6 digit url
   - 随机转化：随机生成短的没有用过的url存数据库。随着短网址越来越多，生成速度效率低。
-  - 进制转换：依赖全局自动增加iD，转化成6位62进制的short url。62^6=57B=570亿
+  - 进制转换：依赖全局自动增加iD，转化成6位62进制的short url。62^6=57B=570亿。效率高，但依赖于全局的自增ID。有安全缺陷，容易被人猜
 
 * Scale
   - cache

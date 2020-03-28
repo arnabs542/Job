@@ -384,21 +384,41 @@ Consistent Hashing & Design Tiny Url
        long  -> short: broadcast to all servers
 
 ------------------------------------
-Distributed System Design (Google Big Table)
+Database System Design (Google Big Table)
 ------------------------------------
 * File System vs Dabase System
-  - FS includes simple file read, write ops.
+  - FS includes     simple file read, write ops.
   - DB provides complex queries, 数据库建立在文件系统之上
 
-* Big Table
+* 硬盘上整理顺序，用external sort, which includes split and k merge sort
+
+* Big Table： 基于 File System
   - Bigtable: Google, HBase: Yahoo, Cassandra:Facebook, DynamoDB: Amazon
-  - Write: Update appends new data, 时常进行排序整理解决read的二分查询问题。 优化写。 优化方法是有有序块和无序块。
+  - Write: Update appends new data, 时常进行排序整理解决read的二分查询问题。优化方法是有有序块和无序块, 无序块可以放到memory里sort成有序 list，当大到一定程度，将其在硬盘上整理成有序块。
+
+  Memory: file0 Address0, file1 Address1, sorted list of 无序块
+  Disk: file0 有序, file1 有序
+
+  Write:
+    1. write key
+    2. append key to sorted list (内存排序，最后1次写入)
+    3. serialize to disk file1 （write ahead log to avoid 内存挂了）
+
   - Read: Add index and bloom filter in memory to map from key to address pointer for each unsorted block (sorted block不需要). All index & bloomfilter for all unsorted blocks are stored in the memory.
 
-* Bloom Filter
-  - 高效查找key是否在Sorted Strings Table(SSTable). 无序块里都有1个index和bloom filter，这样可以快速确定key在不在里头
-  - 2个hash function， hash function 多，array大，字符多，越准
-  - False is always false, true may be true
+  Memory: file 0 Address0, Index0 bloomfilter0, file1 Address1, Index1 bloomfilter1, Sorted List of 无序块
+  Disk: File 0 (index0, Bloomfilter0), File 1(index1, Bloomfilter1)
+
+  Read:
+    1. read key
+    2. Read key from sorted list of 无序块 in memory
+    3. If not, check bloom filter for each file has this key
+    4. use index to find the value for the key
+
+** Bloom Filter
+  - 高效查找key是否在Sorted Strings里，解决大数据量情况的元素判定。可以替代set
+  - False is always false, true may be true。所以有一定误判率
+  - 应用： 黑名单，爬虫重复url检测，字典纠错，磁盘文件检测
 
 * Skip list
   - matain all new write data in memory
@@ -419,10 +439,18 @@ Map Reduce
 ------------------------------------
 * 10G才算大数据
 
-* 不提倡用hashmap，因为大数据处理
+* 不提倡用hashmap，因为大数据处理。多台机器的for循环，用map reduce
 
 * 分布式计算框架
-  - input, split, map, 传输汇总，reduce, output
+  - 1. input
+    2. split：尽量平均的分配到map 机器上
+    3. map：
+      - 不用hashmap统计，e.g. a : 1, b : 1, a : 1, not a : 2 因为数据量可能很大。
+      - map机器数远大于reduce的机器
+      - key 一般用处不大，values重要
+    4. 传输汇总：external sort, merge k sorted list。一定量后传输
+    5. reduce：key， value。
+    6. output
   - map，reduce机器数 e.g. 10T, 1000map, 1000reduce
   - 机器越多越好？每个处理时间短，但启动时间长
   - 不考虑启动时间，reduce机器越多越好？上限是key的数目

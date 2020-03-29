@@ -473,29 +473,94 @@ Map Reduce
   - input和output放哪？ GFS
 
 
+------------------------------------
+Message System & Rate Limiter
+------------------------------------
+* Message System
+  1. Scenarios
+    - Features
+       - login /regsiter
+       - contact （follow）
+       - 相互发消息
+       - 群聊
+       - 用户在线
+       - 历史记录
+       - 多台登陆
+    - 100m daily users, QPS 100*20/86400 ~ 20k, peak 20k * 5 = 100k, 读写都高
 
+  2. Services
+     - Message Service
+     - Real-time Service
 
+  3. Storage
+     - Message Table: Use NoSQL, 数据量大，无需修改。按thread id primary key。
+       - id : int
+       - from_user_id: int
+       - to_user_id: int
+       - content: string
+       - created_at: timestamp
 
+       Improve to
+       - id : int
+       - from_user_id: int
+       - thread_id: int
+       - content: string
+       - created_at: timestamp
 
+     - Thread Table: inbox has threads, thread has messages。SQL, index by ownerId + ThreadId, ownerId + updated Time
+       - id: int
+       - participant_ids: text
+       - created_at: timestamp
+       - updated_at: timestamp (排序用)
 
+       Improve to
+       - owner_id: int (谁的thread)
+       - thread_id: int
+       - participant_ids: text
+       - is_muted bool
+       - nickname: string
+       - created_at: timestamp
+       - updated_at: timestamp (排序用)
 
+  4. Work solution
+     - 发消息
+          1. client 把消息和接受者信息发给server
+          2. server创建message, and thread if necessary
+     - 接受消息
+          1. Poller： 每隔10s polling一下
 
+  5. Scale
+    - 接受消息太慢
+      - socket: tcp长连接，保持连接。与http区别是http只能client to server. Socket是双向的。这样子就enable push service from server to client 了。
+      - android GCM and IOS APNS notification service。关闭app后，用app pull + GCM/APNS.
+      - Workflow
+        1. A client开机，产生定时的pull request to webserver. Also ask push server ip from webserver。
+        2. webserver gives push server ip. A和push server保持长连接。
+        3. B client给A发信息。信息经过webserver, push server 到达A
 
+       - Push service 本身可以不发送消息，而是提醒client去pull消息。
 
+    - 群聊
+      - 问题是大家在不在线。加个channel service btw push service and message service。用于管理谁在线，该推送。数据存在memory里.对于没有在线的人，他们登陆的时候通过pull得到历史消息。
 
+    - 在线状态
+      - client 通过heartbeat主动汇报，用户知道我哪些好友在线也是pull。
+      - push取决于client用户端网络情况，情况复杂不可控因而不稳定。所以对于real time要求不高，用pull，一方面也能汇报在不在
 
+* Rate Limiter
+  - limit requests.限制数据库的读写操作。
+  - 用memcached实现，因为不需要数据持久化。
+    1. 用event + feature + timestamp作为memechached的key
+    2. 记录一次访问，memcached.increament(key, ttl=60s)
+    3. 查询是否限制。for t in 0 - 59 do, key = event + feature + (current_timestamp -t), sum+=memcached.get(key, default = 0)
+    4. check sum with limitation
 
+  - scale
+    1. 分级存储。之前是按秒来存储，可以按分钟，小时进行存储。
+    2. 允许一定的误差
 
-
-
-
-
-
-
-
-
-
-
+* Design Datadog
+    - 对老数据进行瘦身(retention)e.g. 对于老的request num，不按秒存，而是按小时存
 
 
 

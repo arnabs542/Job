@@ -562,15 +562,82 @@ Message System & Rate Limiter
 * Design Datadog
     - 对老数据进行瘦身(retention)e.g. 对于老的request num，不按秒存，而是按小时存
 
+------------------------------------
+Location Based Service
+------------------------------------
+* Uber
+  - RingPop: distributed framework
+  - TChannel: RPC
+  - Google S2: 地理信息存储与查询算法
+  - Riak: DynamoDB 开源
 
+* Design Uber
+  - Scenario
+    - Feature
+      - driver report locations
+      - rider request Uber
+      - driver cancel / deny request
+      - rider cancel request
+      - driver pick up and start
+      - driver drop off and end trip
 
+    - Driver 20w, QPS 200k / 4 = 50k, Peak 150k, write
 
+  - Service
+    - GeoService (Redis)
+      - Driver save location
+      - Rider, find drivers nearby
 
+    - DispatchService (SQL)
+      - Driver report locations per 4s, Get matched rider.
+      - Rider request Uber, return matched driver
 
+  - Storage
+    - Trip Table
+       tripId: int
+       dirverId: int;
+       riderId: int,
+       Latitude, Longitude: double
+       status: int
+       createdAt: timestamp
 
+    - Location Table: 大量的写操作
+        driverId: int
+        updatedAt: timestamps
+        Latitude, Longitude: double
+        geohash: String // select * from location where geohash LIKE '9q9hv%'
 
+    - Driver Table
 
+  - find nearby driver by geohash
+    1. 使用geohash。 (lat, Ing) -> geohash -> [driver1, driver2 ...], 先查6位的geohash找0.6公里以内的， 如果没有查5位 2.4公里以内的。分级查询 如果匹配成功， 查询 Driver 位置
 
+  - Workflow
+    1. rider request, server create trip, return trip_id, pulling per seonds
+    2. server find nearby driver, write to trip, change status and update driver table
+    3. driver report location
+    4. Driver accepts request. Update driver, trip table status info. Rider see driver info
+    5. Driver deny request, update Driver, Trip status info. Repeat 2.
+
+  - Scale
+    - location 按城市sharding
+
+* Google S2
+  - Hilbwer Curve
+  - 将地址空间映射到2^64的整数。空间上比较接近的2个点，对应的整数也比较接近
+
+* Geohash
+  - 将整体地图划分块状，hash长度越长越精确
+  - 先经后纬，经纬交替，二分
+
+* Redis
+  - NoSQL, 支持数据持久化
+  - 原生支持list,set 等结构
+  - 读写速度接近内存访问速度 > 100k QPS
+
+* Geo Fence
+  - 圈定区域位置。
+  - 两级Fence查询， 先找到城市，再找到airport
 
 
 

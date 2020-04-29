@@ -1627,20 +1627,16 @@
   - Refer to (https://leetcode.com/problems/sparse-matrix-multiplication/discuss/76151/54ms-Detailed-Summary-of-Easiest-JAVA-solutions-Beating-99.9)
   -     int rowA = A.length;
         int colA = A[0].length;
-        int rowB = B.length;
         int colB = B[0].length;
         int[][] res = new int[rowA][colB];
-
+        
         for(int i=0;i<rowA;i++) {
-            for(int z=0;z<rowB;z++) {
-                if(A[i][z] != 0) {
-                    for(int j=0;j<colB;j++) {
-                        if(B[z][j] !=0) {
-                            res[i][j] += A[i][z]*B[z][j];
-                        }
+            for(int j=0;j<colA;j++) {
+                if(A[i][j] != 0) {
+                    for(int k=0;k<colB;k++) {
+                        res[i][k] += A[i][j] * B[j][k];
                     }
                 }
-
             }
         }
   # Math
@@ -4023,7 +4019,24 @@
         last = node;
         helper(node.right);
       }}
-  # Inorder Traversal
+  - Use stack for inorder traversal 
+        Node pre;
+        Node next = null;
+        while(!stack.isEmpty() ||  root != null) {
+            while(root != null) {
+                stack.push(root);
+                root = root.left;
+            } 
+            pre = next;
+            next = stack.pop();
+            if(pre != null) {
+                pre.right = next;
+                next.left = pre;
+            }
+            root = next.right;
+        }
+
+  # Inorder Traversal, Stack
 
 415. Add Strings
   # String

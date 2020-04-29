@@ -330,9 +330,9 @@ Tree
   - 114. Flatten Binary Tree to Linked List
       # PostOrder, Tree
 
-* Matain first and last node while inorder traversal
+* Matain first and last node while inorder traversal, Or use stack for inorder traversal
   - 426. Convert Binary Search Tree to Sorted Doubly Linked List
-    # Inorder
+    # Inorder, Stack
 
 * Tree inorder iterative traversal with stack
   - 94. Binary Tree Inorder Traversal

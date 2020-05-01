@@ -6003,9 +6003,96 @@ class Solution {
       }
   # Tree
 
+498. Diagonal Traverse
+  -         if(matrix == null || matrix.length == 0) {
+            return new int[0];
+        }
+        
+        int rows = matrix.length;
+        int cols = matrix[0].length;
+        
+        int i = 0;
+        int j = 0;
+        int dir = -1;
+        
+        int[] res = new int[rows*cols];
+        int n=0;
+        
+        
+        while(true) {
+            if(i>= rows || j>=cols) {
+                break;
+            }
+            
+            res[n++] = matrix[i][j];
+            
+            if(i+dir<rows && i+dir>=0 && j - dir < cols && j - dir >=0) {
+                i += dir;
+                j -= dir;
+                continue;
+            } 
+            
+            if(dir == -1) {
+                if(j-dir < cols) {
+                    j -= dir;
+                } else {
+                    i -= dir;                    
+                }
+                dir = 1;
+            } else {
+                if(i + dir < rows) {
+                    i += dir;
+                } else {
+                    j += dir;
+                }
+                dir = -1;
+            }
+        }
 
-
-
+767. Reorganize String
+  -  Reorganize string to have adjacent char not the same. 找出最多的char，先隔开放。然后把所有剩下的隔开放，顺序无所谓。共跑奇偶2遍       
+        int[] arr = new int[256];
+        int max = 0;
+        char ch = 0;
+        for(char c : S.toCharArray()) {
+            arr[c]++;
+            if(arr[c]> max) {
+                max = arr[c];
+                ch = c;
+            }
+        }
+        
+        if(S.length()%2 == 0) {
+            if(max > S.length()/2) {
+                return "";
+            }
+        } else {
+            if(max > S.length()/2 +1) {
+                return "";
+            }
+        }
+        
+        char[] res = new char[S.length()];
+        int index = 0;
+        while(arr[ch]>0) {
+            res[index] = ch;
+            index +=2;
+            arr[ch]--;
+        }
+        
+        // 跑2遍，奇偶
+        for(char c = 'a';c <= 'z'; c++) {
+            while(arr[c]>0) {
+                if(index >= S.length()) {
+                    index =1;
+                }
+                res[index] = c;
+                arr[c]--;
+                index +=2;
+            }
+        }
+        // Rather than res.toString()
+        return new String(res);
 
 
 

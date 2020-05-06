@@ -190,6 +190,46 @@
 *23. Merge k Sorted Lists
   - Merge sort for array, compare with 148(merge sort on list)
   - ListNode[] lists; lists.length // not lists.size()
+      public ListNode mergeKLists(ListNode[] lists) {
+        if(lists == null || lists.length == 0) {
+            return null;
+        }
+        return sort(lists, 0, lists.length-1);
+    }
+    
+    public ListNode sort(ListNode[] lists, int l, int r) {
+        if(l == r) {
+            return lists[l];
+        }
+        int mid = (r-l)/2 + l;
+        return merge(sort(lists, l, mid), sort(lists, mid+1, r));
+    }
+    
+    public ListNode merge(ListNode n1, ListNode n2) {
+        if(n1 == null && n2 ==null) {
+            return null; 
+        }
+        if (n1 == null) {
+            return n2;
+        }
+        if (n2 == null) {
+            return n1;
+        }
+        ListNode dummy = new ListNode(0);
+        ListNode node = dummy;
+        while(n1 != null && n2 != null) {
+            if(n1.val < n2.val) {
+                node.next = n1;
+                n1 = n1.next;
+            } else {
+                node.next = n2;
+                n2 = n2.next;
+            }
+            node = node.next;
+        }
+        node.next = (n1 == null) ? n2 : n1;
+        return dummy.next;
+    }
   # Merge Sort, Divide and Conquer, Merge two lists
 
 *42. Trapping Rain Water

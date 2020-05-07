@@ -787,6 +787,30 @@
   - think of preorder, or postorder
   - Integer.MIN_VALUE
   - postorder, calculate res = Math.max(res, left+right+node.val), return Math.max(left, right) + node.val
+    int res = Integer.MIN_VALUE;
+    public int maxPathSum(TreeNode root) {
+        postorder(root);
+        
+        return res;
+    }
+    
+    private int postorder(TreeNode node) {
+        if(node == null) {
+            return 0;
+        }
+        
+        int l = postorder(node.left);
+        int r = postorder(node.right);
+        
+        int sum = node.val + l + r;
+        
+        res = Math.max(sum, res);
+        
+        
+        int returnV = Math.max(l ,r);
+        
+        return returnV+node.val > 0 ? returnV+node.val : 0;
+    }
   # PostOrder Traversal, Binary Tree
 
 *236 Lowest Common Ancestor of a Binary Tree
@@ -805,30 +829,55 @@
 *76. Minimum Window Substring
   - Use int array to record num of each char. faster pointer runs and decrease num of each char until total becomes 0. Then slow pointer runs and increase num of each char until total becomes 1. Then get i-j+1 compare with the min distance.
 
-        char[] tArr = t.toCharArray();
-        char[] sArr = s.toCharArray();
+    public String minWindow(String s, String t) {
+        if(t.length() > s.length()) {
+            return "";
+        }
         int[] arr = new int[256];
-        for(char c : tArr) {
-            arr[c-'A']++;
+        int count = 0;
+        for(char c : t.toCharArray()) {
+            arr[c]++;
+            count++;
         }
-
-        int total = tArr.length;
-        int sp = 0;
+        
+        int size = Integer.MAX_VALUE;
         String res = "";
-        for(int i =0;i< sArr.length;i++) {
-            if(arr[sArr[i] - 'A']-- > 0) total--;
-            if(total == 0) {
-                while(++arr[sArr[sp] - 'A'] <= 0) {
-                    sp++;
+        int i=0;
+        int j=0;
+        while(i<s.length() && j<s.length()) {
+            while(j<s.length() && count>0) {
+                if(arr[s.charAt(j)]>0) {
+                    count--;
                 }
-                if(res == "" || i-sp+1 < res.length()) {
-                    res = s.substring(sp,i+1);
-                }
-                sp++;
-                total++;
+                arr[s.charAt(j)]--;
+                j++;
             }
+            
+            if(count !=0) {
+                break;
+            }
+            
+            while(i<s.length() && arr[s.charAt(i)] != 0) {
+                arr[s.charAt(i)]++;
+                i++;
+            }
+            
+            if(size > j-i) {
+                size = j-i;
+                res = s.substring(i, j);
+            }
+            
+            arr[s.charAt(i)]++;
+            i++;
+            count++;
         }
-
+        
+        if(size == Integer.MAX_VALUE) {
+            return "";
+        }
+        
+        return res;
+    }
   # Sliding Window, Two Pointers, HashTable
 
 *105 Construct Binary Tree from Preorder and Inorder Traversal
@@ -914,36 +963,41 @@
   - Deque<> deque = new LinkedList<>(Arrays.asList(data.split(",")))
   - (int)Math.pow(2,n), (int)Math.log(8)
   - convert tree to array, children of arr[i] should be 2*i+1, 2*i+2. i is index rather than tree level.
-  -     // Encodes a tree to a single string.
+    // Encodes a tree to a single string.
     public String serialize(TreeNode root) {
         StringBuilder sb = new StringBuilder();
-        traverse(root, sb);
+        preorder(root, sb);
         return sb.toString();
     }
-
-    private void traverse(TreeNode node, StringBuilder sb) {
+    
+    private void preorder(TreeNode node, StringBuilder sb) {
         if(node == null) {
             sb.append("null,");
             return;
         }
+        
         sb.append(node.val + ",");
-        traverse(node.left, sb);
-        traverse(node.right, sb);
+        preorder(node.left, sb);
+        preorder(node.right, sb);
     }
 
     // Decodes your encoded data to tree.
     public TreeNode deserialize(String data) {
-        Deque<String> queue = new LinkedList<>(Arrays.asList(data.split(",")));
+        Queue<String> queue = new LinkedList<>(Arrays.asList(data.split(",")));
         return build(queue);
     }
-
-    private TreeNode build(Deque<String> queue) {
-        String val = queue.remove();
-        if(val.equals("null")) return null;
-        TreeNode node = new TreeNode(Integer.parseInt(val));
-        node.left = build(queue);
-        node.right = build(queue);
-        return node;
+    
+    public TreeNode build(Queue<String> queue) {
+        String s = queue.poll();
+        if("null".equals(s)) {
+            return null;
+        }
+        
+        TreeNode n = new TreeNode(Integer.parseInt(s));
+        n.left = build(queue);
+        n.right = build(queue);
+        
+        return n;
     }
   # BFS, Preorder Traversal
 
@@ -1506,7 +1560,15 @@
   # 2D DP
 
 *273. Integer to English Words
-  -     while (num > 0) {
+    String[] less20={"", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"};
+    String[] tens={"", "Ten", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"};
+    String[] thousands={"", "Thousand", "Million", "Billion"};
+    
+    public String numberToWords(int num) {
+        if (num == 0) return "Zero";
+        String res = "";
+        int i = 0;
+        while (num > 0) {
             if (num % 1000 != 0) {
                 res = helper(num % 1000) + thousands[i] + " " + res;
             }
@@ -1514,16 +1576,17 @@
             i++;
         }
         return res.trim();
-
-        public String helper(int num) {
-            if (num == 0) return "";
-            if (num < 20) {
-                return less20[num % 20] + " ";
-            } else if (num < 100) {
-                return tens[num / 10] + " " + helper(num % 10);
-            } else {
-                return less20[num / 100] + " Hundred " + helper(num % 100);
-            }}
+    }
+    public String helper(int num) {
+        if (num == 0) return "";
+        if (num < 20) {
+            return less20[num % 20] + " ";
+        } else if (num < 100) {
+            return tens[num / 10] + " " + helper(num % 10);
+        } else {
+            return less20[num / 100] + " Hundred " + helper(num % 100);
+        }
+    }
   # Recursion
 
 67. Add Binary
@@ -2178,45 +2241,83 @@
 *269. Alien Dictionary
   - Based on the word list order, figure out character order. Compare each pair to find the charater order and create edge from high order to low order. Then do topological sort.
 
-  -     // create edge by compare each pair of word
+    public String alienOrder(String[] words) {
+        if(words == null || words.length == 0) {
+            return "";
+        } else if(words.length ==1) {
+            return words[0];
+        }
+        Map<Character, List<Character>> map = new HashMap<>();
         for(int i=1;i<words.length;i++) {
-            int minLength = Math.min(words[i-1].length(), words[i].length());
-            for(int j=0;j<minLength;j++) {
-                if(words[i-1].charAt(j) != words[i].charAt(j)) {
-                    if(!map.containsKey(words[i-1].charAt(j))) {
-                        map.put(words[i-1].charAt(j), new LinkedList<>());
-                    }
-                    map.get(words[i-1].charAt(j)).add(words[i].charAt(j));
-                    break;
+            char[] dir = compare(words[i-1], words[i], map);
+            if(dir != null && dir[0] == '1') {
+                return "";
+            }
+            if(dir != null) {
+                if(!map.containsKey(dir[0])) {
+                    map.put(dir[0], new LinkedList<>());
                 }
+                map.get(dir[0]).add(dir[1]);
             }
         }
-
+        String res = "";
         Stack<Character> stack = new Stack<>();
         Set<Character> visited = new HashSet<>();
         Set<Character> accessed = new HashSet<>();
-        for(Character c : set) {
+        for(Character c : map.keySet()) {
             if(!visited.contains(c)) {
-                dfs(visited, map, c, stack, accessed);
+                if (!dfs(map, visited, stack, accessed, c)) {
+                    return "";
+                }
             }
         }
-        if(hasCycle) return "";
-
-    private void dfs(Set<Character> visited, Map<Character, List<Character>> map, Character c, Stack<Character> stack, Set<Character> accessed) {
-        visited.add(c); accessed.add(c);
+        while(!stack.isEmpty()) {
+            res += stack.pop();
+        }
+        
+        return res;
+    }
+    private boolean dfs(Map<Character, List<Character>> map, Set<Character> visited, Stack<Character> stack, Set<Character> accessed, Character c) {
+        accessed.add(c);
+        
         if(map.containsKey(c)) {
-            for(Character ch : map.get(c)) {
-                if(accessed.contains(ch)) {
-                    hasCycle = true;
-                    return;
+            for(char child : map.get(c)) {
+                if(accessed.contains(child)) {
+                    return false;
                 }
-                if(!visited.contains(ch)) {
-                    dfs(visited, map, ch, stack, accessed);
+                if(!visited.contains(child)) {
+                    if (!dfs(map, visited, stack, accessed, child)) {
+                        return false;
+                    }
                 }
             }
         }
         accessed.remove(c);
+        visited.add(c);
         stack.push(c);
+        return true;
+    }
+    private char[] compare(String s1, String s2, Map<Character, List<Character>> map) {
+        for(Character c : s1.toCharArray()) {
+            if(!map.containsKey(c)) {
+                map.put(c, new LinkedList<>());
+            }
+        }
+        for(Character c : s2.toCharArray()) {
+            if(!map.containsKey(c)) {
+                map.put(c, new LinkedList<>());
+            }
+        } 
+        for(int i=0;i< Math.min(s1.length(), s2.length());i++) {
+            if(s1.charAt(i) != s2.charAt(i)) {
+                return new char[]{s1.charAt(i), s2.charAt(i)};
+            }
+        }
+        if(s1.length() > s2.length()) {
+            return new char[]{'1', '1'};
+        }
+        
+        return null;
     }
   - Refer to 207 Course Schedule
   # Topological Sort, DFS, Directed Graph, Character Order

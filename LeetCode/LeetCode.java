@@ -457,48 +457,57 @@
         }
     }
   - // DP, time out
-        for(int i=0;i<s.length();i++) {
-            String str = s.substring(0, i+1);
-            List<String> list = new ArrayList<>();
-
-            // Take approach 2, iterate through word dictionary
+        List<String>[] results = new LinkedList[s.length()+1];
+        for(int i= 0;i<=s.length();i++) {
+            results[i] = new LinkedList<>();
+        }
+        
+        for(int i=1;i<=s.length();i++) {
             for(String word : wordDict) {
-                if(word.equals(str)) {
-                    list.add(word);
-                    continue;
-                }
-
-                if(word.length() <= str.length() && str.endsWith(word) && map.containsKey(str.substring(0,str.length()-word.length()))){
-                    List<String> l = map.get(str.substring(0,str.length()-word.length()));
-                    for(String se : l) {
-                        list.add(se + " " + word);
+                if(i>=word.length() && word.equals(s.substring(i-word.length(), i))) {
+                    if(i-word.length() == 0) {
+                        results[i].add(word);
+                    } else if (results[i-word.length()].size() > 0) {
+                        for(int j=0;j<results[i-word.length()].size();j++) {
+                            String oldS = results[i-word.length()].get(j);
+                            results[i].add(oldS + " " + word);
+                        }
                     }
-
+                }                
+            }
+        }
+        
+        return results[s.length()];
+    - // DFS + Memorization, top down. Map keeps String and its combinitions
+    public List<String> wordBreak(String s, List<String> wordDict) {
+        return dfs(s, new HashMap<>(), wordDict);
+    }
+    
+    private List<String> dfs(String s, Map<String, List<String>> map, List<String> wordDict) {
+        // cache for memorization
+        if(map.containsKey(s)) {
+            return map.get(s);
+        }
+        
+        if(s.isEmpty()) {
+            // careful here, not empty list 
+            return Collections.singletonList("");
+        }
+        
+        List<String> list = new LinkedList<>();
+        for(String word: wordDict) {
+            if(s.startsWith(word)) {
+                List<String> children  = dfs(s.substring(word.length()), map, wordDict);
+                
+                for(String child : children) {
+                    list.add(word + (child.equals("") ? "" : " " + child));
                 }
             }
-
-            map.put(str, list);
         }
-    - // DFS + Memorization, top down. Map keeps String and its combinitions
-    List<String> DFS(String s, Set<String> wordDict, HashMap<String, LinkedList<String>>map) {
-        // Important memorization
-        if (map.containsKey(s))
-            return map.get(s);
-        // Inlcude all possible solutions for String s
-        LinkedList<String>res = new LinkedList<String>();
-        if (s.length() == 0) {
-            res.add("");
-            return res;
-        }
-        for (String word : wordDict) {
-            if (s.startsWith(word)) {
-                List<String>sublist = DFS(s.substring(word.length()), wordDict, map);
-                for (String sub : sublist)
-                    res.add(word + (sub.isEmpty() ? "" : " ") + sub);
-            }
-        }
-        map.put(s, res);
-        return res;
+        
+        map.put(s, list);
+        return list;
+    }
     }
 
 152 Maximum Product Subarray
@@ -3318,6 +3327,25 @@
   # 2D DP
 
 340. Longest Substring with At Most K Distinct Characters
+        int[] arr = new int[256];
+        int count = 0;
+        int res = 0;
+        
+        for(int i=0, j=0;i<s.length();i++) {
+            arr[s.charAt(i)]++;
+            if(arr[s.charAt(i)] == 1) {
+                count++;
+                while(count > k) {
+                    arr[s.charAt(j)]--;
+                    if(arr[s.charAt(j)] == 0) {
+                        count--;
+                    }
+                    j++;
+                }
+            } 
+            
+            res = Math.max(res, i-j+1);
+        }
   # Two Pointers, HashMap
 
 *346. Moving Average from Data Stream
@@ -4200,35 +4228,46 @@
   # DP
 
 65. Valid Number
-         // flags
+        if (s == null) return false;
+        s = s.trim();
+        int n = s.length();
+        if (n == 0) return false;
+        
+        // flags
         int signCount = 0;
         boolean hasE = false;
         boolean hasNum = false;
         boolean hasPoint = false;
-
+        
         for (int i = 0; i < n; i++) {
             char c = s.charAt(i);
+            
             // invalid character
             if (!isValid(c)) return false;
+            
             // digit is always fine
             if (c >= '0' && c <= '9') hasNum = true;
+            
             // e or E
             if (c == 'e' || c == 'E') {
                 // e cannot appear twice and digits must be in front of it
                 if (hasE || !hasNum) return false;
                 // e cannot be the last one
                 if (i == n - 1) return false;
+                
                 hasE = true;
             }
+            
             // decimal place
             if (c == '.') {
                 // . cannot appear twice and it cannot appear after e
                 if (hasPoint || hasE) return false;
                 // if . is the last one, digits must be in front of it, e.g. "7."
                 if (i == n - 1 && !hasNum) return false;
-
+                
                 hasPoint = true;
             }
+            
             // signs
             if (c == '+' || c == '-') {
                 // no more than 2 signs
@@ -4237,8 +4276,17 @@
                 if (i == n - 1) return false;
                 // sign can appear in the middle only when e appears in front
                 if (i > 0 && !hasE) return false;
-
-                signCount++;}}
+                
+                signCount++;
+            }
+        }
+        
+        return true;
+    }
+    
+    boolean isValid(char c) {
+        return c == '.' || c == '+' || c == '-' || c == 'e' || c == 'E' || c >= '0' && c <= '9';
+    }
   # String
 
 767. Reorganize String

@@ -19,7 +19,8 @@ Notes
   - Alarm
 
 * Storage
-  - schema, sql, nosql, file system, memory
+  - schema
+  - sql, nosql, file system, memory
   - read, write
 
 * Scale

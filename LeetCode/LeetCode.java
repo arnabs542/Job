@@ -97,37 +97,76 @@
 *146. LRU(Least Recently Used) Cache
   - HashMap, Double LinkedList
   - Create Dummy head and tail node, tail node helps remove node
-  - private void addNode(LinkedNode node){
-        node.next = head.next;node.pre = head;
-        head.next.pre = node;head.next = node;
-    }
-    private void removeNode(LinkedNode node){node.next.pre = node.pre;node.pre.next = node.next;}
-    private void moveToHead(LinkedNode node){removeNode(node); addNode(node);}
-    public int get(int key) {
-        if (cache.containsKey(key)){
-            LinkedNode node = cache.get(key);
-            moveToHead(node);
-            return node.value;
-        }
-        return -1;
-    }
-    public void put(int key, int value) {
-        LinkedNode node  = cache.get(key);
-        if (node == null){
-            node = new LinkedNode(key, value);
-            addNode(node);
-            cache.put(key,node);
-            ++count;
-            if (count > _capacity){
-                cache.remove(tail.pre.key);
-                removeNode(tail.pre);
-                count--;
+  class LRUCache {
+      class Node {
+            int key;
+            int value;
+            Node pre;
+            Node next;
+            public Node(int key, int value) {
+                this.key = key;
+                this.value = value;
             }
-        } else {
-            node.value = value;
-            moveToHead(node);
         }
-    }
+
+        private int capacity;
+        private Node head;
+        private Node tail;
+        private Map<Integer, Node> map;
+
+        public LRUCache(int capacity) {
+            this.capacity = capacity;
+            this.head =  new Node(Integer.MIN_VALUE,0);
+            this.tail = new Node(Integer.MIN_VALUE, 1);
+            head.next = tail;
+            tail.pre = head;
+            map = new HashMap<>();
+        }
+
+      public int get(int key) {
+          if(!map.containsKey(key)) return -1;
+          Node n = map.get(key);
+          //remove n
+          n.pre.next = n.next;
+          n.next.pre = n.pre;
+          // add to pre tail
+          tail.pre.next = n;
+          n.pre = tail.pre;
+          n.next = tail;
+          tail.pre = n;
+
+          return n.value;
+      }
+
+      public void put(int key, int value) {
+          if(map.containsKey(key)) {
+              Node n = map.get(key);
+              n.value = value;
+              //remove n
+              n.pre.next = n.next;
+              n.next.pre = n.pre;
+              // add to pre tail
+              tail.pre.next = n;
+              n.pre = tail.pre;
+              n.next = tail;
+              tail.pre = n;
+          } else {
+              Node node = new Node(key, value);
+              map.put(node.key, node);
+              if(capacity == 0) {
+                  map.remove(head.next.key);
+                  head.next.next.pre = head;
+                  head.next = head.next.next;
+                  capacity++;
+              }
+              tail.pre.next = node;
+              node.pre = tail.pre;
+              node.next = tail;
+              tail.pre = node;
+              capacity--;
+          }
+      }
+  }
   # Double LinkedList, HashMap
 
 *206. Reverse Linked List
@@ -196,7 +235,7 @@
         }
         return sort(lists, 0, lists.length-1);
     }
-    
+
     public ListNode sort(ListNode[] lists, int l, int r) {
         if(l == r) {
             return lists[l];
@@ -204,10 +243,10 @@
         int mid = (r-l)/2 + l;
         return merge(sort(lists, l, mid), sort(lists, mid+1, r));
     }
-    
+
     public ListNode merge(ListNode n1, ListNode n2) {
         if(n1 == null && n2 ==null) {
-            return null; 
+            return null;
         }
         if (n1 == null) {
             return n2;
@@ -461,7 +500,7 @@
         for(int i= 0;i<=s.length();i++) {
             results[i] = new LinkedList<>();
         }
-        
+
         for(int i=1;i<=s.length();i++) {
             for(String word : wordDict) {
                 if(i>=word.length() && word.equals(s.substring(i-word.length(), i))) {
@@ -473,38 +512,38 @@
                             results[i].add(oldS + " " + word);
                         }
                     }
-                }                
+                }
             }
         }
-        
+
         return results[s.length()];
     - // DFS + Memorization, top down. Map keeps String and its combinitions
     public List<String> wordBreak(String s, List<String> wordDict) {
         return dfs(s, new HashMap<>(), wordDict);
     }
-    
+
     private List<String> dfs(String s, Map<String, List<String>> map, List<String> wordDict) {
         // cache for memorization
         if(map.containsKey(s)) {
             return map.get(s);
         }
-        
+
         if(s.isEmpty()) {
-            // careful here, not empty list 
+            // careful here, not empty list
             return Collections.singletonList("");
         }
-        
+
         List<String> list = new LinkedList<>();
         for(String word: wordDict) {
             if(s.startsWith(word)) {
                 List<String> children  = dfs(s.substring(word.length()), map, wordDict);
-                
+
                 for(String child : children) {
                     list.add(word + (child.equals("") ? "" : " " + child));
                 }
             }
         }
-        
+
         map.put(s, list);
         return list;
     }
@@ -799,25 +838,25 @@
     int res = Integer.MIN_VALUE;
     public int maxPathSum(TreeNode root) {
         postorder(root);
-        
+
         return res;
     }
-    
+
     private int postorder(TreeNode node) {
         if(node == null) {
             return 0;
         }
-        
+
         int l = postorder(node.left);
         int r = postorder(node.right);
-        
+
         int sum = node.val + l + r;
-        
+
         res = Math.max(sum, res);
-        
-        
+
+
         int returnV = Math.max(l ,r);
-        
+
         return returnV+node.val > 0 ? returnV+node.val : 0;
     }
   # PostOrder Traversal, Binary Tree
@@ -848,7 +887,7 @@
             arr[c]++;
             count++;
         }
-        
+
         int size = Integer.MAX_VALUE;
         String res = "";
         int i=0;
@@ -861,30 +900,30 @@
                 arr[s.charAt(j)]--;
                 j++;
             }
-            
+
             if(count !=0) {
                 break;
             }
-            
+
             while(i<s.length() && arr[s.charAt(i)] != 0) {
                 arr[s.charAt(i)]++;
                 i++;
             }
-            
+
             if(size > j-i) {
                 size = j-i;
                 res = s.substring(i, j);
             }
-            
+
             arr[s.charAt(i)]++;
             i++;
             count++;
         }
-        
+
         if(size == Integer.MAX_VALUE) {
             return "";
         }
-        
+
         return res;
     }
   # Sliding Window, Two Pointers, HashTable
@@ -978,13 +1017,13 @@
         preorder(root, sb);
         return sb.toString();
     }
-    
+
     private void preorder(TreeNode node, StringBuilder sb) {
         if(node == null) {
             sb.append("null,");
             return;
         }
-        
+
         sb.append(node.val + ",");
         preorder(node.left, sb);
         preorder(node.right, sb);
@@ -995,17 +1034,17 @@
         Queue<String> queue = new LinkedList<>(Arrays.asList(data.split(",")));
         return build(queue);
     }
-    
+
     public TreeNode build(Queue<String> queue) {
         String s = queue.poll();
         if("null".equals(s)) {
             return null;
         }
-        
+
         TreeNode n = new TreeNode(Integer.parseInt(s));
         n.left = build(queue);
         n.right = build(queue);
-        
+
         return n;
     }
   # BFS, Preorder Traversal
@@ -1019,6 +1058,18 @@
 *215 Kth Largest Element in an Array
   - PriorityQueue is minHeap, poll() removes the least value. Each op takes logk
   - Priority Queue keeps track of k elements. time O(nlogk), space O(n)
+    - PriorityQueue<Integer> pq = new PriorityQueue<>(k, Collections.reverseOrder());
+        for(int n : nums) {
+            pq.add(n);
+        }
+
+        while(k > 1) {
+            pq.poll();
+            k--;
+        }
+
+        return pq.poll();
+
   - Quick Select, select pivot, compare and return left index, if left index = k, then return. (http://www.geekviewpoint.com/java/search/quickselect)
   -   private int quickSelect(int[] nums, int k, int left, int right) {
           int index = partition(nums, left, right);
@@ -1572,7 +1623,7 @@
     String[] less20={"", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"};
     String[] tens={"", "Ten", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"};
     String[] thousands={"", "Thousand", "Million", "Billion"};
-    
+
     public String numberToWords(int num) {
         if (num == 0) return "Zero";
         String res = "";
@@ -1667,10 +1718,13 @@
          2 3
         4 5
            6  should be [[4], [2], [1,5], [3,6]], if tree traversal [...[6,3]]
-  - find min and max, left -1, right +1. BFS.
   - create second queue to track index
+  - Refer to 987
   - TreeMap map.values()
-  -     Queue<TreeNode> queue = new LinkedList<>();
+    public List<List<Integer>> verticalOrder(TreeNode root) {
+        if(root == null) return Collections.emptyList();
+        TreeMap<Integer,List<Integer>> map = new TreeMap<>();
+        Queue<TreeNode> queue = new LinkedList<>();
         Queue<Integer> iQueue = new LinkedList<>();
         queue.add(root);
         iQueue.add(0);
@@ -1697,6 +1751,7 @@
         List<List<Integer>> res = new LinkedList<>();
         map.values().forEach(res::add);
         return res;
+        }
   # Tree, BFS
 
 *157. Read N Characters Given Read4
@@ -1741,7 +1796,7 @@
         int colA = A[0].length;
         int colB = B[0].length;
         int[][] res = new int[rowA][colB];
-        
+
         for(int i=0;i<rowA;i++) {
             for(int j=0;j<colA;j++) {
                 if(A[i][j] != 0) {
@@ -1843,14 +1898,46 @@
     posRight = new int[n], tracks start index of largest sum of k elements from right to left.
   - mid interval is [i, i+k-1], where k<=i<=n-2k, left interval [0,i-1], right interval [i+k, n-1]
   -
-          for (int i = k; i <= n-2*k; i++) {
-            int l = posLeft[i-1], r = posRight[i+k];
-            int tot = (sum[i+k]-sum[i]) + (sum[l+k]-sum[l]) + (sum[r+k]-sum[r])
-            if (tot > maxsum) {
-                maxsum = tot;
-                ans = {l, i, r};
+    public int[] maxSumOfThreeSubarrays(int[] nums, int k) {
+        int n = nums.length;
+        int maxSum = 0;
+        int[] sum = new int[n+1];
+        int[] posLeft = new int[n];
+        int[] posRight = new int[n];
+        int[] ans = new int[3];
+        for(int i=0;i<n;i++) {
+            sum[i+1] = sum[i] + nums[i];
+        }
+
+        for(int i=k-1, total=0;i<n;i++) {
+            if(sum[i+1] - sum[i+1-k] > total) {
+                posLeft[i] = i+1-k;
+                total = sum[i+1] - sum[i+1-k];
+            } else {
+                posLeft[i] = posLeft[i-1];
             }
         }
+
+        for(int i=n-k, total =0;i>=0;i--) {
+            if(sum[i+k] - sum[i] >=total) {
+                posRight[i] = i;
+                total = sum[i+k]-sum[i];
+            } else {
+                posRight[i] = posRight[i+1];
+            }
+        }
+
+        for(int i=k;i<=n-2*k;i++) {
+            int l = posLeft[i-1];
+            int r = posRight[i+k];
+            int total = (sum[i+k]-sum[i]) + (sum[l+k]-sum[l]) + (sum[r+k]-sum[r]);
+            if (total > maxSum) {
+                maxSum = total;
+                ans[0] = l; ans[1] = i; ans[2] = r;
+            }
+        }
+        return ans;
+    }
   # Array, DP
 
 252. Meeting Rooms
@@ -1967,6 +2054,8 @@
             if(res[i]==0 && builder.length() == 0) continue;
             builder.append(res[i]);
         }
+        return builder.toString().equals("") ? "0" : builder.toString() ;
+
   # String, Math
 
 *285. Inorder Successor in BST
@@ -2197,6 +2286,24 @@
   # Reservior Sampling
 
 824. Goat Latin
+    public String toGoatLatin(String S) {
+        String[] arr = S.split(" ");
+        String toAppend = "maa";
+        StringBuilder sb = new StringBuilder();
+        for (int i=0;i<arr.length;i++) {
+            sb.append(transform(arr[i], toAppend) + " ");
+            toAppend +="a";
+        }
+        return sb.toString().trim();
+    }
+
+    private String transform(String s, String toAppend) {
+        Character c = Character.toLowerCase(s.charAt(0));
+        if(c !='a' && c!='e' && c!='i' && c!='o' && c!='u') {
+            s = s.substring(1) + s.charAt(0);
+        }
+        return s+toAppend;
+    }
   # String
 
 *825. Friends Of Appropriate Ages
@@ -2232,18 +2339,46 @@
 
 *380. Insert Delete GetRandom O(1)
   - Maintain HashMap of val and index, ArrayList of val. For insertion, insert to both. For deletion, swap the val to delete in ArrayList with the last elem, and change the last elem index in HashMap.
-  - public boolean remove(int val) {
-        if(!map.containsKey(val)) return false;
-        int index = map.get(val);
-        int v = list.get(list.size()-1);
-        list.set(index, v);
-        map.put(v, index);
+    public RandomizedSet() {
+        map = new HashMap<>();
+        list = new LinkedList<>();
+        rand = new Random();
+    }
+
+    /** Inserts a value to the set. Returns true if the set did not already contain the specified element. */
+    public boolean insert(int val) {
+        if(map.containsKey(val)) return false;
+
+        map.put(val, list.size());
+        list.add(val);
+
+        return true;
+    }
+
+    /** Removes a value from the set. Returns true if the set contained the specified element. */
+    public boolean remove(int val) {
+        if(!map.containsKey(val)) {
+            return false;
+        }
+
+        int pos = map.get(val);
+
+        if(pos != list.size()-1) {
+            list.set(pos, list.get(list.size()-1));
+            map.put(list.get(list.size()-1), pos);
+        }
+
         list.remove(list.size()-1);
         map.remove(val);
         return true;
     }
+
+    /** Get a random element from the set. */
     public int getRandom() {
-        return list.get(random.nextInt(list.size()));
+        int size  = list.size();
+        int num = rand.nextInt(size);
+
+        return list.get(num);
     }
   # Design, HashMap, ArrayList
 
@@ -2283,12 +2418,12 @@
         while(!stack.isEmpty()) {
             res += stack.pop();
         }
-        
+
         return res;
     }
     private boolean dfs(Map<Character, List<Character>> map, Set<Character> visited, Stack<Character> stack, Set<Character> accessed, Character c) {
         accessed.add(c);
-        
+
         if(map.containsKey(c)) {
             for(char child : map.get(c)) {
                 if(accessed.contains(child)) {
@@ -2316,7 +2451,7 @@
             if(!map.containsKey(c)) {
                 map.put(c, new LinkedList<>());
             }
-        } 
+        }
         for(int i=0;i< Math.min(s1.length(), s2.length());i++) {
             if(s1.charAt(i) != s2.charAt(i)) {
                 return new char[]{s1.charAt(i), s2.charAt(i)};
@@ -2325,7 +2460,7 @@
         if(s1.length() > s2.length()) {
             return new char[]{'1', '1'};
         }
-        
+
         return null;
     }
   - Refer to 207 Course Schedule
@@ -3032,21 +3167,27 @@
   - either [left, mid] or (mid,right] is sorted, check in sorted side
   - draw pic like (https://www.youtube.com/watch?v=w6nusIojP9c)
   - attention to using >= or >
-  -       while(l<=r) {
-            int mid = l + (r-l)/2;
+        int l = 0;
+        int r = nums.length-1;
+        while(l<=r) {
+            int mid = (l+r)/2;
+
             if(nums[mid] == target) return mid;
-            if(nums[mid] >= nums[l]) {
-                if(target>=nums[l] && target<=nums[mid]) {
+
+            if(nums[l] <= nums[mid]) {
+                if(target >= nums[l] && target < nums[mid]) {
                     r = mid-1;
                 } else {
-                    l = mid+1;
+                    l = mid + 1;
                 }
             } else {
-                if(target>=nums[mid] && target<=nums[r]) {
-                    l = mid+1;
+                if(target > nums[mid] && target <= nums[r]) {
+                    l = mid +1;
                 } else {
-                    r = mid-1;
-                }}}
+                    r = mid -1;
+                }
+            }
+        }
   # Binary Search
 
 *153. Find Minimum in Rotated Sorted Array
@@ -3330,7 +3471,7 @@
         int[] arr = new int[256];
         int count = 0;
         int res = 0;
-        
+
         for(int i=0, j=0;i<s.length();i++) {
             arr[s.charAt(i)]++;
             if(arr[s.charAt(i)] == 1) {
@@ -3342,8 +3483,8 @@
                     }
                     j++;
                 }
-            } 
-            
+            }
+
             res = Math.max(res, i-j+1);
         }
   # Two Pointers, HashMap
@@ -4188,14 +4329,14 @@
         last = node;
         helper(node.right);
       }}
-  - Use stack for inorder traversal 
+  - Use stack for inorder traversal
         Node pre;
         Node next = null;
         while(!stack.isEmpty() ||  root != null) {
             while(root != null) {
                 stack.push(root);
                 root = root.left;
-            } 
+            }
             pre = next;
             next = stack.pop();
             if(pre != null) {
@@ -4222,7 +4363,52 @@
 987. Vertical Order Traversal of a Binary Tree
   - 在（x, y）坐标相同下，val小的优先。所以不能用level traversal， 反例 [0,2,1,3,null,null,null,4,5,null,7,6,null,10,8,11,9]， 7和6有相同的坐标，根据level traver，7先，但6数值小应该排前头。所以traversal给所有点标上坐标，先根据x分类，然后先比较y然后val
   - Collections.sort(l, (a,b) -> a.y == b.y ? a.val - b.val : b.y - a.y);
-  # Tree Traversal, Compare
+    PriorityQueue<Node> queue = new PriorityQueue<>((a,b)-> a.i != b.i ? a.i-b.i : (a.j != b.j ? a.j - b.j : a.n.val - b.n.val));
+    public List<List<Integer>> verticalTraversal(TreeNode root) {
+        traverse(root, 0, 0);
+        List<List<Integer>> res = new ArrayList<>();
+        List<Integer> list = new ArrayList<>();
+        int row = Integer.MIN_VALUE;
+        while(!queue.isEmpty()) {
+            Node node = queue.poll();
+            if(row == Integer.MIN_VALUE) {
+                row = node.i;
+            }
+            if(row == node.i) {
+                list.add(node.n.val);
+            } else {
+                row = node.i;
+                res.add(list);
+                list = new ArrayList<>();
+                list.add(node.n.val);
+            }
+        }
+        res.add(list);
+        return res;
+    }
+
+    private void traverse(TreeNode n, int i, int j) {
+        if(n == null) {
+            return;
+        }
+        Node node = new Node(i, j, n);
+        queue.add(node);
+        traverse(n.left, i-1, j+1);
+        traverse(n.right, i+1, j+1);
+    }
+
+    public class Node {
+        int i;
+        int j;
+        TreeNode n;
+        public Node(int i, int j, TreeNode n) {
+            this.i = i;
+            this.j = j;
+            this.n = n;
+        }
+    }
+
+  # Tree Traversal, Compare, PriorityQueue
 
 304. Range Sum Query 2D - Immutable
   # DP
@@ -4232,42 +4418,42 @@
         s = s.trim();
         int n = s.length();
         if (n == 0) return false;
-        
+
         // flags
         int signCount = 0;
         boolean hasE = false;
         boolean hasNum = false;
         boolean hasPoint = false;
-        
+
         for (int i = 0; i < n; i++) {
             char c = s.charAt(i);
-            
+
             // invalid character
             if (!isValid(c)) return false;
-            
+
             // digit is always fine
             if (c >= '0' && c <= '9') hasNum = true;
-            
+
             // e or E
             if (c == 'e' || c == 'E') {
                 // e cannot appear twice and digits must be in front of it
                 if (hasE || !hasNum) return false;
                 // e cannot be the last one
                 if (i == n - 1) return false;
-                
+
                 hasE = true;
             }
-            
+
             // decimal place
             if (c == '.') {
                 // . cannot appear twice and it cannot appear after e
                 if (hasPoint || hasE) return false;
                 // if . is the last one, digits must be in front of it, e.g. "7."
                 if (i == n - 1 && !hasNum) return false;
-                
+
                 hasPoint = true;
             }
-            
+
             // signs
             if (c == '+' || c == '-') {
                 // no more than 2 signs
@@ -4276,14 +4462,14 @@
                 if (i == n - 1) return false;
                 // sign can appear in the middle only when e appears in front
                 if (i > 0 && !hasE) return false;
-                
+
                 signCount++;
             }
         }
-        
+
         return true;
     }
-    
+
     boolean isValid(char c) {
         return c == '.' || c == '+' || c == '-' || c == 'e' || c == 'E' || c >= '0' && c <= '9';
     }
@@ -4466,6 +4652,32 @@
   # HashMap, Two Pointers
 
 246. Strobogrammatic Number
+    Set<String> set = new HashSet<>(Arrays.asList(new String[]{"69", "96", "88", "00", "11"}));
+    public boolean isStrobogrammatic(String num) {
+        if(num == null || num.length() == 0) return true;
+
+        // 012
+        if(num.length()%2 == 1) {
+            return checkSingle(""+num.charAt(num.length()/2)) && check(num, num.length()/2-1, num.length()/2+1);
+        } else {
+            return check(num, num.length()/2-1, num.length()/2);
+        }
+    }
+
+    private boolean checkSingle(String s) {
+            Set<String> set = new HashSet<>(Arrays.asList(new String[]{"0", "1", "8"}));
+        return set.contains(s);
+    }
+
+    private boolean check(String s, int i, int j) {
+        for(;i>=0;i--,j++) {
+            String str = "" + s.charAt(i) + s.charAt(j);
+            if(!set.contains(str)) {
+                return false;
+            }
+        }
+        return true;
+    }
   # Two Pointers
 
 708. Insert into a Sorted Circular Linked List
@@ -6196,36 +6408,36 @@ class Solution {
   -         if(matrix == null || matrix.length == 0) {
             return new int[0];
         }
-        
+
         int rows = matrix.length;
         int cols = matrix[0].length;
-        
+
         int i = 0;
         int j = 0;
         int dir = -1;
-        
+
         int[] res = new int[rows*cols];
         int n=0;
-        
-        
+
+
         while(true) {
             if(i>= rows || j>=cols) {
                 break;
             }
-            
+
             res[n++] = matrix[i][j];
-            
+
             if(i+dir<rows && i+dir>=0 && j - dir < cols && j - dir >=0) {
                 i += dir;
                 j -= dir;
                 continue;
-            } 
-            
+            }
+
             if(dir == -1) {
                 if(j-dir < cols) {
                     j -= dir;
                 } else {
-                    i -= dir;                    
+                    i -= dir;
                 }
                 dir = 1;
             } else {
@@ -6239,7 +6451,7 @@ class Solution {
         }
 
 767. Reorganize String
-  -  Reorganize string to have adjacent char not the same. 找出最多的char，先隔开放。然后把所有剩下的隔开放，顺序无所谓。共跑奇偶2遍       
+  -  Reorganize string to have adjacent char not the same. 找出最多的char，先隔开放。然后把所有剩下的隔开放，顺序无所谓。共跑奇偶2遍
         int[] arr = new int[256];
         int max = 0;
         char ch = 0;
@@ -6250,7 +6462,7 @@ class Solution {
                 ch = c;
             }
         }
-        
+
         if(S.length()%2 == 0) {
             if(max > S.length()/2) {
                 return "";
@@ -6260,7 +6472,7 @@ class Solution {
                 return "";
             }
         }
-        
+
         char[] res = new char[S.length()];
         int index = 0;
         while(arr[ch]>0) {
@@ -6268,7 +6480,7 @@ class Solution {
             index +=2;
             arr[ch]--;
         }
-        
+
         // 跑2遍，奇偶
         for(char c = 'a';c <= 'z'; c++) {
             while(arr[c]>0) {
@@ -6283,9 +6495,126 @@ class Solution {
         // Rather than res.toString()
         return new String(res);
 
+1123. Lowest Common Ancestor of Deepest Leaves
+    - 找所有最深leaves的common Ancestor
+        int height = getHeight(root);
+        return lca(root, height, 1);
 
+    private int getHeight(TreeNode node) {
+        if(node == null) return 0 ;
+        return 1 + Math.max(getHeight(node.left), getHeight(node.right));
+    }
 
+    private TreeNode lca(TreeNode node, int height, int h) {
+        if(node == null) {
+            return null;
+        }
+        if(height == h) {
+            return node;
+        }
+        TreeNode l = lca(node.left, height, h+1);
+        TreeNode r = lca(node.right, height, h+1);
 
+        if(l != null && r != null) {
+            return node;
+        }
+        if(l != null) return l;
+        if(r != null) return r;
 
+        return null;
+    }
+    # Tree
 
+658. Find K Closest Elements
+    public List<Integer> findClosestElements(int[] arr, int k, int x) {
+        int l = 0;
+        int r = arr.length-1;
+        // Find closest element
+        while(l<r-1) {
+            int mid = (l+r)/2;
+            if(arr[mid] > x) {
+                r = mid;
+            } else {
+                l = mid;
+            }
+        }
+        if(x - arr[l] > arr[r] - x) {
+            l = r;
+        }
+        // 左右比较找出k个
+        int i=l;
+        int j=l;
+        while(j-i<k-1) {
+            if(i-1>=0 && j+1<arr.length) {
+                if(x - arr[i-1] <= arr[j+1] - x) {
+                    i--;
+                } else {
+                    j++;
+                }
+            } else if(i-1>=0) {
+                i--;
+            } else {
+                j++;
+            }
+        }
 
+        List<Integer> list = new ArrayList<>();
+        for(;i<=j;i++) {
+            list.add(arr[i]);
+        }
+
+        return list;
+    }
+    # Binary Search
+
+1026. Maximum Difference Between Node and Ancestor
+  # Preoder, Tree
+
+839. Similar String Groups
+  # DFS, undirectonal   Connected Component
+
+339. Nested List Weight Sum
+  # DFS
+
+227. Basic Calculator II
+      public int calculate(String s) {
+          s = s.replaceAll("\\s","");
+          Stack<Integer> ns = new Stack<>();
+          Stack<Character> cs = new Stack<>();
+          // 先算 * /
+          for(int i=0;i<s.length();i++) {
+              if(s.charAt(i) == '+' || s.charAt(i) == '-' || s.charAt(i) == '*' || s.charAt(i) == '/') {
+                  cs.push(s.charAt(i));
+                  continue;
+              }
+
+              int n = 0;
+              while(i<s.length() && Character.isDigit(s.charAt(i))) {
+                  n  = 10*n + (s.charAt(i) - '0');
+                  i++;
+              }
+              if(!cs.isEmpty() && cs.peek() == '/') {
+                  cs.pop();
+                  ns.push(ns.pop() / n);
+              } else if(!cs.isEmpty() && cs.peek() == '*') {
+                  cs.pop();
+                  ns.push(ns.pop() * n);
+              } else {
+                  ns.push(n);
+              }
+              i--;
+          }
+
+          int res = 0;
+          while(!cs.isEmpty()) {
+              if(cs.peek() == '+') {
+                  res += ns.pop();
+              } else {
+                  res -= ns.pop();
+              }
+              cs.pop();
+          }
+
+          return res + ns.pop();
+      }
+  # Stack

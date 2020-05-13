@@ -1655,16 +1655,35 @@
 253. Meeting Rooms II
   - Refer to The Skyline Problem
   - Sort by time in increasing order, start marks 1, end marks -1. end executes prior to start if time is the same.
-  -     for(Interval interval : intervals) {
-            list.add(new int[]{interval.start, 1});
-            list.add(new int[]{interval.end,-1});
+  - public int minMeetingRooms(int[][] intervals) {
+        int[] start = new int[intervals.length];
+        int[] end = new int[intervals.length];
+        for(int i=0;i<intervals.length;i++) {
+            start[i] = intervals[i][0];
+            end[i] = intervals[i][1];
         }
-        Collections.sort(list, (a,b)->a[0] == b[0] ? a[1]-b[1] : a[0]-b[0]);
-        int curr = 0;int res = 0;
-        for(int[] t:list) {
-            curr += t[1];
-            res = Math.max(res, curr);
+
+        Arrays.sort(start);
+        Arrays.sort(end);
+
+        int res = 0;
+        int count = 0;
+        for(int i=0, j=0;i<start.length;) {
+            if(start[i] < end[j]) {
+                count++;
+                i++;
+                res = Math.max(res, count);
+            } else if(start[i] > end[j]) {
+                count--;
+                j++;
+            } else {
+                i++;
+                j++;
+            }
         }
+
+        return res;
+    }
   # Sweep Line
 
 325. Maximum Size Subarray Sum Equals k
@@ -3281,6 +3300,35 @@
   # Binary Search, Tree, Complete Tree
 
 247. Strobogrammatic Number II
+  - build n digit Strobogrammatic number
+    char[] sArr = new char[]{'0','1','8',};
+    char[][] arr = new char[][]{{'6','9'},{'9','6'},{'1','1'},{'0','0'},{'8','8'}};
+
+    public List<String> findStrobogrammatic(int n) {
+        List<String> res = new LinkedList<>();
+        if(n % 2 == 1) {
+            for(char c : sArr) {
+                construct(res, "" + c, n-1);
+            }
+        } else {
+            construct(res, "", n);
+        }
+        return res;
+
+    }
+
+    private void construct(List<String> res, String s, int n) {
+        if(n == 0) {
+            res.add(s);
+            return;
+        }
+
+        for(char[] cr : arr) {
+            if(n == 2 && cr[0] == '0') continue;
+            construct(res, cr[0]+s+cr[1],n-2);
+        }
+
+    }
   # String
 
 *248. Strobogrammatic Number III
@@ -6618,3 +6666,127 @@ class Solution {
           return res + ns.pop();
       }
   # Stack
+
+
+93. Restore IP Addresses
+    public List<String> restoreIpAddresses(String s) {
+        List<String> res = new LinkedList<>();
+        dfs(res, 0, 0, s, "");
+        return res;
+    }
+
+    private void dfs(List<String> res, int index, int num, String s, String ns) {
+        if(num == 3) {
+            // corner case "0000"
+            if(s.length() - index >3 || index >= s.length()) {
+                return;
+            } else {
+                String tmp = s.substring(index, s.length());
+                //corner case "1.1.1.001"
+                if(tmp.length() > 1 && tmp.startsWith("0")) return;
+                if (Integer.parseInt(tmp)<=255) {
+                    res.add(ns+ tmp);
+                }
+                return;
+            }
+        }
+
+        for(int i=index;i<s.length() && i<= index + 3;i++) {
+            String tmp = s.substring(index,i+1);
+            if(tmp.length() > 1 && tmp.startsWith("0")) continue;
+            if(Integer.parseInt(tmp) <= 255) {
+                dfs(res, i+1, num+1, s, ns + tmp +".");
+            }
+        }
+    }
+  # DFS
+
+936. Stamping The Sequence
+  - https://leetcode.com/problems/stamping-the-sequence/discuss/201546/12ms-Java-Solution-Beats-100
+  - Target = ab***bc
+    Target = ab*****
+    Target = *******
+    We will go through the whole Target string to find if there exists any substring equals to Stamp. And then replace the whole substring with *. You can see in the step 1, we replace substring abc with ***. Then we keep doing the same thing. In the step 2, you will find we replace substring *bc to ***. * can match to any character because * will be override by the next stamp. Finally we get the result and output the reversed result. When # of stars equals to target.length(), we will return the result. If during one scan, we are not able to replace even one substring with *, directly return empty array
+  - class Solution {
+        public int[] movesToStamp(String stamp, String target) {
+            char[] S = stamp.toCharArray();
+            char[] T = target.toCharArray();
+            List<Integer> res = new ArrayList<>();
+            boolean[] visited = new boolean[T.length];
+            int stars = 0;
+
+            while (stars < T.length) {
+                boolean doneReplace = false;
+                for (int i = 0; i <= T.length - S.length; i++) {
+                    if (!visited[i] && canReplace(T, i, S)) {
+                        stars = doReplace(T, i, S.length, stars);
+                        doneReplace = true;
+                        visited[i] = true;
+                        res.add(i);
+                        if (stars == T.length) {
+                            break;
+                        }
+                    }
+                }
+
+                if (!doneReplace) {
+                    return new int[0];
+                }
+            }
+
+            int[] resArray = new int[res.size()];
+            for (int i = 0; i < res.size(); i++) {
+                resArray[i] = res.get(res.size() - i - 1);
+            }
+            return resArray;
+        }
+
+        private boolean canReplace(char[] T, int p, char[] S) {
+            for (int i = 0; i < S.length; i++) {
+                if (T[i + p] != '*' && T[i + p] != S[i]) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        private int doReplace(char[] T, int p, int len, int count) {
+            for (int i = 0; i < len; i++) {
+                if (T[i + p] != '*') {
+                    T[i + p] = '*';
+                    count++;
+                }
+            }
+            return count;
+        }
+    }
+    # Greedy
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -204,12 +204,16 @@ Crawler & Typehead
 ---------------------------
 * Web Crawler
   * Scenario
-    1. how many web pages per second
+    1. how many web pages per second: 1.6m pages
     2. how long
-    3. how large 10k average size of a webpage
+    3. how large 10k average size of a webpage: 10k per page, 10p
 
   * Service
     - Crawler
+      - pick up url from queue and load web page
+      - Regular expression to extract content, and store
+      - URL extract and put into queue
+      - matain set to avoid duplicates
     - Storage Service
     - Task Service
 
@@ -237,9 +241,9 @@ Crawler & Typehead
 * multiple threaded
   - multiple crawler + 1 URL queue
   - 3 approaches to resolve multi-threaded buffer write
-    1. sleep
+    1. sleep: thread 先去sleep
     2. condition variable
-    3. semaphore
+    3. semaphore: 允许多个同时写
   - context switch cost, port number limitation, network bottleneck
 
 * distributed web scrawler
@@ -260,7 +264,10 @@ Crawler & Typehead
 * Service
   - QueryService: trie (in memory)
   - DataCollectionService：
-    1. table keyword, hit_count -> prefix, keywords
+    1. table：
+        - keyword: string,
+        - hit_count: number
+        -> prefix, keywords
 
 * distributed trie
   - can't distribute by a, b, c... cause its not averaged. Calculate hash and matain map from hash to distributed server

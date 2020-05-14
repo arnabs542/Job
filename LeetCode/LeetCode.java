@@ -2011,16 +2011,34 @@
 
 *133. Clone Graph
   - undirected graph which includes self cycle. Maintain Map<Integer, Node>,
-  - private void traverse(Node node, Map<Integer, Node> map) {
-        Node root = new Node(node.label);
-        map.put(root.label, root);
+  - Map<Node, Node> map = new HashMap<>();
+    public Node cloneGraph(Node node) {
+        if(node == null) return null;
+        dfs(node);
+        connect(node, new HashSet<>());
+
+        return map.get(node);
+    }
+    private void dfs(Node node) {
+        Node newNode = new Node(node.val);
+        map.put(node, newNode);
         for(Node n : node.neighbors) {
-            // Check if visited
-            if(!map.containsKey(n.label)) {
-                traverse(n, map);
+            if(!map.containsKey(n)) {
+                dfs(n);
             }
-            root.neighbors.add(map.get(n.label));
-        }}
+        }
+    }
+    private void connect(Node node, Set<Node> visited) {
+        visited.add(node);
+        Node newNode = map.get(node);
+        for(Node n: node.neighbors) {
+            newNode.neighbors.add(map.get(n));
+            if(!visited.contains(n)) {
+                visited.add(n);
+                connect(n, visited);
+            }
+        }
+    }
   # DFS, Undirected Graph
 
 161. One Edit Distance
@@ -4768,24 +4786,31 @@
 480. Sliding Window Median
   - 坑是minQ里新加val，maxQ加minQ里最小的。如果减掉的val在minQ里，minQ加maxQ最大的
   - Refer to 295. Find Median from Data Stream
-  -     initializeQueue(nums,k);
+
+  - PriorityQueue<Integer> minQ = new PriorityQueue<>();
+    PriorityQueue<Integer> maxQ = new PriorityQueue<>(Collections.reverseOrder());
+    public double[] medianSlidingWindow(int[] nums, int k) {
+        initializeQueue(nums,k);
         double[] res = new double[nums.length - k + 1];
         res[0] = getMedian(k);
         for(int i = k,j=1;i<nums.length;i++,j++) {
             res[j] = processAndGetMedian(nums, i-k , i, k);
         }
 
-    // maxQ keeps 1 more if k is odd
+        return res;
+    }
+
+    // minQ keeps 1 more if k is odd
     private void initializeQueue(int[] nums, int k) {
         for(int i = 0;i<k;i++) {
             minQ.add(nums[i]);
         }
+
         for(int i=0;i<k/2;i++) {
             maxQ.add(minQ.poll());
         }
     }
 
-    //先加入minQ,然后maxQ，如果减的在minQ里，再从MaxQ里加一个
     private double processAndGetMedian(int[] nums, int remove, int add, int k) {
         minQ.add(nums[add]);
         maxQ.add(minQ.poll());
@@ -4802,7 +4827,6 @@
         if(k%2 ==1) {
             return minQ.peek();
         } else {
-          // 小心 2<<31-1 coner case
             return ((double)minQ.peek() + (double)maxQ.peek()) / 2;
         }
     }
@@ -6762,8 +6786,39 @@ class Solution {
     }
     # Greedy
 
+348. Design Tic-Tac-Toe
+  - Only needs to track each row count, col count and left diag and right diag
+    int[] rowCount;
+    int[] colCount;
+    int diagLeft;
+    int diagRight;
+    int size;
+    public TicTacToe(int n) {
+        rowCount = new int[n];
+        colCount = new int[n];
+        diagLeft = 0;
+        diagRight =0;
+        size = n;
+    }
 
+    public int move(int row, int col, int player) {
+        int move = player == 1 ? 1 : -1;
 
+        rowCount[row] += move;
+        colCount[col] += move;
+        if(row == col) {
+            diagLeft += move;
+        }
+        if(row + col+1 == size)
+            diagRight += move;
+        if(rowCount[row] == size || colCount[col] == size || diagLeft == size || diagRight == size)
+            return 1;
+        if(rowCount[row] == -size || colCount[col] == -size || diagLeft == -size || diagRight == -size)
+            return 2;
+        return 0;
+    }
+}
+  # Graph
 
 
 

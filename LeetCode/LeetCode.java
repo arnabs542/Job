@@ -678,9 +678,29 @@
 *347 Top K Frequent Elements
   - (https://leetcode.com/problems/top-k-frequent-elements/discuss/81635/3-Java-Solution-using-Array-MaxHeap-TreeMap)
   - map.put(key, map.getOrDefault(key, 0) + 1);
-  - TreeMap, sorted by key, treeMap.pollLastEntry().getValue()
   - List<Integer>[] bucket = new List[nums.length+1];
-  # Sort, TreeMap, Bucket Sort
+  -     public int[] topKFrequent(int[] nums, int k) {
+        Map<Integer, Integer> map = new HashMap<>();
+        for(int num : nums) {
+            if(!map.containsKey(num)) {
+                map.put(num,0);
+            }
+            map.put(num, 1 + map.get(num));
+        }
+
+        PriorityQueue<int[]> queue = new PriorityQueue<>(k, (a,b)-> b[1] - a[1]);
+
+        for(int n : map.keySet()) {
+            queue.add(new int[]{n, map.get(n)});
+        }
+
+        int[] res = new int[k];
+        for(int i=0;i<k;i++) {
+            res[i] = queue.poll()[0];
+        }
+        return res;
+    }
+  # Sort, PriorityQueue, Bucket Sort
 
 142 Linked List Cycle II
   - slow = a + b, fast = a + b + c + b, 2 * slow = fast -> a = c
@@ -6820,9 +6840,70 @@ class Solution {
 }
   # Graph
 
+865. Smallest Subtree with all the Deepest Nodes
+  - 找所有最深node的common ancesstor
+    public TreeNode subtreeWithAllDeepest(TreeNode root) {
+        int height = findHi(root);
+        return traverse(root, 1, height);
+    }
 
+    private int findHi(TreeNode node) {
+        if(node == null) return 0;
+        int l = findHi(node.left);
+        int r = findHi(node.right);
+        return 1 + Math.max(l,r);
+    }
 
+    private TreeNode traverse(TreeNode node, int curH, int height) {
+        if(node == null) {
+            return null;
+        }
+        if(curH == height) {
+            return node;
+        }
+        TreeNode l = traverse(node.left, curH +1, height);
+        TreeNode r = traverse(node.right, curH +1, height);
+        if(l != null && r != null) {
+            return node;
+        }
 
+        return l == null ? r : l;
+    }
+  # Tree
+
+*855. Exam Room
+  - O(n) for both seat and leave, seat 循环找到最长的，插入list。leave 删掉list中的index
+  - PriorityQueue for Improvement, O(logn) for seat, O(n) for leave
+    int N;
+    ArrayList<Integer> L = new ArrayList<>();
+    public ExamRoom(int n) {
+        N = n;
+    }
+
+    public int seat() {
+        if (L.size() == 0) {
+            L.add(0);
+            return 0;
+        }
+        int d = Math.max(L.get(0), N - 1 - L.get(L.size() - 1));
+        for (int i = 0; i < L.size() - 1; ++i) d = Math.max(d, (L.get(i + 1) - L.get(i)) / 2);
+        if (L.get(0) == d) {
+            L.add(0, 0);
+            return 0;
+        }
+        for (int i = 0; i < L.size() - 1; ++i)
+            if ((L.get(i + 1) - L.get(i)) / 2 == d) {
+                L.add(i + 1, (L.get(i + 1) + L.get(i)) / 2);
+                return L.get(i + 1);
+            }
+        L.add(N - 1);
+        return N - 1;
+    }
+
+    public void leave(int p) {
+        for (int i = 0; i < L.size(); ++i) if (L.get(i) == p) L.remove(i);
+    }
+  # Ordered List
 
 
 

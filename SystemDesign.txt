@@ -419,10 +419,10 @@ Database System Design (Google Big Table)
 
   Write:
     1. write key
-    2. append key to sorted list (内存排序，最后1次写入)
+    2. append key to sorted list (内存排序，最后1次写入。Write Ahead Log 来断电保护)
     3. serialize to disk file1 （write ahead log to avoid 内存挂了）
 
-  - Read: Add index and bloom filter in memory to map from key to address pointer for each unsorted block (sorted block不需要). All index & bloomfilter for all unsorted blocks are stored in the memory.
+  - Read: Add index and bloom filter in memory to map from key to address pointer for each sorted block in disk (sorted block in memory不需要). All index & bloomfilter for all sorted blocks are stored in the memory.
 
   Memory: file 0 Address0, Index0 bloomfilter0, file1 Address1, Index1 bloomfilter1, Sorted List of 无序块
   Disk: File 0 (index0, Bloomfilter0), File 1(index1, Bloomfilter1)
@@ -438,10 +438,10 @@ Database System Design (Google Big Table)
   - False is always false, true may be true。所以有一定误判率
   - 应用： 黑名单，爬虫重复url检测，字典纠错，磁盘文件检测
 
-* Skip list
+* Skip list (sorted list)
   - matain all new write data in memory
 
-* SSTable
+* SSTable (sorted string talbe in disk)
   - unit that stored in the disk
 
 * Distributed
@@ -455,6 +455,8 @@ Database System Design (Google Big Table)
 ------------------------------------
 Map Reduce
 ------------------------------------
+* 解决统计问题
+
 * 10G才算大数据
 
 * 不提倡用hashmap，因为大数据处理。多台机器的for循环，用map reduce
@@ -474,16 +476,17 @@ Map Reduce
   - 不考虑启动时间，reduce机器越多越好？上限是key的数目
 
 * 计算文章的单词数
-  - Map:拆分单词, 数据放硬盘不是内存，按文章行数分。
-  - Reduce: 汇总单词，按key来分。
+  - Map:key 文章存储地址，value 文章内容。拆分单词, 数据放硬盘不是内存，按文章行数分。
+  - Reduce: key 输出的key，value 输出的 value。汇总单词，按key来分。
   - 传输汇总：Partition and Sort(硬盘外排序) -> Fetch and Merge Sort(k merge sort)
 
-* Inverted Index
+* 应用：Inverted Index
+  - 正向index是文章1，2里有word a,b,c,d. inverted index是 word a,b,c,d在文章1，2
   - Input: 文章Id:单词组
   - Map: key 文章id， value content of the line
   - Reduce: key 单词， value 文章Id.
 
-* Anagram
+* 应用：Anagram
   - reduce : key sorted word， value list of words
 
 * Notes

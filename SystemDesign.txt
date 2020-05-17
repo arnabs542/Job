@@ -493,7 +493,6 @@ Map Reduce
   - Reducer 一个机器key特别大怎么办？加个random后缀，类似shard key
   - input和output放哪？ GFS
 
-
 ------------------------------------
 Message System & Rate Limiter
 ------------------------------------

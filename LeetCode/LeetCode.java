@@ -768,6 +768,34 @@
 
 31 Next Permutation
   - Iterate from right to left in an array to find the first index that arr[index] < arr[index+1], then from right to index find the first index2 that arr[index2]>arr[index], swap these two. Then inverse from index+1 to rightmost. e.g. 4202320 -> 4203220 -> 4203022
+      public void nextPermutation(int[] nums) {
+        for(int i=nums.length-1;i>0;i--) {
+            if(nums[i] > nums[i-1]) {
+                for(int j=nums.length-1;j>=i;j--) {
+                    if(nums[j]> nums[i-1]) {
+                        int temp = nums[i-1];
+                        nums[i-1] = nums[j];
+                        nums[j] = temp;
+
+                        revert(nums, i, nums.length-1);
+
+                        return;
+                    }
+                }
+            }
+        }
+
+        revert(nums, 0, nums.length-1);
+    }
+
+    private void revert(int[] nums, int l, int r) {
+        while(l<r) {
+            int temp = nums[l];
+            nums[l] = nums[r];
+            nums[r] = temp;
+            l++;r--;
+        }
+    }
 
 62 Unique Paths
   - dp[i][j] = dp[i-1][j] + dp[i][j-1]
@@ -1196,7 +1224,9 @@
             arr[c-'A']++;
             max = Math.max(max, arr[c-'A']);
         }
+
         int res = (max-1) * (n+1);
+
         for(int i:arr) if(i == max) res++;
         // corner case for tasks.length: n = 0, [A,A,A,B,B,B]
         return Math.max(res, tasks.length);}

@@ -1566,6 +1566,30 @@
 98. Validate Binary Search Tree
   - inorder traversal and the new visited node should larger than the previous ndoe. Maintain pre node val.
   - first assign pre = Integer.MIN_VALUE, test case has node.val = Integer.MIN_VALUE. Be careful.
+    public boolean isValidBST(TreeNode root) {
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode node = root;
+        boolean set = false;
+        int num = Integer.MIN_VALUE;
+        while(!stack.isEmpty() || node != null) {
+            while(node != null) {
+                stack.push(node);
+                node = node.left;
+            }
+            node = stack.pop();
+            if(!set) {
+                num = node.val;
+                set = true;
+            } else if(node.val <= num) {
+                return false;
+            } else {
+                num = node.val;
+            }
+            node= node.right;
+        }
+
+        return true;
+    }
   # Tree, Inorder Traversal, Stack
 
 538. Convert BST to Greater Tree
@@ -4767,40 +4791,38 @@
   # Two Pointers
 
 708. Insert into a Sorted Circular Linked List
-  - duplicates exist in the list
-        Node n = new Node(insertVal);
+    public Node insert(Node head, int insertVal) {
         if(head == null) {
-            n.next = n;
-            return n;
-        } else if(head.next == head) {
-            head.next = n;
-            n.next = head;
-            return head;
+            Node node = new Node(insertVal);
+            node.next = node;
+            return node;
         }
 
-        max = head;
-        min = head;
-        Node pre = head;
-        Node cur = head.next;
-        do {
-            if(cur.val>=max.val) { // due to duplicates, >= not >
-                max = cur;
+        Node n = head;
+        while(n.next != head) {
+            // 正常情况插入
+            if(insertVal >= n.val && insertVal <=n.next.val) {
+                Node temp = n.next;
+                n.next = new Node(insertVal);
+                n.next.next = temp;
+                return head;
             }
-            if(cur.val <= min.val) { // duplicates, <= not <
-                min = cur;
-            }
-            if(n.val<=cur.val && n.val>=pre.val) { // dup, 得有=
-                pre.next = n;
-                n.next = cur;
+            // 转折点插入
+            if(n.val > n.next.val && (insertVal < n.next.val || insertVal >= n.val)) {
+                Node temp = n.next;
+                n.next = new Node(insertVal);
+                n.next.next = temp;
                 return head;
             }
 
-            pre = pre.next;
-            cur = cur.next;
-        } while(pre != head); // 保证绕一圈
-
-        max.next = n;
-        n.next = min;
+            n = n.next;
+        }
+        // head is 转折点，corner case
+        Node temp = n.next;
+        n.next = new Node(insertVal);
+        n.next.next = temp;
+        return head;
+    }
   # Two Pointers
 
 480. Sliding Window Median
@@ -6905,9 +6927,51 @@ class Solution {
     }
   # Ordered List
 
+1245. Tree Diameter
+  - 运用 tree postorder 找最长path的思路
+  # Tree
 
+616. Add Bold Tag in String
+  - 有点像dp中 string能否由dictionary中词组成
+  - string 逐个循环，从dict单词找最长match的，然后mark match所有位为true
+    public String addBoldTag(String s, String[] dict) {
+        Arrays.sort(dict, (a,b) -> b.length() - a.length());
 
+        boolean[] arr = new boolean[s.length()];
+        for(int i=0;i<s.length();i++) {
+            for(String d : dict) {
+                if(d.length() <= i+1 && d.equals(s.substring(i-d.length()+1,i+1))) {
+                    for(int j = i-d.length()+1;j<i+1;j++) {
+                        arr[j] = true;
+                    }
+                    break;
+                }
+            }
+        }
+        String res = "";
+        boolean sw = false;
+        for(int i=0;i<arr.length;i++) {
+            if(arr[i]) {
+                if(!sw) {
+                    res +="<b>";
+                    sw = true;
+                }
+            } else {
+                if(sw) {
+                    res += "</b>";
+                    sw = false;
+                }
+            }
+            res += s.charAt(i);
+        }
 
+        if(sw) {
+            res += "</b>";
+        }
+        return res;
+    }
+
+  # String
 
 
 

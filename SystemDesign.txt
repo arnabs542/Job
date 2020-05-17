@@ -569,6 +569,7 @@ Message System & Rate Limiter
       - push取决于client用户端网络情况，情况复杂不可控因而不稳定。所以对于real time要求不高，用pull，一方面也能汇报在不在
 
 * Rate Limiter
+  - 对秒，分钟，小时，天 对request就行数量限制
   - limit requests.限制数据库的读写操作。
   - 用memcached实现，因为不需要数据持久化。
     1. 用event + feature + timestamp作为memechached的key
@@ -581,6 +582,7 @@ Message System & Rate Limiter
     2. 允许一定的误差
 
 * Design Datadog
+    - aggregation
     - 对老数据进行瘦身(retention)e.g. 对于老的request num，不按秒存，而是按小时存
 
 ------------------------------------
@@ -646,6 +648,7 @@ Location Based Service
 * Google S2
   - Hilbwer Curve
   - 将地址空间映射到2^64的整数。空间上比较接近的2个点，对应的整数也比较接近
+  - 更精准
 
 * Geohash
   - 将整体地图划分块状，hash长度越长越精确

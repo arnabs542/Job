@@ -1,13 +1,18 @@
 ----------------------------------
 Schedule
 ----------------------------------
-Monday April 6, 2020
+Monday, May 18, 2020 10:00 AM EDT (This call will last approx. 5 hours)
+
+Interview Schedule
+
+Monday May 18, 2020
 10:00 AM - 10:15 AM EDT - Greet and VC Setup
-10:15 AM - 11:00 AM EDT - Coding - https://coderpad.io/P76N7DHM
-11:00 AM - 11:45 AM EDT - Product Architecture https://docs.google.com/drawings/
+10:15 AM - 11:00 AM EDT - Coding - https://coderpad.io/32HTX26P
+11:00 AM - 11:45 AM EDT - Career/Coding - https://coderpad.io/M2DK9W92
 11:45 AM - 12:30 PM EDT - Break - please remain in the video conference
-12:30 PM - 01:15 PM EDT - Coding - https://coderpad.io/KYYFYYCD
-01:15 PM - 02:00 PM EDT - Career/Coding - https://coderpad.io/P94YYXQG
+12:30 PM - 01:15 PM EDT - Coding - https://coderpad.io/2PWHQWZA
+01:15 PM - 02:00 PM EDT - Product Architecture - Whiteboard Session
+02:15 PM - 03:00 PM EDT - Coding - https://coderpad.io/WA9MC7P3
 
 To Join the Meeting: https://fb.bluejeans.com/370618661
 

@@ -14,7 +14,6 @@
 
 * teamwork
   - Influencer Onsite Attribution
-    # Warhol app
     # Data team
     # AIP team
     # Portal team
